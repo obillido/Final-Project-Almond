@@ -1,52 +1,36 @@
-package project.app.dadaum.vo;
+package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class EventVo {
-	private int eventnum;
-	private int contnum;
-	private String title;
-	private String content;
+public class CouponVo {
+	private int coupnum;
+	private String keyword;
 	private Date regdate;
 	private Date startdate;
 	private Date enddate;
 	private int price;
 	private int usebydate;
-	public EventVo(){}
-	public EventVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate, int price, int usebydate) {
-		this.eventnum = eventnum;
-		this.contnum = contnum;
-		this.title = title;
-		this.content = content;
+	public CouponVo(){}
+	public CouponVo(int coupnum, String keyword, Date regdate, Date startdate, Date enddate, int price, int usebydate) {
+		this.coupnum = coupnum;
+		this.keyword = keyword;
 		this.regdate = regdate;
 		this.startdate = startdate;
 		this.enddate = enddate;
 		this.price = price;
 		this.usebydate = usebydate;
 	}
-	public int getEventnum() {
-		return eventnum;
+	public int getCoupnum() {
+		return coupnum;
 	}
-	public void setEventnum(int eventnum) {
-		this.eventnum = eventnum;
+	public void setCoupnum(int coupnum) {
+		this.coupnum = coupnum;
 	}
-	public int getContnum() {
-		return contnum;
+	public String getKeyword() {
+		return keyword;
 	}
-	public void setContnum(int contnum) {
-		this.contnum = contnum;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	public Date getRegdate() {
 		return regdate;

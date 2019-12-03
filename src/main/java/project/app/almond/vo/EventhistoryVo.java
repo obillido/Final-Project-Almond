@@ -1,32 +1,32 @@
-package project.app.dadaum.vo;
+package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class CouponhistoryVo {
-	private int couphnum;
-	private int coupnum;
+public class EventhistoryVo {
+	private int eventhnum;
+	private int eventnum;
 	private int usernum;
 	private Date regdate;
 	private int price;
-	public CouponhistoryVo(){}
-	public CouponhistoryVo(int couphnum, int coupnum, int usernum, Date regdate, int price) {
-		this.couphnum = couphnum;
-		this.coupnum = coupnum;
+	public EventhistoryVo(){}
+	public EventhistoryVo(int eventhnum, int eventnum, int usernum, Date regdate, int price) {
+		this.eventhnum = eventhnum;
+		this.eventnum = eventnum;
 		this.usernum = usernum;
 		this.regdate = regdate;
 		this.price = price;
 	}
-	public int getCouphnum() {
-		return couphnum;
+	public int getEventhnum() {
+		return eventhnum;
 	}
-	public void setCouphnum(int couphnum) {
-		this.couphnum = couphnum;
+	public void setEventhnum(int eventhnum) {
+		this.eventhnum = eventhnum;
 	}
-	public int getCoupnum() {
-		return coupnum;
+	public int getEventnum() {
+		return eventnum;
 	}
-	public void setCoupnum(int coupnum) {
-		this.coupnum = coupnum;
+	public void setEventnum(int eventnum) {
+		this.eventnum = eventnum;
 	}
 	public int getUsernum() {
 		return usernum;

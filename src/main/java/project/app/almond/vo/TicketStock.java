@@ -1,4 +1,4 @@
-package project.app.dadaum.vo;
+package project.app.almond.vo;
 
 public class TicketStock {
 	private int tksnum;
