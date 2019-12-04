@@ -9,11 +9,11 @@
 </head>
 <body>
 <ul>
-	<li><a href=''>1</a></li>
-	<li><a href=''>2</a></li>
-	<li><a href=''>3</a></li>
-	<li><a href=''>4</a></li>
-	<li><a href=''>5</a></li>
+	<li><a href='${pageContext.request.contextPath}/a'>1.수현</a></li>
+	<li><a href='${pageContext.request.contextPath}/2'>2.소희</a></li>
+	<li><a href='${pageContext.request.contextPath}/3'>3.윤하</a></li>
+	<li><a href='${pageContext.request.contextPath}/4'>4.병윤</a></li>
+	<li><a href='${pageContext.request.contextPath}/5'>5.윤혁</a></li>
 </ul>
 </body>
 </html>
