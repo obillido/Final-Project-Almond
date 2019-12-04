@@ -10,4 +10,8 @@ public class WebcontentsController {
 	public String regiVedioForm(){
 		return ".webcontents.videoRegi";
 	}
+	@RequestMapping(value="/webcontents/choice")
+	public String regiFormChoice(){
+		return ".webcontents.choice";
+	}
 }

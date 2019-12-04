@@ -15,9 +15,12 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="${pageContext.request.contextPath}/">홈</a>
       </li>
-      <li class="breadcrumb-item active">Contact</li>
+      <li class="breadcrumb-item">
+        <a href="${pageContext.request.contextPath}/webcontents/choice">영상물/책</a>
+      </li>
+      <li class="breadcrumb-item active">등록</li>
     </ol>
 
     <!-- Contact Form -->
@@ -28,8 +31,8 @@
         <form name="sentMessage" id="contactForm" novalidate>
           <div class="control-group form-group">
             <div class="controls">
-              <label>Full Name:</label>
-              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+              <label>장르 :</label>
+              <input type="text" class="form-control" id="name" required data-validation-required-message="장르를 입력해주세요.">
               <p class="help-block"></p>
             </div>
           </div>

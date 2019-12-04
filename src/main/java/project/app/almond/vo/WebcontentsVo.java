@@ -2,6 +2,7 @@ package project.app.almond.vo;
 
 public class WebcontentsVo {
 	private int contnum;
+	private String title;
 	private int cultype;
 	private String genre;
 	private String outline;
@@ -12,8 +13,9 @@ public class WebcontentsVo {
 	private int agegrade;
 	private int freenum;
 	public WebcontentsVo(){}
-	public WebcontentsVo(int contnum, int cultype, String genre, String outline, int price, int waiting, String img, int completiontype, int agegrade, int freenum) {
+	public WebcontentsVo(int contnum, String title, int cultype, String genre, String outline, int price, int waiting, String img, int completiontype, int agegrade, int freenum) {
 		this.contnum = contnum;
+		this.title = title;
 		this.cultype = cultype;
 		this.genre = genre;
 		this.outline = outline;
@@ -29,6 +31,12 @@ public class WebcontentsVo {
 	}
 	public void setContnum(int contnum) {
 		this.contnum = contnum;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public int getCultype() {
 		return cultype;

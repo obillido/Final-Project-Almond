@@ -541,6 +541,7 @@ CREATE TABLE webcontents
 (
 	-- 작품번호
 	contnum number NOT NULL,
+	title varchar2(100) not null,
 	-- 책/영상물 : 1 : 웹툰
 	-- 2 : 소설
 	-- 3 : 영화
