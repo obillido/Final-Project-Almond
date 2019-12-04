@@ -465,7 +465,7 @@ CREATE TABLE ticketBuy
 	-- 이용권번호
 	tknum number NOT NULL,
 	-- 회원번호
-	usernum number NOT NULL,
+	contnum number NOT NULL,
 	-- 소장/대여권 : 1 : 소장권
 	-- 2 : 대여권
 	type number NOT NULL,
@@ -651,8 +651,8 @@ ALTER TABLE giftHistory
 
 
 ALTER TABLE ticketBuy
-	ADD FOREIGN KEY (tknum)
-	REFERENCES ticket (tknum)
+	ADD FOREIGN KEY (contnum)
+	REFERENCES webcontents (contnum)
 ;
 
 
@@ -799,5 +799,6 @@ insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,200,2000,4000,400,4
 insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,200,1800,3400,400,3600,7000);
 insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,300,3000,6000,500,5000,10000);
 insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,300,2700,5100,500,4500,8500);
+insert into ticket values(seq_ticket_tknum.nextval,1,1,20,60,300,2700,5100,500,4500,8500);
 
 
