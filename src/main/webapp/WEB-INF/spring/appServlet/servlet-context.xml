@@ -31,7 +31,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="project.app.almond.controller" />
-	
+	<context:annotation-config/>
 	
     <!-- //////////////////// 타일즈 관련 설정 //////////////////// -->
     <beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
