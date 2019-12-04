@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Almond Page1</title>
+<title>이벤트 페이지</title>
 </head>
 <body>
-<h1>소희</h1>
+<a href="${pageContext.request.contextPath }/event1">이벤트1</a>
+<a href="${pageContext.request.contextPath }/event2">이벤트2</a>
+<a href="${pageContext.request.contextPath }/evnet3">이벤트3</a>
 </body>
 </html>
