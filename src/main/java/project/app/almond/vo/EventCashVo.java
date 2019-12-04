@@ -2,7 +2,7 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class EventPointVo {
+public class EventCashVo {
 	private int eventnum;
 	private int contnum;
 	private String title;
@@ -12,8 +12,8 @@ public class EventPointVo {
 	private Date enddate;
 	private int price;
 	private int usebydate;
-	public EventPointVo(){}
-	public EventPointVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate, int price, int usebydate) {
+	public EventCashVo(){}
+	public EventCashVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate, int price, int usebydate) {
 		this.eventnum = eventnum;
 		this.contnum = contnum;
 		this.title = title;

@@ -12,7 +12,7 @@ DROP TABLE score CASCADE CONSTRAINTS;
 DROP TABLE ticketUse CASCADE CONSTRAINTS;
 DROP TABLE episode CASCADE CONSTRAINTS;
 DROP TABLE eventhistory CASCADE CONSTRAINTS;
-DROP TABLE Eventpoint CASCADE CONSTRAINTS;
+DROP TABLE Eventcash CASCADE CONSTRAINTS;
 DROP TABLE eventroulette CASCADE CONSTRAINTS;
 DROP TABLE giftHistory CASCADE CONSTRAINTS;
 DROP TABLE gift CASCADE CONSTRAINTS;
@@ -39,7 +39,7 @@ DROP SEQUENCE SEQ_couponHistory_couphnum;	/**/
 DROP SEQUENCE SEQ_coupon_coupnum;	/**/
 DROP SEQUENCE SEQ_episode_epinum;	/**/
 DROP SEQUENCE SEQ_eventHistory_eventhnum;	/**/
-DROP SEQUENCE SEQ_Eventpoint_eventnum;	/**/
+DROP SEQUENCE SEQ_Eventcash_eventnum;	/**/
 DROP SEQUENCE SEQ_eventroulette_eventnum;	/**/
 DROP SEQUENCE SEQ_giftHistory_gifthnum;	/**/
 DROP SEQUENCE SEQ_gift_giftnum;	/**/
@@ -69,7 +69,7 @@ CREATE SEQUENCE SEQ_couponHistory_couphnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_coupon_coupnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_episode_epinum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_eventHistory_eventhnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_Eventpoint_eventnum INCREMENT BY 1 START WITH 1;	/**/
+CREATE SEQUENCE SEQ_Eventcash_eventnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_eventroulette_eventnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_giftHistory_gifthnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_gift_giftnum INCREMENT BY 1 START WITH 1;	/**/
@@ -240,7 +240,7 @@ CREATE TABLE eventhistory
 
 
 -- 포인트이벤트
-CREATE TABLE Eventpoint
+CREATE TABLE eventcash
 (
 	-- 이벤트번호
 	eventnum number NOT NULL,
@@ -285,6 +285,8 @@ CREATE TABLE eventroulette
 	price2 number,
 	-- 금액3
 	price3 number,
+	-- 금액4
+	price4 number,
 	-- 사용기한
 	usebydate number,
 	PRIMARY KEY (eventnum)
@@ -510,8 +512,6 @@ CREATE TABLE users
 	profileimg varchar2(100),
 	-- 캐시
 	cash number NOT NULL,
-	-- 적립금
-	point number NOT NULL,
 	-- 상태 : 1 : 일반
 	-- 2 : 탈퇴
 	status number,
@@ -609,7 +609,7 @@ ALTER TABLE ticketUse
 
 ALTER TABLE eventhistory
 	ADD FOREIGN KEY (eventnum)
-	REFERENCES Eventpoint (eventnum)
+	REFERENCES eventcash (eventnum)
 ;
 
 
@@ -727,7 +727,7 @@ ALTER TABLE episode
 ;
 
 
-ALTER TABLE Eventpoint
+ALTER TABLE eventcash
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
 ;

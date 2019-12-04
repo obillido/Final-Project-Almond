@@ -9,5 +9,8 @@
 </head>
 <body>
 <h1>윤하</h1>
+<ul>
+	<li><a href='/'>컨텐츠 등록</a></li>
+</ul>
 </body>
 </html>

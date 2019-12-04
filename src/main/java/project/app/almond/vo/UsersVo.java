@@ -8,10 +8,9 @@ public class UsersVo {
 	private String nickname;
 	private String profileimg;
 	private int cash;
-	private int point;
 	private int status;
 	public UsersVo(){}
-	public UsersVo(int usernum, String email, String pwd, String phone, String nickname, String profileimg, int cash, int point, int status) {
+	public UsersVo(int usernum, String email, String pwd, String phone, String nickname, String profileimg, int cash, int status) {
 		this.usernum = usernum;
 		this.email = email;
 		this.pwd = pwd;
@@ -19,7 +18,6 @@ public class UsersVo {
 		this.nickname = nickname;
 		this.profileimg = profileimg;
 		this.cash = cash;
-		this.point = point;
 		this.status = status;
 	}
 	public int getUsernum() {
@@ -63,12 +61,6 @@ public class UsersVo {
 	}
 	public void setCash(int cash) {
 		this.cash = cash;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
 	}
 	public int getStatus() {
 		return status;

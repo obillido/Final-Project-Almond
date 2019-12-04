@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatis.mapper.WebcontentsMapper">
+	<insert id="insert" parameterType="project.app.almond.vo.WebcontentsVo">
+		insert into webcontents values(seq_webcontents_contnum.nextval,#{cultype},#{genre},#{outline},#{price},#{waiting},#{img},#{completiontype},#{agegrade},#{freenum})
+	</insert>
+	<select id="getCurrContnum" resultType="int">
+		select seq_webcontents_contnum.currval from dual
+	</select>
+</mapper>
+
+
+
+
+

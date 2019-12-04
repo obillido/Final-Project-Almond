@@ -12,9 +12,10 @@ public class EventRouletteVo {
 	private int price1;
 	private int price2;
 	private int price3;
+	private int price4;
 	private int usebydate;
 	public EventRouletteVo(){}
-	public EventRouletteVo(int eventnum, int contnum, String title, String content, Date regdate, int headcount, int price1, int price2, int price3, int usebydate) {
+	public EventRouletteVo(int eventnum, int contnum, String title, String content, Date regdate, int headcount, int price1, int price2, int price3, int price4, int usebydate) {
 		this.eventnum = eventnum;
 		this.contnum = contnum;
 		this.title = title;
@@ -24,6 +25,7 @@ public class EventRouletteVo {
 		this.price1 = price1;
 		this.price2 = price2;
 		this.price3 = price3;
+		this.price4 = price4;
 		this.usebydate = usebydate;
 	}
 	public int getEventnum() {
@@ -79,6 +81,12 @@ public class EventRouletteVo {
 	}
 	public void setPrice3(int price3) {
 		this.price3 = price3;
+	}
+	public int getPrice4() {
+		return price4;
+	}
+	public void setPrice4(int price4) {
+		this.price4 = price4;
 	}
 	public int getUsebydate() {
 		return usebydate;
