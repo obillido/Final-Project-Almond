@@ -9,14 +9,16 @@ public class EpisodeVo {
 	private int hit;
 	private String img;
 	private String content;
+	private int epnum;
 	public EpisodeVo(){}
-	public EpisodeVo(int epinum, int contnum, Date uploaddate, int hit, String img, String content) {
+	public EpisodeVo(int epinum, int contnum, Date uploaddate, int hit, String img, String content, int epnum) {
 		this.epinum = epinum;
 		this.contnum = contnum;
 		this.uploaddate = uploaddate;
 		this.hit = hit;
 		this.img = img;
 		this.content = content;
+		this.epnum = epnum;
 	}
 	public int getEpinum() {
 		return epinum;
@@ -53,5 +55,11 @@ public class EpisodeVo {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getEpnum() {
+		return epnum;
+	}
+	public void setEpnum(int epnum) {
+		this.epnum = epnum;
 	}
 }

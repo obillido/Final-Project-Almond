@@ -6,20 +6,18 @@ public class TicketbuyVo {
 	private int tkbnum;
 	private int tknum;
 	private int usernum;
-	/**
-	 * 1 : 소장권
-	 * 2 : 대여권
-	 */
-	private int usetype;
-	private String method;
+	private int type;
+	private int cnt;
+	private int price;
 	private Date regdate;
 	public TicketbuyVo(){}
-	public TicketbuyVo(int tkbnum, int tknum, int usernum, int usetype, String method, Date regdate) {
+	public TicketbuyVo(int tkbnum, int tknum, int usernum, int type, int cnt, int price, Date regdate) {
 		this.tkbnum = tkbnum;
 		this.tknum = tknum;
 		this.usernum = usernum;
-		this.usetype = usetype;
-		this.method = method;
+		this.type = type;
+		this.cnt = cnt;
+		this.price = price;
 		this.regdate = regdate;
 	}
 	public int getTkbnum() {
@@ -40,17 +38,23 @@ public class TicketbuyVo {
 	public void setUsernum(int usernum) {
 		this.usernum = usernum;
 	}
-	public int getUsetype() {
-		return usetype;
+	public int getType() {
+		return type;
 	}
-	public void setUsetype(int usetype) {
-		this.usetype = usetype;
+	public void setType(int type) {
+		this.type = type;
 	}
-	public String getMethod() {
-		return method;
+	public int getCnt() {
+		return cnt;
 	}
-	public void setMethod(String method) {
-		this.method = method;
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public Date getRegdate() {
 		return regdate;

@@ -6,20 +6,20 @@ public class WebcontentsVo {
 	private int cultype;
 	private String genre;
 	private String outline;
-	private int price;
+	private int tknum;
 	private int waiting;
 	private String img;
 	private int completiontype;
 	private int agegrade;
 	private int freenum;
 	public WebcontentsVo(){}
-	public WebcontentsVo(int contnum, String title, int cultype, String genre, String outline, int price, int waiting, String img, int completiontype, int agegrade, int freenum) {
+	public WebcontentsVo(int contnum, String title, int cultype, String genre, String outline, int tknum, int waiting, String img, int completiontype, int agegrade, int freenum) {
 		this.contnum = contnum;
 		this.title = title;
 		this.cultype = cultype;
 		this.genre = genre;
 		this.outline = outline;
-		this.price = price;
+		this.tknum = tknum;
 		this.waiting = waiting;
 		this.img = img;
 		this.completiontype = completiontype;
@@ -56,11 +56,11 @@ public class WebcontentsVo {
 	public void setOutline(String outline) {
 		this.outline = outline;
 	}
-	public int getPrice() {
-		return price;
+	public int getTknum() {
+		return tknum;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(int tknum) {
+		this.tknum = tknum;
 	}
 	public int getWaiting() {
 		return waiting;

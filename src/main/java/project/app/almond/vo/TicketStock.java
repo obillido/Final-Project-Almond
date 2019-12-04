@@ -4,19 +4,19 @@ public class TicketStock {
 	private int tksnum;
 	private int usernum;
 	private int contnum;
-	private int cnt;
 	/**
 	 * 1 : 소장권
 	 * 2 : 대여권
 	 */
 	private int type;
+	private int cnt;
 	public TicketStock(){}
-	public TicketStock(int tksnum, int usernum, int contnum, int cnt, int type) {
+	public TicketStock(int tksnum, int usernum, int contnum, int type, int cnt) {
 		this.tksnum = tksnum;
 		this.usernum = usernum;
 		this.contnum = contnum;
-		this.cnt = cnt;
 		this.type = type;
+		this.cnt = cnt;
 	}
 	public int getTksnum() {
 		return tksnum;

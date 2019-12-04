@@ -217,32 +217,14 @@ CREATE TABLE episode
 	img varchar2(100),
 	-- 내용
 	content clob,
+	-- 회차번호
+	epnum number NOT NULL,
 	PRIMARY KEY (epinum)
 );
 
 
--- 이벤트 내역
-CREATE TABLE eventhistory
-(
-	-- 이벤트 내역번호
-	eventhnum number NOT NULL,
-	-- 이벤트번호
-	eventnum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 받은날
-	regdate date NOT NULL,
-	-- 금액
-	price number NOT NULL,
-	-- 타입 : 1 : point
-	-- 2 : roulette
-	type number NOT NULL,
-	PRIMARY KEY (eventhnum)
-);
-
-
 -- 포인트이벤트
-CREATE TABLE eventcash
+CREATE TABLE eventCash
 (
 	-- 이벤트번호
 	eventnum number NOT NULL,
@@ -263,6 +245,26 @@ CREATE TABLE eventcash
 	-- 사용기한
 	usebydate number NOT NULL,
 	PRIMARY KEY (eventnum)
+);
+
+
+-- 이벤트 내역
+CREATE TABLE eventhistory
+(
+	-- 이벤트 내역번호
+	eventhnum number NOT NULL,
+	-- 이벤트번호
+	eventnum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 받은날
+	regdate date NOT NULL,
+	-- 금액
+	price number NOT NULL,
+	-- 타입 : 1 : point
+	-- 2 : roulette
+	type number NOT NULL,
+	PRIMARY KEY (eventhnum)
 );
 
 
@@ -288,7 +290,7 @@ CREATE TABLE eventroulette
 	-- 금액3
 	price3 number,
 	-- 금액4
-	price4 number,
+	price4 number NOT NULL,
 	-- 사용기한
 	usebydate number,
 	PRIMARY KEY (eventnum)
@@ -306,7 +308,7 @@ CREATE TABLE gift
 	cnt number NOT NULL,
 	-- 소장권/대여권 : 1 : 소장권
 	-- 2 : 대여권
-	usetype number NOT NULL,
+	type number NOT NULL,
 	PRIMARY KEY (giftnum)
 );
 
@@ -431,14 +433,26 @@ CREATE TABLE ticket
 (
 	-- 이용권번호
 	tknum number NOT NULL,
-	-- 작품번호
-	contnum number NOT NULL,
-	-- 개수
-	cnt number NOT NULL,
-	-- 대여금액
-	rentalprice number NOT NULL,
-	-- 소장금액
-	ownprice number NOT NULL,
+	-- 카테고리타입
+	cultype number NOT NULL,
+	-- 개수1
+	cnt1 number NOT NULL,
+	-- 개수2
+	cnt2 number,
+	-- 개수3
+	cnt3 number,
+	-- 대여금액1
+	rentalprice1 number NOT NULL,
+	-- 대여금액2
+	rentalprice2 number,
+	-- 대여금액3
+	rentalprice3 number,
+	-- 소장금액1
+	ownprice1 number NOT NULL,
+	-- 소장금액2
+	ownprice2 number,
+	-- 소장금액3
+	ownprice3 number,
 	PRIMARY KEY (tknum)
 );
 
@@ -452,9 +466,13 @@ CREATE TABLE ticketBuy
 	tknum number NOT NULL,
 	-- 회원번호
 	usernum number NOT NULL,
-	-- 소장권/대여권 : 1 : 소장권
+	-- 소장/대여권 : 1 : 소장권
 	-- 2 : 대여권
 	type number NOT NULL,
+	-- 개수
+	cnt number NOT NULL,
+	-- 금액 : 전체 금액
+	price number NOT NULL,
 	-- 구매일
 	regdate date NOT NULL,
 	PRIMARY KEY (tkbnum)
@@ -488,11 +506,11 @@ CREATE TABLE tiketStock
 	usernum number NOT NULL,
 	-- 작품번호
 	contnum number NOT NULL,
-	-- 개수
-	cnt number,
 	-- 타입 : 1: 소장
 	-- 2 : 대여
 	type number NOT NULL,
+	-- 개수
+	cnt number,
 	PRIMARY KEY (tksnum)
 );
 
@@ -543,7 +561,8 @@ CREATE TABLE webcontents
 (
 	-- 작품번호
 	contnum number NOT NULL,
-	title varchar2(100) not null,
+	-- 작품명
+	title varchar2(100) NOT NULL,
 	-- 책/영상물 : 1 : 웹툰
 	-- 2 : 소설
 	-- 3 : 영화
@@ -554,8 +573,8 @@ CREATE TABLE webcontents
 	genre varchar2(100) NOT NULL,
 	-- 줄거리(소개글)
 	outline varchar2(500),
-	-- 가격
-	price number NOT NULL,
+	-- 이용권번호
+	tknum number NOT NULL,
 	-- 기다림시간
 	waiting number NOT NULL,
 	-- 이미지저장이름
@@ -567,6 +586,9 @@ CREATE TABLE webcontents
 	agegrade number NOT NULL,
 	-- 무료회차 : default : 0
 	freenum number NOT NULL,
+	-- 상태 : 0 : 미공개
+	-- 1 : 공개
+	status number,
 	PRIMARY KEY (contnum)
 );
 
@@ -612,7 +634,7 @@ ALTER TABLE ticketUse
 
 ALTER TABLE eventhistory
 	ADD FOREIGN KEY (eventnum)
-	REFERENCES eventcash (eventnum)
+	REFERENCES eventCash (eventnum)
 ;
 
 
@@ -629,6 +651,12 @@ ALTER TABLE giftHistory
 
 
 ALTER TABLE ticketBuy
+	ADD FOREIGN KEY (tknum)
+	REFERENCES ticket (tknum)
+;
+
+
+ALTER TABLE webcontents
 	ADD FOREIGN KEY (tknum)
 	REFERENCES ticket (tknum)
 ;
@@ -730,7 +758,7 @@ ALTER TABLE episode
 ;
 
 
-ALTER TABLE eventcash
+ALTER TABLE eventCash
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
 ;
@@ -754,12 +782,6 @@ ALTER TABLE myList
 ;
 
 
-ALTER TABLE ticket
-	ADD FOREIGN KEY (contnum)
-	REFERENCES webcontents (contnum)
-;
-
-
 ALTER TABLE tiketStock
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
@@ -770,4 +792,12 @@ ALTER TABLE video
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
 ;
+
+
+
+insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,200,2000,4000,400,4000,8000);
+insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,200,1800,3400,400,3600,7000);
+insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,300,3000,6000,500,5000,10000);
+insert into ticket values(seq_ticket_tknum.nextval,1,1,10,20,300,2700,5100,500,4500,8500);
+
 

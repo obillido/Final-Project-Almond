@@ -4,13 +4,13 @@ public class GiftVo {
 	private int giftnum;
 	private int contnum;
 	private int cnt;
-	private int usertype;
+	private int type;
 	public GiftVo(){}
-	public GiftVo(int giftnum, int contnum, int cnt, int usertype) {
+	public GiftVo(int giftnum, int contnum, int cnt, int type) {
 		this.giftnum = giftnum;
 		this.contnum = contnum;
 		this.cnt = cnt;
-		this.usertype = usertype;
+		this.type = type;
 	}
 	public int getGiftnum() {
 		return giftnum;
@@ -30,10 +30,10 @@ public class GiftVo {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public int getUsertype() {
-		return usertype;
+	public int getType() {
+		return type;
 	}
-	public void setUsertype(int usertype) {
-		this.usertype = usertype;
+	public void setUsertype(int type) {
+		this.type = type;
 	}
 }
