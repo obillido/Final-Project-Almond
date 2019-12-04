@@ -2,18 +2,18 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class GifthistoryVo {
+public class GiftHistoryVo {
 	private int gifthnum;
 	private int giftnum;
 	private int usernum;
 	private Date regdate;
-	public GifthistoryVo(int gifthnum, int giftnum, int usernum, Date regdate) {
+	public GiftHistoryVo(int gifthnum, int giftnum, int usernum, Date regdate) {
 		this.gifthnum = gifthnum;
 		this.giftnum = giftnum;
 		this.usernum = usernum;
 		this.regdate = regdate;
 	}
-	public GifthistoryVo(){}
+	public GiftHistoryVo(){}
 	public int getGifthnum() {
 		return gifthnum;
 	}

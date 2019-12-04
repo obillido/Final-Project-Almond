@@ -4,6 +4,10 @@ public class MylistVo {
 	private int mylistnum;
 	private int contnum;
 	private int usernum;
+	/**
+	 * 0 : 알람해제
+	 * 1 : 알람설정
+	 */
 	private int alaram;
 	public MylistVo(){}
 	public MylistVo(int mylistnum, int contnum, int usernum, int alaram) {

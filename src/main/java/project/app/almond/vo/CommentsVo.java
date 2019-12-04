@@ -8,17 +8,17 @@ public class CommentsVo {
 	private int username;
 	private String content;
 	private int ref;
-	private int level;
+	private int lev;
 	private int step;
 	private Date regdate;
 	public CommentsVo(){}
-	public CommentsVo(int commnum, int epinum, int username, String content, int ref, int level, int step, Date regdate) {
+	public CommentsVo(int commnum, int epinum, int username, String content, int ref, int lev, int step, Date regdate) {
 		this.commnum = commnum;
 		this.epinum = epinum;
 		this.username = username;
 		this.content = content;
 		this.ref = ref;
-		this.level = level;
+		this.lev = lev;
 		this.step = step;
 		this.regdate = regdate;
 	}
@@ -52,11 +52,11 @@ public class CommentsVo {
 	public void setRef(int ref) {
 		this.ref = ref;
 	}
-	public int getLevel() {
-		return level;
+	public int getLev() {
+		return lev;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLevel(int lev) {
+		this.lev = lev;
 	}
 	public int getStep() {
 		return step;

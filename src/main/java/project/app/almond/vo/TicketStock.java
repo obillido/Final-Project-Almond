@@ -6,8 +6,8 @@ public class TicketStock {
 	private int contnum;
 	private int cnt;
 	/**
-	 * 1 : 소장
-	 * 2 : 대여
+	 * 1 : 소장권
+	 * 2 : 대여권
 	 */
 	private int type;
 	public TicketStock(){}

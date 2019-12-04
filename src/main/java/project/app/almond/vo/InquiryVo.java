@@ -5,19 +5,23 @@ public class InquiryVo {
 	private int usernum;
 	private String title;
 	private String content;
+	/**
+	 * 0 : 대기
+	 * 1 : 완료
+	 */
 	private int status;
 	private int ref;
-	private int level;
+	private int lev;
 	private int step;
 	public InquiryVo(){}
-	public InquiryVo(int inqnum, int usernum, String title, String content, int status, int ref, int level, int step) {
+	public InquiryVo(int inqnum, int usernum, String title, String content, int status, int ref, int lev, int step) {
 		this.inqnum = inqnum;
 		this.usernum = usernum;
 		this.title = title;
 		this.content = content;
 		this.status = status;
 		this.ref = ref;
-		this.level = level;
+		this.lev = lev;
 		this.step = step;
 	}
 	public int getInqnum() {
@@ -56,11 +60,11 @@ public class InquiryVo {
 	public void setRef(int ref) {
 		this.ref = ref;
 	}
-	public int getLevel() {
-		return level;
+	public int getLev() {
+		return lev;
 	}
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLev(int lev) {
+		this.lev = lev;
 	}
 	public int getStep() {
 		return step;

@@ -2,19 +2,25 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class EventhistoryVo {
+public class EventHistoryVo {
 	private int eventhnum;
 	private int eventnum;
 	private int usernum;
 	private Date regdate;
 	private int price;
-	public EventhistoryVo(){}
-	public EventhistoryVo(int eventhnum, int eventnum, int usernum, Date regdate, int price) {
+	/**
+	 * 1 : Æ÷ÀÎÆ®
+	 * 2 : type
+	 */
+	private int type;
+	public EventHistoryVo(){}
+	public EventHistoryVo(int eventhnum, int eventnum, int usernum, Date regdate, int price, int type) {
 		this.eventhnum = eventhnum;
 		this.eventnum = eventnum;
 		this.usernum = usernum;
 		this.regdate = regdate;
 		this.price = price;
+		this.type = type;
 	}
 	public int getEventhnum() {
 		return eventhnum;
@@ -45,5 +51,11 @@ public class EventhistoryVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 }

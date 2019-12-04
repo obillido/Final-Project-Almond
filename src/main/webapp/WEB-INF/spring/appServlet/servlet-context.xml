@@ -11,6 +11,13 @@
 
 	<resources mapping="/resources/**" location="/resources/" />
 
+
+	<beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <beans:property name="definitions">
+      <beans:value>/WEB-INF/tiles.xml</beans:value>
+    </beans:property>
+	</beans:bean>
+
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewNames" value=".*"/>
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>

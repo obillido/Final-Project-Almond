@@ -2,27 +2,27 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class CashhistoryVo {
-	private int cashhnum;
+public class CashVo {
+	private int cashnum;
 	private int usernum;
 	private int price;
 	private Date regdate;
 	private int type;
 	private String method;
-	public CashhistoryVo(){}
-	public CashhistoryVo(int cashhnum, int usernum, int price, Date regdate, int type, String method) {
-		this.cashhnum = cashhnum;
+	public CashVo(){}
+	public CashVo(int cashnum, int usernum, int price, Date regdate, int type, String method) {
+		this.cashnum = cashnum;
 		this.usernum = usernum;
 		this.price = price;
 		this.regdate = regdate;
 		this.type = type;
 		this.method = method;
 	}
-	public int getCashhnum() {
-		return cashhnum;
+	public int getCashnum() {
+		return cashnum;
 	}
-	public void setCashhnum(int cashhnum) {
-		this.cashhnum = cashhnum;
+	public void setCashhnum(int cashnum) {
+		this.cashnum = cashnum;
 	}
 	public int getUsernum() {
 		return usernum;

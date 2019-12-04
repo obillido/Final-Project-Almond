@@ -7,6 +7,10 @@ public class TiketuseVo {
 	private int usernum;
 	private int epinum;
 	private Date usedate;
+	/**
+	 * 1 : 소장권
+	 * 2 : 대여권
+	 */
 	private int type;
 	public TiketuseVo(){}
 	public TiketuseVo(int tkunum, int usernum, int epinum, Date usedate, int type) {

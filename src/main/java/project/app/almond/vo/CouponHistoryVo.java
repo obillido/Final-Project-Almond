@@ -2,14 +2,14 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class CouponhistoryVo {
+public class CouponHistoryVo {
 	private int couphnum;
 	private int coupnum;
 	private int usernum;
 	private Date regdate;
 	private int price;
-	public CouponhistoryVo(){}
-	public CouponhistoryVo(int couphnum, int coupnum, int usernum, Date regdate, int price) {
+	public CouponHistoryVo(){}
+	public CouponHistoryVo(int couphnum, int coupnum, int usernum, Date regdate, int price) {
 		this.couphnum = couphnum;
 		this.coupnum = coupnum;
 		this.usernum = usernum;
