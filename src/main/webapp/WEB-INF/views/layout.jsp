@@ -29,6 +29,9 @@
    </div>
 </div>
 <!-- Bootstrap core JavaScript -->
+
+  <script src="<c:url value="/resources/js/jqBootstrapValidation.js"/>"></script>
+  <script src="<c:url value="/resources/js/contact_me.js"/>"></script>
   <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
   <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>
