@@ -10,6 +10,6 @@
 <body>
 <a href="${pageContext.request.contextPath }/event1">이벤트1</a>
 <a href="${pageContext.request.contextPath }/event2">이벤트2</a>
-<a href="${pageContext.request.contextPath }/evnet3">이벤트3</a>
+<a href="${pageContext.request.contextPath }/event3">이벤트3</a>
 </body>
 </html>
