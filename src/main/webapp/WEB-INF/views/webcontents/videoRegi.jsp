@@ -1,214 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+  
+  
+  
+  <!-- Page Content -->
+  <div class="container">
 
-	<link href="${pageContext.request.contextPath}/resources/css/webcontentsRegi/bootstrap.min.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath}/resources/css/webcontentsRegi/material-bootstrap-wizard.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath}/resources/css/webcontentsRegi/demo.css" rel="stylesheet" />
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Contact
+      <small>Subheading</small>
+    </h1>
 
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Contact</li>
+    </ol>
 
-<body>
-	<div class="image-container set-full-height" style="background-image: url('assets/img/wizard-book.jpg')">
-	    <!--   Creative Tim Branding   -->
-	    <a href="http://creative-tim.com">
-	         <div class="logo-container">
-	            <div class="logo">
-	                <img src="${pageContext.request.contextPath}/images/profile/new_logo.png">
-	            </div>
-	            <div class="brand">
-	                Creative Tim
-	            </div>
-	        </div>
-	    </a>
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <h3>등록</h3>
+        <form name="sentMessage" id="contactForm" novalidate>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Full Name:</label>
+              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Phone Number:</label>
+              <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Email Address:</label>
+              <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Message:</label>
+              <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+            </div>
+          </div>
+          <div id="success"></div>
+          <!-- For success/fail messages -->
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button>
+        </form>
+      </div>
 
-		<!--  Made With Material Kit  -->
-		<a href="http://demos.creative-tim.com/material-kit/index.html?ref=material-bootstrap-wizard" class="made-with-mk">
-			<div class="brand">MK</div>
-			<div class="made-with">Made with <strong>Material Kit</strong></div>
-		</a>
+    </div>
+    <!-- /.row -->
 
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-8 col-sm-offset-2">
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		                <div class="card wizard-card" data-color="red" id="wizard">
-		                    <form action="" method="">
-		                <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
+  </div>
 
-		                    	<div class="wizard-header">
-		                        	<h3 class="wizard-title">
-		                        		Book a Room
-		                        	</h3>
-									<h5>This information will let us know more about you.</h5>
-		                    	</div>
-								<div class="wizard-navigation">
-									<ul>
-			                            <li><a href="#details" data-toggle="tab">Account</a></li>
-			                            <li><a href="#captain" data-toggle="tab">Room Type</a></li>
-			                            <li><a href="#description" data-toggle="tab">Extra Details</a></li>
-			                        </ul>
-								</div>
+  <script src="${pageContext.request.contextPath}/resources/js/jqBootstrapValidation.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/contact_me.js"></script>
 
-		                        <div class="tab-content">
-		                            <div class="tab-pane" id="details">
-		                            	<div class="row">
-			                            	<div class="col-sm-12">
-			                                	<h4 class="info-text"> Let's start with the basic details.</h4>
-			                            	</div>
-		                                	<div class="col-sm-6">
-												<div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">email</i>
-													</span>
-													<div class="form-group label-floating">
-			                                          	<label class="control-label">Your Email</label>
-			                                          	<input name="name" type="text" class="form-control">
-			                                        </div>
-												</div>
-
-												<div class="input-group">
-													<span class="input-group-addon">
-														<i class="material-icons">lock_outline</i>
-													</span>
-													<div class="form-group label-floating">
-			                                          	<label class="control-label">Your Password</label>
-			                                          	<input name="name2" type="password" class="form-control">
-			                                        </div>
-												</div>
-
-		                                	</div>
-		                                	<div class="col-sm-6">
-		                                    	<div class="form-group label-floating">
-		                                        	<label class="control-label">Country</label>
-	                                        		<select class="form-control">
-														<option disabled="" selected=""></option>
-	                                                	<option value="Afghanistan"> Afghanistan </option>
-	                                                	<option value="Albania"> Albania </option>
-	                                                	<option value="Algeria"> Algeria </option>
-	                                                	<option value="American Samoa"> American Samoa </option>
-	                                                	<option value="Andorra"> Andorra </option>
-	                                                	<option value="Angola"> Angola </option>
-	                                                	<option value="Anguilla"> Anguilla </option>
-	                                                	<option value="Antarctica"> Antarctica </option>
-	                                                	<option value="...">...</option>
-		                                        	</select>
-		                                    	</div>
-												<div class="form-group label-floating">
-		                                        	<label class="control-label">Daily Budget</label>
-	                                        		<select class="form-control">
-														<option disabled="" selected=""></option>
-	                                                	<option value="Afghanistan"> < $100 </option>
-	                                                	<option value="Albania"> $100 - $499 </option>
-	                                                	<option value="Algeria"> $499 - $999 </option>
-	                                                	<option value="American Samoa"> $999+ </option>
-		                                        	</select>
-		                                    	</div>
-		                                	</div>
-		                            	</div>
-		                            </div>
-		                            <div class="tab-pane" id="captain">
-		                                <h4 class="info-text">What type of room would you want? </h4>
-		                                <div class="row">
-		                                    <div class="col-sm-10 col-sm-offset-1">
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="This is good if you travel alone.">
-		                                                <input type="radio" name="job" value="Design">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">weekend</i>
-		                                                </div>
-		                                                <h6>Single</h6>
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this room if you're traveling with your family.">
-		                                                <input type="radio" name="job" value="Code">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">home</i>
-		                                                </div>
-		                                                <h6>Family</h6>
-		                                            </div>
-		                                        </div>
-												<div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you are coming with your team.">
-		                                                <input type="radio" name="job" value="Code">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">business</i>
-		                                                </div>
-		                                                <h6>Business</h6>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="tab-pane" id="description">
-		                                <div class="row">
-		                                    <h4 class="info-text"> Drop us a small description.</h4>
-		                                    <div class="col-sm-6 col-sm-offset-1">
-	                                    		<div class="form-group">
-		                                            <label>Room description</label>
-		                                            <textarea class="form-control" placeholder="" rows="6"></textarea>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-sm-4">
-		                                    	<div class="form-group">
-		                                            <label class="control-label">Example</label>
-		                                            <p class="description">"The room really nice name is recognized as being a really awesome room. We use it every sunday when we go fishing and we catch a lot. It has some kind of magic shield around it."</p>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-	                        	<div class="wizard-footer">
-	                            	<div class="pull-right">
-	                                    <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
-	                                    <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
-	                                </div>
-	                                <div class="pull-left">
-	                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-
-										<div class="footer-checkbox">
-											<div class="col-sm-12">
-											  <div class="checkbox">
-												  <label>
-													  <input type="checkbox" name="optionsCheckboxes">
-												  </label>
-												  Subscribe to our newsletter
-											  </div>
-										  </div>
-										</div>
-	                                </div>
-	                                <div class="clearfix"></div>
-	                        	</div>
-		                    </form>
-		                </div>
-		            </div> <!-- wizard container -->
-		        </div>
-	    	</div> <!-- row -->
-		</div> <!--  big container -->
-
-	    <div class="footer">
-	        <div class="container text-center">
-	             Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>. Free download <a href="http://www.creative-tim.com/product/material-bootstrap-wizard">here.</a>
-	        </div>
-	    </div>
-	</div>
-	
-	
-	</body>
-	<!--   Core JS Files   -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.bootstrap.js" type="text/javascript"></script>
-
-	<!--  Plugin for the Wizard -->
-	<script src="${pageContext.request.contextPath}/resources/js/material-bootstrap-wizard.js"></script>
-
-	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
-</html>
-	
-	
+  

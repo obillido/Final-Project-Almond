@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WebcontentsController {
 	@RequestMapping(value="/webcontents/videoRegi",method=RequestMethod.GET)
 	public String regiVedioForm(){
-		return "webcontents/videoRegi";
+		return ".webcontents.videoRegi";
 	}
 }

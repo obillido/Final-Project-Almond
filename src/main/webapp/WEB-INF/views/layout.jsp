@@ -21,7 +21,7 @@
    <div id="header">
       <tiles:insertAttribute name="header"/>
    </div>
-   <div id="content">
+   <div id="content" style="margin-top:45px;">
       <tiles:insertAttribute name="content"/>
    </div>
    <div id="footer">
