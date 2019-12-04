@@ -565,9 +565,9 @@ CREATE TABLE webcontents
 	title varchar2(100) NOT NULL,
 	-- 책/영상물 : 1 : 웹툰
 	-- 2 : 소설
-	-- 3 : 영화
+	-- 3 : 예능
 	-- 4 : 드라마
-	-- 5 : 예능
+	-- 5 : 영화
 	cultype number NOT NULL,
 	-- 장르
 	genre varchar2(100) NOT NULL,

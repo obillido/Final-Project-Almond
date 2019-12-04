@@ -33,7 +33,7 @@ public class WebtoonController {
             sb.append("<cultype>" + vo.getCultype() + "</cultype>");
             sb.append("<genre>" + vo.getGenre() + "</genre>");
             sb.append("<outline>" + vo.getOutline() + "</outline>");
-            sb.append("<price>" + vo.getPrice() + "</price>");
+            sb.append("<tknum>" + vo.getTknum() + "</tknum>");
             sb.append("<waiting>" + vo.getWaiting() + "</waiting>");
             sb.append("<img>" + vo.getImg() + "</img>");
             sb.append("<completiontype>" + vo.getCompletiontype() + "</completiontype>");
