@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class WebtoonController {
 	@RequestMapping("/webtoon/webtoonpage")
 	public String main(){
-		return "webtoon/webtoonpage";
+		return ".webtoonpage";
 	}
 }

@@ -11,7 +11,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/a")
 	public String home1() {
-		return "home1";
+		return ".layout";
 	}
 	@RequestMapping(value = "/2")
 	public String home2() {
