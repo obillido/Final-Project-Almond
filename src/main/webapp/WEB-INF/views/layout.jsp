@@ -11,10 +11,10 @@
 <meta name="author" content="">
 <title>layout.jsp</title>
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath }/resources/css/modern-business.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
 </head>
 <body>
 <div id="wrap">
