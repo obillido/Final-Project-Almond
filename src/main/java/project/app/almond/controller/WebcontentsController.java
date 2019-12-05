@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.TicketService;
@@ -65,10 +66,17 @@ public class WebcontentsController {
 		return ".webcontents.regiForm";
 	}
 	@RequestMapping(value="/webcontents/regi",method=RequestMethod.POST)
-	public String regi(int cultype,String title,String genre,String outline,int tknum,int waiting,int agegrade,int freenum,String director,String actor,int runtime,Date proddate,String writer,String illustrator,String publisher,MultipartFile file1,HttpSession session,Model model){
-		String uploadPath=session.getServletContext().getRealPath("/resources/"+cultype);
+	public String regi(int cultype,String title,String genre,String outline,
+			int tknum,int waiting,int agegrade,int freenum,
+			String director,String actor,@RequestParam(value="runtime",defaultValue="100")int runtime,Date proddate,
+			String writer,String illustrator,String publisher,
+			MultipartFile file1,HttpSession session,Model model){
+		String uploadPath=session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
+		System.out.println(uploadPath);
+		System.out.println(UUID.randomUUID());
+		System.out.println(file1.getOriginalFilename());
 		String img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
-		System.out.println("path:\t\t"+uploadPath+" , "+img);
+		System.out.println("path : "+uploadPath+" , "+img);
 		try{
 			InputStream is=file1.getInputStream();
 			FileOutputStream fos=new FileOutputStream(uploadPath+"\\"+img);

@@ -31,7 +31,7 @@
       		</c:choose>
       	</h3>
       	<br>
-        <form method="post" action="${pageContext.request.contextPath}/webcontents/regi">
+        <form method="post" action="${pageContext.request.contextPath}/webcontents/regi" enctype="multipart/form-data">
         	<input type="hidden" name="cultype" value="${cultype}"> 
           <div class="control-group form-group">
             <div class="controls">
@@ -82,7 +82,7 @@
 		          <div class="control-group form-group">
 		            <div class="controls">
 		              <label>상영시간 :</label>
-		              <input type="text" class="form-control" name="runtime" required data-validation-required-message="상영시간을 입력해주세요." autocomplete=off>
+		              <input type="number" class="form-control" name="runtime" required data-validation-required-message="상영시간을 입력해주세요." autocomplete=off>
 		              <p class="help-block"></p>
 		            </div>
 		          </div>	
@@ -153,7 +153,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>무료회차 :</label>
-              <input type="text" class="form-control" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
+              <input type="number" class="form-control" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
               <p class="help-block"></p>
             </div>
           </div>

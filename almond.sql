@@ -214,7 +214,7 @@ CREATE TABLE episode
 	-- 조회수
 	hit number NOT NULL,
 	-- 이미지 저장이름
-	img varchar2(100),
+	img varchar2(200),
 	-- 내용
 	content clob,
 	-- 회차번호
@@ -245,7 +245,7 @@ CREATE TABLE eventCash
 	-- 사용기한
 	usebydate number NOT NULL,
 	-- 이미지
-	img varchar2(100) NOT NULL,
+	img varchar2(200) NOT NULL,
 	-- 그룹
 	ref number NOT NULL,
 	-- 레벨
@@ -584,7 +584,7 @@ CREATE TABLE webcontents
 	-- 기다림시간
 	waiting number NOT NULL,
 	-- 이미지저장이름
-	img varchar2(100),
+	img varchar2(200),
 	-- 완결여부 : 1 : 연재 중
 	-- 0 : 완결
 	completiontype number NOT NULL,
