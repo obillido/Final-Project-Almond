@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		if(${code}!=null){
+			alert(${code});
+		}
+	});
+</script>
+
+
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <div class="container">
 	<h1 class="mt-4 mb-3">Webcontents
@@ -10,7 +19,7 @@
 	
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-		  <a href="${cp}/">홈</a>
+		  <a href="${path}/">홈</a>
 		</li>
 	  <li class="breadcrumb-item active">타입선택</li>
 	</ol>  

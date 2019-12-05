@@ -12,7 +12,7 @@ import project.app.almond.vo.VideoVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Service
-public class WebcontentService {
+public class WebcontentsService {
 	@Autowired private WebcontentsDao wdao;
 	@Autowired private VideoDao vdao;
 	@Autowired private BookDao bdao;

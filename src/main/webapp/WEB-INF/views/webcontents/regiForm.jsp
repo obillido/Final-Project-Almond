@@ -31,7 +31,8 @@
       		</c:choose>
       	</h3>
       	<br>
-        <form id="contactForm" novalidate>
+        <form method="post" action="${pageContext.request.contextPath}/webcontents/regi">
+        	<input type="hidden" name="cultype" value="${cultype}"> 
           <div class="control-group form-group">
             <div class="controls">
               <label>작품명 :</label>
@@ -88,21 +89,16 @@
 		          <div class="control-group form-group">
 		            <div class="controls">
 		              <label>제작일 :</label>
-		              <input type="text" class="form-control" name="publisher" required data-validation-required-message="제작일을 입력해주세요." autocomplete=off>
+		              <input type="date" class="form-control" name="proddate" required data-validation-required-message="제작일을 입력해주세요." autocomplete=off>
 		              <p class="help-block"></p>
 		            </div>
 		          </div>					
 						</c:otherwise>
 					</c:choose>
-
-
-
-          
           <div class="control-group form-group">
             <div class="controls">
               <label>장르 :</label>
-              <select class="form-control" name="genre" required data-validation-required-message="장르를 선택해주세요.">
-	              <option value="">선택</option>
+              <select class="form-control">
 	              <c:forEach var="genre" items="${genreList}">
 	              	<option value="${genre}">${genre}</option>
 	              </c:forEach>
@@ -113,8 +109,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>가격 :</label>
-              <select class="form-control" name="tknum" required data-validation-required-message="를 선택해주세요.">
-	              <option value="">선택</option>
+              <select class="form-control" name="tknum">
 	              <c:forEach var="tk" items="${ticketList}">
 	              	<option value="${tk.tknum}">
 	              		<c:choose>
@@ -131,14 +126,14 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>기다리면 무료 시간 :</label>
-              <select class="form-control" name="waiting" required data-validation-required-message="장르를 입력해주세요.">
-								<option value="-1">유료</option>
+              <select class="form-control" name="waiting">
 								<option value="1">1시간</option>              
 								<option value="12">12시간</option>              
 								<option value="24">1일</option>              
 								<option value="48">2일</option>              
 								<option value="72">3일</option>              
-								<option value="168">7일</option>              
+								<option value="168">7일</option>   
+								<option value="-1">유료</option>           
               </select>
               <p class="help-block"></p>
             </div>
@@ -146,7 +141,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>연령등급 :</label>
-              <select class="form-control" name="agegrade" required data-validation-required-message="등급을 선택해주세요.">
+              <select class="form-control" name="agegrade">
 								<option value="0">전체연령가</option>              
 								<option value="12">12세</option>              
 								<option value="15">15세</option>              
@@ -162,8 +157,6 @@
               <p class="help-block"></p>
             </div>
           </div>
-          
-          
           <div class="control-group form-group">
             <div class="controls">
               <label>줄거리(소개글):</label>
@@ -171,11 +164,16 @@
             </div>
           </div>
           <div id="success"></div>
-          <!-- For success/fail messages -->
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button>
+	        <div class="control-group form-group">
+	            <div class="controls">
+	              <label>이미지 :</label>
+	              <input type="file" class="form-control" name="file1">
+	              <p class="help-block"></p>
+	            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">등록</button>
         </form>
       </div>
-
     </div>
 
   </div>
