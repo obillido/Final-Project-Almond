@@ -9,6 +9,8 @@ import project.app.almond.dao.VideoDao;
 import project.app.almond.dao.WebcontentsDao;
 import project.app.almond.vo.BookVo;
 import project.app.almond.vo.VideoVo;
+import project.app.almond.vo.WebcontentsBookVo;
+import project.app.almond.vo.WebcontentsVideoVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Service
@@ -29,5 +31,11 @@ public class WebcontentsService {
 		bvo.setContnum(wdao.getCurrContnum());
 		bdao.insert(bvo);
 		return 1;
+	}
+	public WebcontentsBookVo getInfoBook(int contnum){
+		return wdao.getInfoBook(contnum); 
+	}
+	public WebcontentsVideoVo getInfoVideo(int contnum){
+		return wdao.getInfoVideo(contnum); 
 	}
 }

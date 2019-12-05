@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatis.mapper.TicketBuyMapper">
+	<select id="getinfo" parameterType="int"  resultType="project.app.almond.vo.UsersVo">
+		select * from users where usernum=#{usernum}
+	</select>
+	
+	<insert id="insert" parameterType="project.app.almond.vo.TicketBuyVo">
+		insert into ticketbuy values(SEQ_TICKETBUY_TKBNUM.nextval,#{usernum},#{contnum},#{type},#{cnt},#{price},sysdate)
+	</insert>
+	
+</mapper>

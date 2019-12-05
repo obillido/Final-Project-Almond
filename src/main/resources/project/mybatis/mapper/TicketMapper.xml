@@ -6,7 +6,7 @@
 	<select id="getInfoList" parameterType="int" resultType="project.app.almond.vo.TicketVo">
 		select * from ticket where cultype=#{cultype}
 	</select>
-	<select id="getinfo" parameterType="int" resultType="project.app.almond.vo.TicketVo">
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.TicketVo">
 		select * from ticket where tknum=#{tknum}
 	</select>
 </mapper>

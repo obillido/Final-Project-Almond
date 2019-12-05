@@ -15,6 +15,16 @@
 
 <!-- Custom styles for this template -->
 <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
+
+<!-- Bootstrap core JavaScript -->
+<script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
+<script src="<c:url value="/resources/js/jqBootstrapValidation.js"/>"></script>
+<script src="<c:url value="/resources/js/contact_me.js"/>"></script>
+<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
+
+
+
 </head>
 <body>
 <div id="wrap">
@@ -28,11 +38,6 @@
       <tiles:insertAttribute name="footer"/>
    </div>
 </div>
-<!-- Bootstrap core JavaScript -->
 
-  <script src="<c:url value="/resources/js/jqBootstrapValidation.js"/>"></script>
-  <script src="<c:url value="/resources/js/contact_me.js"/>"></script>
-  <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"></script>
-  <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 </body>
 </html>

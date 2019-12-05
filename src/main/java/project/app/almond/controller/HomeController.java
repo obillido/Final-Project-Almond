@@ -1,10 +1,15 @@
 package project.app.almond.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import project.app.almond.service.WebcontentsService;
 
 @Controller
 public class HomeController {
+	@Autowired private WebcontentsService wservice;
 	@RequestMapping(value = "/")
 	public String home() {
 		return ".layout";
@@ -22,7 +27,8 @@ public class HomeController {
 		return ".home4";
 	}
 	@RequestMapping(value = "/5")
-	public String home5() {
+	public String home5(Model model) {
+		model.addAttribute("webc",wservice.getInfoBook(1));
 		return ".home5";
 	}
 }

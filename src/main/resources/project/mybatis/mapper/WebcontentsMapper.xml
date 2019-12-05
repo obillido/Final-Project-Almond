@@ -9,6 +9,12 @@
 	<select id="getCurrContnum" resultType="int">
 		select seq_webcontents_contnum.currval from dual
 	</select>
+	<select id="getInfoBook" parameterType="int" resultType="project.app.almond.vo.WebcontentsBookVo">
+		select wc.*,writer,illustrator,publisher from webcontents wc,book where wc.contnum=book.contnum and wc.contnum=#{contnum}
+	</select>
+	<select id="getInfoVideo" parameterType="int" resultType="project.app.almond.vo.WebcontentsVideoVo">
+		select wc.*,director,actor,runtime,proddate from webcontents wc,video where wc.contnum=video.contnum and wc.contnum=#{contnum}
+	</select>
 </mapper>
 
 

@@ -1,6 +1,6 @@
 package project.app.almond.vo;
 
-public class TicketStock {
+public class TicketStockVo {
 	private int tksnum;
 	private int usernum;
 	private int contnum;
@@ -10,8 +10,8 @@ public class TicketStock {
 	 */
 	private int type;
 	private int cnt;
-	public TicketStock(){}
-	public TicketStock(int tksnum, int usernum, int contnum, int type, int cnt) {
+	public TicketStockVo(){}
+	public TicketStockVo(int tksnum, int usernum, int contnum, int type, int cnt) {
 		this.tksnum = tksnum;
 		this.usernum = usernum;
 		this.contnum = contnum;
