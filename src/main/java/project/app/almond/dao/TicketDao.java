@@ -15,4 +15,7 @@ public class TicketDao {
 	public List<TicketVo> getInfoList(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getInfoList",cultype);
 	}
+	public TicketVo getInfo(int tknum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",tknum);
+	}
 }

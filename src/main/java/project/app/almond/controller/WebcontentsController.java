@@ -65,29 +65,17 @@ public class WebcontentsController {
 		model.addAttribute("ticketList",tservice.getInfoList(cultype));
 		return ".webcontents.regiForm";
 	}
+	
 	@RequestMapping(value="/webcontents/regi",method=RequestMethod.POST)
 	public String regi(int cultype,String title,String genre,String outline,
-			int tknum,int waiting,int agegrade,int freenum,
+			int tknum,int waiting,int agegrade,int freenum,int completiontype,
 			String director,String actor,@RequestParam(value="runtime",defaultValue="100")int runtime,Date proddate,
 			String writer,String illustrator,String publisher,
 			MultipartFile file1,HttpSession session,Model model){
-		String uploadPath=session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
-		System.out.println(uploadPath);
-		System.out.println(UUID.randomUUID());
-		System.out.println(file1.getOriginalFilename());
+		String uploadPath="C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
+				//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
 		String img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
-		System.out.println("path : "+uploadPath+" , "+img);
-		try{
-			InputStream is=file1.getInputStream();
-			FileOutputStream fos=new FileOutputStream(uploadPath+"\\"+img);
-			FileCopyUtils.copy(is, fos);
-			is.close();
-			fos.close();
-		}catch(IOException ie){
-			ie.printStackTrace();
-			return "error";
-		}
-		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, 1, agegrade, freenum);
+		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0);
 		int n=1;
 		if(cultype==1||cultype==2){
 			BookVo bvo=new BookVo(0, writer, illustrator, publisher);
@@ -96,7 +84,19 @@ public class WebcontentsController {
 			VideoVo vvo=new VideoVo(0, director, actor, runtime, proddate);
 			n=wservice.insert(wvo, vvo);
 		}
-		if(n>0) model.addAttribute("code","성공적으로 등록이 완료되었습니다.");
+		if(n>0){
+			try{
+				InputStream is=file1.getInputStream();
+				FileOutputStream fos=new FileOutputStream(uploadPath+"\\"+img);
+				FileCopyUtils.copy(is, fos);
+				is.close();
+				fos.close();
+			}catch(IOException ie){
+				ie.printStackTrace();
+				model.addAttribute("code","등록실패");
+			}
+			model.addAttribute("code","성공적으로 등록이 완료되었습니다.");
+		}
 		else    model.addAttribute("code","등록실패");
 		return ".webcontents.choice";
 	}

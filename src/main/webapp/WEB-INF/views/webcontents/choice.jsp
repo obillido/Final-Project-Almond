@@ -14,7 +14,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <div class="container">
 	<h1 class="mt-4 mb-3">Webcontents
-	  <small>분류</small>
+	  <small>타입선택</small>
 	</h1>
 	
 	<ol class="breadcrumb">

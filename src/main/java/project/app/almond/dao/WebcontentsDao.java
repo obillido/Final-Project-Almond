@@ -9,7 +9,7 @@ import project.app.almond.vo.WebcontentsVo;
 @Repository
 public class WebcontentsDao {
 	@Autowired private SqlSessionTemplate sqlSessionTemplate;
-	private final String NAMESPACE="project.mybatis.mapper.WebContentsMapper";
+	private final String NAMESPACE="project.mybatis.mapper.WebcontentsMapper";
 	public int insert(WebcontentsVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}

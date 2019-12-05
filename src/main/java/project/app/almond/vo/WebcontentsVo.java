@@ -12,8 +12,9 @@ public class WebcontentsVo {
 	private int completiontype;
 	private int agegrade;
 	private int freenum;
+	private int status;
 	public WebcontentsVo(){}
-	public WebcontentsVo(int contnum, String title, int cultype, String genre, String outline, int tknum, int waiting, String img, int completiontype, int agegrade, int freenum) {
+	public WebcontentsVo(int contnum, String title, int cultype, String genre, String outline, int tknum, int waiting, String img, int completiontype, int agegrade, int freenum, int status) {
 		this.contnum = contnum;
 		this.title = title;
 		this.cultype = cultype;
@@ -25,6 +26,7 @@ public class WebcontentsVo {
 		this.completiontype = completiontype;
 		this.agegrade = agegrade;
 		this.freenum = freenum;
+		this.status = status;
 	}
 	public int getContnum() {
 		return contnum;
@@ -59,7 +61,7 @@ public class WebcontentsVo {
 	public int getTknum() {
 		return tknum;
 	}
-	public void setPrice(int tknum) {
+	public void setTknum(int tknum) {
 		this.tknum = tknum;
 	}
 	public int getWaiting() {
@@ -92,4 +94,11 @@ public class WebcontentsVo {
 	public void setFreenum(int freenum) {
 		this.freenum = freenum;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 }

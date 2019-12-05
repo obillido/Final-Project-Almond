@@ -19,9 +19,9 @@ public class WebtoonController {
 	@ResponseBody
 	public String category2(){
 		ArrayList<WebcontentsVo> list=new ArrayList<WebcontentsVo>();	
-		list.add(new WebcontentsVo(1, "제목1", 1, "웹툰", "소개글1", 900, 0, "savedimgname1", 1, 12, 0));
-		list.add(new WebcontentsVo(2, "제목2", 1, "순정", "소개글2", 900, 0, "savedimgname2", 1, 12, 0));
-		list.add(new WebcontentsVo(3, "제목3", 1, "드라마", "소개글3", 900, 0, "savedimgname3", 1, 12, 0));
+		//list.add(new WebcontentsVo(1, "제목1", 1, "웹툰", "소개글1", 900, 0, "savedimgname1", 1, 12, 0));
+		//list.add(new WebcontentsVo(2, "제목2", 1, "순정", "소개글2", 900, 0, "savedimgname2", 1, 12, 0));
+		//list.add(new WebcontentsVo(3, "제목3", 1, "드라마", "소개글3", 900, 0, "savedimgname3", 1, 12, 0));
 		
 		StringBuffer sb=new StringBuffer();
         sb.append("<?xml version='1.0' encoding='utf-8'?>");

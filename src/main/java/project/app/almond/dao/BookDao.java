@@ -9,7 +9,7 @@ import project.app.almond.vo.BookVo;
 @Repository
 public class BookDao {
 	@Autowired private SqlSessionTemplate sqlSessionTemplate;
-	private final String NAMESPACE="project.app.almond.BookMapper";
+	private final String NAMESPACE="project.mybatis.mapper.BookMapper";
 	public int insert(BookVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}

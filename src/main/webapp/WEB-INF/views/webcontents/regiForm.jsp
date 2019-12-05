@@ -98,7 +98,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>장르 :</label>
-              <select class="form-control">
+              <select class="form-control" name="genre">
 	              <c:forEach var="genre" items="${genreList}">
 	              	<option value="${genre}">${genre}</option>
 	              </c:forEach>
@@ -154,6 +154,16 @@
             <div class="controls">
               <label>무료회차 :</label>
               <input type="number" class="form-control" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>완결여부 :</label>
+              <select class="form-control" name="completiontype">
+								<option value="0">연재중</option>              
+								<option value="1">완결</option>           
+              </select>
               <p class="help-block"></p>
             </div>
           </div>

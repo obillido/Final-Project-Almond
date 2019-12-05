@@ -14,4 +14,7 @@ public class TicketService {
 	public List<TicketVo> getInfoList(int cultype){
 		return tdao.getInfoList(cultype);
 	}
+	public TicketVo getInfo(int tknum){
+		return tdao.getInfo(tknum);
+	}
 }

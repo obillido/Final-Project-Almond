@@ -9,7 +9,7 @@ import project.app.almond.vo.VideoVo;
 @Repository
 public class VideoDao {
 	@Autowired private SqlSessionTemplate sqlSessionTemplate;
-	private final String NAMESPACE="project.app.almond.VideoMapper";
+	private final String NAMESPACE="project.mybatis.mapper.VideoMapper";
 	public int insert(VideoVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
