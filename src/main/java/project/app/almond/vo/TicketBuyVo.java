@@ -2,7 +2,7 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class TicketbuyVo {
+public class TicketBuyVo {
 	private int tkbnum;
 	private int usernum;
 	private int contnum;
@@ -10,8 +10,8 @@ public class TicketbuyVo {
 	private int cnt;
 	private int price;
 	private Date regdate;
-	public TicketbuyVo(){}
-	public TicketbuyVo(int tkbnum, int usernum, int contnum, int type, int cnt, int price, Date regdate) {
+	public TicketBuyVo(){}
+	public TicketBuyVo(int tkbnum, int usernum, int contnum, int type, int cnt, int price, Date regdate) {
 		this.tkbnum = tkbnum;
 		this.usernum = usernum;
 		this.contnum = contnum;

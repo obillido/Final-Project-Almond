@@ -2,7 +2,7 @@ package project.app.almond.vo;
 
 import java.sql.Date;
 
-public class TiketuseVo {
+public class TicketUseVo {
 	private int tkunum;
 	private int usernum;
 	private int epinum;
@@ -12,8 +12,8 @@ public class TiketuseVo {
 	 * 2 : ´ë¿©±Ç
 	 */
 	private int type;
-	public TiketuseVo(){}
-	public TiketuseVo(int tkunum, int usernum, int epinum, Date usedate, int type) {
+	public TicketUseVo(){}
+	public TicketUseVo(int tkunum, int usernum, int epinum, Date usedate, int type) {
 		this.tkunum = tkunum;
 		this.usernum = usernum;
 		this.epinum = epinum;
