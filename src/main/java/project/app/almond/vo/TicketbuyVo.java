@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class TicketbuyVo {
 	private int tkbnum;
-	private int tknum;
+	private int usernum;
 	private int contnum;
 	private int type;
 	private int cnt;
 	private int price;
 	private Date regdate;
 	public TicketbuyVo(){}
-	public TicketbuyVo(int tkbnum, int tknum, int contnum, int type, int cnt, int price, Date regdate) {
+	public TicketbuyVo(int tkbnum, int usernum, int contnum, int type, int cnt, int price, Date regdate) {
 		this.tkbnum = tkbnum;
-		this.tknum = tknum;
+		this.usernum = usernum;
 		this.contnum = contnum;
 		this.type = type;
 		this.cnt = cnt;
@@ -26,11 +26,11 @@ public class TicketbuyVo {
 	public void setTkbnum(int tkbnum) {
 		this.tkbnum = tkbnum;
 	}
-	public int getTknum() {
-		return tknum;
+	public int getUsernum() {
+		return usernum;
 	}
-	public void setTknum(int tknum) {
-		this.tknum = tknum;
+	public void setUsernum(int usernum) {
+		this.usernum = usernum;
 	}
 	public int getContnum() {
 		return contnum;

@@ -12,8 +12,11 @@ public class EventCashVo {
 	private Date enddate;
 	private int price;
 	private int usebydate;
+	private String img;
+	private int ref;
+	private int lev;
 	public EventCashVo(){}
-	public EventCashVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate, int price, int usebydate) {
+	public EventCashVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate, int price, int usebydate, String img, int ref, int lev) {
 		this.eventnum = eventnum;
 		this.contnum = contnum;
 		this.title = title;
@@ -23,6 +26,9 @@ public class EventCashVo {
 		this.enddate = enddate;
 		this.price = price;
 		this.usebydate = usebydate;
+		this.img = img;
+		this.ref = ref;
+		this.lev = lev;
 	}
 	public int getEventnum() {
 		return eventnum;
@@ -77,5 +83,23 @@ public class EventCashVo {
 	}
 	public void setUsebydate(int usebydate) {
 		this.usebydate = usebydate;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	public int getLev() {
+		return lev;
+	}
+	public void setLev(int lev) {
+		this.lev = lev;
 	}
 }

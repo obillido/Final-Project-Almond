@@ -244,6 +244,12 @@ CREATE TABLE eventCash
 	price number NOT NULL,
 	-- 사용기한
 	usebydate number NOT NULL,
+	-- 이미지
+	img varchar2(100) NOT NULL,
+	-- 그룹
+	ref number NOT NULL,
+	-- 레벨
+	lev number NOT NULL,
 	PRIMARY KEY (eventnum)
 );
 
@@ -462,8 +468,8 @@ CREATE TABLE ticketBuy
 (
 	-- 티켓구매번호
 	tkbnum number NOT NULL,
-	-- 이용권번호
-	tknum number NOT NULL,
+	-- 유저번호
+	usernum number NOT NULL,
 	-- 회원번호
 	contnum number NOT NULL,
 	-- 소장/대여권 : 1 : 소장권
@@ -795,6 +801,7 @@ ALTER TABLE video
 
 
 
+insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 0,0,0, 0,0,0);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,2000,4000, 400,4000,8000);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,1800,3400, 400,3600,7000);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 300,3000,6000, 500,5000,10000);
