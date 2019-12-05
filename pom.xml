@@ -15,27 +15,20 @@
 	</properties>
 	<dependencies>
 	 
-	    
-        <!-- /////////////// tiles /////////////// -->
-        <!-- https://mvnrepository.com에서 Tiles JSP Support » 3.0.8 복사해 옴 -->
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-jsp</artifactId>
-            <version>3.0.8</version>
-        </dependency>
-        <!-- https://mvnrepository.com에서 Tiles Servlet Support » 3.0.8 복사해 옴 -->
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-servlet</artifactId>
-            <version>3.0.8</version>
-        </dependency>
-        <!-- https://mvnrepository.com에서 Tiles Core Library » 3.0.8 복사해 옴 -->
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-core</artifactId>
-            <version>3.0.8</version>
-        </dependency>
-        <!-- ///////////////////////////////////// -->
+		<!-- commons-fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+			    
+		<!-- commons-io -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.6</version>
+		</dependency>
+		
 	
 		
 		<!-- aspectjweaver -->

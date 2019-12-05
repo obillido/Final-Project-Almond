@@ -801,7 +801,7 @@ ALTER TABLE video
 
 
 
-insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 0,0,0, 0,0,0);
+insert into ticket values(-1,1, 1,10,20, 0,0,0, 0,0,0);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,2000,4000, 400,4000,8000);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,1800,3400, 400,3600,7000);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 300,3000,6000, 500,5000,10000);
@@ -813,6 +813,7 @@ insert into ticket values(seq_ticket_tknum.nextval,1, 1,20,60, 300,6000,18000, 5
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,20,60, 300,5100,15600, 500,8500,26000);
 
 
+insert into ticket values(-2,2, 1,10,20, 0,0,0, 0,0,0);
 insert into ticket values(seq_ticket_tknum.nextval,2, 1,10,20, -1,-1,-1, 100,1000,2000);
 insert into ticket values(seq_ticket_tknum.nextval,2, 1,10,20, -1,-1,-1, 100,800,1400);
 
@@ -823,24 +824,29 @@ insert into ticket values(seq_ticket_tknum.nextval,2, 1,30,60, -1,-1,-1, 100,300
 insert into ticket values(seq_ticket_tknum.nextval,2, 1,30,60, -1,-1,-1, 100,2600,5200);
 
 
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 100,-1,-1, -1,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 300,-1,-1, -1,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 1000,-1,-1, 3000,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 3000,-1,-1, 6000,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 4000,-1,-1, 9000,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,3, 1,-1,-1, 5000,-1,-1, 12000,-1,-1);
+
+insert into ticket values(-3,3, 1,5,10, 0,0,0, 0,0,0);
+insert into ticket values(seq_ticket_tknum.nextval,3, 1,5,10, 300,1500,3000, -1,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,3, 1,5,10, 300,1200,2100, -1,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,3, 1,5,10, 500,2500,5000, -1,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,3, 1,5,10, 500,2000,4000, -1,-1,-1);
 
 
+
+insert into ticket values(-4,4, 1,5,10, 0,0,0, 0,0,0);
 insert into ticket values(seq_ticket_tknum.nextval,4, 1,5,10, 300,1500,3000, -1,-1,-1);
 insert into ticket values(seq_ticket_tknum.nextval,4, 1,5,10, 300,1200,2100, -1,-1,-1);
 insert into ticket values(seq_ticket_tknum.nextval,4, 1,5,10, 500,2500,5000, -1,-1,-1);
 insert into ticket values(seq_ticket_tknum.nextval,4, 1,5,10, 500,2000,4000, -1,-1,-1);
 
 
-insert into ticket values(seq_ticket_tknum.nextval,5, 1,5,10, 300,1500,3000, -1,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,5, 1,5,10, 300,1200,2100, -1,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,5, 1,5,10, 500,2500,5000, -1,-1,-1);
-insert into ticket values(seq_ticket_tknum.nextval,5, 1,5,10, 500,2000,4000, -1,-1,-1);
 
+insert into ticket values(-5,5, 1,-1,-1, 0,0,0, 0,0,0);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 100,-1,-1, -1,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 300,-1,-1, -1,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 1000,-1,-1, 3000,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 3000,-1,-1, 6000,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 4000,-1,-1, 9000,-1,-1);
+insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 5000,-1,-1, 12000,-1,-1);
 
 

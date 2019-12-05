@@ -50,8 +50,7 @@ public class WebcontentsController {
 			genreList.add("애니메이션");
 		}
 		model.addAttribute("genreList",genreList);
-		model.addAttribute("tiketList",tservice.getInfoList(cultype));
-		System.out.println("ticket잘나옴");
+		model.addAttribute("ticketList",tservice.getInfoList(cultype));
 		return ".webcontents.regiForm";
 	}
 	@RequestMapping(value="/webcontents/regi",method=RequestMethod.POST)

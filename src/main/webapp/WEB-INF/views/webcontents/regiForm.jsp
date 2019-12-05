@@ -3,10 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
   
-  <!-- Page Content -->
   <div class="container">
 
-    <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Webcontents
       <small>등록</small>
     </h1>
@@ -21,17 +19,15 @@
       <li class="breadcrumb-item active">등록</li>
     </ol>
 
-    <!-- Contact Form -->
-    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
       <div class="col-lg-8 mb-4">
         <h3>      	
         	<c:choose>
 	      		<c:when test="${cultype==1}">웹툰/만화</c:when>
-	      		<c:when test="${cultype==1}">웹소설</c:when>
-	      		<c:when test="${cultype==1}">영화</c:when>
-	      		<c:when test="${cultype==1}">드라마</c:when>
-	      		<c:when test="${cultype==1}">예능</c:when>
+	      		<c:when test="${cultype==2}">웹소설</c:when>
+	      		<c:when test="${cultype==3}">예능</c:when>
+	      		<c:when test="${cultype==4}">드라마</c:when>
+	      		<c:when test="${cultype==5}">영화</c:when>
       		</c:choose>
       	</h3>
       	<br>
@@ -43,6 +39,65 @@
               <p class="help-block"></p>
             </div>
           </div>
+					<c:choose>
+						<c:when test="${cultype<=2}">
+							<div class="control-group form-group">
+		            <div class="controls">
+		              <label>글작가 :</label>
+		              <input type="text" class="form-control" name="writer" required data-validation-required-message="글작가를 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>그림작가 :</label>
+		              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="그림작가를 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>출판사 :</label>
+		              <input type="text" class="form-control" name="publisher" required data-validation-required-message="출판사를 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+						</c:when>
+						<c:otherwise>
+							<div class="control-group form-group">
+		            <div class="controls">
+		              <label>감독 :</label>
+		              <input type="text" class="form-control" name="writer" required data-validation-required-message="감독을 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>출연진 :</label>
+		              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="출연진을 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>상영시간 :</label>
+		              <input type="text" class="form-control" name="runtime" required data-validation-required-message="상영시간을 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>	
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>제작일 :</label>
+		              <input type="text" class="form-control" name="publisher" required data-validation-required-message="제작일을 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>					
+						</c:otherwise>
+					</c:choose>
+
+
+
+          
           <div class="control-group form-group">
             <div class="controls">
               <label>장르 :</label>
@@ -61,7 +116,13 @@
               <select class="form-control" name="tknum" required data-validation-required-message="를 선택해주세요.">
 	              <option value="">선택</option>
 	              <c:forEach var="tk" items="${ticketList}">
-	              	<option value="${tk.tknum}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원, 소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원,   </option>
+	              	<option value="${tk.tknum}">
+	              		<c:choose>
+	              			<c:when test="${cultype==1||cultype==5}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원<br> 소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원</c:when>
+	              			<c:when test="${cultype==2}">소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원</c:when>
+	              			<c:when test="${cultype==3||cultype==4}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원</c:when>
+	              		</c:choose>
+	              	</option>
 	              </c:forEach>
               </select>
               <p class="help-block"></p>
@@ -72,7 +133,6 @@
               <label>기다리면 무료 시간 :</label>
               <select class="form-control" name="waiting" required data-validation-required-message="장르를 입력해주세요.">
 								<option value="-1">유료</option>
-								<option value="0">무료</option>
 								<option value="1">1시간</option>              
 								<option value="12">12시간</option>              
 								<option value="24">1일</option>              
@@ -83,10 +143,25 @@
               <p class="help-block"></p>
             </div>
           </div>
-          
-          
-          
-          
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>연령등급 :</label>
+              <select class="form-control" name="agegrade" required data-validation-required-message="등급을 선택해주세요.">
+								<option value="0">전체연령가</option>              
+								<option value="12">12세</option>              
+								<option value="15">15세</option>              
+								<option value="19">19세</option>              
+              </select>
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>무료회차 :</label>
+              <input type="text" class="form-control" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
+              <p class="help-block"></p>
+            </div>
+          </div>
           
           
           <div class="control-group form-group">
@@ -102,6 +177,5 @@
       </div>
 
     </div>
-    <!-- /.row -->
 
   </div>
