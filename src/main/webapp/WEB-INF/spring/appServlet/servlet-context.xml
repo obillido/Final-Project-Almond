@@ -32,20 +32,6 @@
 	
 	<context:component-scan base-package="project.app.almond.controller" />
 	<context:annotation-config/>
-	
-    <!-- //////////////////// 타일즈 관련 설정 //////////////////// -->
-    <beans:bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-       <beans:property name="definitions">
-          <beans:value>/WEB-INF/tiles.xml</beans:value>
-          <!-- 여러개 추가 가능 -->
-       </beans:property>
-    </beans:bean>
-    <!-- 타일즈 뷰를 실행하는 뷰 리절버 -->
-    <beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-       <beans:property name="viewNames" value=".*"/>
-       <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-       <beans:property name="order" value="1"/>
-    </beans:bean>
-    <!-- ///////////////////////////////////////////////////// -->
+
 	
 </beans:beans>
