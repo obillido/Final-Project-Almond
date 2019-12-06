@@ -36,4 +36,7 @@ public class WebcontentsDao {
 	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getListVideo",map);
 	}
+	public List<WebcontentsBookVo> listonday(String dayofweek){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".listonday",dayofweek);
+	}
 }

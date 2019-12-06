@@ -50,4 +50,7 @@ public class WebcontentsService {
 	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
 		return wdao.getListVideo(map);
 	}
+	public List<WebcontentsBookVo> listonday(String dayofweek){
+		return wdao.listonday(dayofweek);
+	}
 }

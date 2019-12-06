@@ -37,6 +37,9 @@
 	<select id="getListVideo" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsVideoVo">
 		 <include refid="selectVideo"/> <include refid="listCondition"/>
 	</select>
+	<select id="listonday" parameterType="String" resultType="project.app.almond.vo.WebcontentsBookVo">
+	   select wc.* from webcontents wc,book where wc.contnum=book.contnum and book.dayofweek=#{dayofweek} and cultype=1
+	</select>
 </mapper>
 
 

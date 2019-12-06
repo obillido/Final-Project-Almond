@@ -103,7 +103,7 @@ public class WebcontentsController {
 		return ".webcontents.choice";
 	}
 	
-	@RequestMapping(value="/webcontents/list")
+	@RequestMapping(value="/webcontents/list",method=RequestMethod.GET)
 	public String list(int cultype,String genre,Model model){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("cultype",cultype);
@@ -114,5 +114,11 @@ public class WebcontentsController {
 		else model.addAttribute("list",ws.getListVideo(map));
 		return ".webcontents.list";
 	}
-
+	@RequestMapping(value="/webcontents/listonday",method=RequestMethod.POST)
+	public String listonday(String dayofweek,Model model){
+		System.out.println("dayofweek:" + dayofweek);
+		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
+		model.addAttribute("daylist",daylist);
+		return ".webcontents.list";
+	}
 }
