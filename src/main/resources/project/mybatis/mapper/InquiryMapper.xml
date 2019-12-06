@@ -6,4 +6,10 @@
 	<insert id="insert" parameterType="project.app.almond.vo.InquiryVo">
 	    insert into inquiry values(SEQ_inquiry_inqnum.nextval,#{usernum},#{title},#{content},#{status},#{ref},#{lev},#{step})
 	</insert>
+	<select id="list" resultType="project.app.almond.vo.InquiryVo" parameterType="int">
+	    select * from inquiry where usernum=#{usernum}
+	</select>
+	<select id="getInfo" resultType="project.app.almond.vo.InquiryVo" parameterType="int">
+	    select * from inquiry where inqnum=#{inqnum}
+	</select>
 </mapper>

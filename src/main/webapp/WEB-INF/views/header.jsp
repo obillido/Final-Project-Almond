@@ -40,7 +40,7 @@
             <a class="dropdown-item" href="#">캐시 내역</a>
             <a class="dropdown-item" href="#">이용권 내역</a>
             <a class="dropdown-item" href="#">이벤트/쿠폰</a>
-            <a class="dropdown-item" href="${path }/inquiry/inquirypage">문의하기</a>
+            <a class="dropdown-item" href="${path }/inquiry/inquirypage?usernum=1">1:1문의</a>
             <a class="dropdown-item" href="#">로그아웃</a>
           </div>
         </li>          

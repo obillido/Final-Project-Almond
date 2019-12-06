@@ -1,5 +1,7 @@
 package project.app.almond.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +14,11 @@ public class InquiryService {
 	
 	public int insert(InquiryVo vo){
 		return dao.insert(vo);
+	}
+	public List<InquiryVo> list(int usernum){
+		return dao.list(usernum);
+	}
+	public InquiryVo getInfo(int inqnum){
+		return dao.getInfo(inqnum);
 	}
 }
