@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,10 +17,19 @@ public class InquiryDao {
 	public int insert(InquiryVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".insert",vo);
 	}
-	public List<InquiryVo> list(int usernum){
-		return sqlSessionTemplate.selectList(NAMESPACE + ".list",usernum);
+	public List<InquiryVo> list(HashMap<String,Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".list",map);
 	}
-	public InquiryVo getInfo(int inqnum){
-		return sqlSessionTemplate.selectOne(NAMESPACE + ".getInfo",inqnum);
+	public InquiryVo detail(int inqnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".detail",inqnum);
 	}
+	public int count(int usernum){
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".count",usernum);
+	}
+    public InquiryVo prev(int inqnum){
+        return sqlSessionTemplate.selectOne(NAMESPACE + ".prev",inqnum);
+    }
+    public InquiryVo next(int inqnum){
+        return sqlSessionTemplate.selectOne(NAMESPACE + ".next",inqnum);
+    }
 }

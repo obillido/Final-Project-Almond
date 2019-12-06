@@ -10,6 +10,7 @@
       margin: 0 auto;     
       padding-top: 50px;   
     }
+    #paging{text-align:center;}
    .table > thead {background-color: #FADCA5;}
    .table > thead > tr > th {text-align: center;}
    .table > tbody > tr > td {text-align: center;}
@@ -19,7 +20,6 @@
 </style>
 
 <div id="container">
- 
    <div id="write">
      <a href="${path }/inquiry/insert">글쓰기</a>
    </div>
@@ -28,7 +28,6 @@
 	   <thead>
 	   <tr>
 	      <th>글번호</th>
-	      <th>작성자</th>
 	      <th>제목</th>
 	      <th>내용</th>
 	   </tr>
@@ -38,11 +37,30 @@
 	      <tbody>
 	      <tr>
 	         <td>${info.inqnum}</td>
-	         <td>${info.usernum}</td>
-	         <td><a href="${path }/inquiry/getInfo?inqnum=${info.inqnum}">${info.title}</a></td>
+	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}">${info.title}</a></td>
 	         <td>${info.content}</td>
 	      </tr>
 	      </tbody>
 	   </c:forEach>
 	</table>
+	
+	
+<!-- 페이징 처리 -->
+<div id="paging">
+   <c:forEach var="i" begin="${pu.startPageNum}" end="${pu.endPageNum}">
+      <c:choose>
+         <c:when test="${i==pu.pageNum}"><!-- 현재 페이지인 경우 -->
+            <a href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">
+            <span style="color:blue">[${i}]</span>
+            </a>
+         </c:when>
+         <c:otherwise>
+            <a href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">
+            <span style="color:black">[${i}]</span>
+            </a>
+         </c:otherwise>
+      </c:choose>
+   </c:forEach>
+</div>
+
 </div>
