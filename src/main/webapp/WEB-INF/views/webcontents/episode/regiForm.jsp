@@ -16,7 +16,23 @@
       <div class="col-lg-8 mb-4">
 
         <form method="post" action="${pageContext.request.contextPath}/webcontents/episode/regi" enctype="multipart/form-data">
-        	<input type="hidden" name="contnum" value="${contnum}"> 
+        	<input type="hidden" name="cultype" value="${cultype}"> 
+        	<input type="hidden" name="contnum" value="${contnum}">
+        	<input type="hidden" name="epnum" value="${epnum}">
+        	<div class="control-group form-group">
+	            <div class="controls">
+	              <label>썸네일 이미지 :</label>
+	              <input type="file" class="form-control" name="file2">
+	              <p class="help-block"></p>
+	            </div>
+          </div>
+        	<div class="control-group form-group">
+		            <div class="controls">
+		              <label>소제목 :</label>
+		              <input type="text" class="form-control" name="subtitle" value="${contInfo.title} ${epnum}회" required data-validation-required-message="소제목을 입력해주세요." autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>내용 :</label>

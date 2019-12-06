@@ -1,16 +1,18 @@
 
 /* Drop Tables */
 
-DROP TABLE book CASCADE CONSTRAINTS;
-DROP TABLE cash CASCADE CONSTRAINTS;
 DROP TABLE commLikes CASCADE CONSTRAINTS;
 DROP TABLE comments CASCADE CONSTRAINTS;
-DROP TABLE couponHistory CASCADE CONSTRAINTS;
-DROP TABLE coupon CASCADE CONSTRAINTS;
-DROP TABLE reading CASCADE CONSTRAINTS;
 DROP TABLE score CASCADE CONSTRAINTS;
 DROP TABLE ticketUse CASCADE CONSTRAINTS;
+DROP TABLE reading CASCADE CONSTRAINTS;
 DROP TABLE episode CASCADE CONSTRAINTS;
+
+DROP TABLE book CASCADE CONSTRAINTS;
+DROP TABLE cash CASCADE CONSTRAINTS;
+DROP TABLE couponHistory CASCADE CONSTRAINTS;
+DROP TABLE coupon CASCADE CONSTRAINTS;
+DROP TABLE ticketUse CASCADE CONSTRAINTS;
 DROP TABLE eventhistory CASCADE CONSTRAINTS;
 DROP TABLE Eventcash CASCADE CONSTRAINTS;
 DROP TABLE eventroulette CASCADE CONSTRAINTS;
@@ -92,6 +94,145 @@ CREATE SEQUENCE SEQ_webcontents_contnum INCREMENT BY 1 START WITH 1;	/**/
 
 /* Create Tables */
 
+
+
+-- 좋아요
+CREATE TABLE commLikes
+(
+	-- 좋아요번호
+	likenum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 댓글번호
+	commnum number NOT NULL,
+	-- 좋/싫타입 : 0 : 취소
+	-- 1 : 좋아요
+	-- 2 : 싫어요
+	type number NOT NULL,
+	PRIMARY KEY (likenum)
+);
+
+
+
+-- 작품댓글
+CREATE TABLE comments
+(
+	-- 댓글번호
+	commnum number NOT NULL,
+	-- 회차번호
+	epinum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 내용
+	content varchar2(300),
+	-- 그룹
+	ref number NOT NULL,
+	-- 레벨
+	lev number NOT NULL,
+	-- 순서
+	step number,
+	-- 등록일
+	regdate date NOT NULL,
+	PRIMARY KEY (commnum)
+);
+
+
+
+-- 별점
+CREATE TABLE score
+(
+	-- 별점번호
+	scorenum number NOT NULL,
+	-- 회차번호
+	epinum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 별점
+	score number,
+	PRIMARY KEY (scorenum)
+);
+
+
+
+
+-- 티켓사용
+CREATE TABLE ticketUse
+(
+	-- 티켓사용번호
+	tkunum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 회차번호
+	epinum number NOT NULL,
+	-- 사용일
+	usedate date NOT NULL,
+	-- 소장/대여 타입 : 1 : 소장
+	-- 2 : 대여
+	type number,
+	PRIMARY KEY (tkunum)
+);
+
+
+
+-- 열람
+CREATE TABLE reading
+(
+	-- 열람번호
+	readingnum number NOT NULL,
+	-- 회차번호
+	epinum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 열람날짜
+	readingdate date NOT NULL,
+	PRIMARY KEY (readingnum)
+);
+
+
+
+-- 회차정보
+CREATE TABLE episode
+(
+	-- 회차번호
+	epinum number NOT NULL,
+	-- 작품번호
+	contnum number NOT NULL,
+	-- 업로드 날짜
+	uploaddate date NOT NULL,
+	-- 조회수
+	hit number NOT NULL,
+	-- 썸네일 저장이름
+	thumbnail varchar2(200),
+	-- 소제목
+	subtitle varchar2(100),
+	-- 이미지 저장이름
+	img varchar2(200),
+	-- 내용
+	content clob,
+	-- 회차번호
+	epnum number NOT NULL,
+	PRIMARY KEY (epinum)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- 책
 CREATE TABLE book
 (
@@ -122,46 +263,6 @@ CREATE TABLE cash
 	-- 결제방식
 	method varchar2(50),
 	PRIMARY KEY (cashnum)
-);
-
-
--- 작품댓글
-CREATE TABLE comments
-(
-	-- 댓글번호
-	commnum number NOT NULL,
-	-- 회차번호
-	epinum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 내용
-	content varchar2(300),
-	-- 그룹
-	ref number NOT NULL,
-	-- 레벨
-	lev number NOT NULL,
-	-- 순서
-	step number,
-	-- 등록일
-	regdate date NOT NULL,
-	PRIMARY KEY (commnum)
-);
-
-
--- 좋아요
-CREATE TABLE commLikes
-(
-	-- 좋아요번호
-	likenum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 댓글번호
-	commnum number NOT NULL,
-	-- 좋/싫타입 : 0 : 취소
-	-- 1 : 좋아요
-	-- 2 : 싫어요
-	type number NOT NULL,
-	PRIMARY KEY (likenum)
 );
 
 
@@ -202,26 +303,6 @@ CREATE TABLE couponHistory
 	PRIMARY KEY (couphnum)
 );
 
-
--- 회차정보
-CREATE TABLE episode
-(
-	-- 회차번호
-	epinum number NOT NULL,
-	-- 작품번호
-	contnum number NOT NULL,
-	-- 업로드 날짜
-	uploaddate date NOT NULL,
-	-- 조회수
-	hit number NOT NULL,
-	-- 이미지 저장이름
-	img varchar2(200),
-	-- 내용
-	content clob,
-	-- 회차번호
-	epnum number NOT NULL,
-	PRIMARY KEY (epinum)
-);
 
 
 -- 포인트이벤트
@@ -390,35 +471,6 @@ CREATE TABLE notice
 );
 
 
--- 열람
-CREATE TABLE reading
-(
-	-- 열람번호
-	readingnum number NOT NULL,
-	-- 회차번호
-	epinum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 열람날짜
-	readingdate date NOT NULL,
-	PRIMARY KEY (readingnum)
-);
-
-
--- 별점
-CREATE TABLE score
-(
-	-- 별점번호
-	scorenum number NOT NULL,
-	-- 회차번호
-	epinum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 별점
-	score number,
-	PRIMARY KEY (scorenum)
-);
-
 
 -- 검색어
 CREATE TABLE search
@@ -483,24 +535,6 @@ CREATE TABLE ticketBuy
 	-- 구매일
 	regdate date NOT NULL,
 	PRIMARY KEY (tkbnum)
-);
-
-
--- 티켓사용
-CREATE TABLE ticketUse
-(
-	-- 티켓사용번호
-	tkunum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 회차번호
-	epinum number NOT NULL,
-	-- 사용일
-	usedate date NOT NULL,
-	-- 소장/대여 타입 : 1 : 소장
-	-- 2 : 대여
-	type number,
-	PRIMARY KEY (tkunum)
 );
 
 
