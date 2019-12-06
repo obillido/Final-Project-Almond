@@ -40,13 +40,11 @@ public class WebcontentsController {
 		model.addAttribute("cultype",cultype);
 		ArrayList<String> genreList=new ArrayList<String>();
 		if(cultype==1){
-			genreList.add("웹툰");
 			genreList.add("로맨스");
 			genreList.add("소년");
 			genreList.add("드라마");
 			genreList.add("무협");
 		}else if(cultype==2){
-			genreList.add("웹소설");
 			genreList.add("판타지");
 			genreList.add("로맨스");
 			genreList.add("무협");
@@ -76,7 +74,8 @@ public class WebcontentsController {
 			String writer,String illustrator,String publisher,String dayofweek,
 			MultipartFile file1,HttpSession session,Model model){
 		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
-				//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
+		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
+		//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
 		String img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
 		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0);
 		int n=1;
