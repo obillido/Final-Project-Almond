@@ -63,6 +63,21 @@
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>연재요일 :</label>
+		              <select class="form-control" name="dayofweek">
+		              	<option value="월요일">월요일</option>
+		              	<option value="화요일">화요일</option>
+		              	<option value="수요일">수요일</option>
+		              	<option value="목요일">목요일</option>
+		              	<option value="금요일">금요일</option>
+		              	<option value="토요일">토요일</option>
+		              	<option value="일요일">일요일</option>
+		              </select>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
 						</c:when>
 						<c:otherwise>
 							<div class="control-group form-group">

@@ -73,7 +73,7 @@ public class WebcontentsController {
 	public String regi(int cultype,String title,String genre,String outline,
 			int tknum,int waiting,int agegrade,int freenum,int completiontype,
 			String director,String actor,@RequestParam(value="runtime",defaultValue="100")int runtime,Date proddate,
-			String writer,String illustrator,String publisher,
+			String writer,String illustrator,String publisher,String dayofweek,
 			MultipartFile file1,HttpSession session,Model model){
 		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
 				//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
@@ -81,7 +81,7 @@ public class WebcontentsController {
 		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0);
 		int n=1;
 		if(cultype==1||cultype==2){
-			BookVo bvo=new BookVo(0, writer, illustrator, publisher);
+			BookVo bvo=new BookVo(0, writer, illustrator, publisher, dayofweek);
 			n=ws.insert(wvo, bvo);
 		}else{
 			VideoVo vvo=new VideoVo(0, director, actor, runtime, proddate);

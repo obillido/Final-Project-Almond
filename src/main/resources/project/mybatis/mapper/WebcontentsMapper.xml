@@ -11,7 +11,7 @@
 	</select>
 	
 	<sql id="selectBook">
-		select wc.*,writer,illustrator,publisher from webcontents wc,book where wc.contnum=book.contnum
+		select wc.*,writer,illustrator,publisher,dayofweek from webcontents wc,book where wc.contnum=book.contnum
 	</sql>
 	<sql id="selectVideo">
 		select wc.*,director,actor,runtime,proddate from webcontents wc,video where wc.contnum=video.contnum

@@ -14,12 +14,9 @@ public class TemplContentsController {
 	@Autowired private EpisodeService es;
 	@RequestMapping("/webcontents/contents")
 	public String contentsInfo(int contnum,int cultype,Model model){
-		System.out.println("?????");
 		if(cultype==1 || cultype==2) model.addAttribute("contInfo",ws.getInfoBook(contnum));
 		else model.addAttribute("contInfo",ws.getInfoVideo(contnum));
-		System.out.println("?????");
 		model.addAttribute("epiList",es.getList(contnum));
-		System.out.println("?????");
 		return ".webcontents.contentsInfo";
 	}
 }

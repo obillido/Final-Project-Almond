@@ -16,10 +16,11 @@ public class WebcontentsBookVo {
 	private String writer;
 	private String illustrator;
 	private String publisher;
+	private String dayofweek;
 	public WebcontentsBookVo(){}
 	public WebcontentsBookVo(int contnum, String title, int cultype, String genre, String outline, int tknum,
 			int waiting, String img, int completiontype, int agegrade, int freenum, int status, String writer,
-			String illustrator, String publisher) {
+			String illustrator, String publisher, String dayofweek) {
 		this.contnum = contnum;
 		this.title = title;
 		this.cultype = cultype;
@@ -35,6 +36,7 @@ public class WebcontentsBookVo {
 		this.writer = writer;
 		this.illustrator = illustrator;
 		this.publisher = publisher;
+		this.dayofweek = dayofweek;
 	}
 	public int getContnum() {
 		return contnum;
@@ -125,5 +127,11 @@ public class WebcontentsBookVo {
 	}
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+	public String getDayofweek() {
+		return dayofweek;
+	}
+	public void setDayofweek(String dayofweek) {
+		this.dayofweek = dayofweek;
 	}
 }

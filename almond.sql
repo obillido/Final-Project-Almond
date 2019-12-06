@@ -103,6 +103,7 @@ CREATE TABLE book
 	illustrator varchar2(50),
 	-- √‚∆«ªÁ
 	publisher varchar2(50),
+	dayofweek varchar2(10),
 	PRIMARY KEY (contnum)
 );
 

@@ -5,12 +5,14 @@ public class BookVo {
 	private String writer;
 	private String illustrator;
 	private String publisher;
+	private String dayofweek;
 	public BookVo(){}
-	public BookVo(int contnum, String writer, String illustrator, String publisher) {
+	public BookVo(int contnum, String writer, String illustrator, String publisher, String dayofweek) {
 		this.contnum = contnum;
 		this.writer = writer;
 		this.illustrator = illustrator;
 		this.publisher = publisher;
+		this.dayofweek = dayofweek;
 	}
 	public int getContnum() {
 		return contnum;
@@ -35,5 +37,11 @@ public class BookVo {
 	}
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+	public String getDayofweek() {
+		return dayofweek;
+	}
+	public void setDayofweek(String dayofweek) {
+		this.dayofweek = dayofweek;
 	}
 }
