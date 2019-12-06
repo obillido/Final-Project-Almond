@@ -18,7 +18,7 @@
     <div class="row">
       <c:forEach var="info" items="${list}">
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100" onclick="location.href='${path}/webcontents/contents?contnum=${info.contnum}?cultype=${cultype}'">
+        <div class="card h-100" onclick="location.href='${path}/webcontents/contents?contnum=${info.contnum}&cultype=${cultype}'">
           <a href="#"><img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${info.img}" height="250px"></a>
           <div class="card-body">
             <h4 class="card-title">

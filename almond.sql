@@ -801,6 +801,10 @@ ALTER TABLE video
 
 
 
+insert into users values(seq_users_usernum.nextval,'admin@naver.com','1234',null,'°ü¸®ÀÚ',null,0,0);
+
+
+
 insert into ticket values(-1,1, 1,10,20, 0,0,0, 0,0,0);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,2000,4000, 400,4000,8000);
 insert into ticket values(seq_ticket_tknum.nextval,1, 1,10,20, 200,1800,3400, 400,3600,7000);

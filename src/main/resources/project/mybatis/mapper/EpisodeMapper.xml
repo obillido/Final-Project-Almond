@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatis.mapper.EpisodeMapper">
+	<insert id="insert" parameterType="project.app.almond.vo.EpisodeVo">
+		insert into episode values(seq_episode_epinum.nextval,#{contnum},sysdate,0,#{img},#{content},#{epnum})
+	</insert>
+	<select id="getEpnum" parameterType="int" resultType="int">
+		select max(epnum) from episode where contnum=#{contnum}
+	</select>
+	<select id="getList" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
+		select * from episode where contnum=#{contnum}
+	</select>
+</mapper>
+
+
+
+
+
