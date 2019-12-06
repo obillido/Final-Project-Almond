@@ -7,7 +7,7 @@
 		insert into episode values(seq_episode_epinum.nextval,#{contnum},sysdate,0,#{img},#{content},#{epnum})
 	</insert>
 	<select id="getEpnum" parameterType="int" resultType="int">
-		select max(epnum) from episode where contnum=#{contnum}
+		select nvl(max(epnum),0) from episode where contnum=#{contnum}
 	</select>
 	<select id="getList" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
 		select * from episode where contnum=#{contnum}

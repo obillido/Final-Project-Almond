@@ -49,13 +49,15 @@
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
-		          <div class="control-group form-group">
-		            <div class="controls">
-		              <label>그림작가 :</label>
-		              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="그림작가를 입력해주세요." autocomplete=off>
-		              <p class="help-block"></p>
-		            </div>
-		          </div>
+		          <c:if test="${cultype==1}">
+			          <div class="control-group form-group">
+			            <div class="controls">
+			              <label>그림작가 :</label>
+			              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="그림작가를 입력해주세요." autocomplete=off>
+			              <p class="help-block"></p>
+			            </div>
+			          </div>
+		          </c:if>
 		          <div class="control-group form-group">
 		            <div class="controls">
 		              <label>출판사 :</label>
