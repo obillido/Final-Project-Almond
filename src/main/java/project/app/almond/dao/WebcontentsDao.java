@@ -1,5 +1,8 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,5 +26,14 @@ public class WebcontentsDao {
 	}
 	public WebcontentsVideoVo getInfoVideo(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfoVideo",contnum);
+	}
+	public List<String> getGenreList(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getGenreList",cultype);
+	}
+	public List<WebcontentsBookVo> getListBook(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getListBook",map);
+	}
+	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getListVideo",map);
 	}
 }

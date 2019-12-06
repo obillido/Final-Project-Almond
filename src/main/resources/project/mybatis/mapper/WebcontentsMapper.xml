@@ -9,11 +9,33 @@
 	<select id="getCurrContnum" resultType="int">
 		select seq_webcontents_contnum.currval from dual
 	</select>
+	
+	<sql id="selectBook">
+		select wc.*,writer,illustrator,publisher from webcontents wc,book where wc.contnum=book.contnum
+	</sql>
+	<sql id="selectVideo">
+		select wc.*,director,actor,runtime,proddate from webcontents wc,video where wc.contnum=video.contnum
+	</sql>
+	
 	<select id="getInfoBook" parameterType="int" resultType="project.app.almond.vo.WebcontentsBookVo">
-		select wc.*,writer,illustrator,publisher from webcontents wc,book where wc.contnum=book.contnum and wc.contnum=#{contnum}
+		 <include refid="selectBook"/> and wc.contnum=#{contnum}
 	</select>
 	<select id="getInfoVideo" parameterType="int" resultType="project.app.almond.vo.WebcontentsVideoVo">
-		select wc.*,director,actor,runtime,proddate from webcontents wc,video where wc.contnum=video.contnum and wc.contnum=#{contnum}
+		 <include refid="selectVideo"/> and wc.contnum=#{contnum}
+	</select>
+	<select id="getGenreList" parameterType="int" resultType="string">
+		select genre from webcontents where cultype=#{cultype} group by genre
+	</select>	
+	
+	<sql id="listCondition">
+		and cultype=#{cultype}
+		<if test="genre!=null and genre!=''"> and genre=#{genre}</if>
+	</sql>
+	<select id="getListBook" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsBookVo">
+		 <include refid="selectBook"/> <include refid="listCondition"/>
+	</select>
+	<select id="getListVideo" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsVideoVo">
+		 <include refid="selectVideo"/> <include refid="listCondition"/>
 	</select>
 </mapper>
 

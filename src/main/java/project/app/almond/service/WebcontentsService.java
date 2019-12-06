@@ -1,5 +1,8 @@
 package project.app.almond.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +40,14 @@ public class WebcontentsService {
 	}
 	public WebcontentsVideoVo getInfoVideo(int contnum){
 		return wdao.getInfoVideo(contnum); 
+	}
+	public List<String> getGenreList(int cultype){
+		return wdao.getGenreList(cultype);
+	}
+	public List<WebcontentsBookVo> getListBook(HashMap<String, Object> map){
+		return wdao.getListBook(map);
+	}
+	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
+		return wdao.getListVideo(map);
 	}
 }

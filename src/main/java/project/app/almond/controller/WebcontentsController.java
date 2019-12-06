@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -26,8 +28,8 @@ import project.app.almond.vo.WebcontentsVo;
 
 @Controller
 public class WebcontentsController {
-	@Autowired private TicketService tservice;
-	@Autowired private WebcontentsService wservice;
+	@Autowired private TicketService ts;
+	@Autowired private WebcontentsService ws;
 	@RequestMapping(value="/webcontents/choice")
 	public String regiFormChoice(){
 		return ".webcontents.choice";
@@ -62,7 +64,7 @@ public class WebcontentsController {
 			genreList.add("애니메이션");
 		}
 		model.addAttribute("genreList",genreList);
-		model.addAttribute("ticketList",tservice.getInfoList(cultype));
+		model.addAttribute("ticketList",ts.getInfoList(cultype));
 		return ".webcontents.regiForm";
 	}
 	
@@ -79,10 +81,10 @@ public class WebcontentsController {
 		int n=1;
 		if(cultype==1||cultype==2){
 			BookVo bvo=new BookVo(0, writer, illustrator, publisher);
-			n=wservice.insert(wvo, bvo);
+			n=ws.insert(wvo, bvo);
 		}else{
 			VideoVo vvo=new VideoVo(0, director, actor, runtime, proddate);
-			n=wservice.insert(wvo, vvo);
+			n=ws.insert(wvo, vvo);
 		}
 		if(n>0){
 			try{
@@ -97,8 +99,19 @@ public class WebcontentsController {
 			}
 			model.addAttribute("code","성공적으로 등록이 완료되었습니다.");
 		}
-		else    model.addAttribute("code","등록실패");
+		else model.addAttribute("code","등록실패");
 		return ".webcontents.choice";
+	}
+	
+	@RequestMapping(value="/webcontents/list")
+	public String list(int cultype,String genre,Model model){
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("cultype",cultype);
+		map.put("genre",genre);
+		model.addAttribute("genreList",ws.getGenreList(cultype));
+		if(cultype==1||cultype==2) model.addAttribute("list",ws.getListBook(map));
+		else model.addAttribute("list",ws.getListVideo(map));
+		return ".webcontents.list";
 	}
 
 }

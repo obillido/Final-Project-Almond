@@ -68,20 +68,20 @@
 							<div class="control-group form-group">
 		            <div class="controls">
 		              <label>감독 :</label>
-		              <input type="text" class="form-control" name="writer" required data-validation-required-message="감독을 입력해주세요." autocomplete=off>
+		              <input type="text" class="form-control" name="director" required data-validation-required-message="감독을 입력해주세요." autocomplete=off>
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
 		          <div class="control-group form-group">
 		            <div class="controls">
 		              <label>출연진 :</label>
-		              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="출연진을 입력해주세요." autocomplete=off>
+		              <input type="text" class="form-control" name="actor" required data-validation-required-message="출연진을 입력해주세요." autocomplete=off>
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
 		          <div class="control-group form-group">
 		            <div class="controls">
-		              <label>상영시간 :</label>
+		              <label>상영시간 (분) :</label>
 		              <input type="number" class="form-control" name="runtime" required data-validation-required-message="상영시간을 입력해주세요." autocomplete=off>
 		              <p class="help-block"></p>
 		            </div>
@@ -113,9 +113,10 @@
 	              <c:forEach var="tk" items="${ticketList}">
 	              	<option value="${tk.tknum}">
 	              		<c:choose>
-	              			<c:when test="${cultype==1||cultype==5}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원<br> 소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원</c:when>
+	              			<c:when test="${cultype==1}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원<br> 소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원</c:when>
 	              			<c:when test="${cultype==2}">소장권 ${tk.cnt1}개 : ${tk.ownprice1}원, 소장권 ${tk.cnt2}개 : ${tk.ownprice2}원, 소장권 ${tk.cnt3}개 : ${tk.ownprice3}원</c:when>
 	              			<c:when test="${cultype==3||cultype==4}">대여권 ${tk.cnt1}개 : ${tk.rentalprice1}원, 대여권 ${tk.cnt2}개 : ${tk.rentalprice2}원, 대여권 ${tk.cnt3}개 : ${tk.rentalprice3}원</c:when>
+	              			<c:when test="${cultype==5}">대여권 : ${tk.rentalprice1}원, 소장권 : ${tk.ownprice1}원</c:when>
 	              		</c:choose>
 	              	</option>
 	              </c:forEach>
@@ -127,13 +128,13 @@
             <div class="controls">
               <label>기다리면 무료 시간 :</label>
               <select class="form-control" name="waiting">
+								<option value="-1">유료</option>    
 								<option value="1">1시간</option>              
 								<option value="12">12시간</option>              
 								<option value="24">1일</option>              
 								<option value="48">2일</option>              
 								<option value="72">3일</option>              
-								<option value="168">7일</option>   
-								<option value="-1">유료</option>           
+								<option value="168">7일</option>          
               </select>
               <p class="help-block"></p>
             </div>
@@ -153,7 +154,7 @@
           <div class="control-group form-group">
             <div class="controls">
               <label>무료회차 :</label>
-              <input type="number" class="form-control" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
+              <input type="number" class="form-control" value="0" name="freenum" required data-validation-required-message="무료회차를 입력해주세요." autocomplete=off>
               <p class="help-block"></p>
             </div>
           </div>
