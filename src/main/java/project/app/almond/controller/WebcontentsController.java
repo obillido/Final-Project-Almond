@@ -24,6 +24,7 @@ import project.app.almond.service.TicketService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.BookVo;
 import project.app.almond.vo.VideoVo;
+import project.app.almond.vo.WebcontentsBookVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Controller
@@ -108,6 +109,7 @@ public class WebcontentsController {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("cultype",cultype);
 		map.put("genre",genre);
+		model.addAttribute("cultype",cultype);
 		model.addAttribute("genreList",ws.getGenreList(cultype));
 		if(cultype==1||cultype==2) model.addAttribute("list",ws.getListBook(map));
 		else model.addAttribute("list",ws.getListVideo(map));

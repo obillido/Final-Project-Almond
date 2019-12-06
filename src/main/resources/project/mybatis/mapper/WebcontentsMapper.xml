@@ -29,7 +29,7 @@
 	
 	<sql id="listCondition">
 		and cultype=#{cultype}
-		<if test="genre!=null and genre!=''"> and genre=#{genre}</if>
+		<if test="genre!=null and genre!=''"> and genre=#{genre} </if>
 	</sql>
 	<select id="getListBook" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsBookVo">
 		 <include refid="selectBook"/> <include refid="listCondition"/>
