@@ -579,7 +579,7 @@ CREATE TABLE webcontents
 	-- 장르
 	genre varchar2(100) NOT NULL,
 	-- 줄거리(소개글)
-	outline varchar2(500),
+	outline varchar2(1000),
 	-- 이용권번호
 	tknum number NOT NULL,
 	-- 기다림시간
