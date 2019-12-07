@@ -35,6 +35,9 @@ public class WebcontentsService {
 		bdao.insert(bvo);
 		return 1;
 	}
+	public WebcontentsVo getInfo(int contnum){
+		return wdao.getInfo(contnum);
+	}
 	public WebcontentsBookVo getInfoBook(int contnum){
 		return wdao.getInfoBook(contnum); 
 	}

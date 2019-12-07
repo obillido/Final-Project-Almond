@@ -21,6 +21,9 @@ public class WebcontentsDao {
 	public int getCurrContnum(){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCurrContnum");
 	}
+	public WebcontentsVo getInfo(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",contnum);
+	}
 	public WebcontentsBookVo getInfoBook(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfoBook",contnum);
 	}

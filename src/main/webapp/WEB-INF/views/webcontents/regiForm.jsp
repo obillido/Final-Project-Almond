@@ -146,6 +146,7 @@
               <label>기다리면 무료 시간 :</label>
               <select class="form-control" name="waiting">
 								<option value="-1">유료</option>    
+								<option value="0">무료</option>    
 								<option value="1">1시간</option>              
 								<option value="12">12시간</option>              
 								<option value="24">1일</option>              

@@ -24,7 +24,7 @@ DROP TABLE notice CASCADE CONSTRAINTS;
 DROP TABLE search CASCADE CONSTRAINTS;
 DROP TABLE ticketBuy CASCADE CONSTRAINTS;
 DROP TABLE ticket CASCADE CONSTRAINTS;
-DROP TABLE tiketStock CASCADE CONSTRAINTS;
+DROP TABLE ticketStock CASCADE CONSTRAINTS;
 DROP TABLE users CASCADE CONSTRAINTS;
 DROP TABLE video CASCADE CONSTRAINTS;
 DROP TABLE webcontents CASCADE CONSTRAINTS;
@@ -55,7 +55,7 @@ DROP SEQUENCE SEQ_search_searchnum;	/**/
 DROP SEQUENCE SEQ_ticketBuy_tkbnum;	/**/
 DROP SEQUENCE SEQ_ticketUse_tkunum;	/**/
 DROP SEQUENCE SEQ_ticket_tknum;	/**/
-DROP SEQUENCE SEQ_tiketStock_tksnum;	/**/
+DROP SEQUENCE SEQ_ticketStock_tksnum;	/**/
 DROP SEQUENCE SEQ_users_usernum;
 DROP SEQUENCE SEQ_webcontents_contnum;	/**/
 
@@ -86,7 +86,7 @@ CREATE SEQUENCE SEQ_search_searchnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_ticketBuy_tkbnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_ticketUse_tkunum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_ticket_tknum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_tiketStock_tksnum INCREMENT BY 1 START WITH 1;	/**/
+CREATE SEQUENCE SEQ_ticketStock_tksnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_users_usernum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_webcontents_contnum INCREMENT BY 1 START WITH 1;	/**/
 
@@ -539,7 +539,7 @@ CREATE TABLE ticketBuy
 
 
 -- 티켓 재고
-CREATE TABLE tiketStock
+CREATE TABLE ticketStock
 (
 	-- 티켓재고번호
 	tksnum number NOT NULL,
@@ -781,7 +781,7 @@ ALTER TABLE ticketUse
 ;
 
 
-ALTER TABLE tiketStock
+ALTER TABLE ticketStock
 	ADD FOREIGN KEY (usernum)
 	REFERENCES users (usernum)
 ;
@@ -823,7 +823,7 @@ ALTER TABLE myList
 ;
 
 
-ALTER TABLE tiketStock
+ALTER TABLE ticketStock
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
 ;

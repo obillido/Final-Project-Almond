@@ -13,14 +13,15 @@ public class WebcontentsBookVo {
 	private int agegrade;
 	private int freenum;
 	private int status;
+	private int readernum;
 	private String writer;
 	private String illustrator;
 	private String publisher;
 	private String dayofweek;
 	public WebcontentsBookVo(){}
 	public WebcontentsBookVo(int contnum, String title, int cultype, String genre, String outline, int tknum,
-			int waiting, String img, int completiontype, int agegrade, int freenum, int status, String writer,
-			String illustrator, String publisher, String dayofweek) {
+			int waiting, String img, int completiontype, int agegrade, int freenum, int status, int readernum,
+			String writer, String illustrator, String publisher, String dayofweek) {
 		this.contnum = contnum;
 		this.title = title;
 		this.cultype = cultype;
@@ -33,6 +34,7 @@ public class WebcontentsBookVo {
 		this.agegrade = agegrade;
 		this.freenum = freenum;
 		this.status = status;
+		this.readernum = readernum;
 		this.writer = writer;
 		this.illustrator = illustrator;
 		this.publisher = publisher;
@@ -109,6 +111,12 @@ public class WebcontentsBookVo {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getReadernum() {
+		return readernum;
+	}
+	public void setReadernum(int readernum) {
+		this.readernum = readernum;
 	}
 	public String getWriter() {
 		return writer;

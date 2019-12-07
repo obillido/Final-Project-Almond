@@ -77,7 +77,7 @@ public class WebcontentsController {
 		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
 		//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
 		String img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
-		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0);
+		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0,0);
 		int n=1;
 		if(cultype==1||cultype==2){
 			BookVo bvo=new BookVo(0, writer, illustrator, publisher, dayofweek);

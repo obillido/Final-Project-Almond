@@ -9,10 +9,10 @@
     <!-- Page Heading/Breadcrumbs -->
     <c:choose>
        <c:when test="${cultype==1 }">
-          <h1 class="mt-4 mb-3">웹툰/만화</h1>
+          <h1 class="mt-4 mb-3">만화</h1>
        </c:when>
        <c:when test="${cultype==2 }">
-          <h1 class="mt-4 mb-3">웹소설</h1>
+          <h1 class="mt-4 mb-3">소설</h1>
        </c:when>
        <c:when test="${cultype==3 }">
           <h1 class="mt-4 mb-3">예능</h1>
@@ -61,7 +61,7 @@
     <div class="row">
       <c:forEach var="dayinfo" items="${daylist}">
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100" onclick="location.href='${path}/webcontents/contents?contnum=${dayinfo.contnum}&cultype=${cultype}'">
+        <div class="card h-100" onclick="location.href='${path}/webcontents/episode/list?contnum=${dayinfo.contnum}&cultype=${cultype}'">
           <a href="#"><img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${dayinfo.img}" height="300px"></a>
           <div class="card-body">
             <h4 class="card-title">
@@ -79,7 +79,7 @@
     <div class="row">
       <c:forEach var="info" items="${list}">
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100" onclick="location.href='${path}/webcontents/contents?contnum=${info.contnum}&cultype=${cultype}'">
+        <div class="card h-100" onclick="location.href='${path}/webcontents/episode/list?contnum=${info.contnum}&cultype=${cultype}'">
           <a href="#"><img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${info.img}" height="300px"></a>
           <div class="card-body">
             <h4 class="card-title">

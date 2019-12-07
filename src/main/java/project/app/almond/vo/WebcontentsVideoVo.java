@@ -15,14 +15,15 @@ public class WebcontentsVideoVo {
 	private int agegrade;
 	private int freenum;
 	private int status;
+	private int readernum;
 	private String director;
 	private String actor;
 	private int runtime;
 	private Date proddate;
 	public WebcontentsVideoVo(){}
 	public WebcontentsVideoVo(int contnum, String title, int cultype, String genre, String outline, int tknum,
-			int waiting, String img, int completiontype, int agegrade, int freenum, int status, String director,
-			String actor, int runtime, Date proddate) {
+			int waiting, String img, int completiontype, int agegrade, int freenum, int status, int readernum,
+			String director, String actor, int runtime, Date proddate) {
 		this.contnum = contnum;
 		this.title = title;
 		this.cultype = cultype;
@@ -35,6 +36,7 @@ public class WebcontentsVideoVo {
 		this.agegrade = agegrade;
 		this.freenum = freenum;
 		this.status = status;
+		this.readernum = readernum;
 		this.director = director;
 		this.actor = actor;
 		this.runtime = runtime;
@@ -111,6 +113,12 @@ public class WebcontentsVideoVo {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getReadernum() {
+		return readernum;
+	}
+	public void setReadernum(int readernum) {
+		this.readernum = readernum;
 	}
 	public String getDirector() {
 		return director;
