@@ -5,17 +5,17 @@ import java.sql.Date;
 public class CommentsVo {
 	private int commnum;
 	private int epinum;
-	private int username;
+	private int usernum;
 	private String content;
 	private int ref;
 	private int lev;
 	private int step;
 	private Date regdate;
 	public CommentsVo(){}
-	public CommentsVo(int commnum, int epinum, int username, String content, int ref, int lev, int step, Date regdate) {
+	public CommentsVo(int commnum, int epinum, int usernum, String content, int ref, int lev, int step, Date regdate) {
 		this.commnum = commnum;
 		this.epinum = epinum;
-		this.username = username;
+		this.usernum = usernum;
 		this.content = content;
 		this.ref = ref;
 		this.lev = lev;
@@ -34,11 +34,11 @@ public class CommentsVo {
 	public void setEpinum(int epinum) {
 		this.epinum = epinum;
 	}
-	public int getUsername() {
-		return username;
+	public int getUsernum() {
+		return usernum;
 	}
-	public void setUsername(int username) {
-		this.username = username;
+	public void setUsernum(int usernum) {
+		this.usernum = usernum;
 	}
 	public String getContent() {
 		return content;

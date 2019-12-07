@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,5 +18,11 @@ public class CommentsDao {
 	}
 	public List<CommentsVo> getList(int epinum){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getList",epinum);
+	}
+	public int getRef(int epinum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getRef",epinum);
+	}
+	public int getStep(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getStep",map);
 	}
 }
