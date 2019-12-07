@@ -64,7 +64,6 @@
 	</div>
 </div>
 
-
 <script type="text/javascript">
 	$(function(){
 		$("#payment").click(function(){
