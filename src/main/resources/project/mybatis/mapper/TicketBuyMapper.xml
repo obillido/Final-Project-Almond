@@ -11,4 +11,7 @@
 		insert into ticketbuy values(SEQ_TICKETBUY_TKBNUM.nextval,#{usernum},#{contnum},#{type},#{cnt},#{price},sysdate)
 	</insert>
 	
+	<select id="ticketType" parameterType="project.app.almond.vo.TicketBuyVo" resultType="project.app.almond.vo.TicketBuyVo">
+		select * from ticketbuy where usernum=#{usernum} and contnum=#{contnum}
+	</select>
 </mapper>

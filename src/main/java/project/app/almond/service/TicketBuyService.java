@@ -35,4 +35,9 @@ public class TicketBuyService {
 		System.out.println("111");
 		return 1;
 	}
+	/*
+	public TicketBuyVo ticketType(TicketBuyVo vo){
+		return ticketBuyDao.ticketType(vo);
+	}	
+	*/
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import project.app.almond.service.TicketBuyService;
 import project.app.almond.service.TicketService;
@@ -12,20 +13,20 @@ import project.app.almond.vo.UsersVo;
 
 @Controller
 public class TicketBuyController {
-	@Autowired
-	private TicketBuyService service;
-	@Autowired TicketService tkservice;
+	@Autowired private TicketBuyService service;
+	@Autowired private TicketService tkservice;
 	@RequestMapping("/ticket/webtoon")
-	public String cashlist(int usernum,int contnum,int tknum,Model model){
-		UsersVo vo=service.getinfo(usernum);
-		model.addAttribute("vo",vo);
+	public String cashlist(int usernum,int contnum,int tknum,Model model, TicketBuyVo vo){
+		UsersVo uc=service.getinfo(usernum);
+		//TicketBuyVo tt=service.ticketType(vo);
+		model.addAttribute("uc",uc);
+		//model.addAttribute("tt",tt);
 		model.addAttribute("usernum",1);
 		model.addAttribute("contnum",contnum);
 		model.addAttribute("ticket",tkservice.getInfo(tknum));
 		return ".ticket.webtoon";
 	}
-	
-	@RequestMapping("/ticket/buy")
+	@RequestMapping(value="/ticket/buy", method=RequestMethod.POST)
 	public String ticketbuyform(TicketBuyVo vo){
 		System.out.println("????");
 		int n=service.insert(vo);

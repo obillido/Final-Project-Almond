@@ -15,7 +15,6 @@
 
 
 
-
 <div id="container">
 <main id="wrap">
 	<div class="roulette_area">

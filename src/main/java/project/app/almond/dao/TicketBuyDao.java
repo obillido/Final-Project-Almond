@@ -20,4 +20,11 @@ public class TicketBuyDao {
 	public int insert(TicketBuyVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".insert", vo);
 	}
+	
+	/*
+	public TicketBuyVo ticketType(TicketBuyVo vo){
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".ticketType", vo);
+	}
+	*/
+	
 }
