@@ -7,15 +7,13 @@ public class CashVo {
 	private int usernum;
 	private int price;
 	private Date regdate;
-	private int type;
 	private String method;
 	public CashVo(){}
-	public CashVo(int cashnum, int usernum, int price, Date regdate, int type, String method) {
+	public CashVo(int cashnum, int usernum, int price, Date regdate, String method) {
 		this.cashnum = cashnum;
 		this.usernum = usernum;
 		this.price = price;
 		this.regdate = regdate;
-		this.type = type;
 		this.method = method;
 	}
 	public int getCashnum() {
@@ -41,12 +39,6 @@ public class CashVo {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
 	}
 	public String getMethod() {
 		return method;
