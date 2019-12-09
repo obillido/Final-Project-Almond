@@ -20,8 +20,8 @@
       </div>
       <div class="col-md-5">
         <h3 class="my-3">Project Description</h3>
-        <p>이벤트기간 : 12월 4일(수)~12월16일(월)<br>
-			당첨자 발표 및 캐시뽑기권 지급 : 12월 17일(화)<br>
+        <p>이벤트기간 : 12월 1일(일)~12월30일(월)<br>
+			당첨자 발표 및 캐시뽑기권 지급 : 12월 31일(화)<br>
 			(개별 안내)<br></p>
         <h3 class="my-3">Project Details</h3>
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/6.jpg">

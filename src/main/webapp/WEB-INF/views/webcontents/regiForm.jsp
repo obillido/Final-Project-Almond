@@ -49,15 +49,15 @@
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
-		          <c:if test="${cultype==1}">
-			          <div class="control-group form-group">
-			            <div class="controls">
-			              <label>그림작가 :</label>
-			              <input type="text" class="form-control" name="illustrator" required data-validation-required-message="그림작가를 입력해주세요." autocomplete=off>
-			              <p class="help-block"></p>
-			            </div>
-			          </div>
-		          </c:if>
+		          
+		          <div class="control-group form-group">
+		            <div class="controls">
+		              <label>그림작가 :</label>
+		              <input type="text" class="form-control" name="illustrator" <c:if test="${cultype==1}">required data-validation-required-message="그림작가를 입력해주세요."</c:if> autocomplete=off>
+		              <p class="help-block"></p>
+		            </div>
+		          </div>
+		          
 		          <div class="control-group form-group">
 		            <div class="controls">
 		              <label>출판사 :</label>
@@ -80,9 +80,9 @@
 		              <p class="help-block"></p>
 		            </div>
 		          </div>
-						</c:when>
-						<c:otherwise>
-							<div class="control-group form-group">
+				</c:when>
+				<c:otherwise>
+					<div class="control-group form-group">
 		            <div class="controls">
 		              <label>감독 :</label>
 		              <input type="text" class="form-control" name="director" required data-validation-required-message="감독을 입력해주세요." autocomplete=off>
@@ -110,8 +110,8 @@
 		              <p class="help-block"></p>
 		            </div>
 		          </div>					
-						</c:otherwise>
-					</c:choose>
+				</c:otherwise>
+			</c:choose>
           <div class="control-group form-group">
             <div class="controls">
               <label>장르 :</label>

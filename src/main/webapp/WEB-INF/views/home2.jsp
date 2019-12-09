@@ -13,7 +13,7 @@
 <a href="${pageContext.request.contextPath }/event3">이벤트3</a>
 <a href="${pageContext.request.contextPath }/event4">이벤트4</a>
 <a href="${pageContext.request.contextPath }/event5">이벤트5</a>
-<a href="${pageContext.request.contextPath }/how">룰렛</a>
-<a href="${pageContext.request.contextPath }/test">룰렛테스트</a>
+<!--<a href="${pageContext.request.contextPath }/how">룰렛</a>
+<a href="${pageContext.request.contextPath }/test">룰렛테스트</a>  -->
 </body>
 </html>
