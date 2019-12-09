@@ -1,14 +1,18 @@
 package project.app.almond.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import project.app.almond.service.EventService;
+import project.app.almond.vo.CommentsEpisodeVo;
+import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 
 @Controller
@@ -49,6 +53,37 @@ public class EventController {
 		}		
 			return ".event.answer";
 	}
+	//event2 ÃßÃ·»ç¶÷ »Ì¾Æ¿À±â
+	@RequestMapping(value="/event2select")
+	public ModelAndView event2select(){
+		List<ReadingEpisodeVo> list=service.event2();
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("list",list);
+		return mv;
+	}
+	//event3 ÃßÃ·»ç¶÷ »Ì¾Æ¿À±â(´ñ±Û)
+	@RequestMapping(value="/event3select")
+	public ModelAndView event3select(){
+		List<CommentsEpisodeVo> list=service.event3();
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("list",list);
+		return mv;
+	}
+	//event3 ÃßÃ·»ç¶÷ »Ì¾Æ¿À±â(ÀÐÀº»ç¶÷)
+	@RequestMapping(value="/event3reading")
+	public ModelAndView event3reading(){
+		List<ReadingEpisodeVo> list=service.event3reading();
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("list",list);
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
 	/*
 	@RequestMapping("/how")
 	public String how(){
