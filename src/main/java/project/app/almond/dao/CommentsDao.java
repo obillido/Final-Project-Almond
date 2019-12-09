@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import project.app.almond.vo.CommentsInfoVo;
 import project.app.almond.vo.CommentsVo;
 
 @Repository
@@ -16,13 +17,13 @@ public class CommentsDao {
 	public int insert(CommentsVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
-	public List<CommentsVo> getList(int epinum){
-		return sqlSessionTemplate.selectList(NAMESPACE+".getList",epinum);
-	}
 	public int getRef(int epinum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getRef",epinum);
 	}
 	public int getStep(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getStep",map);
+	}
+	public List<CommentsInfoVo> getList(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getList",map);
 	}
 }

@@ -48,9 +48,8 @@ public class EpisodeController {
 	}
 	@RequestMapping(value="/webcontents/episode/regi",method=RequestMethod.POST)
 	public String insert(int cultype,int contnum,String content,String subtitle,int epnum,List<MultipartFile> file1,Model model){
-		String uploadPath="C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
-				//"C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
-		//"C:/web/spri ng/almond/src/main/webapp/resources/webcontents/"+cultype;
+		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
+		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
 		String thumbnail=UUID.randomUUID()+"_"+file1.get(0).getOriginalFilename();
 		String img=UUID.randomUUID()+"_"+file1.get(1).getOriginalFilename();
 		int n=es.insert(new EpisodeVo(0, contnum, null, 0, thumbnail, subtitle, img, content, epnum));

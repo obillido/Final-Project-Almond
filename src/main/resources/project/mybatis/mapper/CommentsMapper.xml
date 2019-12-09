@@ -6,14 +6,20 @@
 	<insert id="insert" parameterType="project.app.almond.vo.CommentsVo">
 		insert into comments values(seq_comments_commnum.nextval,#{epinum},#{usernum},#{content},#{ref},#{lev},#{step},sysdate)
 	</insert>
-	<select id="getList" parameterType="int" resultType="project.app.almond.vo.CommentsVo">
-		select * from comments where epinum=#{epinum}
-	</select>
 	<select id="getRef" parameterType="int" resultType="int">
 		select nvl(max(ref),0) ref from comments where epinum=#{epinum}
 	</select>
 	<select id="getStep" parameterType="hashmap" resultType="int">
 		select nvl(max(step),0) step from comments where epinum=#{epinum} and ref=#{ref}
+	</select>
+	<select id="getList" parameterType="hashmap" resultType="project.app.almond.vo.CommentsInfoVo">
+		select c.*,u.nickname,u.profileimg,cntlike,cnthate,nvl(type,0) mytype
+		from comments c, users u, 
+		(select nvl(count(*),0) cntlike from commlikes where type=1),
+		(select nvl(count(*),0) cnthate from commlikes where type=2),
+		(select type,commnum from commlikes where usernum=#{usernum}) mt
+		where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+)
+		order by c.ref desc, c.step asc
 	</select>
 </mapper>
 
