@@ -6,4 +6,59 @@
 	<update id="updateCash" parameterType="project.app.almond.vo.UsersVo">
 		update users set cash=cash+1000 where usernum=1
 	</update>
+	<select id="event2" parameterType="project.app.almond.vo.ReadingEpisodeVo">
+	select * from
+	<![CDATA[
+	(
+		select aa.usernum from
+		(     
+		select r.usernum,e.contnum,r.readingdate
+		from reading r
+		join episode e
+		on r.epinum=e.epnum
+		where r.readingdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
+		and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
+	   	order by dbms_random.value
+	   	)aa 
+		where aa.contnum=1 
+	)	
+	where rownum<=5
+	]]>
+	</select>
+	<select id="event3">
+		select * from
+		(
+		<![CDATA[
+			select aa.usernum from
+		    (
+				select c.usernum, e.contnum, c.regdate
+				from comments c
+				join episode e
+				on c.epinum=e.epnum 
+				where c.content like '%리뷰이벤트%' and e.contnum=1
+				order by dbms_random.value
+		   	)aa
+			where aa.regdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
+			and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
+			)
+		where rownum<=2
+		]]>
+	</select>
+	<select id="event3reading">
+	select * from
+	<![CDATA[
+	(
+		select r.usernum, r.readingdate
+		from reading r
+		join episode e
+		on r.epinum=e.epnum
+		where e.contnum=41 and r.readingdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
+		and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
+		group by r.usernum, r.readingdate
+		having count(*)>=5
+		order by dbms_random.value
+	)aa
+	where rownum<=3
+	]]>
+	</select>
 </mapper>
