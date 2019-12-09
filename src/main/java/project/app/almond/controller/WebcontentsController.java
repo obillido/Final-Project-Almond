@@ -118,7 +118,14 @@ public class WebcontentsController {
 	public String listonday(String dayofweek,Model model){
 		System.out.println("dayofweek:" + dayofweek);
 		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
+		model.addAttribute("cultype",1);
 		model.addAttribute("daylist",daylist);
+		ArrayList<String> genreList=new ArrayList<String>();
+	    genreList.add("로맨스");
+	    genreList.add("소년");
+		genreList.add("드라마");
+		genreList.add("무협");
+		model.addAttribute("genreList",genreList);
 		return ".webcontents.list";
 	}
 }
