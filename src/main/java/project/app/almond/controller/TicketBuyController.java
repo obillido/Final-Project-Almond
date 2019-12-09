@@ -11,21 +11,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import project.app.almond.service.TicketBuyService;
 import project.app.almond.service.TicketService;
 import project.app.almond.service.TicketStockService;
+import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.TicketBuyVo;
 import project.app.almond.vo.TicketStockVo;
 import project.app.almond.vo.UsersVo;
+import project.app.almond.vo.WebcontentsVo;
 
 @Controller
 public class TicketBuyController {
 	@Autowired private TicketBuyService tbs;
 	@Autowired private TicketService tkservice;
 	@Autowired private TicketStockService tkss;
+	@Autowired private WebcontentsService webtitle;
 	@RequestMapping("/ticket/webtoon")
 	public String cashlist(HttpSession session,int contnum,int tknum,Model model, TicketBuyVo vo){
 		int usernum=(Integer)session.getAttribute("usernum");
 		UsersVo uc=tbs.getinfo(usernum);
+		WebcontentsVo title=webtitle.getInfo(contnum);
 		//TicketBuyVo tt=service.ticketType(vo);
 		model.addAttribute("uc",uc);
+		model.addAttribute("title",title.getTitle());
 		//model.addAttribute("tt",tt);
 		model.addAttribute("contnum",contnum);
 		model.addAttribute("ticket",tkservice.getInfo(tknum));
