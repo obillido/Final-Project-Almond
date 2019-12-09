@@ -14,7 +14,7 @@
 		<div class="title">
 		 ${title} [연재중]
 			<div class="mycash">
-				내가 가진 캐시 : ${uc.cash}캐시
+				<span style="color:#aaaaaa; font-weight: bold; font-family:바탕;" >내가 가진 캐시</span> :    ${uc.cash}캐시
 			</div>
 			<div class="rental">
 				대여권 : ${cntRental}개
@@ -26,7 +26,7 @@
 			
 		<div class="align_center"><!-- 결제창div -->		
 						
-			<div class="container">
+			<div class="tab_container">
 		
 			<ul class="tabs">
 				<li class="tab-link current" data-tab="tab-1">대여권 충전</li>
@@ -37,14 +37,26 @@
 			
 				<div class="d3">
 					<form action="${pageContext.request.contextPath }/ticketrent" method="post">
-						<input type="radio" name="ticketrent" value="2,${ticket.cnt1},${ticket.rentalprice1}" checked="checked">${ticket.cnt1}개
-						<a>${ticket.rentalprice1}캐시</a><br>
-						<input type="radio" name="ticketrent" value="2,${ticket.cnt2},${ticket.rentalprice2}" >${ticket.cnt2}개
-						<a>${ticket.rentalprice2}캐시</a><br>
-						<input type="radio" name="ticketrent" value="2,${ticket.cnt3},${ticket.rentalprice3}" >${ticket.cnt3}개
-						<a>${ticket.rentalprice3}캐시</a><br>
+						<div class="form1">
+							<input type="radio" name="ticketrent" value="2,${ticket.cnt1},${ticket.rentalprice1}" checked="checked">${ticket.cnt1}개 
+							<a>${ticket.rentalprice1}캐시</a><br>
+						</div>
+						<div class="form2">
+							<input type="radio" name="ticketrent" value="2,${ticket.cnt2},${ticket.rentalprice2}" >${ticket.cnt2}개 <span style="color:red; font-weight: bold">(9개 + 1개 보너스)</span>
+							<a>${ticket.rentalprice2}캐시</a><br>
+						</div>
+						<div class="form3">
+							<input type="radio" name="ticketrent" value="2,${ticket.cnt3},${ticket.rentalprice3}" >${ticket.cnt3}개 <span style="color:red; font-weight: bold">(17개 + 3개 보너스)</span>
+							<a>${ticket.rentalprice3}캐시</a><br>
+						</div>
 					</form>
-		
+					
+					<div class="caution">
+						- 대여 가능 기간 : 이용권 사용 후 3일<br>
+						- 이용권 충전시간이 아닌 사용시점부터 3일 동안 볼 수 있습니다.<br>
+						- 패키지 상품은 보너스 지급분을 제외한 유로 이용권만 취소가능합니다.<br>
+					</div>
+	
 					<!-- 결제창 modal 영역 -->	
 					
 					<!-- Trigger the modal with a button -->
@@ -57,13 +69,18 @@
 					    <!-- Modal content-->
 					    <div class="modal-content">
 					      <div class="modal-header">
-					      	<h4 class="modal-title">결제창</h4>
+					      	<h4 class="modal-title">${title }</h4>
 					        <button type="button" class="close" data-dismiss="modal">&times;</button> 
 					      </div>
 					      <div class="modal-body">  	
 					      	<div>
-						        <p>● 이 작품에서만 사용가능한 이용권입니다.</p>
-						        <p>● 보너스 지급 이용권은 구매 취소가 되지 않습니다.</p>
+					      		<div class="btn_tickybuy"> 
+					      			[결제창]
+					      		</div>
+					      		<div class="btn_tickeybuy1">
+							        ● 이 작품에서만 사용가능한 이용권입니다.<br>
+							        ● 보너스 지급 이용권은 구매 취소가 되지 않습니다.
+						        </div>
 						    </div>
 					      </div>
 					      

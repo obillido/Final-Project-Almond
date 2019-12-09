@@ -7,11 +7,11 @@
     background: #dcdcdc; 
     padding-top: 10px;
     /*opacity: 0.5;*/
-    background-color: rgba( 192, 192, 192, 0.3 );
+    background-color: rgba( 192, 192, 192, 0.2 );
 }
 .d2{
     width: 50%;
-    height: 900px;
+    height: 1000px;
     background: white;
     margin: auto;
     text-align: center;
@@ -21,7 +21,7 @@
 }
 .align_center {     /* 결제구매창 */
     width:100%; 
-    height:100%; 
+    height:50%; 
     position:relative;
     text-align:center; 
     
@@ -43,10 +43,10 @@
     background: #ddd;
     margin-top: 10px;
     padding-top: 8px;
-    padding-left: 5px;
+    padding-left: 10px;
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
     font-weight: normal;
-    background-color: rgba( 192, 192, 192, 0.3 );
+    background-color: rgba( 192, 192, 192, 0.2 );
     
 }
 .rental{
@@ -57,11 +57,11 @@
     padding: 50px 50px 0px 100px;
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
     font-weight: normal;
-    background-color: rgba( 192, 192, 192, 0.3 );
+    background-color: rgba( 192, 192, 192, 0.2 );
     
 }
 
-.container{
+.tab_container{
 	width: 100%;
 	margin: auto;
 }
@@ -85,8 +85,59 @@ ul.tabs li.current{
 	display: none;
 	background: #ededed;
 	padding: 15px;
+	background: white;
 }
 .tab-content.current{
 	display: inherit;
 	height: 300px;
+	margin-top: -10px;
+}
+.form1{
+	height: 40px;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+    background-color: rgba( 192, 192, 192, 0.2 );
+    margin-top: 0px;
+}
+.form2{
+	height: 40px;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+    background-color: rgba( 192, 192, 192, 0.2 );
+    margin-top: 5px;
+}
+.form3{
+	height: 40px;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-align: left;
+    background-color: rgba( 192, 192, 192, 0.2 );
+    margin-top: 5px;
+}
+.caution{
+    text-align: left;
+    padding-top: 40px;
+    font-size: 12px;
+}
+#payment.btn.btn-info.btn-lg{
+	margin-top: 30px;
+	background-color: darkorange !important;
+}
+
+
+/* 결제버튼 시 css 영역 */
+.btn_tickybuy{
+	font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background-color: rgba( 192, 192, 192, 0.2 );
+}
+.btn_tickeybuy1{
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 15px;
+	font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
+	background-color: rgba( 192, 192, 192, 0.2 );
 }
