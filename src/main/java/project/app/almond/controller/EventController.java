@@ -53,8 +53,8 @@ public class EventController {
 		}		
 			return ".event.answer";
 	}
-	//event2 추첨사람 뽑아오기
-	@RequestMapping(value="/event2select")
+	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
+	@RequestMapping(value="/event2list")
 	public ModelAndView event2select(){
 		List<ReadingEpisodeVo> list=service.event2();
 		ModelAndView mv=new ModelAndView();
@@ -62,7 +62,7 @@ public class EventController {
 		return mv;
 	}
 	//event3 추첨사람 뽑아오기(댓글)
-	@RequestMapping(value="/event3select")
+	@RequestMapping(value="/event3list")
 	public ModelAndView event3select(){
 		List<CommentsEpisodeVo> list=service.event3();
 		ModelAndView mv=new ModelAndView();
