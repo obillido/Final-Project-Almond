@@ -34,9 +34,8 @@
                   마이페이지
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-            <a class="dropdown-item" href="#">내 캐시</a>
             <a class="dropdown-item" href="${path}/cash/charge?usernum=${usernum}">캐시 충전</a>
-            <a class="dropdown-item" href="#">캐시 내역</a>
+            <a class="dropdown-item" href="${path}/cash/list?usernum=${usernum}">캐시 내역</a>
             <a class="dropdown-item" href="#">보관함</a>
             <a class="dropdown-item" href="#">이용권 내역</a>
             <a class="dropdown-item" href="#">이벤트/쿠폰</a>
