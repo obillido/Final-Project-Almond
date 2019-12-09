@@ -47,20 +47,23 @@
 	
 <!-- 페이징 처리 -->
 <div id="paging">
+   <ul class="pagination justify-content-center">
    <c:forEach var="i" begin="${pu.startPageNum}" end="${pu.endPageNum}">
       <c:choose>
          <c:when test="${i==pu.pageNum}"><!-- 현재 페이지인 경우 -->
-            <a href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">
-            <span style="color:blue">[${i}]</span>
-            </a>
+            <li class="page-item">
+            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">${i}</a>
+            </li>
          </c:when>
          <c:otherwise>
-            <a href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">
-            <span style="color:black">[${i}]</span>
-            </a>
+            <li class="page-item">
+            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">${i}</a>
+            </li>
          </c:otherwise>
       </c:choose>
    </c:forEach>
+   </ul>
 </div>
+
 
 </div>

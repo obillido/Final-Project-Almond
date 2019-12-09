@@ -9,6 +9,12 @@
 	<select id="getList" parameterType="int" resultType="project.app.almond.vo.CommentsVo">
 		select * from comments where epinum=#{epinum}
 	</select>
+	<select id="getRef" parameterType="int" resultType="int">
+		select nvl(max(ref),0) ref from comments where epinum=#{epinum}
+	</select>
+	<select id="getStep" parameterType="hashmap" resultType="int">
+		select nvl(max(step),0) step from comments where epinum=#{epinum} and ref=#{ref}
+	</select>
 </mapper>
 
 

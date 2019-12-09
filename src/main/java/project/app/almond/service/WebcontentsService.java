@@ -35,6 +35,9 @@ public class WebcontentsService {
 		bdao.insert(bvo);
 		return 1;
 	}
+	public WebcontentsVo getInfo(int contnum){
+		return wdao.getInfo(contnum);
+	}
 	public WebcontentsBookVo getInfoBook(int contnum){
 		return wdao.getInfoBook(contnum); 
 	}
@@ -49,5 +52,8 @@ public class WebcontentsService {
 	}
 	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
 		return wdao.getListVideo(map);
+	}
+	public List<WebcontentsBookVo> listonday(String dayofweek){
+		return wdao.listonday(dayofweek);
 	}
 }

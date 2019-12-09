@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.WebcontentsMapper">
 	<insert id="insert" parameterType="project.app.almond.vo.WebcontentsVo">
-		insert into webcontents values(seq_webcontents_contnum.nextval,#{title},#{cultype},#{genre},#{outline},#{tknum},#{waiting},#{img},#{completiontype},#{agegrade},#{freenum},#{status})
+		insert into webcontents values(seq_webcontents_contnum.nextval,#{title},#{cultype},#{genre},#{outline},#{tknum},#{waiting},#{img},#{completiontype},#{agegrade},#{freenum},#{status},0)
 	</insert>
 	<select id="getCurrContnum" resultType="int">
 		select seq_webcontents_contnum.currval from dual
@@ -17,6 +17,9 @@
 		select wc.*,director,actor,runtime,proddate from webcontents wc,video where wc.contnum=video.contnum
 	</sql>
 	
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.WebcontentsVo">
+		select * from webcontents where contnum=#{contnum}
+	</select>
 	<select id="getInfoBook" parameterType="int" resultType="project.app.almond.vo.WebcontentsBookVo">
 		 <include refid="selectBook"/> and wc.contnum=#{contnum}
 	</select>
@@ -36,6 +39,9 @@
 	</select>
 	<select id="getListVideo" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsVideoVo">
 		 <include refid="selectVideo"/> <include refid="listCondition"/>
+	</select>
+	<select id="listonday" parameterType="String" resultType="project.app.almond.vo.WebcontentsBookVo">
+	   select wc.* from webcontents wc,book where wc.contnum=book.contnum and book.dayofweek=#{dayofweek} and cultype=1
 	</select>
 </mapper>
 

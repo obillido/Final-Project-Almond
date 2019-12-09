@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,7 +19,13 @@ public class EpisodeDao {
 	public int getEpnum(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getEpnum",contnum);
 	}
-	public List<EpisodeVo> getList(int contnum){
-		return sqlSessionTemplate.selectList(NAMESPACE+".getList",contnum);
+	public List<EpisodeVo> getList(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getList",map);
+	}
+	public EpisodeVo getInfo(int epinum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",epinum);
+	}
+	public int addHit(int epinum){
+		return sqlSessionTemplate.update(NAMESPACE+".addHit",epinum);
 	}
 }

@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=1" style="color:black !important">웹툰/만화</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=1" style="color:black !important">만화</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:black !important">웹소설</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:black !important">소설</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${path}/webcontents/list?cultype=3" style="color:black !important">예능</a>
@@ -47,5 +47,18 @@
       </ul>
     </div>      
  
+ 
+
+     <!-- Search Widget -->
+     <div class="card-body">
+       <div class="input-group">
+         <input type="text" class="form-control" placeholder="아직 검색 안됨">
+         <span class="input-group-btn">
+           <button class="btn btn-secondary" type="button" style="background-color:red; margin-left:5px;">검색</button>
+         </span>
+       </div>
+     </div>
+
   </div>
+  
 </nav>

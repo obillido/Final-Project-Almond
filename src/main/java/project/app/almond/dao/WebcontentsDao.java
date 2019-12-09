@@ -21,6 +21,9 @@ public class WebcontentsDao {
 	public int getCurrContnum(){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCurrContnum");
 	}
+	public WebcontentsVo getInfo(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",contnum);
+	}
 	public WebcontentsBookVo getInfoBook(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfoBook",contnum);
 	}
@@ -35,5 +38,8 @@ public class WebcontentsDao {
 	}
 	public List<WebcontentsVideoVo> getListVideo(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getListVideo",map);
+	}
+	public List<WebcontentsBookVo> listonday(String dayofweek){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".listonday",dayofweek);
 	}
 }

@@ -77,7 +77,7 @@ public class WebcontentsController {
 		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
 		//session.getServletContext().getRealPath("/resources/webcontents/"+cultype);
 		String img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
-		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0);
+		WebcontentsVo wvo=new WebcontentsVo(0, title, cultype, genre, outline, tknum, waiting, img, completiontype, agegrade, freenum,0,0);
 		int n=1;
 		if(cultype==1||cultype==2){
 			BookVo bvo=new BookVo(0, writer, illustrator, publisher, dayofweek);
@@ -103,7 +103,7 @@ public class WebcontentsController {
 		return ".webcontents.choice";
 	}
 	
-	@RequestMapping(value="/webcontents/list")
+	@RequestMapping(value="/webcontents/list",method=RequestMethod.GET)
 	public String list(int cultype,String genre,Model model){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("cultype",cultype);
@@ -114,5 +114,18 @@ public class WebcontentsController {
 		else model.addAttribute("list",ws.getListVideo(map));
 		return ".webcontents.list";
 	}
-
+	@RequestMapping(value="/webcontents/listonday",method=RequestMethod.POST)
+	public String listonday(String dayofweek,Model model){
+		System.out.println("dayofweek:" + dayofweek);
+		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
+		model.addAttribute("cultype",1);
+		model.addAttribute("daylist",daylist);
+		ArrayList<String> genreList=new ArrayList<String>();
+	    genreList.add("로맨스");
+	    genreList.add("소년");
+		genreList.add("드라마");
+		genreList.add("무협");
+		model.addAttribute("genreList",genreList);
+		return ".webcontents.list";
+	}
 }

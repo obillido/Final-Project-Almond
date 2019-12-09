@@ -21,18 +21,19 @@ public class TicketBuyService {
 	}
 	@Transactional
 	public int insert(TicketBuyVo vo){
-		System.out.println("111");
 		ticketBuyDao.insert(vo);
-		System.out.println("111");
-		TicketStockVo tksvo=tsdao.getInfo(new TicketStockVo(0, vo.getUsernum(), vo.getContnum(), vo.getType(), vo.getCnt()));
-		if(tksvo==null){
+		TicketStockVo tksvo=new TicketStockVo(0, vo.getUsernum(), vo.getContnum(), vo.getType(), vo.getCnt());
+		if(tsdao.getInfo(tksvo)==null){
 			tsdao.insert(tksvo);
 		}else{
 			tsdao.updateAdd(tksvo);
 		}
-		System.out.println("111");
 		udao.updateCashSub(new UsersVo(vo.getUsernum(), null, null, null, null, null, vo.getPrice(), 0));
-		System.out.println("111");
 		return 1;
 	}
+	/*
+	public TicketBuyVo ticketType(TicketBuyVo vo){
+		return ticketBuyDao.ticketType(vo);
+	}	
+	*/
 }

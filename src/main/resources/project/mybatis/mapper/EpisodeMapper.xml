@@ -4,14 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.EpisodeMapper">
 	<insert id="insert" parameterType="project.app.almond.vo.EpisodeVo">
-		insert into episode values(seq_episode_epinum.nextval,#{contnum},sysdate,0,#{img},#{content},#{epnum})
+		insert into episode values(seq_episode_epinum.nextval,#{contnum},sysdate,0,#{thumbnail},#{subtitle},#{img},#{content},#{epnum})
 	</insert>
 	<select id="getEpnum" parameterType="int" resultType="int">
 		select nvl(max(epnum),0) from episode where contnum=#{contnum}
 	</select>
-	<select id="getList" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
+	<select id="getList" parameterType="hashmap" resultType="project.app.almond.vo.EpisodeVo">
 		select * from episode where contnum=#{contnum}
+		order by epnum ${align}
 	</select>
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
+		select * from episode where epinum=#{epinum}
+	</select>
+	<update id="addHit" parameterType="int">
+		update episode set hit=hit+1 where epinum=#{epinum}
+	</update>
 </mapper>
 
 

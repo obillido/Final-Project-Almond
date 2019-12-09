@@ -7,15 +7,20 @@ public class EpisodeVo {
 	private int contnum;
 	private Date uploaddate;
 	private int hit;
+	private String thumbnail;
+	private String subtitle;
 	private String img;
 	private String content;
 	private int epnum;
 	public EpisodeVo(){}
-	public EpisodeVo(int epinum, int contnum, Date uploaddate, int hit, String img, String content, int epnum) {
+	public EpisodeVo(int epinum, int contnum, Date uploaddate, int hit, String thumbnail, String subtitle, String img,
+			String content, int epnum) {
 		this.epinum = epinum;
 		this.contnum = contnum;
 		this.uploaddate = uploaddate;
 		this.hit = hit;
+		this.thumbnail = thumbnail;
+		this.subtitle = subtitle;
 		this.img = img;
 		this.content = content;
 		this.epnum = epnum;
@@ -43,6 +48,18 @@ public class EpisodeVo {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtilte(String subtitle) {
+		this.subtitle = subtitle;
 	}
 	public String getImg() {
 		return img;
