@@ -13,4 +13,7 @@ public class UsersDao {
 	public int updateCashSub(UsersVo vo){
 		return sqlSessionTemplate.update(NAMESPACE+".updateCashSub", vo);
 	}
+	public UsersVo getInfo(int usernum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",usernum);
+	}
 }

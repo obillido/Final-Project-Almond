@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatis.mapper.CommLikesMapper">
+	<insert id="insert" parameterType="project.app.almond.vo.CommLikesVo">
+		insert into commlikes values(seq_commlikes_likenum.nextval,#{usernum},#{commnum},#{type})
+	</insert>
+	<update id="update" parameterType="project.app.almond.vo.CommLikesVo">
+		update commlikes set type=#{type} where usernum=#{usernum} and commnum=#{commnum}
+	</update>
+	<select id="isExist" parameterType="project.app.almond.vo.CommLikesVo" resultType="project.app.almond.vo.CommLikesVo">
+		select * from commlikes where usernum=#{usernum} and commnum=#{commnum}
+	</select>
+</mapper>
+
+
+
+
+

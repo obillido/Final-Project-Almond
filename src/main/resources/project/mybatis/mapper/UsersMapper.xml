@@ -5,7 +5,7 @@
 <mapper namespace="project.mybatis.mapper.UsersMapper">
 	<update id="updateCashSub" parameterType="project.app.almond.vo.UsersVo">
 		update users set cash=cash-#{cash} where usernum=#{usernum}
-	</update>
+	</update> 
 </mapper>
 
 

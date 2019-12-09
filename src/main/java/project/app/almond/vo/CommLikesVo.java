@@ -1,18 +1,18 @@
 package project.app.almond.vo;
 
-public class Commlikes {
+public class CommLikesVo {
 	private int likenum;
 	private int usernum;
 	private int commnum;
 	/**
 	 * 1 : 좋아요
 	 * 2 : 싫어요
-	 * 3 : 좋아요 취소
-	 * 4 : 싫어요 취소
+	 * -1 : 좋아요 취소
+	 * -2 : 싫어요 취소
 	 */
 	private int type;
-	public Commlikes(){}
-	public Commlikes(int likenum, int usernum, int commnum, int type) {
+	public CommLikesVo(){}
+	public CommLikesVo(int likenum, int usernum, int commnum, int type) {
 		this.likenum = likenum;
 		this.usernum = usernum;
 		this.commnum = commnum;
