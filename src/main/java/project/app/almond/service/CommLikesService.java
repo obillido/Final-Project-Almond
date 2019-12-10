@@ -18,4 +18,7 @@ public class CommLikesService {
 	public CommLikesVo isExist(CommLikesVo vo){
 		return cdao.isExist(vo);
 	}
+	public int getCnt(CommLikesVo vo){
+		return cdao.getCnt(vo);
+	}
 }

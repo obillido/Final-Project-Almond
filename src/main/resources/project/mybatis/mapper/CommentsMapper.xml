@@ -13,12 +13,12 @@
 		select nvl(max(step),0) step from comments where epinum=#{epinum} and ref=#{ref}
 	</select>
 	<select id="getList" parameterType="hashmap" resultType="project.app.almond.vo.CommentsInfoVo">
-		select c.*,u.nickname,u.profileimg,cntlike,cnthate,nvl(type,0) mytype
+		select c.*,u.nickname,u.profileimg,nvl(cntlike,0) cntlike,nvl(cnthate,0) cnthate,nvl(type,0) mytype
 		from comments c, users u, 
-		(select nvl(count(*),0) cntlike from commlikes where type=1),
-		(select nvl(count(*),0) cnthate from commlikes where type=2),
+		(select count(*) cntlike,commnum from commlikes where type=1 group by commnum) cl,
+		(select count(*) cnthate,commnum from commlikes where type=2 group by commnum) ch,
 		(select type,commnum from commlikes where usernum=#{usernum}) mt
-		where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+)
+		where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+) and c.commnum=cl.commnum(+) and c.commnum=ch.commnum(+)
 		order by c.ref desc, c.step asc
 	</select>
 </mapper>

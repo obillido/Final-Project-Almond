@@ -19,4 +19,7 @@ public class CommLikesDao {
 	public CommLikesVo isExist(CommLikesVo vo){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".isExist",vo);
 	}
+	public int getCnt(CommLikesVo vo){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",vo);
+	}
 }

@@ -15,7 +15,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		list();			
-		
 		$("#commInsert").click(function(){
 			var comment=$("#comment").val();
 			var ref=0;
@@ -38,11 +37,11 @@
 		});
 	});
 	function list(){
+		$("#commList div").remove();
 		$.ajax({
 			url:"${path}/webcontents/comments/list?epinum=${evo.epinum}&usernum=${usernum}",
 			dataType:"xml",
 			success:function(data){
-				$("#commList div").remove();
 				$(data).find("comment").each(function(){
 					var mt=$(this).find("mytype").text();
 					var comm=
@@ -60,7 +59,7 @@
 								'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+
 								'<button onclick="clickHate(this)" value="'+$(this).find("commnum").text()+'" ';
 					if(mt=='2') comm+='class="hates-click"> ';
-					else 			comm+='class="likes"> ';
+					else 				comm+='class="likes"> ';
 					comm+=	'<img src="${path}/resources/comments/hate.png" class="likesImg"> '+
 									'<div class="likesCnt">'+fmt($(this).find("cnthate").text())+'</div> '+
 								'</button> '+
@@ -69,29 +68,35 @@
 					$("#commList").append(comm);
 				});
 			}
-			
 		});
 	}
-	
 	function fmt(x){
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	function clickLike(me){
-		if($(me).attr('class')=='likes'){
-			$(me).attr('class','likes-click');
-			changeLikesCnt($(me).val(),1,me);
+		if($(me).parent().children().last().attr('class')=='likes'){
+			if($(me).attr('class')=='likes'){
+				changeLikesCnt($(me).val(),1,me)
+				$(me).attr('class','likes-click');
+			}else{
+				changeLikesCnt($(me).val(),-1,me);
+				$(me).attr('class','likes');
+			}
 		}else{
-			$(me).attr('class','likes');
-			changeLikesCnt($(me).val(),-1,me);
+			 alert("이미 '싫어요'를 누르셨습니다.");
 		}
 	}
 	function clickHate(me){
-		if($(me).attr('class')=='likes'){
-			$(me).attr('class','hates-click');
-			changeLikesCnt($(me).val(),2,me);
+		if($($(me).parent().children()[2]).attr('class')=='likes'){
+			if($(me).attr('class')=='likes'){
+				changeLikesCnt($(me).val(),2,me);
+				$(me).attr('class','hates-click');
+			}else{
+				changeLikesCnt($(me).val(),-2,me);
+				$(me).attr('class','likes');
+			}
 		}else{
-			$(me).attr('class','likes');
-			changeLikesCnt($(me).val(),-2,me);
+			alert("이미 '좋아요'를 누르셨습니다.");
 		}
 	}
 	
@@ -102,9 +107,11 @@
 			type:"post",
 			data:{"usernum":${usernum},"commnum":commnum,"type":type},
 			success:function(data){
-				var code=$(data).find("code").text();
-				console.log($(me));
-				$(me).text("");
+				if($(data).find("code").text()=='success'){
+					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
+				}else{
+					alert("오류발생!");
+				}
 			}			
 		});
 	}

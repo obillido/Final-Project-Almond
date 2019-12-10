@@ -12,6 +12,9 @@
 	<select id="isExist" parameterType="project.app.almond.vo.CommLikesVo" resultType="project.app.almond.vo.CommLikesVo">
 		select * from commlikes where usernum=#{usernum} and commnum=#{commnum}
 	</select>
+	<select id="getCnt" parameterType="project.app.almond.vo.CommLikesVo" resultType="int">
+		select count(*) cnt from commlikes where commnum=#{commnum} and type=#{type}
+	</select>
 </mapper>
 
 
