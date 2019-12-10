@@ -633,7 +633,8 @@ CREATE TABLE webcontents
 	freenum number NOT NULL,
 	-- 상태 : 0 : 미공개
 	-- 1 : 공개
-	status number,
+	status number NOT NULL,
+	readernum number NOT NULL,
 	PRIMARY KEY (contnum)
 );
 
