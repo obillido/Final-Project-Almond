@@ -75,18 +75,6 @@ public class EventController {
 		model.addAttribute("list",list);
 		return ".event.event3reading";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/how")
-	public String how(){
-		return ".event.how";
-	}
 	@RequestMapping("/test")
 	public String test(){
 		return ".event.test";
