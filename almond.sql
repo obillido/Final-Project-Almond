@@ -185,6 +185,8 @@ CREATE TABLE reading
 	usernum number NOT NULL,
 	-- 열람날짜
 	readingdate date NOT NULL,
+	-- 상태 1:소장, 2:대여, 3:무료
+	status number NOT NULL,
 	PRIMARY KEY (readingnum)
 );
 

@@ -7,12 +7,14 @@ public class ReadingVo {
 	private int epinum;
 	private int usernum;
 	private Date readingdate;
+	private int status;
 	public ReadingVo(){}
-	public ReadingVo(int readingnum, int epinum, int usernum, Date readingdate) {
+	public ReadingVo(int readingnum, int epinum, int usernum, Date readingdate, int status) {
 		this.readingnum = readingnum;
 		this.epinum = epinum;
 		this.usernum = usernum;
 		this.readingdate = readingdate;
+		this.status = status;
 	}
 	public int getReadingnum() {
 		return readingnum;
@@ -37,5 +39,11 @@ public class ReadingVo {
 	}
 	public void setReadingdate(Date readingdate) {
 		this.readingdate = readingdate;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }
