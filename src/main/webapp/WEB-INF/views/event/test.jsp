@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+
 <style>
 #image{
   margin:50px 50px;z-index:10;
 }
 #n_id{position:absolute;left:286px;top:75px;z-index:20;}
 </style>
-</head>
-<body>
+
+
 <img src="${pageContext.request.contextPath }/resources/rull/pan.png" id="image">
-<img src="img/niddle.png" id="n_id">
-<br />
+
+
 <input type='button' value='시작' id='start_btn'></input>
 <div id="result_id"></div>
 <div id="result_id2"></div>
 <div id="result_id3"></div>
+<script src="${pageContext.request.contextPath }/resources/js/jQueryRotate.js"></script>
 <script>
 /* serpiko.tistory.com */
 window.onload = function(){
