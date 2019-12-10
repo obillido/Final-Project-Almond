@@ -454,6 +454,8 @@ CREATE TABLE myList
 	-- 알람상태 : 0 : 알람해제
 	-- 1 : 알람설정
 	alaram number NOT NULL,
+	-- 업데이트 날짜
+	readingdate date NOT NULL,
 	PRIMARY KEY (mylistnum)
 );
 
@@ -889,5 +891,15 @@ insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 1000,-1,-1, 3000,
 insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 3000,-1,-1, 6000,-1,-1);
 insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 4000,-1,-1, 9000,-1,-1);
 insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 5000,-1,-1, 12000,-1,-1);
+
+
+
+
+
+
+
+
+
+
 
 

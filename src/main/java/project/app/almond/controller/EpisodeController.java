@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,9 +81,12 @@ public class EpisodeController {
 		return "redirect:/webcontents/episode/list";
 	}
 	@RequestMapping("/webcontents/episode/content")
-	public String epiInfo(int contnum,int epinum,Model model){
+	public String epiInfo(int contnum,int epinum,HttpSession session,Model model){
 		model.addAttribute("wvo",ws.getInfo(contnum));
 		model.addAttribute("evo",es.getInfo(epinum));
+		if(session.getAttribute("usernum")!=null){
+			
+		}
 		return ".webcontents.episode.content";
 	}
 }

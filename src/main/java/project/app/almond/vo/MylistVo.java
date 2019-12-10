@@ -1,5 +1,7 @@
 package project.app.almond.vo;
 
+import java.sql.Date;
+
 public class MylistVo {
 	private int mylistnum;
 	private int contnum;
@@ -9,12 +11,14 @@ public class MylistVo {
 	 * 1 : 알람설정
 	 */
 	private int alaram;
+	private Date readingdate;
 	public MylistVo(){}
-	public MylistVo(int mylistnum, int contnum, int usernum, int alaram) {
+	public MylistVo(int mylistnum, int contnum, int usernum, int alaram, Date readingdate) {
 		this.mylistnum = mylistnum;
 		this.contnum = contnum;
 		this.usernum = usernum;
 		this.alaram = alaram;
+		this.readingdate = readingdate;
 	}
 	public int getMylistnum() {
 		return mylistnum;
@@ -37,8 +41,13 @@ public class MylistVo {
 	public int getAlaram() {
 		return alaram;
 	}
-	public MylistVo(int alaram) {
-		super();
+	public void setAlaram(int alaram) {
 		this.alaram = alaram;
+	}
+	public Date getReadingdate() {
+		return readingdate;
+	}
+	public void setReadingdate(Date readingdate) {
+		this.readingdate = readingdate;
 	}
 }
