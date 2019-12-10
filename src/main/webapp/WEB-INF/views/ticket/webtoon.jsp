@@ -132,26 +132,26 @@
 					 <form method="post">
 						<div class="form1">
 							<div style="float:left; padding-top: 15px; width: 150px;">
-								<input type="radio" name="ticketown" value="1,${ticket.cnt1},${ticket.rentalprice1}" checked="checked">${ticket.cnt1}개 
+								<input type="radio" name="ticketown" value="1,${ticket.cnt1},${ticket.ownprice1}" checked="checked">${ticket.cnt1}개 
 							</div>
 							<div class="tickt_cash1">
-								${ticket.rentalprice1}캐시<br>
+								${ticket.ownprice1}캐시<br>
 							</div>
 						</div>
 						<div class="form2">
 							<div style="float:left; padding-top: 15px; width: 300px;">
-								<input type="radio" name="ticketown" value="1,${ticket.cnt2},${ticket.rentalprice2}" >${ticket.cnt2}개 <span style="color:red; font-weight: bold">(9개 + 1개 보너스)</span>
+								<input type="radio" name="ticketown" value="1,${ticket.cnt2},${ticket.ownprice2}" >${ticket.cnt2}개 <span style="color:red; font-weight: bold">(9개 + 1개 보너스)</span>
 							</div>
 							<div class="tickt_cash2">	
-								${ticket.rentalprice2}캐시<br>
+								${ticket.ownprice2}캐시<br>
 							</div>
 						</div>
 						<div class="form3">
 							<div style="float:left; padding-top: 15px; width: 350px;">
-								<input type="radio" name="ticketown" value="1,${ticket.cnt3},${ticket.rentalprice3}" >${ticket.cnt3}개 <span style="color:red; font-weight: bold">(17개 + 3개 보너스)</span>
+								<input type="radio" name="ticketown" value="1,${ticket.cnt3},${ticket.ownprice3}" >${ticket.cnt3}개 <span style="color:red; font-weight: bold">(17개 + 3개 보너스)</span>
 							</div>
 							<div class="tickt_cash3">	
-								<a>${ticket.rentalprice3}캐시</a><br>
+								<a>${ticket.ownprice3}캐시</a><br>
 							</div>
 						</div>
 					</form>
@@ -192,9 +192,9 @@
 								<input type="hidden" name="usernum" value="${usernum}">
 								<input type="hidden" name="contnum" value="${contnum}">
 								<input type="hidden" name="tknum" value="${ticket.tknum}">
-								<input type="hidden" name="type" value="" id="type">
-								<input type="hidden" name="cnt" value="" id="cnt">
-								<input type="hidden" name="price" value="" id="price">
+								<input type="hidden" name="type" value="" id="typeown">
+								<input type="hidden" name="cnt" value="" id="cntown">
+								<input type="hidden" name="price" value="" id="priceown">
 					       		<button type="submit" class="btn btn-default" >구매하기</button>
 							</form>
 					      </div>
@@ -207,7 +207,40 @@
 				
 			</div><!-- container -->
 		</div>
-			
+		
+		
+		<!--  
+		<div class="modal" id="cashModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>One fine body&hellip;</p>
+						<h1>${title}</h1>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		 가격 0원 이하일때 팝업 창 
+		<div class="modal" id="cashModal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-body">
+		        <p>One fine body&hellip;</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		-->
+		
+		
 		<div class="foot_caution">
 			<span>※이용권 안내</span><br>
 			- 해당 콘텐츠는 청약철회가 불가능한 상품이므로 이미 결제된 상품에 대해서는 청약철회가 불가합니다.<br>
@@ -254,17 +287,31 @@
 			$("#type").val(tksplit[0]);
 			$("#cnt").val(tksplit[1]);
 			$("#price").val(tksplit[2]);
+			
+			/*
+			if("${uc.cash}"-"${ticket.rentalprice1}"<0 || "${uc.cash}"-"${ticket.rentalprice2}"<0 || "${uc.cash}"-"${ticket.rentalprice3}"<0){
+				$("#cashModal").modal();
+				return false;	
+			}*/
 		});	
 	});
 	$(function(){
 		$("#payment1").click(function(){
-			var tk=$("input[name='ticketown']:checked").val();
-			var tksplit=tk.split(',');
-			$("#type").val(tksplit[0]);
-			$("#cnt").val(tksplit[1]);
-			$("#price").val(tksplit[2]);
+			var tk1=$("input[name='ticketown']:checked").val();
+			var tk1split=tk1.split(',');
+			$("#typeown").val(tk1split[0]);
+			$("#cntown").val(tk1split[1]);
+			$("#priceown").val(tk1split[2]);
+			
+			/*
+			if("${uc.cash}"-"${ticket.ownprice1}"<0 || "${uc.cash}"-"${ticket.ownprice2}"<0 || "${uc.cash}"-"${ticket.ownprice3}"<0){
+				$("#cashModal").modal();
+				return false;	
+			}*/
 		});	
 	});
+	
+	
 	
 
 </script>
