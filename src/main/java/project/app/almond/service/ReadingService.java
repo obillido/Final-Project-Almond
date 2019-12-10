@@ -15,4 +15,7 @@ public class ReadingService {
 	public int update(ReadingVo vo){
 		return rdao.update(vo);
 	}
+	public ReadingVo isExist(ReadingVo vo){
+		return rdao.isExist(vo);
+	}
 }

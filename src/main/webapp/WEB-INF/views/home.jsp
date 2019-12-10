@@ -61,22 +61,26 @@
 <br><br>
 <div class="row">
 <c:forEach var="info" items="${list}">
-  <div class="card" style="width: 16rem;">
-    <div class="card-body">
-      <h5 class="card-title">누적 조회수 : <strong>${info.HIT }</strong></h5>
-      <p class="card-text">회차 제목 : <strong>${info.SUBTITLE }</strong></p>
-      <a href="${path}/webcontents/episode/content?contnum=${info.CONTNUM}&epinum=${info.EPINUM}" class="btn btn-danger">보러가기</a>
-    </div>
+  <div class="card" style="width: 16rem; margin:0px 10px;"
+  		onclick="location.href='${path}/webcontents/episode/content?contnum=${info.CONTNUM}&epinum=${info.EPINUM}'">
+		<img src="${path}/resources/webcontents/1/${info.IMG}" class="card-img" style="width:100%; height:150px;">
+		<div class="card-img-overlay">
+		  <!-- <h5 class="card-title">Card title</h5>-->
+		  
+		</div>
+		<p class="card-text"><strong>${info.SUBTITLE }</strong></p>
+		  
   </div>  
 </c:forEach>
 </div>
-<br><br>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<br><br>
+<br>
+
+<hr style="border:0.6px solid lightgray;">
+
+
+<br>
 <button type="button" class="btn btn-warning btn-lg">
- 인기 작품 <span class="badge badge-light">장르별</span>
+ 	인기 작품 <span class="badge badge-light">장르별</span>
 </button>
 
 <div class="btn-group btn-group-toggle" data-toggle="buttons" id="div">

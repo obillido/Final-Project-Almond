@@ -3,6 +3,7 @@ package project.app.almond.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import project.app.almond.service.EpisodeService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.EpisodeVo;
+import project.app.almond.vo.ReadingVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Controller
@@ -82,10 +84,14 @@ public class EpisodeController {
 	}
 	@RequestMapping("/webcontents/episode/content")
 	public String epiInfo(int contnum,int epinum,HttpSession session,Model model){
+		WebcontentsVo wvo=ws.getInfo(contnum);
+		EpisodeVo evo=es.getInfo(epinum);
 		model.addAttribute("wvo",ws.getInfo(contnum));
-		model.addAttribute("evo",es.getInfo(epinum));
+		model.addAttribute("evo",evo);
 		if(session.getAttribute("usernum")!=null){
+			int usernum=(Integer)session.getAttribute("usernum");
 			
+			new Date(new java.util.Date().getTime());
 		}
 		return ".webcontents.episode.content";
 	}

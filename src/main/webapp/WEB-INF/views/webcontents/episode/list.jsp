@@ -66,8 +66,8 @@
       	 전체댓글
       </li>
       <li class="list-group-item">공지사항</li>
-      <li class="list-group-item">첫편부터 ${contInfo.waiting}편 무료</li>
-      <li class="list-group-item">기다리면 무료</li>
+      <c:if test="${contInfo.freenum>0}"><li class="list-group-item">첫편부터 ${contInfo.freenum}편 무료</li></c:if>
+      <c:if test="${contInfo.waiting>0}"><li class="list-group-item">${contInfo.waiting}시간마다 무료</li></c:if>
     </ul>
   </div>
 	<br><br>

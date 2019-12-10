@@ -48,7 +48,7 @@
 	   select * from
 	   (
            select aa.*,rownum rnum from
-           (   select e.epinum,e.contnum,e.hit,e.subtitle from episode e,webcontents w
+           (   select w.img, e.epinum,e.contnum,e.hit,e.subtitle from episode e,webcontents w
                where e.contnum=w.contnum and w.cultype=#{cultype}
                order by e.hit desc
            )aa

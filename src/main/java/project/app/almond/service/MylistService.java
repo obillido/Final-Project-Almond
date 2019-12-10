@@ -20,4 +20,7 @@ public class MylistService {
 	public int delete(MylistVo vo){
 		return mdao.delete(vo);
 	}
+	public MylistVo isExist(MylistVo vo){
+		return mdao.isExist(vo);
+	}
 }

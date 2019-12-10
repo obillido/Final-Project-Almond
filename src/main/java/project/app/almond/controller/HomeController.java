@@ -15,13 +15,12 @@ import project.app.almond.service.WebcontentsService;
 
 @Controller
 public class HomeController {
-	@Autowired private WebcontentsService wservice;
+	@Autowired private WebcontentsService ws;
 	@RequestMapping(value = "/")
 	public String home(HttpSession session,Model model) {
 		session.setAttribute("usernum", 1);
 		int cultype=1;
-		List<HashMap<String, Object>> list=wservice.top4(cultype);
-		
+		List<HashMap<String, Object>> list=ws.top4(cultype);
 		model.addAttribute("list", list);
 		return ".layout";
 	}
@@ -39,7 +38,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/5")
 	public String home5(Model model) {
-		model.addAttribute("webc",wservice.getInfoBook(1));
+		model.addAttribute("webc",ws.getInfoBook(1));
 		return ".home5";
 	}
 }

@@ -21,4 +21,7 @@ public class MylistDao {
 	public int delete(MylistVo vo){
 		return sqlSessionTemplate.delete(NAMESPACE+".delete",vo);
 	}
+	public MylistVo isExist(MylistVo vo){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".isExist",vo);
+	}
 }

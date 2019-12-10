@@ -12,6 +12,9 @@
 	<delete id="delete" parameterType="project.app.almond.vo.MylistVo">
 		delete from mylist where contnum=#{contnum} and usernum=#{usernum}
 	</delete>
+	<select id="isExist" parameterType="project.app.almond.vo.MylistVo" resultType="project.app.almond.vo.MylistVo">
+		select * from mylist where contnum=#{contnum} and usernum=#{usernum}
+	</select>
 </mapper>
 
 
