@@ -3,8 +3,11 @@ package project.app.almond.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,6 +78,20 @@ public class EventController {
 		model.addAttribute("list",list);
 		return ".event.event3reading";
 	}
+	//event5 ·ê·¿ ´çÃ·±Ý¾×
+	@RequestMapping(value="/rullcash", method=RequestMethod.POST)
+	public String rullcash(UsersVo vo,HttpServletRequest req,String cash1){	
+		try{
+			int cash=Integer.parseInt(req.getParameter(cash1));
+				if(cash>0){
+					service.updateCash(vo);			
+				}
+		}catch(Exception e){		
+			e.printStackTrace();
+		}		
+			return "./";		
+	}
+	
 	@RequestMapping("/test")
 	public String test(){
 		return ".event.test";

@@ -27,4 +27,7 @@ public class EventDao {
 	public List<ReadingEpisodeVo> event3reading(){
 		return session.selectList(NAMESPACE+".event3reading");
 	}
+	public int rullCash(UsersVo vo){
+		return session.update(NAMESPACE+".rullcash",vo);
+	}
 }

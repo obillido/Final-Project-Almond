@@ -5,12 +5,14 @@
 <style>
 #image{
   margin:50px 50px;z-index:10;
+  width: 700px; height: 700px;
 }
-#n_id{position:absolute;left:286px;top:75px;z-index:20;}
+#n_id{position:absolute;left:340px;top:200px;z-index:20;}
 </style>
 
 
-<img src="${pageContext.request.contextPath }/resources/rull/pan.png" id="image">
+<img src="${pageContext.request.contextPath }/resources/rull/pan1.png" id="image">
+<img src="${pageContext.request.contextPath }/resources/rull/pan2.png" id="n_id">
 
 
 <input type='button' value='시작' id='start_btn'></input>
@@ -22,7 +24,7 @@
 /* serpiko.tistory.com */
 window.onload = function(){
      
-    var pArr = ["0","1","2","3","4:꽝","5","6","7","8","9"];
+    var pArr = ["100","1000","200","500","100","200"];
  
     $('#start_btn').click(function(){
         rotation();
@@ -31,7 +33,7 @@ window.onload = function(){
     function rotation(){
         $("#image").rotate({
           angle:0,
-          animateTo:360 * 5 + randomize(0, 360),
+          animateTo:360 * 6 + randomize(0, 360),
           center: ["50%", "50%"],
           easing: $.easing.easeInOutElastic,
           callback: function(){
@@ -45,8 +47,8 @@ window.onload = function(){
     function endAnimate($n){
         var n = $n;
         $('#result_id').html("<p>움직인각도:" + n + "</p>");
-        var real_angle = n%360 +18;
-        var part = Math.floor(real_angle/36);
+        var real_angle = n%360 +30;//각도조절
+        var part = Math.floor(real_angle/60);//360나누기 6칸 
      
         $('#result_id2').html("<p>상품범위:" + part + "</p>");
  
@@ -55,7 +57,7 @@ window.onload = function(){
             return;
         }
  
-        if(part >= 10){
+        if(part >= 6){
             $('#result_id3').html("<p>당첨내역:" + pArr[pArr.length-1] + "</p>");
             return;
         }

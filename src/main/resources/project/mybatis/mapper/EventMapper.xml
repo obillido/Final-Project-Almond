@@ -70,5 +70,9 @@
 	where rownum<=3
 	]]>
 	</select>
+	
+	<update id="event5" parameterType="project.app.almond.vo.UsersVo">
+		update users set cash=cash+#{cash} where usernum=1
+	</update>
 </mapper>
 

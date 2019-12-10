@@ -26,4 +26,8 @@ public class EventService {
 	public List<ReadingEpisodeVo> event3reading(){
 		return edao.event3reading();
 	}
+	public int rullcash(UsersVo vo){
+		edao.rullCash(vo);
+		return 1;
+	}
 }
