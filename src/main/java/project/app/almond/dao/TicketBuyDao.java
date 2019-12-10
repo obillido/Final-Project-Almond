@@ -29,8 +29,4 @@ public class TicketBuyDao {
 	}
 	*/
 	
-	public int updateUse(HashMap<String, Object> map){
-		return sqlSessionTemplate.update(NAMESPACE + ".updateUse",map);
-	}
-	
 }

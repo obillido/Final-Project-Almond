@@ -39,7 +39,4 @@ public class TicketBuyService {
 	}	
 	*/
 	
-	public int updateUse(HashMap<String, Object> map){
-		return ticketBuyDao.updateUse(map);
-	}
 }
