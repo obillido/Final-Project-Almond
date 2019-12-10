@@ -1,7 +1,11 @@
 package project.app.almond.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +17,12 @@ import project.app.almond.service.WebcontentsService;
 public class HomeController {
 	@Autowired private WebcontentsService wservice;
 	@RequestMapping(value = "/")
-	public String home(HttpSession session) {
+	public String home(HttpSession session,Model model) {
 		session.setAttribute("usernum", 1);
+		int cultype=1;
+		List<HashMap<String, Object>> list=wservice.top4(cultype);
+		
+		model.addAttribute("list", list);
 		return ".layout";
 	}
 	@RequestMapping(value = "/2")

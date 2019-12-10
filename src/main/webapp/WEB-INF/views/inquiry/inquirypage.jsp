@@ -30,6 +30,7 @@
 	      <th>글번호</th>
 	      <th>제목</th>
 	      <th>내용</th>
+	      <th>답변여부</th>
 	   </tr>
 	   </thead>
 
@@ -39,6 +40,7 @@
 	         <td>${info.inqnum}</td>
 	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}">${info.title}</a></td>
 	         <td>${info.content}</td>
+	         <td>답변여부</td>
 	      </tr>
 	      </tbody>
 	   </c:forEach>

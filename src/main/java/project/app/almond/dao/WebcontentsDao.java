@@ -42,4 +42,10 @@ public class WebcontentsDao {
 	public List<WebcontentsBookVo> listonday(String dayofweek){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".listonday",dayofweek);
 	}
+	public List<HashMap<String, Object>> top4(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".top4",cultype);
+	}
+	public List<WebcontentsVo> jakpum(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".jakpum",cultype);
+	}
 }

@@ -18,6 +18,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.TicketService;
@@ -116,7 +117,6 @@ public class WebcontentsController {
 	}
 	@RequestMapping(value="/webcontents/listonday",method=RequestMethod.POST)
 	public String listonday(String dayofweek,Model model){
-		System.out.println("dayofweek:" + dayofweek);
 		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
 		model.addAttribute("cultype",1);
 		model.addAttribute("daylist",daylist);
@@ -127,5 +127,26 @@ public class WebcontentsController {
 		genreList.add("¹«Çù");
 		model.addAttribute("genreList",genreList);
 		return ".webcontents.list";
+	}
+	@RequestMapping(value="/webcontents/jakpum",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String jakpum(int cultype){
+		List<WebcontentsVo> list=ws.jakpum(cultype);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		for(WebcontentsVo vo:list){
+			sb.append("<jakpum>");
+			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
+			sb.append("<cultype>"+vo.getCultype()+"</cultype>");
+			sb.append("<title>"+vo.getTitle()+"</title>");
+			sb.append("<genre>"+vo.getGenre()+"</genre>");
+			sb.append("<outline>"+vo.getOutline()+"</outline>");
+			sb.append("<img>"+vo.getImg()+"</img>");
+			sb.append("<readernum>"+vo.getReadernum()+"</readernum>");
+			sb.append("</jakpum>");
+		}
+		sb.append("</result>");
+		return sb.toString();
 	}
 }

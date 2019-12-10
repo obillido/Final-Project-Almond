@@ -56,4 +56,10 @@ public class WebcontentsService {
 	public List<WebcontentsBookVo> listonday(String dayofweek){
 		return wdao.listonday(dayofweek);
 	}
+	public List<HashMap<String, Object>> top4(int cultype){
+		return wdao.top4(cultype);
+	}
+	public List<WebcontentsVo> jakpum(int cultype){
+		return wdao.jakpum(cultype);
+	}
 }

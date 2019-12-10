@@ -43,6 +43,25 @@
 	<select id="listonday" parameterType="String" resultType="project.app.almond.vo.WebcontentsBookVo">
 	   select wc.* from webcontents wc,book where wc.contnum=book.contnum and book.dayofweek=#{dayofweek} and cultype=1
 	</select>
+	
+	<select id="top4" resultType="hashmap" parameterType="int">
+	   select * from
+	   (
+           select aa.*,rownum rnum from
+           (   select e.epinum,e.contnum,e.hit,e.subtitle from episode e,webcontents w
+               where e.contnum=w.contnum and w.cultype=#{cultype}
+               order by e.hit desc
+           )aa
+       )<![CDATA[ where rnum>=1 and rnum<=4 ]]>
+	</select>
+	<select id="jakpum" resultType="project.app.almond.vo.WebcontentsVo" parameterType="int">
+	   select * from
+	   (
+           select aa.*,rownum rnum from
+           (   select * from webcontents where cultype=#{cultype} order by readernum desc
+           )aa
+       )<![CDATA[ where rnum>=1 and rnum<=4 ]]>
+	</select>
 </mapper>
 
 
