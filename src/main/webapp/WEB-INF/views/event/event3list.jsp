@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h1>event2list</h1>
+<h1>event3list</h1>
 <c:forEach var="vo" items="${list }">
 <p>
 	당첨유저:${vo.usernum }
