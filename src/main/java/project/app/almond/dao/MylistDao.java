@@ -15,8 +15,8 @@ public class MylistDao {
 	public int insert(MylistVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
-	public int update(Date readingdate){
-		return sqlSessionTemplate.update(NAMESPACE+".update",readingdate);
+	public int update(MylistVo vo){
+		return sqlSessionTemplate.update(NAMESPACE+".update",vo);
 	}
 	public int delete(MylistVo vo){
 		return sqlSessionTemplate.delete(NAMESPACE+".delete",vo);

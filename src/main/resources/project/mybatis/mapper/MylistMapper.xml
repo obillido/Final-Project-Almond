@@ -6,7 +6,7 @@
 	<insert id="insert" parameterType="project.app.almond.vo.MylistVo">
 		insert into mylist values(seq_mylist_mylistnum.nextval,#{contnum},#{usernum},#{alaram},sysdate)
 	</insert>
-	<update id="update" parameterType="date">
+	<update id="update" parameterType="project.app.almond.vo.MylistVo">
 		update mylist set readingdate=#{date} where contnum=#{contnum} and usernum=#{usernum}
 	</update>
 	<delete id="delete" parameterType="project.app.almond.vo.MylistVo">

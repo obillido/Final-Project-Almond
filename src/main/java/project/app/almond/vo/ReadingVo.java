@@ -7,14 +7,14 @@ public class ReadingVo {
 	private int epinum;
 	private int usernum;
 	private Date readingdate;
-	private int status;
+	private int type;
 	public ReadingVo(){}
-	public ReadingVo(int readingnum, int epinum, int usernum, Date readingdate, int status) {
+	public ReadingVo(int readingnum, int epinum, int usernum, Date readingdate, int type) {
 		this.readingnum = readingnum;
 		this.epinum = epinum;
 		this.usernum = usernum;
 		this.readingdate = readingdate;
-		this.status = status;
+		this.type = type;
 	}
 	public int getReadingnum() {
 		return readingnum;
@@ -40,10 +40,10 @@ public class ReadingVo {
 	public void setReadingdate(Date readingdate) {
 		this.readingdate = readingdate;
 	}
-	public int getStatus() {
-		return status;
+	public int getType() {
+		return type;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setType(int type) {
+		this.type = type;
 	}
 }

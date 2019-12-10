@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.ReadingMapper">
 	<insert id="insert" parameterType="project.app.almond.vo.ReadingVo">
-		insert into reading values(seq_reading_readingnum.nextval,#{epinum},#{usernum},sysdate,#{status})
+		insert into reading values(seq_reading_readingnum.nextval,#{epinum},#{usernum},sysdate,#{type})
 	</insert>
 	<update id="update" parameterType="project.app.almond.vo.ReadingVo">
 		update reading set status=#{status} where usernum=#{usernum} and epinum=#{epinum}

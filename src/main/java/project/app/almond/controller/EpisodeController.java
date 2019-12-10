@@ -21,15 +21,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.EpisodeService;
+import project.app.almond.service.MylistService;
+import project.app.almond.service.ReadingService;
+import project.app.almond.service.TicketStockService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.EpisodeVo;
+import project.app.almond.vo.MylistVo;
 import project.app.almond.vo.ReadingVo;
+import project.app.almond.vo.TicketStockVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Controller
 public class EpisodeController {
 	@Autowired private WebcontentsService ws;
 	@Autowired private EpisodeService es;
+	@Autowired private ReadingService rs;
+	@Autowired private MylistService ms;
+	@Autowired private TicketStockService tss;
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,int cultype,@RequestParam(value="align",defaultValue="desc")String align,String code,Model model){
 		model.addAttribute("code",code);
@@ -83,15 +91,32 @@ public class EpisodeController {
 		return "redirect:/webcontents/episode/list";
 	}
 	@RequestMapping("/webcontents/episode/content")
-	public String epiInfo(int contnum,int epinum,HttpSession session,Model model){
+	public String epiInfo(int contnum,int epinum,HttpSession session,@RequestParam(value="type",defaultValue="0")int tu,Model model){
 		WebcontentsVo wvo=ws.getInfo(contnum);
 		EpisodeVo evo=es.getInfo(epinum);
-		model.addAttribute("wvo",ws.getInfo(contnum));
+		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
-		if(session.getAttribute("usernum")!=null){
-			int usernum=(Integer)session.getAttribute("usernum");
+		Object uu=session.getAttribute("usernum");
+		int n=0;
+		if(uu!=null){
+			int usernum=(Integer)uu;
+			Date sysdate=new Date(new java.util.Date().getTime());
+			int waiting=wvo.getWaiting();
+			int status=2;
+			if(waiting==0 || tu>0){
+				status=3;
+				if(tu>0) status=tu;
+				ReadingVo rvo=new ReadingVo(0, epinum, usernum, sysdate, 3);
+				MylistVo mvo=new MylistVo(0, contnum, usernum, 1, sysdate);
+				if(rs.isExist(rvo)==null) n=rs.insert(rvo, mvo);
+				else 					  n=rs.update(rvo, mvo);
+				if(n<1)	model.addAttribute("code","열람실패");
+			}else{
+				model.addAttribute("msg","ticketuse");
+				model.addAttribute("cntOwn",tss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0)).getCnt());
+				model.addAttribute("cntRental",tss.getInfo(new TicketStockVo(0, usernum, contnum, 2, 0)).getCnt());
+			}
 			
-			new Date(new java.util.Date().getTime());
 		}
 		return ".webcontents.episode.content";
 	}

@@ -11,16 +11,7 @@ import project.app.almond.vo.MylistVo;
 @Service
 public class MylistService {
 	@Autowired private MylistDao mdao;
-	public int insert(MylistVo vo){
-		return mdao.insert(vo);
-	}
-	public int update(Date readingdate){
-		return mdao.update(readingdate);
-	}
 	public int delete(MylistVo vo){
 		return mdao.delete(vo);
-	}
-	public MylistVo isExist(MylistVo vo){
-		return mdao.isExist(vo);
 	}
 }
