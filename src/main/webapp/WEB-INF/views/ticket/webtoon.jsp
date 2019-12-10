@@ -39,8 +39,8 @@
 			<div class="tab_container">	
 		
 			<ul class="tabs">
-				<li class="tab-link current" data-tab="tab-1"><span style="font-family: 돋움체; font-size: 18px; font-weight: 600;">대여권 충전</span></li>
-				<li class="tab-link" data-tab="tab-2"><span style="font-family: 돋움체; font-size: 18px; font-weight: 600;">소장권 충전</span></li>
+				<li class="tab-link current" data-tab="tab-1" id="tab_1"><span id="rent_charge" style="font-family: 돋움체; font-size: 18px; font-weight: 600;">대여권 충전</span></li>
+				<li class="tab-link" data-tab="tab-2" id="tab_2"><span id="own_charge" style="font-family: 돋움체; font-size: 18px; font-weight: 600; opacity: 0.5;">소장권 충전</span></li>
 			</ul>
 		
 			<div id="tab-1" class="tab-content current">		
@@ -78,8 +78,12 @@
 						- 패키지 상품은 보너스 지급분을 제외한 유로 이용권만 취소가능합니다.<br>
 					</div>
 	
+	
+	
+	
+	
 					<!-- 결제창 modal 영역 -->	
-					
+
 					<!-- Trigger the modal with a button -->
 					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="payment"><span style="color:black; font-weight: bold;">충전하기</span></button>
 					
@@ -191,7 +195,7 @@
 								<input type="hidden" name="type" value="" id="type">
 								<input type="hidden" name="cnt" value="" id="cnt">
 								<input type="hidden" name="price" value="" id="price">
-					       		<button type="submit" class="btn btn-default">구매하기</button>
+					       		<button type="submit" class="btn btn-default" >구매하기</button>
 							</form>
 					      </div>
 					    </div>
@@ -199,6 +203,8 @@
 					</div>				
 					</div>
 				</div>
+						
+				
 			</div><!-- container -->
 		</div>
 			
@@ -211,9 +217,24 @@
 			
 	</div>
 </div>
-
+<script type="text/javascript" src="resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+
+/* 대여권/소장권  Tab */
 	$(document).ready(function(){
+		$("#tab_2").click(function(){
+			$("#rent_charge").css("opacity","0.5");
+		});
+		$("#tab_1").click(function(){
+			$("#rent_charge").css("opacity","1");
+		});
+		$("#tab_1").click(function(){
+			$("#own_charge").css("opacity","0.5");
+		});
+		$("#tab_2").click(function(){
+			$("#own_charge").css("opacity","1");
+		});
+		
 		$('ul.tabs li').click(function(){
 			var tab_id = $(this).attr('data-tab');
 	
@@ -224,6 +245,8 @@
 			$("#"+tab_id).addClass('current');
 		});
 	});
+	
+	
 	$(function(){
 		$("#payment").click(function(){
 			var tk=$("input[name='ticketrent']:checked").val();
@@ -242,5 +265,6 @@
 			$("#price").val(tksplit[2]);
 		});	
 	});
+	
 
 </script>

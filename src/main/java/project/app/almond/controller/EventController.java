@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,44 +56,29 @@ public class EventController {
 	}
 	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
 	@RequestMapping(value="/event2list")
-	public ModelAndView event2select(){
+	public String event2select(Model model){
 		List<ReadingEpisodeVo> list=service.event2();
-		ModelAndView mv=new ModelAndView();
-		mv.addObject("list",list);
-		return mv;
+		model.addAttribute("list",list);
+		return ".event.event2list";
 	}
 	//event3 추첨사람 뽑아오기(댓글)
 	@RequestMapping(value="/event3list")
-	public ModelAndView event3select(){
+	public String event3select(Model model){
 		List<CommentsEpisodeVo> list=service.event3();
-		ModelAndView mv=new ModelAndView();
-		mv.addObject("list",list);
-		return mv;
+		model.addAttribute("list",list);
+		return ".event.event3list";
 	}
 	//event3 추첨사람 뽑아오기(읽은사람)
 	@RequestMapping(value="/event3reading")
-	public ModelAndView event3reading(){
+	public String event3reading(Model model){
 		List<ReadingEpisodeVo> list=service.event3reading();
-		ModelAndView mv=new ModelAndView();
-		mv.addObject("list",list);
-		return mv;
-	}
-	
-	
-	
-	
-	
-	
-	
-	/*
-	@RequestMapping("/how")
-	public String how(){
-		return ".event.how";
+		model.addAttribute("list",list);
+		return ".event.event3reading";
 	}
 	@RequestMapping("/test")
 	public String test(){
 		return ".event.test";
-	}*/
+	}
 }
 
 

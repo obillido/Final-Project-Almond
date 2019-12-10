@@ -8,6 +8,11 @@
 		update users set cash=cash+1000 where usernum=1
 	</update>
 	
+	
+	<select id="event1">
+	
+	</select>
+	
 	<select id="event2" resultType="project.app.almond.vo.ReadingEpisodeVo">
 	select * from
 	<![CDATA[
@@ -66,3 +71,4 @@
 	]]>
 	</select>
 </mapper>
+
