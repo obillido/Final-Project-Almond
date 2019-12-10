@@ -14,4 +14,8 @@
 	<select id="ticketType" parameterType="project.app.almond.vo.TicketBuyVo" resultType="project.app.almond.vo.TicketBuyVo">
 		select * from ticketbuy where usernum=#{usernum} and contnum=#{contnum}
 	</select>
+	
+	<update id="updateUse" parameterType="hashmap">
+	    update users set cash=cash-#{price} where usernum=#{usernum}
+	</update>
 </mapper>

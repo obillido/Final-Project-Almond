@@ -1,5 +1,7 @@
 package project.app.almond.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +41,15 @@ public class TicketBuyController {
 		return ".ticket.webtoon";
 	}
 	@RequestMapping(value="/ticket/buy", method=RequestMethod.POST)
-	public String ticketbuyform(TicketBuyVo vo,int tknum,Model model){
+	public String ticketbuyform(TicketBuyVo vo,int tknum,Model model,HttpSession session){
 		int n=tbs.insert(vo);
+		
+		int usernum=(Integer)session.getAttribute("usernum");
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("usernum",usernum);
+		map.put("price",vo.getPrice());
+		tbs.updateUse(map);
+		
 		model.addAttribute("contnum",vo.getContnum());
 		model.addAttribute("tknum",tknum);
 		return "redirect:/ticket/webtoon";

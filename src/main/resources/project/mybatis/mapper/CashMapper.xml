@@ -6,11 +6,23 @@
 	<insert id="insert" parameterType="project.app.almond.vo.CashVo">
 		insert into cash values(seq_cash_cashnum.nextval,#{usernum},#{price},sysdate,#{method})
 	</insert>
-	<select id="totcash" parameterType="int" resultType="int">
+	<select id="totCharge" parameterType="int" resultType="int">
 	    select sum(price) from cash where usernum=#{usernum}
 	</select>
 	<select id="list" parameterType="int" resultType="project.app.almond.vo.CashVo">
-	    select * from cash where usernum=#{usernum}
+	    select * from cash where usernum=#{usernum} order by regdate desc
+	</select>
+	<update id="updateCharge" parameterType="hashmap">
+	    update users set cash=cash+#{price} where usernum=#{usernum}
+	</update>
+	<select id="totCash" parameterType="int" resultType="int">
+	    select cash from users where usernum=#{usernum}
+	</select>
+	<select id="listUse" parameterType="int" resultType="project.app.almond.vo.TicketBuyVo">
+	    select * from ticketbuy where usernum=#{usernum} order by regdate desc
+	</select>
+	<select id="totUse" parameterType="int" resultType="int">
+	    select sum(price) from ticketbuy where usernum=#{usernum}
 	</select>
 </mapper>
 

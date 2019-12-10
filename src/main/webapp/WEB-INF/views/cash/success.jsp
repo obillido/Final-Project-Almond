@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 
 <style type="text/css">
     #container {
@@ -25,4 +27,6 @@
     <span class="badge badge-primary badge-pill">${info.method }</span>
   </li>
 </ul>
+<br><br>
+<a href="${path}/cash/list?usernum=${usernum}" class="btn btn-primary">내 캐시내역 보기</a>
 </div>

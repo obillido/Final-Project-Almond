@@ -63,7 +63,7 @@
 					</div>
 					<div class="custom-control custom-radio">
 						<input type="radio" name="paymethod" id="paymethod4" class="custom-control-input" value="아몬드페이">
-						<label class="custom-control-label" for="paymethod4">"아몬드페이"</label>
+						<label class="custom-control-label" for="paymethod4">아몬드페이</label>
 					</div>
 					<br><br>
 					<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="이용약관" 

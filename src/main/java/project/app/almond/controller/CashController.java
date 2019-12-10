@@ -1,5 +1,6 @@
 package project.app.almond.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.app.almond.service.CashService;
 import project.app.almond.vo.CashVo;
+import project.app.almond.vo.TicketBuyVo;
 
 @Controller
 public class CashController {
@@ -24,9 +26,13 @@ public class CashController {
 	@RequestMapping(value="/cash/charge",method=RequestMethod.POST)
 	public ModelAndView charge(int usernum,int cashamount,String paymethod){
 		CashVo vo=new CashVo(0, usernum, cashamount, null, paymethod);
-		int n=service.insert(vo);
+		int n1=service.insert(vo);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("usernum", usernum);
+		map.put("price", cashamount);
+		int n2=service.updateCharge(map);
 		ModelAndView mv=null;
-		if(n>0){
+		if(n1>0 && n2>0){
 			mv=new ModelAndView(".cash.success");
 			mv.addObject("info",vo);	
 		}
@@ -35,10 +41,17 @@ public class CashController {
 	
 	@RequestMapping(value="/cash/list",method=RequestMethod.GET)
 	public String list(int usernum,Model model){
-		int totcash=service.totcash(usernum);
+		int totCharge=service.totCharge(usernum);
 		List<CashVo> list=service.list(usernum);
+		int totCash=service.totCash(usernum);
+		List<TicketBuyVo> listUse=service.listUse(usernum);		
+		int totUse=service.totUse(usernum);
+		
 		model.addAttribute("list", list);
-		model.addAttribute("totcash", totcash);
+		model.addAttribute("listUse",listUse);
+		model.addAttribute("totCharge", totCharge);
+		model.addAttribute("totUse",totUse);
+		model.addAttribute("totCash", totCash);
 		return ".cash.list";
 	}
 }

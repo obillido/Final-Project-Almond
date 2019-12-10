@@ -1,6 +1,8 @@
 package project.app.almond.dao;
 
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +28,9 @@ public class TicketBuyDao {
 		return sqlSessionTemplate.selectOne(NAMESPACE + ".ticketType", vo);
 	}
 	*/
+	
+	public int updateUse(HashMap<String, Object> map){
+		return sqlSessionTemplate.update(NAMESPACE + ".updateUse",map);
+	}
 	
 }

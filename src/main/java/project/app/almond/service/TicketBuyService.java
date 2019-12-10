@@ -1,5 +1,7 @@
 package project.app.almond.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,4 +38,8 @@ public class TicketBuyService {
 		return ticketBuyDao.ticketType(vo);
 	}	
 	*/
+	
+	public int updateUse(HashMap<String, Object> map){
+		return ticketBuyDao.updateUse(map);
+	}
 }
