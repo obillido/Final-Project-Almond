@@ -122,7 +122,7 @@
 						      "<h6 class='card-title'>작품명 : <strong>" + $(this).find("title").text() + "</strong></h6>" + 
 						      "<p class='card-text'>구독자수 : " + $(this).find("readernum").text() + "</p>" + 
 					          "<p class='card-text'>장르 : " + $(this).find("genre").text() + "</p>" + 
-					          "<a href='' class='btn btn-danger'>보러가기</a>" + 
+					          "<a href='${path}/webcontents/episode/list?contnum=" + $(this).find("contnum").text() + "&cultype=" + $(this).find("cultype").text() + "' class='btn btn-outline-warning'>보러가기</a>" + 
 					          "</div></div>";
 					   console.log(jp);
 					   $("#jakpumList").append(jp);

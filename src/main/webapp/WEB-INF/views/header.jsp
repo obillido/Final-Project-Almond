@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:darkorange !important">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:white !important">
   <div class="container">
     <a class="navbar-brand" href="${path}/"><img src="${path}/resources/suhyeonimages/logo.png" width="200px"></a>
     
@@ -19,13 +19,13 @@
           <a class="nav-link" href="${path}/webcontents/list?cultype=1" style="color:black !important;font-size: 1.2em"><strong>만화</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:white !important;font-size: 1.2em"><strong>소설</strong></a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:black !important;font-size: 1.2em"><strong>소설</strong></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${path}/webcontents/list?cultype=3" style="color:black !important;font-size: 1.2em"><strong>예능</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=4" style="color:white !important;font-size: 1.2em"><strong>드라마</strong></a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=4" style="color:black !important;font-size: 1.2em"><strong>드라마</strong></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${path}/webcontents/list?cultype=5" style="color:black !important;font-size: 1.2em"><strong>영화</strong></a>
@@ -33,7 +33,7 @@
    
         <li class="nav-item dropdown" style="width:150px !important;">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black !important;">
-                  <span class="badge badge-dark" style="font-size: 1.3em;background-color:darkorange;color:white;">MyPage</span>
+                  <span class="badge badge-dark" style="font-size: 1.3em;background-color:darkorange;color:white; padding-bottom:8px;">MyPage</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
             <a class="dropdown-item" href="${path}/cash/charge?usernum=${usernum}">캐시 충전</a>
@@ -55,7 +55,7 @@
        <div class="input-group">
          <input type="text" class="form-control" placeholder="아직 검색 안됨">
          <span class="input-group-btn">
-           <button class="btn btn-secondary" type="button" style="background-color:red; margin-left:5px;">검색</button>
+           <button class="btn btn-secondary" type="button" style="border:1px solid darkorange; background-color:darkorange; margin-left:5px;">검색</button>
          </span>
        </div>
      </div>

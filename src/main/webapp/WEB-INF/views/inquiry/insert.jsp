@@ -11,14 +11,16 @@
       padding-bottom:50px;
       width:30%;
     }
+    #submit{margin-left:500px;}
 </style>
 
-<div id="container">
+<div id="container" class="form-group">
 <form method="post" action="${path}/inquiry/insert">
-   제목<br>
+
+   <span class="badge badge-warning" style="font-size:1.2em"><strong>제목</strong></span><br>
    <input type="text" name="title" class="form-control"><br>
-   내용<br>
+   <span class="badge badge-warning" style="font-size:1.2em"><strong>내용</strong></span><br>
    <textarea rows="10" cols="100" name="content" class="form-control"></textarea><br>
-   <input type="submit" value="등록" class="btn btn-sm btn-primary">
+   <input type="submit" value="등록" class="btn btn-md btn-warning" id="submit" style="font-weight:900;">
 </form>
 </div>

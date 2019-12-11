@@ -13,20 +13,24 @@
       width:50%;
     }
     #paging{text-align:center;}
-   .table > thead {background-color: #FADCA5;}
-   .table > thead > tr > th {text-align: center;color:black;}
+   .table > thead {background-color: #FFBC9B;}
+   .table > thead > tr > th {text-align: center;color:black;font-weight:900;font-size:1.2em;}
    .table > tbody > tr > td {text-align: center;color:black;}
     #write {
       text-align: right;
     }
+    #paging ul li a{color:#FF8200;font-weight:900;}
+    
 </style>
 
 <div id="container">
-   <div id="write">
-     <a href="${path }/inquiry/insert">글쓰기</a>
+<div class="card">
+<br>
+   <div id="write" class="container">
+     <a href="${path }/inquiry/insert"><span class="badge badge-warning" style="font-size:1.2em">글쓰기</span></a>
    </div>
 
-	<table class="table table-striped table-bordered">
+	<table class="table table-striped table-bordered table-hover">
 	   <thead>
 	   <tr>
 	      <th>글번호</th>
@@ -40,14 +44,14 @@
 	      <tbody>
 	      <tr>
 	         <td>${info.inqnum}</td>
-	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}">${info.title}</a></td>
+	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}" id="a">${info.title}</a></td>
 	         <td>${info.content}</td>
 	         <td>답변여부</td>
 	      </tr>
 	      </tbody>
 	   </c:forEach>
 	</table>
-	
+
 	
 <!-- 페이징 처리 -->
 <div id="paging">
@@ -68,6 +72,6 @@
    </c:forEach>
    </ul>
 </div>
-
+</div>	
 
 </div>

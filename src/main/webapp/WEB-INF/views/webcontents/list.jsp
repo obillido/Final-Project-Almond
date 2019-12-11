@@ -15,19 +15,19 @@
     <br>
     <c:choose>
        <c:when test="${cultype==1 }">
-          <h1 class="mt-4 mb-3"><strong>『만화』</strong> <small><em>webtoon</em></small></h1>
+          <h1 class="mt-4 mb-3"><strong>만화</strong> <small><em>webtoon</em></small></h1>
        </c:when>
        <c:when test="${cultype==2 }">
-          <h1 class="mt-4 mb-3"><strong>『소설』</strong> <small><em>novel</em></small></h1>
+          <h1 class="mt-4 mb-3"><strong>소설</strong> <small><em>novel</em></small></h1>
        </c:when>
        <c:when test="${cultype==3 }">
-          <h1 class="mt-4 mb-3"><strong>『예능』</strong> <small><em>show</em></small></h1>
+          <h1 class="mt-4 mb-3"><strong>예능</strong> <small><em>show</em></small></h1>
        </c:when>
        <c:when test="${cultype==4 }">
-          <h1 class="mt-4 mb-3"><strong>『드라마』</strong> <small><em>drama</em></small></h1>
+          <h1 class="mt-4 mb-3"><strong>드라마</strong> <small><em>drama</em></small></h1>
        </c:when>
        <c:when test="${cultype==5 }">
-          <h1 class="mt-4 mb-3"><strong>『영화』</strong> <small><em>movie</em></small></h1>
+          <h1 class="mt-4 mb-3"><strong>영화</strong> <small><em>movie</em></small></h1>
        </c:when>
     </c:choose>
     

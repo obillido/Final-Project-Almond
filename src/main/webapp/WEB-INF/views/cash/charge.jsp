@@ -85,13 +85,13 @@
 						<label class="custom-control-label" for="paymethod4">아몬드페이</label>
 					</div>
 					<br><br>
-					<button type="button" class="btn btn-outline-warning btn-lg" data-toggle="popover" title="이용약관" 
+					<button type="button" class="btn btn-warning btn-lg" data-toggle="popover" title="이용약관" 
 					data-content="1. 충전된 캐시의 유효기간은 충전 후 5년입니다. 
 					              2. 광고성 이벤트 등 회사가 무료로 지급한 캐시는 환불되지 않습니다. 
 					              3. 자세한 내용은 아몬드페이지 유료서비스 이용약관에서 확인할 수 있습니다.">이용약관 보기</button>
 					<br><br>
-					<p><u><strong>이용안내</strong> 및 <strong>결제 진행</strong>에 동의합니다.</u></p>
-					<div class="custom-control custom-checkbox">
+					<span><u><strong>이용안내</strong> 및 <strong>결제 진행</strong>에 동의합니다.</u></span>
+					<div class="custom-control custom-checkbox" style="display:inline-block;">
 						<input type="checkbox" name="agree" id="agree" class="custom-control-input">
 						<label class="custom-control-label" for="agree">동의</label>
 					</div>
