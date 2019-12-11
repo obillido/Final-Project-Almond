@@ -103,7 +103,7 @@
 
 <style>
    #jakpumList img{width:250px;height:200px;}
-   #jakpumList div{margin-right:20px;}
+   #jakpumList div{margin-left:20px;}
 </style>
 
 <script type="text/javascript">
@@ -119,7 +119,7 @@
 					   var jp="<div class='card' style='width:16rem;'>" + 
 					          "<img src='${path}/resources/webcontents/" + $(this).find("cultype").text() + "/" + $(this).find("img").text() + "' class='card-img-top'>" + 
 						      "<div class='card-body'>" + 
-						      "<h5 class='card-title'>작품명 : " + $(this).find("title").text() + "</h5>" + 
+						      "<h6 class='card-title'>작품명 : <strong>" + $(this).find("title").text() + "</strong></h6>" + 
 						      "<p class='card-text'>구독자수 : " + $(this).find("readernum").text() + "</p>" + 
 					          "<p class='card-text'>장르 : " + $(this).find("genre").text() + "</p>" + 
 					          "<a href='' class='btn btn-danger'>보러가기</a>" + 

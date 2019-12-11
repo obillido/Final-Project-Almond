@@ -4,16 +4,18 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+
 <style type="text/css">
     #container {
-      width: 40%;
-      margin: 0 auto;     
-      padding-top: 50px;   
+      margin: 0 auto;  
+      padding-top:100px;   
+      padding-bottom:100px;
+      width:50%;
     }
     #paging{text-align:center;}
    .table > thead {background-color: #FADCA5;}
-   .table > thead > tr > th {text-align: center;}
-   .table > tbody > tr > td {text-align: center;}
+   .table > thead > tr > th {text-align: center;color:black;}
+   .table > tbody > tr > td {text-align: center;color:black;}
     #write {
       text-align: right;
     }

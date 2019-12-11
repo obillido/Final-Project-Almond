@@ -14,24 +14,24 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=1" style="color:black !important">만화</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=1" style="color:black !important"><span class="badge badge-dark">만화</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:black !important">소설</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=2" style="color:black !important"><span class="badge badge-dark">소설</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=3" style="color:black !important">예능</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=3" style="color:black !important"><span class="badge badge-dark">예능</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=4" style="color:black !important">드라마</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=4" style="color:black !important"><span class="badge badge-dark">드라마</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${path}/webcontents/list?cultype=5" style="color:black !important">영화</a>
+          <a class="nav-link" href="${path}/webcontents/list?cultype=5" style="color:black !important"><span class="badge badge-dark">영화</span></a>
         </li>
    
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:black !important">
-                  마이페이지
+                  <span class="badge badge-warning"><strong>MyPage</strong></span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
             <a class="dropdown-item" href="${path}/cash/charge?usernum=${usernum}">캐시 충전</a>

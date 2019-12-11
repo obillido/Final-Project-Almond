@@ -5,6 +5,20 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
+<style type="text/css">
+    #container {
+      margin: 0 auto;  
+      padding-top:100px;   
+      padding-bottom:100px;
+      width:40%;
+      margin-top:150px;
+      margin-bottom: 150px;
+    }
+    #inner{margin-left:200px;}
+    
+    button{text-align:center;}
+</style>
+
 
 <script type="text/javascript">
    function chk(){
@@ -21,12 +35,17 @@
 </script>
 
 
+
+<div id="container" class="card">
+
+<div id="inner">
+ 
 <form method="post" action="${path}/cash/charge" onsubmit="return chk()">
    <input type="hidden" name="usernum" value="${usernum }"><br>
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p><strong>충전단위</strong></p>
+					<p><strong><mark>충전단위</mark></strong></p>
 					<div class="custom-control custom-radio">
 						<input type="radio" name="cashamount" id="cashamount1" class="custom-control-input" value="1000" checked="checked">
 						<label class="custom-control-label" for="cashamount1">1,000캐시</label>
@@ -48,7 +67,7 @@
 						<label class="custom-control-label" for="cashamount5">100,000캐시</label>
 					</div>
 					<br><br>
-					<p><strong>결제방법</strong></p>
+					<p><strong><mark>결제방법</mark></strong></p>
 					<div class="custom-control custom-radio">
 						<input type="radio" name="paymethod" id="paymethod1" class="custom-control-input" value="신용카드" checked="checked">
 						<label class="custom-control-label" for="paymethod1">신용카드</label>
@@ -66,12 +85,12 @@
 						<label class="custom-control-label" for="paymethod4">아몬드페이</label>
 					</div>
 					<br><br>
-					<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="이용약관" 
+					<button type="button" class="btn btn-outline-warning btn-lg" data-toggle="popover" title="이용약관" 
 					data-content="1. 충전된 캐시의 유효기간은 충전 후 5년입니다. 
 					              2. 광고성 이벤트 등 회사가 무료로 지급한 캐시는 환불되지 않습니다. 
 					              3. 자세한 내용은 아몬드페이지 유료서비스 이용약관에서 확인할 수 있습니다.">이용약관 보기</button>
 					<br><br>
-					<p><strong>이용안내</strong> 및 <strong>결제 진행</strong>에 동의합니다.</p>
+					<p><u><strong>이용안내</strong> 및 <strong>결제 진행</strong>에 동의합니다.</u></p>
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" name="agree" id="agree" class="custom-control-input">
 						<label class="custom-control-label" for="agree">동의</label>
@@ -79,7 +98,9 @@
 				</div>
 			</div>
 			<br>
-			<input type="submit" value="충전하기" class="btn btn-lg btn-success">
+			<input type="submit" value="충전하기" class="btn btn-lg btn-warning">
 			<br><br><br>
 		</div>
 </form>
+</div>
+</div>

@@ -3,39 +3,46 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-  <!-- Page Content -->
-  <div class="container">
+<style>
+   h1 em{color:#FF895A;}
+   #cate{background-color:#FDE1B4;border:3px double #EA9A56;}
+   #cate li a{color:black;}
+   
+</style>
 
-    <!-- Page Heading/Breadcrumbs -->
+
+  <div class="container">
+    <br>
     <c:choose>
        <c:when test="${cultype==1 }">
-          <h1 class="mt-4 mb-3">만화</h1>
+          <h1 class="mt-4 mb-3"><strong>『만화』</strong> <small><em>webtoon</em></small></h1>
        </c:when>
        <c:when test="${cultype==2 }">
-          <h1 class="mt-4 mb-3">소설</h1>
+          <h1 class="mt-4 mb-3"><strong>『소설』</strong> <small><em>novel</em></small></h1>
        </c:when>
        <c:when test="${cultype==3 }">
-          <h1 class="mt-4 mb-3">예능</h1>
+          <h1 class="mt-4 mb-3"><strong>『예능』</strong> <small><em>show</em></small></h1>
        </c:when>
        <c:when test="${cultype==4 }">
-          <h1 class="mt-4 mb-3">드라마</h1>
+          <h1 class="mt-4 mb-3"><strong>『드라마』</strong> <small><em>drama</em></small></h1>
        </c:when>
        <c:when test="${cultype==5 }">
-          <h1 class="mt-4 mb-3">영화</h1>
+          <h1 class="mt-4 mb-3"><strong>『영화』</strong> <small><em>movie</em></small></h1>
        </c:when>
     </c:choose>
     
 
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" id="cate">
       <c:forEach var="genre" items="${genreList}">
-        <li class="breadcrumb-item"><a href="${path}/webcontents/list?cultype=${cultype }&genre=${genre}">${genre }</a></li>
+        <li class="breadcrumb-item"><a href="${path}/webcontents/list?cultype=${cultype }&genre=${genre}"><strong>${genre }</strong></a></li>
       </c:forEach>
     </ol>
 	
     
     <div style="width:70px;">
     <c:if test="${cultype==1}">
-    <form method="post" action="${path}/webcontents/listonday">
+    <form method="post" action="${path}/webcontents/listonday" class="form-horizontal" role="form">
+    
     <select name="dayofweek" class="form-control">
          <option value="월요일"
          <c:if test="${dayofweek=='월요일'}">selected</c:if>>월</option>
@@ -52,7 +59,9 @@
          <option value="일요일"
          <c:if test="${dayofweek=='일요일'}">selected</c:if>>일</option>
     </select>
-    <input type="submit" value="요일별 검색" class="btn btn-sm btn-primary">
+   
+    <input type="submit" value="요일별 검색" class="btn btn-outline-warning" id="submit">
+  
     </form>
     </c:if>
     </div>
@@ -80,10 +89,10 @@
       <c:forEach var="info" items="${list}">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100" onclick="location.href='${path}/webcontents/episode/list?contnum=${info.contnum}&cultype=${cultype}'">
-          <a href="#"><img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${info.img}" height="300px"></a>
+          <img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${info.img}" height="300px">
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">${info.title }</a>
+              <strong><mark>${info.title }</mark></strong>
             </h4>
             <p class="card-text">${info.outline }</p>
           </div>
@@ -91,5 +100,7 @@
       </div>
       </c:forEach>
     </div>         
-     
+  <br><br>
   </div>
+  
+  
