@@ -195,7 +195,7 @@
 								<input type="hidden" name="type" value="" id="typeown">
 								<input type="hidden" name="cnt" value="" id="cntown">
 								<input type="hidden" name="price" value="" id="priceown">
-					       		<button type="submit" class="btn btn-default" >구매하기</button>
+					       		<button type="submit" class="btn btn-primary" >구매하기</button>
 							</form>
 					      </div>
 					    </div>
@@ -209,7 +209,7 @@
 		</div>
 		
 		
-		<!--  
+		<!-- 
 		<div class="modal" id="cashModal" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -223,22 +223,22 @@
 				</div>
 			</div>
 		</div>
+		-->
 		
-		
-		 가격 0원 이하일때 팝업 창 
 		<div class="modal" id="cashModal" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-body">
-		        <p>One fine body&hellip;</p>
+		        <span style="font-weight: bold; color: #0d3967;">현재 잔액이 [${uc.cash }]원 입니다. 충전 하시겠습니까?</span>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary" id="btn-purchase">충전하기</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
-		-->
+		
 		
 		
 		<div class="foot_caution">
@@ -287,12 +287,11 @@
 			$("#type").val(tksplit[0]);
 			$("#cnt").val(tksplit[1]);
 			$("#price").val(tksplit[2]);
-			
-			/*
-			if("${uc.cash}"-"${ticket.rentalprice1}"<0 || "${uc.cash}"-"${ticket.rentalprice2}"<0 || "${uc.cash}"-"${ticket.rentalprice3}"<0){
+			var price=$("#price").val();
+			if(${uc.cash}<price){
 				$("#cashModal").modal();
-				return false;	
-			}*/
+				return false;
+			}	
 		});	
 	});
 	$(function(){
@@ -302,15 +301,19 @@
 			$("#typeown").val(tk1split[0]);
 			$("#cntown").val(tk1split[1]);
 			$("#priceown").val(tk1split[2]);
-			
-			/*
-			if("${uc.cash}"-"${ticket.ownprice1}"<0 || "${uc.cash}"-"${ticket.ownprice2}"<0 || "${uc.cash}"-"${ticket.ownprice3}"<0){
+			var price=$("#priceown").val();
+			if(${uc.cash}<price){
 				$("#cashModal").modal();
-				return false;	
-			}*/
+				return false;
+			}
 		});	
 	});
 	
+	$(function(){
+		$("#btn-purchase").click(function(){
+			location.href= "${pageContext.request.contextPath}/cash/charge";
+		});
+	});
 	
 	
 

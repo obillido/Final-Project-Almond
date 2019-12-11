@@ -8,4 +8,5 @@
 	<li><a href='${pageContext.request.contextPath}/ticket/novel'>웹소설/장르 (이용권충전페이지)</a></li>	
 	<li><a href='${pageContext.request.contextPath}/ticket/drama'>예능/드라마 (이용권충전페이지)</a></li>	
 	<li><a href='${pageContext.request.contextPath}/ticket/movie'>영화 (이용권충전페이지)</a></li>	
+	<li><a href='${pageContext.request.contextPath}/ticket/invoice'>이용권 내역</a></li>
 </ul>
