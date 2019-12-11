@@ -13,6 +13,12 @@
 		select * from episode where contnum=#{contnum}
 		order by epnum ${align}
 	</select>
+	<select id="getListforUser" parameterType="hashmap" resultType="project.app.almond.vo.EpisodeReadingVo">
+		select e.*,r.readingdate, nvl(floor((sysdate-r.readingdate)*24*60),-1) rt, nvl(r.type,-1) type
+		from (select * from episode where contnum=#{contnum}) e,(select * from reading where usernum=#{usernum}) r
+		where e.epinum=r.epinum(+)
+		order by epnum ${align}
+	</select>
 	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
 		select * from episode where epinum=#{epinum}
 	</select>

@@ -4,10 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.MylistMapper">
 	<insert id="insert" parameterType="project.app.almond.vo.MylistVo">
-		insert into mylist values(seq_mylist_mylistnum.nextval,#{contnum},#{usernum},#{alaram},sysdate)
+		insert into mylist values(seq_mylist_mylistnum.nextval,#{contnum},#{usernum},1,sysdate)
 	</insert>
 	<update id="update" parameterType="project.app.almond.vo.MylistVo">
-		update mylist set readingdate=#{date} where contnum=#{contnum} and usernum=#{usernum}
+		update mylist set readingdate=#{readingdate} where contnum=#{contnum} and usernum=#{usernum}
+	</update>
+	<update id="updateAlarm" parameterType="project.app.almond.vo.MylistVo">
+		update mylist set alarm=#{alarm} where contnum=#{contnum} and usernum=#{usernum}
 	</update>
 	<delete id="delete" parameterType="project.app.almond.vo.MylistVo">
 		delete from mylist where contnum=#{contnum} and usernum=#{usernum}
@@ -15,6 +18,7 @@
 	<select id="isExist" parameterType="project.app.almond.vo.MylistVo" resultType="project.app.almond.vo.MylistVo">
 		select * from mylist where contnum=#{contnum} and usernum=#{usernum}
 	</select>
+
 </mapper>
 
 

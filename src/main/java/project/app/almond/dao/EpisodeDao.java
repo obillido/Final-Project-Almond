@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import project.app.almond.vo.EpisodeReadingVo;
 import project.app.almond.vo.EpisodeVo;
 import project.app.almond.vo.WebcontentsVo;
 
@@ -22,6 +23,9 @@ public class EpisodeDao {
 	}
 	public List<EpisodeVo> getList(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getList",map);
+	}
+	public List<EpisodeReadingVo> getListforUser(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getListforUser",map);
 	}
 	public EpisodeVo getInfo(int epinum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",epinum);

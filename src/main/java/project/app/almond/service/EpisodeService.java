@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.app.almond.dao.EpisodeDao;
+import project.app.almond.vo.EpisodeReadingVo;
 import project.app.almond.vo.EpisodeVo;
 import project.app.almond.vo.WebcontentsVo;
 
@@ -22,6 +23,9 @@ public class EpisodeService {
 	}
 	public List<EpisodeVo> getList(HashMap<String, Object> map){
 		return edao.getList(map);
+	}
+	public List<EpisodeReadingVo> getListforUser(HashMap<String, Object> map){
+		return edao.getListforUser(map);
 	}
 	@Transactional
 	public EpisodeVo getInfo(int epinum){

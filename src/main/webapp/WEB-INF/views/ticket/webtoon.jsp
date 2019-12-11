@@ -113,7 +113,6 @@
 				   			<form action="${pageContext.request.contextPath}/ticket/buy" method="post">
 								<input type="hidden" name="usernum" value="${usernum}">
 								<input type="hidden" name="contnum" value="${contnum}">
-								<input type="hidden" name="tknum" value="${ticket.tknum}">
 								<input type="hidden" name="type" value="" id="type">
 								<input type="hidden" name="cnt" value="" id="cnt">
 								<input type="hidden" name="price" value="" id="price">
@@ -191,7 +190,6 @@
 				   			<form action="${pageContext.request.contextPath}/ticket/buy" method="post">
 								<input type="hidden" name="usernum" value="${usernum}">
 								<input type="hidden" name="contnum" value="${contnum}">
-								<input type="hidden" name="tknum" value="${ticket.tknum}">
 								<input type="hidden" name="type" value="" id="typeown">
 								<input type="hidden" name="cnt" value="" id="cntown">
 								<input type="hidden" name="price" value="" id="priceown">

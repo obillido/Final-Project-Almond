@@ -7,7 +7,7 @@
 		insert into reading values(seq_reading_readingnum.nextval,#{epinum},#{usernum},sysdate,#{type})
 	</insert>
 	<update id="update" parameterType="project.app.almond.vo.ReadingVo">
-		update reading set status=#{status} where usernum=#{usernum} and epinum=#{epinum}
+		update reading set type=#{type},readingdate=#{readingdate} where usernum=#{usernum} and epinum=#{epinum}
 	</update>
 	<select id="isExist" parameterType="project.app.almond.vo.ReadingVo" resultType="project.app.almond.vo.ReadingVo">
 		select * from reading where usernum=#{usernum} and epinum=#{epinum}

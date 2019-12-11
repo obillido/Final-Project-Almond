@@ -15,18 +15,18 @@ public class ReadingService {
 	@Autowired private MylistDao mdao;
 	@Transactional
 	public int insert(ReadingVo rvo,MylistVo mvo){
-		rdao.insert(rvo);
-		mdao.insert(mvo);
+		if(rdao.isExist(rvo)==null){
+			rdao.insert(rvo);
+			if(mdao.isExist(mvo)!=null) mdao.update(mvo);
+			else						mdao.insert(mvo);
+		}else{
+			if(rvo.getType()==1) rdao.update(rvo);
+			if(mdao.isExist(mvo)!=null) mdao.update(mvo);
+			else						mdao.insert(mvo);
+		}
 		return 1;
 	}
-	@Transactional
-	public int update(ReadingVo rvo,MylistVo mvo){
-		rdao.update(rvo);
-		if(mdao.isExist(mvo)!=null) mdao.update(mvo);
-		else						mdao.insert(mvo);
-		return 1;
-	}
-	public ReadingVo isExist(ReadingVo vo){
-		return rdao.isExist(vo);
+	public ReadingVo isExist(ReadingVo rvo){
+		return rdao.isExist(rvo);
 	}
 }

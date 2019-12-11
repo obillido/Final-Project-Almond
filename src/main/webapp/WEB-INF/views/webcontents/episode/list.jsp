@@ -3,14 +3,44 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+<style>
+	.freemark{
+		background-color:red;
+		color:white;
+		display:inline-block;
+		padding:2px;
+		width:50px;
+		text-align:center;
+		border-radius:5px;
+	}
+</style>
+
 <script type="text/javascript">
 	window.onload=function(){
-		if(${code!=null}){
-			if(${code=='1'}) alert("성공적으로 등록외었습니다.");
-			else alert("등록실패");
+		if(${msg!=null}){
+			alert(${msg});
+		}
+	}
+	function openEpisode(contnum,epinum,epnum,freenum,rt,type,status){
+		if(epnum<=freenum || ${wvo.waiting==0}){
+			type=3;
+			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum+'&type='+type;
+		}else if(status==1){ //티켓 사용해서 보기
+			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum+'&type='+type;
+		}else if(type==1 || (type==2 && rt<3*24 && rt>0)){ //이전에 티켓을 사용한 경우
+			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum;
+		}else{
+			if(${usernum==null}){
+				alter("로그인이 필요한 서비스입니다.");
+			}else{
+				$("#ticketModal").modal();
+			}
 		}
 	}
 </script>
+
+
+
 
 
 <!-- Page Content -->
@@ -19,39 +49,39 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item active">
 	    <c:choose>
-				<c:when test="${contInfo.cultype==1}">만화</c:when>
-				<c:when test="${contInfo.cultype==2}">소설</c:when>
-				<c:when test="${contInfo.cultype==3}">예능</c:when>
-				<c:when test="${contInfo.cultype==4}">드라마</c:when>
-				<c:when test="${contInfo.cultype==5}">영화</c:when>
+				<c:when test="${wvo.cultype==1}">만화</c:when>
+				<c:when test="${wvo.cultype==2}">소설</c:when>
+				<c:when test="${wvo.cultype==3}">예능</c:when>
+				<c:when test="${wvo.cultype==4}">드라마</c:when>
+				<c:when test="${wvo.cultype==5}">영화</c:when>
 			</c:choose>
 		</li>
-    <li class="breadcrumb-item active">${contInfo.title}</li>
+    <li class="breadcrumb-item active">${wvo.title}</li>
   </ol>
 
 	<!-- Intro Content -->
   <div class="row">
     <div class="col-lg-6">
-      <img class="img-fluid rounded mb-4" src="${path}/resources/webcontents/${contInfo.cultype}/${contInfo.img}" style="width:600px; height:600px;">
+      <img class="img-fluid rounded mb-4" src="${path}/resources/webcontents/${wvo.cultype}/${wvo.img}" style="width:550px; height:600px;">
     </div>
     <div class="col-lg-6">
-      <h2>${contInfo.title}</h2>
+      <h2>${wvo.title}</h2>
       <br><br>
 			<c:choose>
-				<c:when test="${contInfo.cultype==1||contInfo.cultype==2}">
-					<p>${contInfo.writer}</p>
-					<p>${contInfo.illustrator}</p>
-					<p>${contInfo.publisher}</p>
+				<c:when test="${wvo.cultype==1||wvo.cultype==2}">
+					<p>${wvo.writer}</p>
+					<p>${wvo.illustrator}</p>
+					<p>${wvo.publisher}</p>
 				</c:when>
 				<c:otherwise>
-					<p>${contInfo.director}</p>
-					<p>${contInfo.actor}</p>
-					<p>${contInfo.runtime}분</p>
-					<p>개봉일 : ${contInfo.proddate}</p>
+					<p>${wvo.director}</p>
+					<p>${wvo.actor}</p>
+					<p>${wvo.runtime}분</p>
+					<p>개봉일 : ${wvo.proddate}</p>
 				</c:otherwise>
 			</c:choose>
-			<p><c:choose><c:when test="${contInfo.completiontype==0}">연재중</c:when><c:otherwise>완결</c:otherwise></c:choose></p>
-			<a href="${path}/webcontents/episode/regi?cultype=${contInfo.cultype}&contnum=${contInfo.contnum}" class="btn btn-primary">회차 등록</a>
+			<p><c:choose><c:when test="${wvo.completiontype==0}">연재중</c:when><c:otherwise>완결</c:otherwise></c:choose></p>
+			<a href="${path}/webcontents/episode/regi?cultype=${wvo.cultype}&contnum=${wvo.contnum}" class="btn btn-primary">회차 등록</a>
     </div>
   </div>
   <!-- /.row -->
@@ -62,42 +92,88 @@
   <div class="card h-100">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-      	<span style="color:blue !important">${contInfo.readernum}</span>명이 보는 중 
+      	<span style="color:blue !important">${wvo.readernum}</span>명이 보는 중 
       	 전체댓글
       </li>
       <li class="list-group-item">공지사항</li>
-      <c:if test="${contInfo.freenum>0}"><li class="list-group-item">첫편부터 ${contInfo.freenum}편 무료</li></c:if>
-      <c:if test="${contInfo.waiting>0}"><li class="list-group-item">${contInfo.waiting}시간마다 무료</li></c:if>
+      <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
+      <c:if test="${wvo.waiting>0}"><li class="list-group-item">${wvo.waiting}시간마다 무료</li></c:if>
     </ul>
   </div>
 	<br><br>
+
+	<!-- 충전 -->
+	<div>
+		<a href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}'>충전</a>
+	</div>
 
 
 
 	<div style="float:right;">
 		<ul style="list-style:none;">
-			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${contInfo.cultype}&contnum=${contInfo.contnum}&align=asc" style="text-decoration:none; color:black;">첫편부터</a></li>
+			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${wvo.cultype}&contnum=${wvo.contnum}&align=asc" style="text-decoration:none; color:black;">첫편부터</a></li>
 			|
-			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${contInfo.cultype}&contnum=${contInfo.contnum}&align=desc" style="text-decoration:none; color:black;">최신편부터</a></li>
+			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${wvo.cultype}&contnum=${wvo.contnum}&align=desc" style="text-decoration:none; color:black;">최신편부터</a></li>
 		</ul>
 	</div>
 	<br><br>
 
   <!-- 회차 목록 -->
   <c:forEach var="ep" items="${epiList}">
-  	<div class="card mb-4" onclick="location.href='${path}/webcontents/episode/content?contnum=${contInfo.contnum}&epinum=${ep.epinum}'">
+  	<div class="card mb-4" onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});">
 	    <div class="card-body">
 	      <div class="row">
 	        <div class="col-lg-6" style="max-height:200px; overflow:hidden !important">
-	            <img class="img-fluid rounded" style="margin-top:-20%;" src="${path}/resources/webcontents/${contInfo.cultype}/${ep.thumbnail}">
+	            <img class="img-fluid rounded" style="margin-top:-20%;" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
 	        </div>
 	        <div class="col-lg-6">
-	          <h2 class="card-title">${ep.epnum}화</h2>
-	          <p class="card-text">${ep.subtitle}</p>
+	        	<p class="card-text">
+		        	<c:if test="${ep.epnum<=wvo.freenum}">
+		        		<div class="freemark">무료</div>
+		        	</c:if>
+		          <span style="font-size:1.5em">${ep.subtitle}</span>
+	          </p>
+	          <p>${ep.uploaddate}</p>
 	        </div>
 	      </div>
 	    </div>
 	    <div class="card-footer text-muted">${ep.uploaddate}</div>
 	  </div>
+	  
+	  
+		<div class="modal fade" id="ticketModal" role="dialog" style="margin-top:250px;">
+			<div class="modal-dialog">
+				<div class="modal-content" style="text-align:center;">
+					<div class="modal-body">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<c:choose>
+							<c:when test="${showTicketType!=4}">		
+								<h4>이용권 선택</h4>
+								<p>사용할 이용권을 선택해 주세요.</p>
+								<c:if test="${showTicketType!=1}">
+									<hr>
+									<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},2,1);">
+										<p style="color:blue;">대여 (${rental})개</p>
+									</div>
+								</c:if>
+								<c:if test="${showTicketType!=2}">
+									<hr>
+									<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},1,1);">
+										<p style="color:blue;">소장 (${own})개</p>
+									</div>
+								</c:if>
+							</c:when>
+							<c:when test="${showTicketType==4}">
+								<h4>이용권 충전</h4>
+								<hr>
+								<div onclick="location.href='${path}/ticket/webtoon?contnum=${wvo.contnum}'"><p>충전하러가기</p></div>
+							</c:when>
+						</c:choose>
+						<hr>
+						<div data-dismiss="modal"><strong style="margin:0px; color:blue;">취소</strong></div>
+					</div>
+				</div>
+			</div>
+		</div>
   </c:forEach>
 </div>

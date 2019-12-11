@@ -1,7 +1,5 @@
 package project.app.almond.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +20,11 @@ import project.app.almond.vo.WebcontentsVo;
 @Controller
 public class TicketBuyController {
 	@Autowired private TicketBuyService tbs;
-	@Autowired private TicketService tkservice;
-	@Autowired private TicketStockService tkss;
+	@Autowired private TicketService ts;
+	@Autowired private TicketStockService tss;
 	@Autowired private WebcontentsService webtitle;
 	@RequestMapping("/ticket/webtoon")
-	public String cashlist(HttpSession session,int contnum,int tknum,Model model, TicketBuyVo vo){
+	public String cashlist(HttpSession session,int contnum,Model model, TicketBuyVo vo){
 		int usernum=(Integer)session.getAttribute("usernum");
 		UsersVo uc=tbs.getinfo(usernum);
 		WebcontentsVo title=webtitle.getInfo(contnum);
@@ -35,18 +33,21 @@ public class TicketBuyController {
 		model.addAttribute("title",title.getTitle());
 		//model.addAttribute("tt",tt);
 		model.addAttribute("contnum",contnum);
-		model.addAttribute("ticket",tkservice.getInfo(tknum));
-		model.addAttribute("cntOwn",tkss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0)).getCnt());
-		model.addAttribute("cntRental",tkss.getInfo(new TicketStockVo(0, usernum, contnum, 2, 0)).getCnt());
+		model.addAttribute("ticket",ts.getInfo(title.getTknum()));
+		TicketStockVo tsvo1=tss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0));
+		TicketStockVo tsvo2=tss.getInfo(new TicketStockVo(0, usernum, contnum, 2, 0));
+		int cntOwn=0, cntRental=0;
+		if(tsvo1!=null) cntOwn=tsvo1.getCnt();
+		if(tsvo2!=null) cntRental=tsvo2.getCnt();
+		model.addAttribute("cntOwn",cntOwn);
+		model.addAttribute("cntRental",cntRental);
 		return ".ticket.webtoon";
 	}
 	@RequestMapping(value="/ticket/buy", method=RequestMethod.POST)
-	public String ticketbuyform(TicketBuyVo vo,int tknum,Model model){
+	public String ticketbuyform(TicketBuyVo vo,Model model){
 		int n=tbs.insert(vo);
-				
 		model.addAttribute("contnum",vo.getContnum());
-		model.addAttribute("tknum",tknum);
-		return "redirect:/ticket/webtoon";
+		return "redirect:/webcontents/episode/list";
 	}
 	
 
