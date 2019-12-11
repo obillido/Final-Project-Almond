@@ -20,13 +20,13 @@
 				</div>
 				<div class="rental">
 					<div class="rental_cnt1">
-						<span style="font-family:돋움체; color: #5A5AFF; font-weight: bold">대여권 : ${cntRental}개</span>
+						<span style="font-family:돋움체; color: #5A5AFF; font-size: larger; font-weight: bold">대여권 : ${cntRental}개</span>
 					</div>
 					<div style="float: left; width: 10%; text-align: center; padding-top: 30px; opacity: 0.5; font-size: 1.5em;">
 						||
 					</div>
 					<div class="rental_cnt2">
-				        <span style="font-family:돋움체; color:#008C8C; font-weight: bold">소장권 : ${cntOwn}개</span>
+				        <span style="font-family:돋움체; color:#008C8C; font-size: larger; font-weight: bold">소장권 : ${cntOwn}개</span>
 				    </div>
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 					    <!-- Modal content-->
 					    <div class="modal-content">
 					      <div class="modal-header">
-					      	<h4 class="modal-title">${title }</h4>
+					      	<h4 class="modal-title"><${title }></h4>
 					        <button type="button" class="close" data-dismiss="modal">&times;</button> 
 					      </div>
 					      <div class="modal-body">  	
@@ -117,7 +117,7 @@
 								<input type="hidden" name="type" value="" id="type">
 								<input type="hidden" name="cnt" value="" id="cnt">
 								<input type="hidden" name="price" value="" id="price">
-					       		<button type="submit" class="btn btn-default">구매하기</button>
+					       		<button type="submit" class="btn btn-primary">구매하기</button>
 							</form>
 					      </div>
 					    </div>
@@ -172,7 +172,7 @@
 					    <!-- Modal content-->
 					    <div class="modal-content">
 					      <div class="modal-header">
-					      	<h4 class="modal-title">${title }</h4>
+					      	<h4 class="modal-title"><${title }></h4>
 					        <button type="button" class="close" data-dismiss="modal">&times;</button> 
 					      </div>
 					      <div class="modal-body">  	

@@ -1,6 +1,7 @@
 package project.app.almond.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,10 @@ public class TicketBuyService {
 		udao.updateCashSub(new UsersVo(vo.getUsernum(), null, null, null, null, null, vo.getPrice(), 0));
 		return 1;
 	}
+	public List<TicketBuyVo> history(int usernum){
+		return ticketBuyDao.history(usernum);
+	}
+	
 	/*
 	public TicketBuyVo ticketType(TicketBuyVo vo){
 		return ticketBuyDao.ticketType(vo);

@@ -2,6 +2,7 @@ package project.app.almond.dao;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class TicketBuyDao {
 	}
 	public int insert(TicketBuyVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".insert", vo);
+	}
+	public List<TicketBuyVo> history(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".history", usernum);
 	}
 	
 	/*

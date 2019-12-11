@@ -15,4 +15,8 @@
 		select * from ticketbuy where usernum=#{usernum} and contnum=#{contnum}
 	</select>
 
+	<select id="history" parameterType="int" resultType="project.app.almond.vo.TicketBuyVo">
+		select * from ticketbuy where usernum=#{usernum} order by regdate desc
+	</select>
+
 </mapper>
