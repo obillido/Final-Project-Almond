@@ -115,6 +115,11 @@
 			}			
 		});
 	}
+	
+	
+	
+	// 댓글 스크립트
+	
 </script>
 	
 
@@ -125,23 +130,8 @@
  <div class="container">
 
 <br>
-	<ol class="breadcrumb">
-	  <li class="breadcrumb-item active">
-	   <c:choose>
-				<c:when test="${wvo.cultype==1}">만화</c:when>
-				<c:when test="${wvo.cultype==2}">소설</c:when>
-				<c:when test="${wvo.cultype==3}">예능</c:when>
-				<c:when test="${wvo.cultype==4}">드라마</c:when>
-				<c:when test="${wvo.cultype==5}">영화</c:when>
-			</c:choose>
-		</li>
-	  <li class="breadcrumb-item active">${wvo.title}</li>
-	  <li class="breadcrumb-item active">${evo.subtitle}</li>
-	</ol>
-	
-	
-	
-	
+
+
 	<div style="text-align:center">
 		<img src="${path}/resources/webcontents/${wvo.cultype}/${evo.img}">
   </div>
@@ -150,7 +140,13 @@
 
 	<hr>
 
+	<!-- 별점 -->
 
+	
+
+
+
+	<hr>
 	
 	<div class="row">
     <div class="col-lg-8">
