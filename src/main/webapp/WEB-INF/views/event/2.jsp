@@ -28,7 +28,7 @@
         <br>
         <h3 class="my-3">경품</h3>   
          <br>
-         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventGIFT/2.jpg" alt="">
+         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg" alt="">
       </div>
     </div>
 
