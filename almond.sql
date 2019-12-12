@@ -10,7 +10,6 @@ DROP TABLE episode CASCADE CONSTRAINTS;
 
 DROP TABLE book CASCADE CONSTRAINTS;
 DROP TABLE cash CASCADE CONSTRAINTS;
-DROP TABLE ticketUse CASCADE CONSTRAINTS;
 DROP TABLE eventhistory CASCADE CONSTRAINTS;
 DROP TABLE Event CASCADE CONSTRAINTS;
 DROP TABLE giftHistory CASCADE CONSTRAINTS;
@@ -31,26 +30,26 @@ DROP TABLE webcontents CASCADE CONSTRAINTS;
 /* Drop Sequences */
 
 DROP SEQUENCE SEQ_alarm_alarmnum;
-DROP SEQUENCE SEQ_cash_cashnum;	/**/
-DROP SEQUENCE SEQ_comments_commnum;	/**/
-DROP SEQUENCE SEQ_commLikes_likenum;	/**/
-DROP SEQUENCE SEQ_episode_epinum;	/**/
-DROP SEQUENCE SEQ_eventHistory_eventhnum;	/**/
-DROP SEQUENCE SEQ_Event_eventnum;	/**/
-DROP SEQUENCE SEQ_giftHistory_gifthnum;	/**/
-DROP SEQUENCE SEQ_gift_giftnum;	/**/
-DROP SEQUENCE SEQ_inquiry_inqnum;	/**/
-DROP SEQUENCE SEQ_myList_mylistnum;	/**/
-DROP SEQUENCE SEQ_notice_noticenum;	/**/
-DROP SEQUENCE SEQ_reading_readingnum;	/**/
-DROP SEQUENCE SEQ_score_scorenum;	/**/
-DROP SEQUENCE SEQ_search_searchnum;	/**/
-DROP SEQUENCE SEQ_ticketBuy_tkbnum;	/**/
-DROP SEQUENCE SEQ_ticketUse_tkunum;	/**/
-DROP SEQUENCE SEQ_ticket_tknum;	/**/
-DROP SEQUENCE SEQ_ticketStock_tksnum;	/**/
+DROP SEQUENCE SEQ_cash_cashnum;
+DROP SEQUENCE SEQ_comments_commnum;
+DROP SEQUENCE SEQ_commLikes_likenum;	
+DROP SEQUENCE SEQ_episode_epinum;
+DROP SEQUENCE SEQ_eventHistory_eventhnum;
+DROP SEQUENCE SEQ_Event_eventnum;	
+DROP SEQUENCE SEQ_giftHistory_gifthnum;
+DROP SEQUENCE SEQ_gift_giftnum;	
+DROP SEQUENCE SEQ_inquiry_inqnum;	
+DROP SEQUENCE SEQ_myList_mylistnum;	
+DROP SEQUENCE SEQ_notice_noticenum;	
+DROP SEQUENCE SEQ_reading_readingnum;	
+DROP SEQUENCE SEQ_score_scorenum;	
+DROP SEQUENCE SEQ_search_searchnum;
+DROP SEQUENCE SEQ_ticketBuy_tkbnum;	
+DROP SEQUENCE SEQ_ticketUse_tkunum;	
+DROP SEQUENCE SEQ_ticket_tknum;	
+DROP SEQUENCE SEQ_ticketStock_tksnum;	
 DROP SEQUENCE SEQ_users_usernum;
-DROP SEQUENCE SEQ_webcontents_contnum;	/**/
+DROP SEQUENCE SEQ_webcontents_contnum;	
 
 
 
@@ -58,26 +57,26 @@ DROP SEQUENCE SEQ_webcontents_contnum;	/**/
 /* Create Sequences */
 
 CREATE SEQUENCE SEQ_alarm_alarmnum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_cash_cashnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_comments_commnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_commLikes_likenum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_episode_epinum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_eventHistory_eventhnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_Event_eventnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_giftHistory_gifthnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_gift_giftnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_inquiry_inqnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_myList_mylistnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_notice_noticenum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_reading_readingnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_score_scorenum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_search_searchnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_ticketBuy_tkbnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_ticketUse_tkunum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_ticket_tknum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_ticketStock_tksnum INCREMENT BY 1 START WITH 1;	/**/
+CREATE SEQUENCE SEQ_cash_cashnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_comments_commnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_commLikes_likenum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_episode_epinum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_eventHistory_eventhnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_Event_eventnum INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE SEQ_giftHistory_gifthnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_gift_giftnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_inquiry_inqnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_myList_mylistnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_notice_noticenum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_reading_readingnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_score_scorenum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_search_searchnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_ticketBuy_tkbnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_ticketUse_tkunum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_ticket_tknum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_ticketStock_tksnum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_users_usernum INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE SEQ_webcontents_contnum INCREMENT BY 1 START WITH 1;	/**/
+CREATE SEQUENCE SEQ_webcontents_contnum INCREMENT BY 1 START WITH 1;	
 
 
 
@@ -818,8 +817,7 @@ insert into ticket values(seq_ticket_tknum.nextval,5, 1,-1,-1, 5000,-1,-1, 12000
 
 
 
-
-
+commit;
 
 
 
