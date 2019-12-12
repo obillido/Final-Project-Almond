@@ -30,4 +30,5 @@ public class EventDao {
 	public int rullCash(UsersVo vo){
 		return session.update(NAMESPACE+".rullcash",vo);
 	}
+	
 }

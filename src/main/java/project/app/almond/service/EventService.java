@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.app.almond.dao.EventDao;
 import project.app.almond.vo.CommentsEpisodeVo;
@@ -26,8 +27,12 @@ public class EventService {
 	public List<ReadingEpisodeVo> event3reading(){
 		return edao.event3reading();
 	}
+	
+	//
+	@Transactional
 	public int rullcash(UsersVo vo){
 		edao.rullCash(vo);
 		return 1;
 	}
+	
 }

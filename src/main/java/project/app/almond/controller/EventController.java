@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.app.almond.service.EventService;
@@ -78,19 +79,52 @@ public class EventController {
 		model.addAttribute("list",list);
 		return ".event.event3reading";
 	}
-	//event5 ·ê·¿ ´çÃ·±Ý¾×
-	@RequestMapping(value="/rullcash", method=RequestMethod.POST)
-	public String rullcash(UsersVo vo,HttpServletRequest req,String cash1){	
+	//event5 ·ê·¿ ´çÃ·±Ý¾× ¹Þ¾Æ¿À±â....
+	@RequestMapping(value="/rullCash", method=RequestMethod.POST)
+	@ResponseBody
+	public String rullcash(UsersVo vo,HttpServletRequest req,int cash){	
 		try{
-			int cash=Integer.parseInt(req.getParameter(cash1));
-				if(cash>0){
-					service.updateCash(vo);			
-				}
+			StringBuffer sb=new StringBuffer();
+			sb.append("<?xml version='1.0' encoding='utf-8'?>");
+			sb.append("<result>");
+			if(cash>0){
+				service.updateCash(vo);
+				sb.append("<code>success</code>");
+			}else{
+				sb.append("<code>fail</code>");
+			}
+			sb.append("</result>");		
 		}catch(Exception e){		
 			e.printStackTrace();
 		}		
-			return "./";		
+		return ".event.5";	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/test")
 	public String test(){
