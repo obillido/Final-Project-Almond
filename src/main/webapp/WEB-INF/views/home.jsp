@@ -22,24 +22,24 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="${path}/resources/suhyeonimages/이벤트1.jpg" class="d-block w-100">
+      <img src="${path}/resources/suhyeonimages/111.jpg" class="d-block w-100">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Event</h5>
-        <p>1</p>
+        <h5>이어질 듯 말 듯, 아찔한 로맨스</h5>
+        <p>연하의 곰신</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="${path}/resources/suhyeonimages/이벤트2.jpg" class="d-block w-100">
+      <img src="${path}/resources/suhyeonimages/이벤트2.png" class="d-block w-100">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Event</h5>
-        <p>2</p>
+        <h5>딸바보가 된 희대의 폭군</h5>
+        <p>황제의 외동딸</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="${path}/resources/suhyeonimages/이벤트3.jpg" class="d-block w-100">
+      <img src="${path}/resources/suhyeonimages/제3.png" class="d-block w-100">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Event</h5>
-        <p>3</p>
+        <h5>곧 죽을 건데 뭐 어때</h5>
+        <p>시녀의 유혹</p>
       </div>
     </div>
   </div>
