@@ -13,6 +13,7 @@ import project.app.almond.dao.UsersDao;
 import project.app.almond.vo.TicketBuyVo;
 import project.app.almond.vo.TicketStockVo;
 import project.app.almond.vo.UsersVo;
+import project.app.almond.vo.WebcontentsVo;
 
 @Service
 public class TicketBuyService {
@@ -34,10 +35,10 @@ public class TicketBuyService {
 		udao.updateCashSub(new UsersVo(vo.getUsernum(), null, null, null, null, null, vo.getPrice(), 0));
 		return 1;
 	}
-	public List<TicketBuyVo> history(int usernum){
+	public List<HashMap<String, Object>> history(int usernum){
 		return ticketBuyDao.history(usernum);
 	}
-	
+
 	/*
 	public TicketBuyVo ticketType(TicketBuyVo vo){
 		return ticketBuyDao.ticketType(vo);

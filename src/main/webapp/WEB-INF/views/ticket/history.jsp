@@ -1,20 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="${pageContext.request.contextPath}/resources/ticket/history.css" rel="stylesheet">
 
 <div class="wrap">
 	<div class="d1"> 
-    	[이용권충전내역]
- 	<c:forEach var="vo" items="${list }"> 	
-    	<div>	
-	   		 등록일: ${vo.regdate }<br>
-	   		 제목: <br>
-	   		 이용권: 개<br>
-	   		 소장권: 개<br>
-    		캐시사용: 캐시<br>
-	    	<hr>
-    	</div>
-   </c:forEach> 	
+		<div class="d2">
+    		[이용권 충전 내역]
+	 		<c:forEach var="list" items="${tbh}"> 	
+	    		<div>	
+			   		충전일: ${list.REGDATE }<br>
+			   		이용권충전한제목: ${list.TITLE}<br>
+			   		<c:if test="${list.TYPE==1}">소장권:${list.CNT}개 </c:if>
+			   		<c:if test="${list.TYPE==2}">대여권:${list.CNT}개 </c:if>
+			   		<br>
+		    		충전된캐시사용: ${list.PRICE }캐시<br>
+			    	<hr>
+	    		</div>
+	   		</c:forEach> 	
+   		</div>
+   		
+   		<div class="d3">
+   			[이용권 사용 내역]
+			<c:forEach var="list" items="${tuh}"> 	
+	    		<div>	
+			   		사용일:${list.USEDATE} <br>
+			   		${list.SUBTITLE}, ${list.EPNUM}
+			   		이용권충전한제목: , 제목의 몇 화 인지<br>
+					대여권을 사용했는지, 소장권을 사용했는지
+					
+			    	<hr>
+	    		</div>
+	   		</c:forEach> 	
+   		</div>
 	</div>
 </div>
     

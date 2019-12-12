@@ -11,10 +11,20 @@
 }
 .d1{
     width: 50%;
-    height: 1000px;
+    height: 100%;
     background: white;
     margin: auto;
     text-align: center;
     padding-top: 50px;
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
+}
+.d2{
+    width: 348px;
+    float: left;
+    height: 100%;
+}
+.d3{
+    width: 348px;
+    float: right;
+    height: 100%;
 }

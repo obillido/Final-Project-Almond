@@ -15,8 +15,8 @@
 		select * from ticketbuy where usernum=#{usernum} and contnum=#{contnum}
 	</select>
 
-	<select id="history" parameterType="int" resultType="project.app.almond.vo.TicketBuyVo">
-		select * from ticketbuy where usernum=#{usernum} order by regdate desc
+	<select id="history" parameterType="int" resultType="hashmap">
+		select *,title from ticketbuy t, webcontents w where usernum=#{usernum} and t.contnum=w.contnum order by regdate desc
 	</select>
 
 </mapper>
