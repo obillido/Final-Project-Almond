@@ -48,8 +48,6 @@
       </ul>
     </div>      
  
- 
-
      <!-- Search Widget -->
      <div class="card-body">
        <div class="input-group">
@@ -60,28 +58,17 @@
        </div>
      </div>
      
-     
-
-     
-     
   </div>
 </nav>
 
 <script type="text/javascript" src="resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-
-
-
 function popupOpen(){
-	
-	
-	var popUrl = "${pageContext.request.contextPath}/ticket/history";	
-
+	var popupX = (window.screen.width / 2) - (580 / 2);
+	var popupY= (window.screen.height /2) - (730 / 2);
+	var popUrl = "${pageContext.request.contextPath}/ticket/history";
 	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";
-
-		window.open(popUrl,"",popOption);
+		window.open(popUrl, '', 'status=no, height=700, width=510, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 
 	}
-
-
 </script>
