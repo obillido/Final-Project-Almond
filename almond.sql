@@ -291,15 +291,12 @@ CREATE TABLE event
 	-- 
 	-- 40 : 키워드
 	stauts number NOT NULL,
-	-- 사용기한 : 0 : 사용기한 없음
-	-- 1 : 1시간
-	-- 24 : 하루
-	-- 48 : 2일
-	usebydate number,
 	-- 키워드
 	keyword varchar2(100),
 	-- 지급액
 	price number,
+	human number NOT NULL,
+	cnt number,
 	PRIMARY KEY (eventnum)
 );
 

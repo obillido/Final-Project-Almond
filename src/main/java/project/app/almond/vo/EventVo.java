@@ -31,12 +31,13 @@ public class EventVo {
 	-- 24 : ÇÏ·ç
 	-- 48 : 2ÀÏ
 	 */
-	private int userbydate;
 	private String keyword;
 	private int price;
+	private int human;
+	private int cnt;
 	public EventVo(){}
 	public EventVo(int eventnum, int contnum, String title, String content, Date regdate, Date startdate, Date enddate,
-			String img, int status, int userbydate, String keyword, int price) {
+			String img, int status, String keyword, int price, int human, int cnt) {
 		this.eventnum = eventnum;
 		this.contnum = contnum;
 		this.title = title;
@@ -46,9 +47,10 @@ public class EventVo {
 		this.enddate = enddate;
 		this.img = img;
 		this.status = status;
-		this.userbydate = userbydate;
 		this.keyword = keyword;
 		this.price = price;
+		this.human = human;
+		this.cnt = cnt;
 	}
 	public int getEventnum() {
 		return eventnum;
@@ -104,12 +106,6 @@ public class EventVo {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public int getUserbydate() {
-		return userbydate;
-	}
-	public void setUserbydate(int userbydate) {
-		this.userbydate = userbydate;
-	}
 	public String getKeyword() {
 		return keyword;
 	}
@@ -121,5 +117,17 @@ public class EventVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getHuman() {
+		return human;
+	}
+	public void setHuman(int human) {
+		this.human = human;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 }

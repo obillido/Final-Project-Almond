@@ -104,7 +104,7 @@ public class EpisodeController {
 		model.addAttribute("contnum",contnum);
 		return "redirect:/webcontents/episode/list";
 	}
-	@RequestMapping("/webcontents/episode/content")
+	@RequestMapping(value="/webcontents/episode/content",method=RequestMethod.POST)
 	public String epiInfo(int contnum,int epinum,HttpSession session,@RequestParam(value="type",defaultValue="0")int type,Model model){
 		WebcontentsVo wvo=ws.getInfo(contnum);
 		EpisodeVo evo=es.getInfo(epinum);

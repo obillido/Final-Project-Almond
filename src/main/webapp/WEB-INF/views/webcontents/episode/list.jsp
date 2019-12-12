@@ -13,6 +13,14 @@
 		text-align:center;
 		border-radius:5px;
 	}
+	.ticketuse{
+		width:300px;
+		padding-top:10px;
+		margin-top:700px;
+		margin-left:100px;
+		background-color:black; color:white;
+		border-radius:10px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -25,15 +33,16 @@
 		if(epnum<=freenum || ${wvo.waiting==0}){
 			post_to_url(["contnum","epinum","type"],[contnum,epinum,3]);
 		}else if(status==1){ //티켓 사용해서 보기
+			$("#ticketModal").modal("hide");
 			if(type==2){
-				$("#ticketModal").modal("hide");
 				$("#rentalTicketUseModal").modal();
+				setTimeout('$("#rentalTicketUseModal").modal("hide");',1000);
 			}
 			else{
 				$("#ownTicketUseModal").modal();
-				$("#ownTicketUseModal").close();
+				setTimeout('$("#ownTicketUseModal").modal("hide");',1000);
 			}
-			setTimeout('post_to_url(["contnum","epinum","type"],[contnum,epinum,type])',1000);
+			setTimeout('post_to_url(["contnum","epinum","type"],['+contnum+','+epinum+','+type+'])',1000);
 		}else if(type==1 || (type==2 && rt<3*24 && rt>0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["contnum","epinum"],[contnum,epinum]);
 		}else{
@@ -142,7 +151,7 @@
 
   <!-- 회차 목록 -->
   <c:forEach var="ep" items="${epiList}">
-  	<div class="card mb-4" onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});">
+  	<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});">
 	    <div class="card-body">
 	      <div class="row">
 	        <div class="col-lg-6" style="max-height:200px; overflow:hidden !important">
@@ -159,9 +168,8 @@
 	        </div>
 	      </div>
 	    </div>
-	    <div class="card-footer text-muted">${ep.uploaddate}</div>
 	  </div>
-	  
+	  <hr>
 	  
 		<div class="modal fade" id="ticketModal" role="dialog" style="margin-top:250px;">
 			<div class="modal-dialog">
@@ -202,9 +210,9 @@
 
 
 
-<div class="modal fade" id="ownTicketUseModal" role="dialog" style="margin-top:250px;">
+<div class="modal fade" id="ownTicketUseModal" role="dialog">
 	<div class="modal-dialog">
-		<div class="modal-content" style="text-align:center;">
+		<div class="modal-content ticketuse" style="text-align:center;">
 			<div class="modal-body">
 				<p>소장이용권 한개를 사용하였습니다.</p>
 			</div>
@@ -212,9 +220,9 @@
 	</div>
 </div>
 
-<div class="modal fade" id="rentalTicketUseModal" role="dialog" style="margin-top:250px;">
-	<div class="modal-dialog">
-		<div class="modal-content" style="text-align:center;">
+<div class="modal fade" id="rentalTicketUseModal" role="dialog">
+	<div class="modal-dialog" style="text-align:center;">
+		<div class="modal-content ticketuse">
 			<div class="modal-body">
 				<p>대여이용권 한개를 사용하였습니다.</p>
 			</div>
@@ -222,4 +230,3 @@
 	</div>
 </div>
 
-<body onload="showRentalTicketUse()">
