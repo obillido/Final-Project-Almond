@@ -10,12 +10,9 @@ DROP TABLE episode CASCADE CONSTRAINTS;
 
 DROP TABLE book CASCADE CONSTRAINTS;
 DROP TABLE cash CASCADE CONSTRAINTS;
-DROP TABLE couponHistory CASCADE CONSTRAINTS;
-DROP TABLE coupon CASCADE CONSTRAINTS;
 DROP TABLE ticketUse CASCADE CONSTRAINTS;
 DROP TABLE eventhistory CASCADE CONSTRAINTS;
-DROP TABLE Eventcash CASCADE CONSTRAINTS;
-DROP TABLE eventroulette CASCADE CONSTRAINTS;
+DROP TABLE Event CASCADE CONSTRAINTS;
 DROP TABLE giftHistory CASCADE CONSTRAINTS;
 DROP TABLE gift CASCADE CONSTRAINTS;
 DROP TABLE inquiry CASCADE CONSTRAINTS;
@@ -37,19 +34,15 @@ DROP SEQUENCE SEQ_alarm_alarmnum;
 DROP SEQUENCE SEQ_cash_cashnum;	/**/
 DROP SEQUENCE SEQ_comments_commnum;	/**/
 DROP SEQUENCE SEQ_commLikes_likenum;	/**/
-DROP SEQUENCE SEQ_couponHistory_couphnum;	/**/
-DROP SEQUENCE SEQ_coupon_coupnum;	/**/
 DROP SEQUENCE SEQ_episode_epinum;	/**/
 DROP SEQUENCE SEQ_eventHistory_eventhnum;	/**/
-DROP SEQUENCE SEQ_Eventcash_eventnum;	/**/
-DROP SEQUENCE SEQ_eventroulette_eventnum;	/**/
+DROP SEQUENCE SEQ_Event_eventnum;	/**/
 DROP SEQUENCE SEQ_giftHistory_gifthnum;	/**/
 DROP SEQUENCE SEQ_gift_giftnum;	/**/
 DROP SEQUENCE SEQ_inquiry_inqnum;	/**/
 DROP SEQUENCE SEQ_myList_mylistnum;	/**/
 DROP SEQUENCE SEQ_notice_noticenum;	/**/
 DROP SEQUENCE SEQ_reading_readingnum;	/**/
-DROP SEQUENCE SEQ_roulletteEvent_eventnum;
 DROP SEQUENCE SEQ_score_scorenum;	/**/
 DROP SEQUENCE SEQ_search_searchnum;	/**/
 DROP SEQUENCE SEQ_ticketBuy_tkbnum;	/**/
@@ -68,19 +61,15 @@ CREATE SEQUENCE SEQ_alarm_alarmnum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_cash_cashnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_comments_commnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_commLikes_likenum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_couponHistory_couphnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_coupon_coupnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_episode_epinum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_eventHistory_eventhnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_Eventcash_eventnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_eventroulette_eventnum INCREMENT BY 1 START WITH 1;	/**/
+CREATE SEQUENCE SEQ_Event_eventnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_giftHistory_gifthnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_gift_giftnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_inquiry_inqnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_myList_mylistnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_notice_noticenum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_reading_readingnum INCREMENT BY 1 START WITH 1;	/**/
-CREATE SEQUENCE SEQ_roulletteEvent_eventnum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_score_scorenum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_search_searchnum INCREMENT BY 1 START WITH 1;	/**/
 CREATE SEQUENCE SEQ_ticketBuy_tkbnum INCREMENT BY 1 START WITH 1;	/**/
@@ -268,52 +257,17 @@ CREATE TABLE cash
 );
 
 
--- 쿠폰
-CREATE TABLE coupon
-(
-	-- 쿠폰번호
-	coupnum number NOT NULL,
-	-- 키워드
-	keyword varchar2(50) NOT NULL,
-	-- 등록일
-	regdate date NOT NULL,
-	-- 시작일
-	startdate date NOT NULL,
-	-- 끝날
-	enddate date NOT NULL,
-	-- 지급액
-	price number NOT NULL,
-	-- 사용기한
-	usebydate number NOT NULL,
-	PRIMARY KEY (coupnum)
-);
-
-
--- 쿠폰내역
-CREATE TABLE couponHistory
-(
-	-- 쿠폰내역번호
-	couphnum number NOT NULL,
-	-- 쿠폰번호
-	coupnum number NOT NULL,
-	-- 회원번호
-	usernum number NOT NULL,
-	-- 등록일
-	regdate date NOT NULL,
-	-- 금액
-	price number NOT NULL,
-	PRIMARY KEY (couphnum)
-);
 
 
 
--- 포인트이벤트
-CREATE TABLE eventCash
+
+-- 캐쉬이벤트
+CREATE TABLE event
 (
 	-- 이벤트번호
 	eventnum number NOT NULL,
 	-- 작품번호
-	contnum number NOT NULL,
+	contnum number,
 	-- 제목
 	title varchar2(100),
 	-- 내용
@@ -324,18 +278,33 @@ CREATE TABLE eventCash
 	startdate date NOT NULL,
 	-- 종료일
 	enddate date NOT NULL,
-	-- 금액
-	price number NOT NULL,
-	-- 사용기한
-	usebydate number NOT NULL,
 	-- 이미지
-	img varchar2(200) NOT NULL,
-	-- 그룹
-	ref number NOT NULL,
-	-- 레벨
-	lev number NOT NULL,
+	img varchar2(200),
+	-- 상태 : 10 : 열람 -> 추첨
+	-- 11 : 열람 -> 룰렛
+	-- 
+	-- 20 : 리뷰 -> 추첨
+	-- 21 : 리뷰 -> 룰렛
+	-- 
+	-- 31 : 룰렛 -> 1000
+	-- 32 : 룰렛 -> 3000
+	-- 33 : 룰렛 -> 5000
+	-- 
+	-- 40 : 키워드
+	stauts number NOT NULL,
+	-- 사용기한 : 0 : 사용기한 없음
+	-- 1 : 1시간
+	-- 24 : 하루
+	-- 48 : 2일
+	usebydate number,
+	-- 키워드
+	keyword varchar2(100),
+	-- 지급액
+	price number,
 	PRIMARY KEY (eventnum)
 );
+
+
 
 
 -- 이벤트 내역
@@ -351,40 +320,13 @@ CREATE TABLE eventhistory
 	regdate date NOT NULL,
 	-- 금액
 	price number NOT NULL,
-	-- 타입 : 1 : point
-	-- 2 : roulette
-	type number NOT NULL,
 	PRIMARY KEY (eventhnum)
 );
 
 
--- 룰렛이벤트
-CREATE TABLE eventroulette
-(
-	-- 이벤트번호
-	eventnum number NOT NULL,
-	-- 작품번호
-	contnum number NOT NULL,
-	-- 제목
-	title varchar2(100),
-	-- 내용
-	content clob,
-	-- 등록일
-	regdate date NOT NULL,
-	-- 제한된 인원수
-	headcount number NOT NULL,
-	-- 금액1
-	price1 number,
-	-- 금액2
-	price2 number,
-	-- 금액3
-	price3 number,
-	-- 금액4
-	price4 number NOT NULL,
-	-- 사용기한
-	usebydate number,
-	PRIMARY KEY (eventnum)
-);
+
+
+
 
 
 -- 선물함
@@ -648,12 +590,6 @@ ALTER TABLE commLikes
 ;
 
 
-ALTER TABLE couponHistory
-	ADD FOREIGN KEY (coupnum)
-	REFERENCES coupon (coupnum)
-;
-
-
 ALTER TABLE comments
 	ADD FOREIGN KEY (epinum)
 	REFERENCES episode (epinum)
@@ -680,13 +616,12 @@ ALTER TABLE ticketUse
 
 ALTER TABLE eventhistory
 	ADD FOREIGN KEY (eventnum)
-	REFERENCES eventCash (eventnum)
+	REFERENCES event (eventnum)
 ;
 
-
-ALTER TABLE eventhistory
-	ADD FOREIGN KEY (eventnum)
-	REFERENCES eventroulette (eventnum)
+ALTER TABLE event
+	ADD FOREIGN KEY (contnum)
+	REFERENCES webcontents (contnum)
 ;
 
 
@@ -725,11 +660,6 @@ ALTER TABLE commLikes
 	REFERENCES users (usernum)
 ;
 
-
-ALTER TABLE couponHistory
-	ADD FOREIGN KEY (usernum)
-	REFERENCES users (usernum)
-;
 
 
 ALTER TABLE eventhistory
@@ -804,16 +734,6 @@ ALTER TABLE episode
 ;
 
 
-ALTER TABLE eventCash
-	ADD FOREIGN KEY (contnum)
-	REFERENCES webcontents (contnum)
-;
-
-
-ALTER TABLE eventroulette
-	ADD FOREIGN KEY (contnum)
-	REFERENCES webcontents (contnum)
-;
 
 
 ALTER TABLE gift

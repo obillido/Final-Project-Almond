@@ -8,19 +8,13 @@ public class EventHistoryVo {
 	private int usernum;
 	private Date regdate;
 	private int price;
-	/**
-	 * 1 : Æ÷ÀÎÆ®
-	 * 2 : type
-	 */
-	private int type;
 	public EventHistoryVo(){}
-	public EventHistoryVo(int eventhnum, int eventnum, int usernum, Date regdate, int price, int type) {
+	public EventHistoryVo(int eventhnum, int eventnum, int usernum, Date regdate, int price) {
 		this.eventhnum = eventhnum;
 		this.eventnum = eventnum;
 		this.usernum = usernum;
 		this.regdate = regdate;
 		this.price = price;
-		this.type = type;
 	}
 	public int getEventhnum() {
 		return eventhnum;
@@ -51,11 +45,5 @@ public class EventHistoryVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
-	}
-	public int getType() {
-		return type;
-	}
-	public void setType(int type) {
-		this.type = type;
 	}
 }

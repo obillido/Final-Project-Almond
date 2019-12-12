@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:white !important;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom" style="background-color:white !important;">
   <div class="container">
     <a class="navbar-brand" href="${path}/"><img src="${path}/resources/suhyeonimages/logo.png" width="200px"></a>
     

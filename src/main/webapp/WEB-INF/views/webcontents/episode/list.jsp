@@ -23,12 +23,19 @@
 	}
 	function openEpisode(contnum,epinum,epnum,freenum,rt,type,status){
 		if(epnum<=freenum || ${wvo.waiting==0}){
-			type=3;
-			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum+'&type='+type;
+			post_to_url(["contnum","epinum","type"],[contnum,epinum,3]);
 		}else if(status==1){ //티켓 사용해서 보기
-			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum+'&type='+type;
+			if(type==2){
+				$("#ticketModal").modal("hide");
+				$("#rentalTicketUseModal").modal();
+			}
+			else{
+				$("#ownTicketUseModal").modal();
+				$("#ownTicketUseModal").close();
+			}
+			setTimeout('post_to_url(["contnum","epinum","type"],[contnum,epinum,type])',1000);
 		}else if(type==1 || (type==2 && rt<3*24 && rt>0)){ //이전에 티켓을 사용한 경우
-			location.href='${path}/webcontents/episode/content?contnum='+contnum+'&epinum='+epinum;
+			post_to_url(["contnum","epinum"],[contnum,epinum]);
 		}else{
 			if(${usernum==null}){
 				alter("로그인이 필요한 서비스입니다.");
@@ -36,6 +43,21 @@
 				$("#ticketModal").modal();
 			}
 		}
+	}
+	
+	function post_to_url(names,params){
+		var form = document.createElement("form");
+		form.setAttribute("method","post");
+		form.setAttribute("action","${path}/webcontents/episode/content");
+		for(var key in params){
+			var hiddenField=document.createElement("input");
+			hiddenField.setAttribute("type","hidden");
+			hiddenField.setAttribute("name",names[key]);
+			hiddenField.setAttribute("value",params[key]);
+			form.appendChild(hiddenField);
+		}
+		document.body.appendChild(form);
+		form.submit();
 	}
 </script>
 
@@ -177,3 +199,27 @@
 		</div>
   </c:forEach>
 </div>
+
+
+
+<div class="modal fade" id="ownTicketUseModal" role="dialog" style="margin-top:250px;">
+	<div class="modal-dialog">
+		<div class="modal-content" style="text-align:center;">
+			<div class="modal-body">
+				<p>소장이용권 한개를 사용하였습니다.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="rentalTicketUseModal" role="dialog" style="margin-top:250px;">
+	<div class="modal-dialog">
+		<div class="modal-content" style="text-align:center;">
+			<div class="modal-body">
+				<p>대여이용권 한개를 사용하였습니다.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body onload="showRentalTicketUse()">
