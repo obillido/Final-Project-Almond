@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="history" parameterType="int" resultType="hashmap">
-		select *,title from ticketbuy t, webcontents w where usernum=#{usernum} and t.contnum=w.contnum order by regdate desc
+		select t.*,w.title from ticketbuy t, webcontents w where usernum=#{usernum} and t.contnum=w.contnum order by regdate desc
 	</select>
 
 </mapper>

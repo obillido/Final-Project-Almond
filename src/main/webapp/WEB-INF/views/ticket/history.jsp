@@ -9,7 +9,7 @@
     		[이용권 충전 내역]
 	 		<c:forEach var="list" items="${tbh}"> 	
 	    		<div>	
-			   		충전일: ${list.REGDATE }<br>
+			   		충전일: ${list.REGDATE}<br>
 			   		이용권충전한제목: ${list.TITLE}<br>
 			   		<c:if test="${list.TYPE==1}">소장권:${list.CNT}개 </c:if>
 			   		<c:if test="${list.TYPE==2}">대여권:${list.CNT}개 </c:if>
@@ -24,15 +24,15 @@
    			[이용권 사용 내역]
 			<c:forEach var="list" items="${tuh}"> 	
 	    		<div>	
-			   		사용일:${list.USEDATE} <br>
-			   		${list.SUBTITLE}, ${list.EPNUM}
-			   		이용권충전한제목: , 제목의 몇 화 인지<br>
+	    		12121
+			   		이용권 사용일:${list.USEDATE} <br>
+			   		충전한 제목: ${list.SUBTITLE}, ${list.EPNUM}화 <br>
 					대여권을 사용했는지, 소장권을 사용했는지
-					
 			    	<hr>
 	    		</div>
 	   		</c:forEach> 	
    		</div>
+   		
 	</div>
 </div>
     

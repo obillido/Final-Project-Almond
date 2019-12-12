@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.TicketUseMapper">
 	<select id="history" parameterType="int" resultType="hashmap">
-		select t.*,title,e.subtitle,e.epnum from ticketuse t, episode e, webcontents w
-		where t.epinum=e.epinum and e.contnum=w.contnum and usernum=#{usernum} order by usedate desc
+		select t.*, w.title, e.subtitle, e.epnum from ticketuse t, episode e, webcontents w
+		where t.epinum=e.epinum and e.contnum=w.contnum and usernum=#{usernum} order by t.usedate desc
 	</select>
 </mapper>
 

@@ -39,7 +39,7 @@
             <a class="dropdown-item" href="${path}/cash/charge?usernum=${usernum}">캐시 충전</a>
             <a class="dropdown-item" href="${path}/cash/list?usernum=${usernum}">캐시 내역</a>
             <a class="dropdown-item" href="#">보관함</a>
-            <a class="dropdown-item" href="${path}/ticket/history?usernum=${usernum}">이용권 내역</a>
+            <a class="dropdown-item" id="ticket_history" href="javascript:popupOpen();">이용권 내역</a>
             <a class="dropdown-item" href="#">이벤트/쿠폰</a>
             <a class="dropdown-item" href="${path}/inquiry/inquirypage?usernum=${usernum}">1:1문의</a>
             <a class="dropdown-item" href="#">로그아웃</a>
@@ -59,5 +59,29 @@
          </span>
        </div>
      </div>
+     
+     
+
+     
+     
   </div>
 </nav>
+
+<script type="text/javascript" src="resources/js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+
+
+
+function popupOpen(){
+	
+	
+	var popUrl = "${pageContext.request.contextPath}/ticket/history";	
+
+	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";
+
+		window.open(popUrl,"",popOption);
+
+	}
+
+
+</script>
