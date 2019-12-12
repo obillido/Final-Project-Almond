@@ -8,18 +8,18 @@
 <style type="text/css">
     #container {
       margin: 0 auto;  
-      padding-top:100px;   
-      padding-bottom:100px;
+      padding-top:200px;   
+      padding-bottom:200px;
       width:50%;
     }
     #paging{text-align:center;}
-   .table > thead {background-color: #FFBC9B;}
-   .table > thead > tr > th {text-align: center;color:black;font-weight:900;font-size:1.2em;}
+  
+   .table > thead > tr > th {text-align: center;font-weight:600;font-size:1.1em;}
    .table > tbody > tr > td {text-align: center;color:black;}
     #write {
       text-align: right;
     }
-    #paging ul li a{color:#FF8200;font-weight:900;}
+    #paging ul li a{color:gray;font-weight:900;}
     
 </style>
 
@@ -27,9 +27,9 @@
 <div class="card">
 <br>
    <div id="write" class="container">
-     <a href="${path }/inquiry/insert"><span class="badge badge-warning" style="font-size:1.2em">글쓰기</span></a>
+     <a href="${path }/inquiry/insert" class="btn btn-default">글쓰기</a>
    </div>
-
+<br>
 	<table class="table table-striped table-bordered table-hover">
 	   <thead>
 	   <tr>
@@ -39,17 +39,27 @@
 	      <th>답변여부</th>
 	   </tr>
 	   </thead>
-
+  
 	   <c:forEach var="info" items="${list}">
+	   <c:if test="${info.lev ne 1 }">
 	      <tbody>
-	      <tr>
+	      <tr class="info">
 	         <td>${info.inqnum}</td>
-	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}" id="a">${info.title}</a></td>
+	         <td><a href="${path }/inquiry/detail?inqnum=${info.inqnum}&ref=${info.ref}&usernum=${info.usernum}" id="a">${info.title}</a></td>
 	         <td>${info.content}</td>
-	         <td>답변여부</td>
+	         <td>
+	         <c:if test="${info.status=='0' }">
+	         <span style="color:red">X</span>
+	         </c:if>
+	         <c:if test="${info.status=='1' }">
+	         <span style="color:blue">O</span>
+	         </c:if>
+	         </td>
 	      </tr>
 	      </tbody>
+	   </c:if>
 	   </c:forEach>
+	
 	</table>
 
 	

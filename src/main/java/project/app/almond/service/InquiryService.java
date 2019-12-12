@@ -31,4 +31,13 @@ public class InquiryService {
 	public InquiryVo next(int inqnum){
 		return dao.next(inqnum);
 	}
+	public int reply(InquiryVo vo){
+		return dao.reply(vo);
+	}
+	public int chgStatus(HashMap<String, Object> map){
+		return dao.chgStatus(map);
+	}
+	public InquiryVo getReply(HashMap<String, Object> map){
+		return dao.getReply(map);
+	}
 }

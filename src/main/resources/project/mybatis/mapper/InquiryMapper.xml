@@ -12,7 +12,7 @@
            select aa.*,rownum rnum from
            (
                   select * from inquiry 
-                  where usernum=#{usernum}
+                  where usernum=#{usernum} and lev!=1
                   order by inqnum desc
            )aa
       )
@@ -41,4 +41,13 @@
       )where rownum=1
     </select>
     <!-- 또는 select * from board where num=(select min(num) from board where num>#{num}); -->
+    <insert id="reply" parameterType="project.app.almond.vo.InquiryVo">
+       insert into inquiry values(SEQ_inquiry_inqnum.nextval,#{usernum},#{title},#{content},#{status},#{ref},#{lev},#{step})
+    </insert>
+    <update id="chgStatus" parameterType="hashmap">
+       update inquiry set status=1 where ref=#{ref} and usernum=#{usernum}
+    </update>
+    <select id="getReply" parameterType="hashmap" resultType="project.app.almond.vo.InquiryVo">
+       select * from inquiry where ref=#{ref} and usernum!=#{usernum}
+    </select>
 </mapper>

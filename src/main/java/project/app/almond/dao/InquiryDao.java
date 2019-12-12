@@ -32,4 +32,13 @@ public class InquiryDao {
     public InquiryVo next(int inqnum){
         return sqlSessionTemplate.selectOne(NAMESPACE + ".next",inqnum);
     }
+    public int reply(InquiryVo vo){
+    	return sqlSessionTemplate.insert(NAMESPACE + ".reply",vo);
+    }
+    public int chgStatus(HashMap<String, Object> map){
+    	return sqlSessionTemplate.update(NAMESPACE + ".chgStatus",map);
+    }
+    public InquiryVo getReply(HashMap<String, Object> map){
+    	return sqlSessionTemplate.selectOne(NAMESPACE + ".getReply",map);
+    }
 }

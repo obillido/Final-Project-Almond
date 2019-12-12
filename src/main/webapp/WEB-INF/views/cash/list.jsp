@@ -5,8 +5,8 @@
 <style type="text/css">
     #container {
       margin: 0 auto;  
-      padding-top:100px;   
-      padding-bottom:100px;
+      padding-top:300px;   
+      padding-bottom:300px;
       width:40%;
     }
     button{text-align:center;}

@@ -7,8 +7,8 @@
 <style type="text/css">
     #container {
       margin: 0 auto;  
-      padding-top:50px;   
-      padding-bottom:50px;
+      padding-top:300px;   
+      padding-bottom:300px;
       width:30%;
     }
 </style>
@@ -28,5 +28,5 @@
   </li>
 </ul>
 <br><br>
-<a href="${path}/cash/list?usernum=${usernum}" class="btn btn-warning">내 캐시내역 보기</a>
+<a href="${path}/cash/list?usernum=${usernum}" class="btn btn-info">내 캐시내역 보기</a>
 </div>
