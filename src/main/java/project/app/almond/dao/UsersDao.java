@@ -1,5 +1,7 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,14 @@ public class UsersDao {
 	}
 	public UsersVo getInfo(int usernum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",usernum);
+	}
+	public int insert(UsersVo vo){
+		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
+	}
+	public HashMap<String,Object> login(HashMap<String, Object> map) {
+		return sqlSessionTemplate.selectOne("project.mybatis.mapper.UsersMapper.login",map);
+	}
+	public UsersVo emailcheck(String email) {
+		return sqlSessionTemplate.selectOne(NAMESPACE+".emailcheck",email);
 	}
 }
