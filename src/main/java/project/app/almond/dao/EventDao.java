@@ -31,4 +31,6 @@ public class EventDao {
 		return session.update(NAMESPACE+".rullcash",vo);
 	}
 	
+	
+	
 }
