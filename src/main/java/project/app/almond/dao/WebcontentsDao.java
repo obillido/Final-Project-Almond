@@ -55,4 +55,7 @@ public class WebcontentsDao {
 	public List<WebcontentsVo> jakpum(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".jakpum",cultype);
 	}
+	public List<WebcontentsVo> byReadernum(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".byReadernum",cultype);
+	}
 }

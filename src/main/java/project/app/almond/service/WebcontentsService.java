@@ -62,4 +62,7 @@ public class WebcontentsService {
 	public List<WebcontentsVo> jakpum(int cultype){
 		return wdao.jakpum(cultype);
 	}
+	public List<WebcontentsVo> byReadernum(int cultype){
+		return wdao.byReadernum(cultype);
+	}
 }

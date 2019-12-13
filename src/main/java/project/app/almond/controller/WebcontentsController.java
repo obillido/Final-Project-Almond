@@ -115,18 +115,26 @@ public class WebcontentsController {
 		else model.addAttribute("list",ws.getListVideo(map));
 		return ".webcontents.list";
 	}
-	@RequestMapping(value="/webcontents/listonday",method=RequestMethod.POST)
-	public String listonday(String dayofweek,Model model){
+	@RequestMapping(value="/webcontents/listonday",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String listonday(String dayofweek){
 		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
-		model.addAttribute("cultype",1);
-		model.addAttribute("daylist",daylist);
-		ArrayList<String> genreList=new ArrayList<String>();
-	    genreList.add("로맨스");
-	    genreList.add("소년");
-		genreList.add("드라마");
-		genreList.add("무협");
-		model.addAttribute("genreList",genreList);
-		return ".webcontents.list";
+		
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		for(WebcontentsBookVo vo:daylist){
+			sb.append("<result>");
+			sb.append("<cultype>" + 1 +"</cultype>");
+			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
+			sb.append("<cultype>"+vo.getCultype()+"</cultype>");
+			sb.append("<title>"+vo.getTitle()+"</title>");
+			sb.append("<genre>"+vo.getGenre()+"</genre>");
+			sb.append("<outline>"+vo.getOutline()+"</outline>");
+			sb.append("<img>"+vo.getImg()+"</img>");
+			sb.append("</result>");
+		}
+		
+		return sb.toString();
 	}
 	@RequestMapping(value="/webcontents/jakpum",produces="application/xml;charset=utf-8")
 	@ResponseBody

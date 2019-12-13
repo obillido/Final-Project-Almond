@@ -74,6 +74,11 @@
            )aa
        )<![CDATA[ where rnum>=1 and rnum<=4 ]]>
 	</select>
+	
+	
+	<select id="byReadernum" resultType="project.app.almond.vo.WebcontentsVo" parameterType="int">
+	   select * from webcontents where cultype=#{cultype} order by readernum desc
+	</select>
 </mapper>
 
 
