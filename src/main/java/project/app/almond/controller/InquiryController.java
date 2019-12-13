@@ -25,7 +25,8 @@ public class InquiryController {
 	@Autowired InquiryService service;
 	
 	@RequestMapping("/inquiry/inquirypage")
-	public ModelAndView inquirypage(int usernum,@RequestParam(value="pageNum",defaultValue="1")int pageNum){
+	public ModelAndView inquirypage(HttpSession session,@RequestParam(value="pageNum",defaultValue="1")int pageNum){
+		int usernum=(Integer)session.getAttribute("usernum");
 		int totalRowCount=service.count(usernum);
 		PageUtil pu=new PageUtil(pageNum,totalRowCount,5,5);
         int startRow=pu.getStartRow();
@@ -56,14 +57,15 @@ public class InquiryController {
 		try{
 			InquiryVo vo=new InquiryVo(0, usernum, title, content, 0, ref, 0, 0);
 			service.insert(vo);
-			return ".inquiry.success";
+			return "redirect:/inquiry/inquirypage";
 		}catch(Exception e){
             e.printStackTrace();
-            return ".inquiry.fail";
+            return null;
 		}
 	}
 	@RequestMapping(value="/inquiry/detail",method=RequestMethod.GET)
-	public String detail(int inqnum,Model model,int ref,int usernum){
+	public String detail(int inqnum,Model model,int ref,HttpSession session){
+		int usernum=(Integer)session.getAttribute("usernum");
 		InquiryVo vo=service.detail(inqnum);
 		model.addAttribute("vo",vo);
 		HashMap<String, Object> map=new HashMap<String, Object>();

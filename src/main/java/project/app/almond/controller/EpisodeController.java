@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.EpisodeService;
+import project.app.almond.service.MylistService;
 import project.app.almond.service.ReadingService;
 import project.app.almond.service.TicketStockService;
 import project.app.almond.service.WebcontentsService;
@@ -35,6 +36,7 @@ public class EpisodeController {
 	@Autowired private EpisodeService es;
 	@Autowired private ReadingService rs;
 	@Autowired private TicketStockService tss;
+	@Autowired private MylistService ms;
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
 		int cultype=ws.getInfo(contnum).getCultype();
@@ -59,6 +61,20 @@ public class EpisodeController {
 			else if(own==0 && rental==0) model.addAttribute("showTicketType",4);
 			else if(own==0)		model.addAttribute("showTicketType",2);
 			else if(rental==0)	model.addAttribute("showTicketType",1);
+			
+			//보관함 기능
+			int intuu=(Integer)session.getAttribute("usernum");			
+			MylistVo mvo=new MylistVo(0, contnum, intuu, 1, null);
+			HashMap<String, Object> shmap=new HashMap<String, Object>();
+			shmap.put("contnum", contnum);
+			shmap.put("usernum", intuu);
+			MylistVo existvo=ms.isExist(shmap);
+		
+			if(existvo==null){
+				ms.insert(mvo);
+			}else{
+				ms.update(shmap);
+			}
 		}else{
 			model.addAttribute("epiList",es.getList(map));
 		}

@@ -16,17 +16,17 @@
 <div id="container">
 <h5><strong>캐시 충전</strong>이 완료되었습니다.</h5>
 <br>
-<div class="alert alert-info" role="alert" style="text-align:center;font-size:1.5em"><strong>충전 내역</strong></div>
+<div class="alert alert-warning" role="alert" style="text-align:center;font-size:1.5em"><strong>충전 내역</strong></div>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
     충전금액
-    <span class="badge badge-primary badge-pill">${info.price }원</span>
+    <span class="badge badge-warning badge-pill">${info.price }원</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     결제방법
-    <span class="badge badge-primary badge-pill">${info.method }</span>
+    <span class="badge badge-warning badge-pill">${info.method }</span>
   </li>
 </ul>
 <br><br>
-<a href="${path}/cash/list?usernum=${usernum}" class="btn btn-info">내 캐시내역 보기</a>
+<a href="${path}/cash/list?usernum=${usernum}" class="btn btn-warning">내 캐시내역 보기</a>
 </div>

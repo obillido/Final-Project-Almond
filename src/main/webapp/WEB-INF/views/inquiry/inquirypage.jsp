@@ -70,12 +70,12 @@
       <c:choose>
          <c:when test="${i==pu.pageNum}"><!-- 현재 페이지인 경우 -->
             <li class="page-item">
-            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">${i}</a>
+            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}">${i}</a>
             </li>
          </c:when>
          <c:otherwise>
             <li class="page-item">
-            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}&usernum=${usernum}">${i}</a>
+            <a class="page-link" href="${path}/inquiry/inquirypage?pageNum=${i}">${i}</a>
             </li>
          </c:otherwise>
       </c:choose>

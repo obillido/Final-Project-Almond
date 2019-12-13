@@ -36,12 +36,12 @@
                   <span class="badge badge-dark" style="font-size: 1.3em;background-color:darkorange;color:white; padding-bottom:8px;">MyPage</span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-            <a class="dropdown-item" href="${path}/cash/charge?usernum=${usernum}">캐시 충전</a>
-            <a class="dropdown-item" href="${path}/cash/list?usernum=${usernum}">캐시 내역</a>
-            <a class="dropdown-item" href="#">보관함</a>
+            <a class="dropdown-item" href="${path}/cash/charge">캐시 충전</a>
+            <a class="dropdown-item" href="${path}/cash/list">캐시 내역</a>
+            <a class="dropdown-item" href="${path}/mylist/list">보관함</a>
             <a class="dropdown-item" id="ticket_history" href="javascript:popupOpen();">이용권 내역</a>
             <a class="dropdown-item" href="#">이벤트/쿠폰</a>
-            <a class="dropdown-item" href="${path}/inquiry/inquirypage?usernum=${usernum}">1:1문의</a>
+            <a class="dropdown-item" href="${path}/inquiry/inquirypage">1:1문의</a>
             <a class="dropdown-item" href="#">로그아웃</a>
           </div>
         </li>          
