@@ -16,14 +16,14 @@ public class MylistDao {
 	public int insert(MylistVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
-	public int update(HashMap<String, Object> map){
-		return sqlSessionTemplate.update(NAMESPACE+".update",map);
+	public int update(MylistVo vo){
+		return sqlSessionTemplate.update(NAMESPACE+".update",vo);
 	}
 	public int delete(MylistVo vo){
 		return sqlSessionTemplate.delete(NAMESPACE+".delete",vo);
 	}
-	public MylistVo isExist(HashMap<String, Object> map){
-		return sqlSessionTemplate.selectOne(NAMESPACE+".isExist",map);
+	public MylistVo isExist(MylistVo vo){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".isExist",vo);
 	}
 	public List<MylistVo> list(int usernum){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".list",usernum);

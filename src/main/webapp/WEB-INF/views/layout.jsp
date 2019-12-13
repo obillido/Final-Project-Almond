@@ -26,7 +26,7 @@
 </head>
 <body>
 <div id="wrap">
-   <div id="header">
+   <div id="header" style="margin-bottom:45px;">
       <tiles:insertAttribute name="header"/>
    </div>
    <div id="content" style="margin-top:45px;">

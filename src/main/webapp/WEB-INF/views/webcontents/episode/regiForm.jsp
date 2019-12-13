@@ -15,8 +15,7 @@
     <div class="row">
       <div class="col-lg-8 mb-4">
 
-        <form method="post" action="${pageContext.request.contextPath}/webcontents/episode/regi" enctype="multipart/form-data">
-        	<input type="hidden" name="cultype" value="${cultype}"> 
+        <form method="post" action="${pageContext.request.contextPath}/webcontents/episode/insert" enctype="multipart/form-data">
         	<input type="hidden" name="contnum" value="${contnum}">
         	<input type="hidden" name="epnum" value="${epnum}">
         	<div class="control-group form-group">

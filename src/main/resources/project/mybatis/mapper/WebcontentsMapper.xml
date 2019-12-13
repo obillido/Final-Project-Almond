@@ -40,6 +40,18 @@
 	<select id="getListVideo" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsVideoVo">
 		 <include refid="selectVideo"/> <include refid="listCondition"/>
 	</select>
+	
+	<update id="addReadernum" parameterType="int">
+		update webcotents set readernum=readernum+1 where contnum=#{contnum}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id="listonday" parameterType="String" resultType="project.app.almond.vo.WebcontentsBookVo">
 	   select wc.* from webcontents wc,book where wc.contnum=book.contnum and book.dayofweek=#{dayofweek} and cultype=1
 	</select>

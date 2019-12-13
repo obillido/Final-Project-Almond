@@ -20,14 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.EpisodeService;
-import project.app.almond.service.MylistService;
 import project.app.almond.service.ReadingService;
 import project.app.almond.service.TicketStockService;
+import project.app.almond.service.TicketUseService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.EpisodeVo;
 import project.app.almond.vo.MylistVo;
 import project.app.almond.vo.ReadingVo;
 import project.app.almond.vo.TicketStockVo;
+import project.app.almond.vo.TicketUseVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Controller
@@ -36,7 +37,8 @@ public class EpisodeController {
 	@Autowired private EpisodeService es;
 	@Autowired private ReadingService rs;
 	@Autowired private TicketStockService tss;
-	@Autowired private MylistService ms;
+	@Autowired private TicketUseService tus;
+	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
 		int cultype=ws.getInfo(contnum).getCultype();
@@ -61,27 +63,15 @@ public class EpisodeController {
 			else if(own==0 && rental==0) model.addAttribute("showTicketType",4);
 			else if(own==0)		model.addAttribute("showTicketType",2);
 			else if(rental==0)	model.addAttribute("showTicketType",1);
-			
-			//보관함 기능
-			int intuu=(Integer)session.getAttribute("usernum");			
-			MylistVo mvo=new MylistVo(0, contnum, intuu, 1, null);
-			HashMap<String, Object> shmap=new HashMap<String, Object>();
-			shmap.put("contnum", contnum);
-			shmap.put("usernum", intuu);
-			MylistVo existvo=ms.isExist(shmap);
-		
-			if(existvo==null){
-				ms.insert(mvo);
-			}else{
-				ms.update(shmap);
-			}
 		}else{
 			model.addAttribute("epiList",es.getList(map));
 		}
 		return ".webcontents.episode.list";
 	}
-	@RequestMapping(value="/webcontents/episode/regi",method=RequestMethod.GET)
-	public String insertForm(int cultype,int contnum,Model model){
+	
+	@RequestMapping(value="/webcontents/episode/insert",method=RequestMethod.GET)
+	public String insertForm(int contnum,Model model){
+		int cultype=ws.getInfo(contnum).getCultype();
 		if(cultype==1||cultype==2) model.addAttribute("contInfo",ws.getInfoBook(contnum));
 		else model.addAttribute("contInfo",ws.getInfoVideo(contnum));
 		model.addAttribute("cultype",cultype);
@@ -89,9 +79,11 @@ public class EpisodeController {
 		model.addAttribute("epnum",(es.getEpnum(contnum)+1));
 		return ".webcontents.episode.regiForm";
 	}
-	@RequestMapping(value="/webcontents/episode/regi",method=RequestMethod.POST)
-	public String insert(int cultype,int contnum,String content,String subtitle,int epnum,List<MultipartFile> file1,Model model){
-		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
+	
+	@RequestMapping(value="/webcontents/episode/insert",method=RequestMethod.POST)
+	public String insert(int contnum,String content,String subtitle,int epnum,List<MultipartFile> file1,Model model){
+		int cultype=ws.getInfo(contnum).getCultype();
+		String uploadPath="C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;//"C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
 		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
 		String thumbnail=UUID.randomUUID()+"_"+file1.get(0).getOriginalFilename();
 		String img=UUID.randomUUID()+"_"+file1.get(1).getOriginalFilename();
@@ -116,19 +108,21 @@ public class EpisodeController {
 		}else{
 			model.addAttribute("msg","등록실패");
 		}
-		model.addAttribute("cultype",cultype);
 		model.addAttribute("contnum",contnum);
 		return "redirect:/webcontents/episode/list";
 	}
+	
 	@RequestMapping(value="/webcontents/episode/content",method=RequestMethod.POST)
-	public String epiInfo(int contnum,int epinum,HttpSession session,@RequestParam(value="type",defaultValue="0")int type,Model model){
-		WebcontentsVo wvo=ws.getInfo(contnum);
+	public String epiInfo(int epinum,HttpSession session,int type,Model model){
 		EpisodeVo evo=es.getInfo(epinum);
+		int contnum=evo.getContnum();
+		WebcontentsVo wvo=ws.getInfo(contnum);
 		Object uu=session.getAttribute("usernum");
 		Date sysdate=new Date(new java.util.Date().getTime());
 		if(uu!=null){
 			int usernum=(Integer)uu, n=0;
-			n=rs.insert(new ReadingVo(0, epinum, usernum, sysdate, type), new MylistVo(0, contnum, usernum, 1, sysdate));
+			if(type==1 || type==2) n=tus.insert(usernum, contnum, epinum, type, sysdate);
+			else				   n=rs.insert(usernum, contnum, epinum, type, sysdate);
 			if(n>0){
 				model.addAttribute("wvo",wvo);
 				model.addAttribute("evo",evo);

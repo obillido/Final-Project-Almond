@@ -9,6 +9,9 @@
 	<update id="updateAdd" parameterType="project.app.almond.vo.TicketStockVo">
 		update ticketstock set cnt=cnt+#{cnt} where usernum=#{usernum} and contnum=#{contnum} and type=#{type}
 	</update>
+	<update id="updateSub" parameterType="project.app.almond.vo.TicketStockVo">
+		update ticketstock set cnt=cnt-1 where usernum=#{usernum} and contnum=#{contnum} and type=#{type}
+	</update>
 	<select id="getInfo" parameterType="project.app.almond.vo.TicketStockVo" resultType="project.app.almond.vo.TicketStockVo">
 		select * from ticketstock where usernum=#{usernum} and contnum=#{contnum} and type=#{type}
 	</select>

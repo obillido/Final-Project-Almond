@@ -24,7 +24,7 @@ DROP TABLE ticketStock CASCADE CONSTRAINTS;
 DROP TABLE users CASCADE CONSTRAINTS;
 DROP TABLE video CASCADE CONSTRAINTS;
 DROP TABLE webcontents CASCADE CONSTRAINTS;
-
+DROP TABLE winner CASCADE CONSTRAINTS;
 
 
 /* Drop Sequences */
@@ -50,7 +50,7 @@ DROP SEQUENCE SEQ_ticket_tknum;
 DROP SEQUENCE SEQ_ticketStock_tksnum;	
 DROP SEQUENCE SEQ_users_usernum;
 DROP SEQUENCE SEQ_webcontents_contnum;	
-
+DROP SEQUENCE SEQ_winner_winnum;
 
 
 
@@ -77,6 +77,7 @@ CREATE SEQUENCE SEQ_ticket_tknum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_ticketStock_tksnum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_users_usernum INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_webcontents_contnum INCREMENT BY 1 START WITH 1;	
+CREATE SEQUENCE SEQ_winner_winnum INCREMENT BY 1 START WITH 1;
 
 
 
@@ -173,7 +174,7 @@ CREATE TABLE reading
 	usernum number NOT NULL,
 	-- 열람날짜
 	readingdate date NOT NULL,
-	-- 상태 1:소장, 2:대여, 3:무료
+	-- 상태   1:소장, 2:대여, 3:소장했을 때 다시 읽음, 4:대여했을때 다시 읽음 , 5:무료
 	type number NOT NULL,
 	PRIMARY KEY (readingnum)
 );
@@ -578,6 +579,26 @@ CREATE TABLE webcontents
 
 
 
+
+-- 당첨자
+CREATE TABLE winner
+(
+	-- 당첨자번호
+	winnum number NOT NULL,
+	-- 이벤트번호
+	eventnum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	PRIMARY KEY (winnum)
+);
+
+
+
+
+
+
+
+
 /* Create Foreign Keys */
 
 ALTER TABLE commLikes
@@ -754,6 +775,24 @@ ALTER TABLE video
 	ADD FOREIGN KEY (contnum)
 	REFERENCES webcontents (contnum)
 ;
+
+
+
+ALTER TABLE winner
+	ADD FOREIGN KEY (eventnum)
+	REFERENCES event (eventnum)
+;
+
+
+ALTER TABLE winner
+	ADD FOREIGN KEY (usernum)
+	REFERENCES users (usernum)
+;
+
+
+
+
+
 
 
 

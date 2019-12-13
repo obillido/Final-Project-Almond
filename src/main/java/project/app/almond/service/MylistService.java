@@ -24,10 +24,10 @@ public class MylistService {
 	public int delFromList(int mylistnum){
 		return mdao.delFromList(mylistnum);
 	}
-	public MylistVo isExist(HashMap<String, Object> map){
-		return mdao.isExist(map);
+	public MylistVo isExist(MylistVo vo){
+		return mdao.isExist(vo);
 	}
-	public int update(HashMap<String, Object> map){
-		return mdao.update(map);
+	public int update(MylistVo vo){
+		return mdao.update(vo);
 	}
 }

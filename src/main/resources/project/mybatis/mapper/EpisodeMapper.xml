@@ -15,7 +15,8 @@
 	</select>
 	<select id="getListforUser" parameterType="hashmap" resultType="project.app.almond.vo.EpisodeReadingVo">
 		select e.*,r.readingdate, nvl(floor((sysdate-r.readingdate)*24*60),-1) rt, nvl(r.type,-1) type
-		from (select * from episode where contnum=#{contnum}) e,(select * from reading where usernum=#{usernum}) r
+		from (select * from episode where contnum=#{contnum}) e,
+		     (select epinum,min(type) type,min(readingdate) readingdate from reading where usernum=#{usernum} and type in(1,2,5) group by epinum) r
 		where e.epinum=r.epinum(+)
 		order by epnum ${align}
 	</select>

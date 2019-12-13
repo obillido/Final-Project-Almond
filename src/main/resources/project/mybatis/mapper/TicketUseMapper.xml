@@ -7,6 +7,9 @@
 		select t.*, w.title, e.subtitle, e.epnum from ticketuse t, episode e, webcontents w
 		where t.epinum=e.epinum and e.contnum=w.contnum and usernum=#{usernum} order by t.usedate desc
 	</select>
+	<insert id="insert" parameterType="project.app.almond.vo.TicketUseVo">
+		insert into ticketuse values(seq_ticketuse_tkunum.nextval,#{usernum},#{epinum},sysdate,#{type})
+	</insert>
 </mapper>
 
 

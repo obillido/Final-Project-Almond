@@ -16,6 +16,9 @@ public class TicketStockDao {
 	public int updateAdd(TicketStockVo vo){
 		return sqlSessionTemplate.update(NAMESPACE+".updateAdd",vo);
 	}
+	public int updateSub(TicketStockVo vo){
+		return sqlSessionTemplate.update(NAMESPACE+".updateSub",vo);
+	}
 	public TicketStockVo getInfo(TicketStockVo vo){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo", vo);
 	}

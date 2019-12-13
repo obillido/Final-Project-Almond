@@ -16,7 +16,4 @@ public class ReadingDao {
 	public int update(ReadingVo vo){
 		return sqlSessionTemplate.update(NAMESPACE+".update",vo);
 	}
-	public ReadingVo isExist(ReadingVo vo){
-		return sqlSessionTemplate.selectOne(NAMESPACE+".isExist",vo);
-	}
 }

@@ -18,12 +18,12 @@
 	<select id="isExist" parameterType="project.app.almond.vo.MylistVo" resultType="project.app.almond.vo.MylistVo">
 		select * from mylist where contnum=#{contnum} and usernum=#{usernum}
 	</select>
-  <select id="list" resultType="project.app.almond.vo.MylistVo" parameterType="int">
-     select mylistnum,contnum,usernum,alaram,readingdate from mylist where usernum=#{usernum}
-  </select>
-  <delete id="delFromList" parameterType="int">
-     delete from mylist where mylistnum=#{mylistnum}
-  </delete>
+    <select id="list" resultType="project.app.almond.vo.MylistVo" parameterType="int">
+       select mylistnum,contnum,usernum,alaram,readingdate from mylist where usernum=#{usernum}
+    </select>
+    <delete id="delFromList" parameterType="int">
+       delete from mylist where mylistnum=#{mylistnum}
+    </delete>
 </mapper>
 
 

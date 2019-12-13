@@ -1,6 +1,8 @@
+<%@page import="project.app.almond.vo.EpisodeReadingVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <style>
@@ -21,7 +23,21 @@
 		background-color:black; color:white;
 		border-radius:10px;
 	}
+	.partial{
+		margin:-20% -20%;
+		overflow:hidden;
+	}
+	.info{
+		width:35%; margin-left:10px;
+	}
+	.mytype{
+		display:inline-block;
+		text-align:center;
+	}
 </style>
+
+
+
 
 <script type="text/javascript">
 	window.onload=function(){
@@ -29,27 +45,27 @@
 			alert(${msg});
 		}
 	}
-	function openEpisode(contnum,epinum,epnum,freenum,rt,type,status){
+	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
 		if(epnum<=freenum || ${wvo.waiting==0}){
-			post_to_url(["contnum","epinum","type"],[contnum,epinum,3]);
+			post_to_url(["epinum","type"],[epinum,5]);
 		}else if(status==1){ //티켓 사용해서 보기
-			$("#ticketModal").modal("hide");
+			$("#ticketModal"+epinum).modal("hide");
 			if(type==2){
-				$("#rentalTicketUseModal").modal();
-				setTimeout('$("#rentalTicketUseModal").modal("hide");',1000);
+				setTimeout('$("#rentalTicketUseModal").modal()',200);
+				setTimeout('$("#rentalTicketUseModal").modal("hide");',900);
 			}
 			else{
-				$("#ownTicketUseModal").modal();
-				setTimeout('$("#ownTicketUseModal").modal("hide");',1000);
+				setTimeout('$("#ownTicketUseModal").modal()',200);
+				setTimeout('$("#ownTicketUseModal").modal("hide");',900);
 			}
-			setTimeout('post_to_url(["contnum","epinum","type"],['+contnum+','+epinum+','+type+'])',1000);
+			setTimeout('post_to_url(["epinum","type"],['+epinum+','+type+'])',1000);
 		}else if(type==1 || (type==2 && rt<3*24 && rt>0)){ //이전에 티켓을 사용한 경우
-			post_to_url(["contnum","epinum"],[contnum,epinum]);
+			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
 			if(${usernum==null}){
 				alter("로그인이 필요한 서비스입니다.");
 			}else{
-				$("#ticketModal").modal();
+				$("#ticketModal"+epinum).modal();
 			}
 		}
 	}
@@ -72,23 +88,8 @@
 
 
 
-
-
 <!-- Page Content -->
-<div class="container">
-	<br>
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active">
-	    <c:choose>
-				<c:when test="${wvo.cultype==1}">만화</c:when>
-				<c:when test="${wvo.cultype==2}">소설</c:when>
-				<c:when test="${wvo.cultype==3}">예능</c:when>
-				<c:when test="${wvo.cultype==4}">드라마</c:when>
-				<c:when test="${wvo.cultype==5}">영화</c:when>
-			</c:choose>
-		</li>
-    <li class="breadcrumb-item active">${wvo.title}</li>
-  </ol>
+<div class="container" style="margin-top:100px;">
 
 	<!-- Intro Content -->
   <div class="row">
@@ -112,7 +113,7 @@
 				</c:otherwise>
 			</c:choose>
 			<p><c:choose><c:when test="${wvo.completiontype==0}">연재중</c:when><c:otherwise>완결</c:otherwise></c:choose></p>
-			<a href="${path}/webcontents/episode/regi?cultype=${wvo.cultype}&contnum=${wvo.contnum}" class="btn btn-primary">회차 등록</a>
+			<a href="${path}/webcontents/episode/insert?contnum=${wvo.contnum}" class="btn btn-primary">회차 등록</a>
     </div>
   </div>
   <!-- /.row -->
@@ -142,22 +143,23 @@
 
 	<div style="float:right;">
 		<ul style="list-style:none;">
-			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${wvo.cultype}&contnum=${wvo.contnum}&align=asc" style="text-decoration:none; color:black;">첫편부터</a></li>
+			<li style="display:inline;"><a href="${path}/webcontents/episode/list?contnum=${wvo.contnum}&align=asc" style="text-decoration:none; color:black;">첫편부터</a></li>
 			|
-			<li style="display:inline;"><a href="${path}/webcontents/episode/list?cultype=${wvo.cultype}&contnum=${wvo.contnum}&align=desc" style="text-decoration:none; color:black;">최신편부터</a></li>
+			<li style="display:inline;"><a href="${path}/webcontents/episode/list?contnum=${wvo.contnum}&align=desc" style="text-decoration:none; color:black;">최신편부터</a></li>
 		</ul>
 	</div>
 	<br><br>
 
   <!-- 회차 목록 -->
   <c:forEach var="ep" items="${epiList}">
-  	<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});">
+ 		<div onclick="openEpisode(${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});" 
+ 				<c:if test="${not empty ep.readingdate}">style="background-color:#F2F2F2;"</c:if>	>
 	    <div class="card-body">
 	      <div class="row">
 	        <div class="col-lg-6" style="max-height:200px; overflow:hidden !important">
-	            <img class="img-fluid rounded" style="margin-top:-20%;" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	            <img class="partial" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
 	        </div>
-	        <div class="col-lg-6">
+	        <div class="info">
 	        	<p class="card-text">
 		        	<c:if test="${ep.epnum<=wvo.freenum}">
 		        		<div class="freemark">무료</div>
@@ -166,12 +168,34 @@
 	          </p>
 	          <p>${ep.uploaddate}</p>
 	        </div>
+	        <div class="mytype">
+	        	<c:if test="${not empty usernum}">
+	        		<c:choose>
+	        			<c:when test="${ep.type==1}"><br>소장<br></c:when>
+	        			<c:when test="${ep.type==2 && ep.rt<=4320}"> <!-- 대여는 3일동안만 볼 수 있음 -->
+	        				<p>대여</p>
+	        				<p>
+				        		<fmt:formatNumber var="rest" value="${4320-ep.rt}" pattern="0"/>
+				        	 	<fmt:formatNumber var="day" value="${rest/60/24-(rest/60/24)%1}" pattern="0"/>
+			       				<fmt:formatNumber var="hour" value="${rest/60-(rest/60)%1-day*24}" pattern="0"/>
+	        					<c:if test="${day>=1}">${day}일</c:if>
+	        					<c:if test="${hour>=1}">${hour}시간</c:if>
+	        					<c:if test="${ep.rt>=1}">${rest-(rest)%1-hour*60-day*60*24}분</c:if>
+	        				</p>
+									<p>남음</p>
+	        			</c:when>
+	        			<c:when test="${ep.type==2 && ep.rt>4320}">
+	        				<p>대여기간만료</p>
+	        			</c:when>
+	        		</c:choose>
+	        	</c:if>
+	        </div>
 	      </div>
 	    </div>
 	  </div>
-	  <hr>
+	  <hr style="margin:0px; border-top: 1px solid lightgrey;">
 	  
-		<div class="modal fade" id="ticketModal" role="dialog" style="margin-top:250px;">
+		<div class="modal fade" id="ticketModal${ep.epinum}" role="dialog" style="margin-top:250px;">
 			<div class="modal-dialog">
 				<div class="modal-content" style="text-align:center;">
 					<div class="modal-body">
@@ -182,13 +206,13 @@
 								<p>사용할 이용권을 선택해 주세요.</p>
 								<c:if test="${showTicketType!=1}">
 									<hr>
-									<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},2,1);">
+									<div onclick="openEpisode(${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},2,1,this);">
 										<p style="color:blue;">대여 (${rental})개</p>
 									</div>
 								</c:if>
 								<c:if test="${showTicketType!=2}">
 									<hr>
-									<div onclick="openEpisode(${wvo.contnum},${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},1,1);">
+									<div onclick="openEpisode(${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},1,1,this);">
 										<p style="color:blue;">소장 (${own})개</p>
 									</div>
 								</c:if>
