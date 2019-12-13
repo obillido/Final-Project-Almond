@@ -22,8 +22,8 @@
 					<div class="tab1_2">
 						<span style="color: rgba( 0, 0, 0, 0.6 );">
 						<fmt:formatDate value="${list.REGDATE}" pattern="yyyy-MM-dd hh:mm:ss" /><br></span> <br> <span style="color: rgba( 0, 0, 0, 0.6 );">${list.TITLE}<br> </span> <br>
-						<c:if test="${list.TYPE==1}"><span style="font-weight: 600">소장권:${list.CNT}개</span></c:if>
-						<c:if test="${list.TYPE==2}"><span style="font-weight: 600">대여권:${list.CNT}개 </span></c:if>
+						<c:if test="${list.TYPE==1}"><span style="font-weight: 600">소장권: ${list.CNT}개</span></c:if>
+						<c:if test="${list.TYPE==2}"><span style="font-weight: 600">대여권: ${list.CNT}개 </span></c:if>
 					</div>
 					<div class="tab1_3">
 						<br><span style="font-weight: 800; color:04B404; text-align: right;">${list.PRICE }캐시</span><br>
@@ -40,9 +40,11 @@
 					<div class="tab1_2">
 						<span style="color: rgba(0, 0, 0, 0.6);">
 						<fmt:formatDate value="${list.USEDATE}" pattern="yyyy-MM-dd hh:mm:ss"/><br></span>
-						<br> <span style="color: rgba(0, 0, 0, 0.6);">${list.TITLE}<br>
+						<br> <span style="color: rgba(0, 0, 0, 0.6);">${list.TITLE} 
+						<c:if test="${list.COMPLETIONTYPE==0}">[완결]</c:if>
+						<c:if test="${list.COMPLETIONTYPE==1}">[연재중]</c:if><br>
 						</span> <br>
-						<span style="font-weight: 600">[${list.SUBTITLE}] ${list.EPNUM}화</span>
+						<span style="font-weight: 600">${list.SUBTITLE} ${list.EPNUM}화</span>
 					</div>
 					<div class="tab1_3"><br>
 						<c:if test="${list.TYPE==1}"><span style="font-weight: 800; color: 04B404; text-align: right; ">소장 이용권 사용</span></c:if>
@@ -83,7 +85,4 @@ $(document).ready(function(){
 		$("#"+tab_id).addClass('current');
 	});
 });
-
-
-	
 </script>

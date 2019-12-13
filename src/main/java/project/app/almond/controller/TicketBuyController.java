@@ -31,6 +31,7 @@ public class TicketBuyController {
 		//TicketBuyVo tt=service.ticketType(vo);
 		model.addAttribute("uc",uc);
 		model.addAttribute("title",title.getTitle());
+		model.addAttribute("title",title.getCompletiontype());		
 		//model.addAttribute("tt",tt);
 		model.addAttribute("contnum",contnum);
 		model.addAttribute("ticket",ts.getInfo(title.getTknum()));
