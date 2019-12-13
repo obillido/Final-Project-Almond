@@ -1,38 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <link href="${pageContext.request.contextPath}/resources/ticket/history.css" rel="stylesheet">
 
-<div class="wrap">
-	<div class="d1"> 
-		<div class="d2">
-    		[이용권 충전 내역]
-	 		<c:forEach var="list" items="${tbh}"> 	
-	    		<div>	
-			   		충전일: ${list.REGDATE}<br>
-			   		이용권충전한제목: ${list.TITLE}<br>
-			   		<c:if test="${list.TYPE==1}">소장권:${list.CNT}개 </c:if>
-			   		<c:if test="${list.TYPE==2}">대여권:${list.CNT}개 </c:if>
-			   		<br>
-		    		충전된캐시사용: ${list.PRICE }캐시<br>
-			    	<hr>
-	    		</div>
-	   		</c:forEach> 	
-   		</div>
-   		
-   		<div class="d3">
-   			[이용권 사용 내역]
-			<c:forEach var="list" items="${tuh}"> 	
-	    		<div>	
-	    		12121
-			   		이용권 사용일:${list.USEDATE} <br>
-			   		충전한 제목: ${list.SUBTITLE}, ${list.EPNUM}화 <br>
-					대여권을 사용했는지, 소장권을 사용했는지
-			    	<hr>
-	    		</div>
-	   		</c:forEach> 	
-   		</div>
-   		
+<div class="body">
+	<div class="container">
+	
+	<div class="head">
+		<ul class="tabs">
+			<li class="tab-link current" data-tab="tab-1" id="tab1"><span id="btn_ticket1" style="font-weight: 600; text-decoration: underline; font-family: cursive;">이용권 충전 내역</span></li>
+			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; opacity: 0.5; text-decoration: underline; font-family: cursive;">이용권 사용 내역</span></li>
+		</ul>
+	</div>	
+	
+	
+		<div id="tab-1" class="tab-content current">
+			<c:forEach var="list" items="${tbh}">
+				<div class="tab1_1">
+					<div class="tab1_2">
+						<span style="color: rgba( 0, 0, 0, 0.6 );">
+						<fmt:formatDate value="${list.REGDATE}" pattern="yyyy-MM-dd hh:mm:ss" /><br></span> <br> <span style="color: rgba( 0, 0, 0, 0.6 );">${list.TITLE}<br> </span> <br>
+						<c:if test="${list.TYPE==1}"><span style="font-weight: 600">소장권:${list.CNT}개</span></c:if>
+						<c:if test="${list.TYPE==2}"><span style="font-weight: 600">대여권:${list.CNT}개 </span></c:if>
+					</div>
+					<div class="tab1_3">
+						<br><span style="font-weight: 800; color:04B404; text-align: right;">${list.PRICE }캐시</span><br>
+					</div>
+				</div>
+				<hr>
+			</c:forEach>
+		</div>
+
+
+		<div id="tab-2" class="tab-content">
+			<c:forEach var="list" items="${tuh}">
+				<div class="tab1_1">
+					<div class="tab1_2">
+						<span style="color: rgba(0, 0, 0, 0.6);">
+						<fmt:formatDate value="${list.USEDATE}" pattern="yyyy-MM-dd hh:mm:ss"/><br></span>
+						<br> <span style="color: rgba(0, 0, 0, 0.6);">${list.TITLE}<br>
+						</span> <br>
+						<span style="font-weight: 600">[${list.SUBTITLE}] ${list.EPNUM}화</span>
+					</div>
+					<div class="tab1_3"><br>
+						<c:if test="${list.TYPE==1}"><span style="font-weight: 800; color: 04B404; text-align: right; ">소장 이용권 사용</span></c:if>
+						<c:if test="${list.TYPE==2}"><span style="font-weight: 800; color: 04B404; text-align: right; ">대여 이용권 사용</span></c:if>
+					</div>
+				</div>
+				<hr>
+			</c:forEach>
+		</div>
 	</div>
 </div>
-    
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#tab2").click(function(){
+		$("#btn_ticket1").css("opacity","0.5");
+	});
+	$("#tab1").click(function(){
+		$("#btn_ticket1").css("opacity","1");
+	});
+	$("#tab1").click(function(){
+		$("#btn_ticket2").css("opacity","0.5");
+	});
+	$("#tab2").click(function(){
+		$("#btn_ticket2").css("opacity","1");
+	});
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+		
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	});
+});
+
+
+	
+</script>
