@@ -79,6 +79,13 @@
 	<select id="byReadernum" resultType="project.app.almond.vo.WebcontentsVo" parameterType="int">
 	   select * from webcontents where cultype=#{cultype} order by readernum desc
 	</select>
+	<select id="byHit" resultType="project.app.almond.vo.WebcontentsVo" parameterType="int">
+	   select w.*,e.hit
+       from webcontents w,episode e
+       where w.contnum=e.contnum
+       and cultype=#{cultype}
+       order by e.hit desc
+	</select>
 </mapper>
 
 

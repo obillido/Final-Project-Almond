@@ -65,4 +65,7 @@ public class WebcontentsService {
 	public List<WebcontentsVo> byReadernum(int cultype){
 		return wdao.byReadernum(cultype);
 	}
+	public List<WebcontentsVo> byHit(int cultype){
+		return wdao.byHit(cultype);
+	}
 }

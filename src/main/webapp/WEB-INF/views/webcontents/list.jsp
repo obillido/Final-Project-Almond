@@ -7,7 +7,11 @@
    h1 em{color:#FF895A;}
    #cate{background-color:#FDE1B4;border:3px double #EA9A56;}
    #cate li a{color:black;}
-   
+   a{color:black;text-decoration:none;}
+   a:link{color: black; text-decoration: none;}
+   a:visited{color: black; text-decoration: none;}
+   a:hover{color: black; text-decoration: none;}
+
 </style>
 
 <script type="text/javascript">
@@ -15,6 +19,7 @@
 	   $("#div").click(function(){
 		   $("#listbyday").empty();
 		   $("#original").empty();
+		   $("#bySearch").empty();
 		   var dayofweek=document.getElementsByName("dayofweek")[0].value;
 		   $.ajax({
 			   url:"${path}/webcontents/listonday?dayofweek=" + dayofweek,
@@ -28,18 +33,73 @@
 					   var genre=$(this).find("genre").text();
 				  
 					   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
-				              "<div class='card h-100' onclick='location.href='${path}/webcontents/episode/list?contnum=" + contnum + "'>" +
+				              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 				              "<img class='card-img-top' src='${path}/resources/webcontents/1/" + img + "' height='300px'>" +
 				              "<div class='card-body'>" +
 				              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
 				              "<p class='card-text'>" + outline + "</p>" +
-				              "</div></div></div>";
+				              "</div></div></a></div>";
 					   $("#listbyday").append(rs);
 				   });
 			   }
 		   });
 	   });
-	   
+	   $("#div2").click(function(){
+		   $("#listbyday").empty();
+		   $("#original").empty();
+		   $("#bySearch").empty();
+		   var searchCategory=document.getElementsByName("searchCategory")[0].value;
+		   if(searchCategory=='구독자순'){
+			   $.ajax({
+				   url:"${path}/webcontents/byReadernum?cultype=${cultype}",
+				   dataType:"xml",
+				   success:function(data){
+					   $(data).find("result").each(function(){
+						   var cultype=$(this).find("cultype").text();
+						   var contnum=$(this).find("contnum").text();
+						   var title=$(this).find("title").text();
+						   var outline=$(this).find("outline").text();
+						   var img=$(this).find("img").text();
+						   var genre=$(this).find("genre").text();
+					  
+						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
+					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
+					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
+					              "<div class='card-body'>" +
+					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<p class='card-text'>" + outline + "</p>" +
+					              "</div></div></a></div>";
+						   $("#bySearch").append(rs);
+					   });
+				   }
+			   });
+		   }else if(searchCategory=='인기순'){
+			   $.ajax({
+				   url:"${path}/webcontents/byHit?cultype=${cultype}",
+				   dataType:"xml",
+				   success:function(data){
+					   console.log(data);
+					   $(data).find("result").each(function(){
+						   var cultype=$(this).find("cultype").text();
+						   var contnum=$(this).find("contnum").text();
+						   var title=$(this).find("title").text();
+						   var outline=$(this).find("outline").text();
+						   var img=$(this).find("img").text();
+						   var genre=$(this).find("genre").text();
+					  
+						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
+					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
+					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
+					              "<div class='card-body'>" +
+					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<p class='card-text'>" + outline + "</p>" +
+					              "</div></div></a></div>";
+						   $("#bySearch").append(rs);
+					   });
+				   }
+			   });
+		   }
+	   });
    });
 </script>
 
@@ -74,9 +134,9 @@
 
     <div id="div2" style="width:110px;">
     <select name="searchCategory" class="form-control">
-         <option value="월요일">인기순</option>
-         <option value="화요일">구독자순</option>
-         <option value="readernum">좋아요순</option>
+         <option value="인기순">인기순</option>
+         <option value="구독자순">구독자순</option>
+         <option value="좋아요순">좋아요순</option>
     </select>    
     </div>
     
@@ -108,9 +168,8 @@
     
     <br><br>
     
-    <div id="listbyday" class="row">   
-    </div>      
-    
+    <div id="listbyday" class="row"></div>      
+    <div id="bySearch" class="row"></div>
     
     
     <div class="row" id="original">

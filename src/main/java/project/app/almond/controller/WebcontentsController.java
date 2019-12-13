@@ -157,4 +157,44 @@ public class WebcontentsController {
 		sb.append("</result>");
 		return sb.toString();
 	}
+	@RequestMapping(value="/webcontents/byReadernum",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String byReadernum(int cultype){
+		List<WebcontentsVo> list=ws.byReadernum(cultype);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		for(WebcontentsVo vo:list){
+			sb.append("<result>");
+			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
+			sb.append("<cultype>"+vo.getCultype()+"</cultype>");
+			sb.append("<title>"+vo.getTitle()+"</title>");
+			sb.append("<genre>"+vo.getGenre()+"</genre>");
+			sb.append("<outline>"+vo.getOutline()+"</outline>");
+			sb.append("<img>"+vo.getImg()+"</img>");
+			sb.append("<readernum>"+vo.getReadernum()+"</readernum>");
+			sb.append("</result>");
+		}
+		return sb.toString();
+	}
+	@RequestMapping(value="/webcontents/byHit",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String byHit(int cultype){
+		List<WebcontentsVo> list=ws.byHit(cultype);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		for(WebcontentsVo vo:list){
+			sb.append("<result>");
+			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
+			sb.append("<cultype>"+vo.getCultype()+"</cultype>");
+			sb.append("<title>"+vo.getTitle()+"</title>");
+			sb.append("<genre>"+vo.getGenre()+"</genre>");
+			sb.append("<outline>"+vo.getOutline()+"</outline>");
+			sb.append("<img>"+vo.getImg()+"</img>");
+			sb.append("<readernum>"+vo.getReadernum()+"</readernum>");
+			sb.append("</result>");
+			System.out.println("뭐라고 나오지?" + vo.getTitle());
+		}
+		
+		return sb.toString();
+	}
 }

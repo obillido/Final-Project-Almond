@@ -58,4 +58,7 @@ public class WebcontentsDao {
 	public List<WebcontentsVo> byReadernum(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".byReadernum",cultype);
 	}
+	public List<WebcontentsVo> byHit(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".byHit",cultype);
+	}
 }
