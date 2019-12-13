@@ -171,7 +171,7 @@
 	        <div class="mytype">
 	        	<c:if test="${not empty usernum}">
 	        		<c:choose>
-	        			<c:when test="${ep.type==1}"><br>소장<br></c:when>
+	        			<c:when test="${ep.type==1}"><br><p>소장</p><br></c:when>
 	        			<c:when test="${ep.type==2 && ep.rt<=4320}"> <!-- 대여는 3일동안만 볼 수 있음 -->
 	        				<p>대여</p>
 	        				<p>
