@@ -32,4 +32,10 @@ public class EpisodeService {
 		edao.addHit(epinum);
 		return edao.getInfo(epinum);
 	}
+	public EpisodeVo getLastRead(int usernum, int contnum){
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("usernum",usernum);
+		map.put("contnum", contnum);
+		return edao.getLastRead(map);
+	}
 }

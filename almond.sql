@@ -174,7 +174,7 @@ CREATE TABLE reading
 	usernum number NOT NULL,
 	-- 열람날짜
 	readingdate date NOT NULL,
-	-- 상태   1:소장, 2:대여, 3:소장했을 때 다시 읽음, 4:대여했을때 다시 읽음 , 5:무료
+	-- 상태   1:소장, 2:대여, 3:소장했을 때 다시 읽음, 4:대여했을때 다시 읽음 , 5:무료, 6:기다리면 무료
 	type number NOT NULL,
 	PRIMARY KEY (readingnum)
 );
