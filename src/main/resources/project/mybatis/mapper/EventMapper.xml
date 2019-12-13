@@ -16,10 +16,10 @@
 		join episode e
 		on r.epinum=e.epnum
 		where r.readingdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
-			and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
+			and to_date('20191208 00:00:00','YYYYMMDD HH24:MI:SS')
 	   	order by dbms_random.value
 	   	)aa 
-		where aa.contnum=1 
+		where aa.contnum=14 
 	)	
 	where rownum<=5
 	]]>

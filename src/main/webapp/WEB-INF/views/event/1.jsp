@@ -28,7 +28,7 @@
         	이벤트 작품 한편만 봐도 캐시가 팡팡!</p>
         <ul>
           <li>하루 1편만 봐도,<br>
-          	매일 3만명에게 최대 1000캐시 뽑기권 선물!<br></li>
+          	매일 10명에게 최대 1000캐시 뽑기권 선물!<br></li>
    			<br>
           <li>하루 30편 보면,<br>
           	모두에게 최대 3000캐시 뽑기권 선물!<br></li>
@@ -36,9 +36,7 @@
           <li>하루 50편만 봐도,<br>
           	모두에게 최대 5000캐시 뽑기권 선물!<br></li>
        		 <br>
-          <li>매일 1명에게 에어팟 선물!<br>
-          	(12월 31일 개별 고지)<br></li>
-          	<br>
+         
         </ul>
       </div>
     </div>
@@ -54,9 +52,7 @@
       <div class="col-md-3 col-sm-6 mb-4">      
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/2.jpg" alt="">
       </div>
-      <div class="col-md-3 col-sm-6 mb-4">
-          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventGIFT/3.jpg" alt="">
-      </div>
+
     </div>   
     <!-- Related Projects Row -->
     <h3 class="my-4">이벤트 작품</h3>
