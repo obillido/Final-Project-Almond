@@ -23,14 +23,18 @@
 		background-color:black; color:white;
 		border-radius:10px;
 	}
-	.partial{
-		margin:-20% -20%;
+	.episode{
+		height:250px;
+	}
+	.episode .img{
+		margin:-10% -10%;
 		overflow:hidden;
 	}
-	.info{
+	.episode .text{
 		width:35%; margin-left:10px;
 	}
-	.mytype{
+	.episode .type{
+		width:12%; height:100%;
 		display:inline-block;
 		text-align:center;
 	}
@@ -59,7 +63,7 @@
 				setTimeout('$("#ownTicketUseModal").modal("hide");',900);
 			}
 			setTimeout('post_to_url(["epinum","type"],['+epinum+','+type+'])',1000);
-		}else if(type==1 || (type==2 && rt<3*24 && rt>0)){ //이전에 티켓을 사용한 경우
+		}else if(type==1 || (type==2 && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
 			if(${usernum==null}){
@@ -153,25 +157,32 @@
   <!-- 회차 목록 -->
   <c:forEach var="ep" items="${epiList}">
  		<div onclick="openEpisode(${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});" 
- 				<c:if test="${not empty ep.readingdate}">style="background-color:#F2F2F2;"</c:if>	>
+ 				<c:if test="${not empty ep.readingdate}">style="background-color:#F2F2F2;"</c:if>	class="episode">
 	    <div class="card-body">
 	      <div class="row">
-	        <div class="col-lg-6" style="max-height:200px; overflow:hidden !important">
-	            <img class="partial" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	        <div class="col-lg-6" style="max-height:210px; overflow:hidden !important">
+	            <img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
 	        </div>
-	        <div class="info">
+	        <div class="text">
 	        	<p class="card-text">
 		        	<c:if test="${ep.epnum<=wvo.freenum}">
 		        		<div class="freemark">무료</div>
 		        	</c:if>
-		          <span style="font-size:1.5em">${ep.subtitle}</span>
+		        	<span style="font-size:1.5em">
+		        	<c:choose>
+		        		<c:when test="${empty ep.subtitle}">${wvo.title} ${ep.epnum}화</c:when>
+		        		<c:otherwise>${ep.subtitle}</c:otherwise>
+		        	</c:choose>
+		          </span>
 	          </p>
 	          <p>${ep.uploaddate}</p>
 	        </div>
-	        <div class="mytype">
+	        <div class="type">
 	        	<c:if test="${not empty usernum}">
 	        		<c:choose>
-	        			<c:when test="${ep.type==1}"><br><p>소장</p><br></c:when>
+	        			<c:when test="${ep.type==1}">
+	        			<br><p>소장</p><br>
+	        			</c:when>
 	        			<c:when test="${ep.type==2 && ep.rt<=4320}"> <!-- 대여는 3일동안만 볼 수 있음 -->
 	        				<p>대여</p>
 	        				<p>
@@ -185,7 +196,7 @@
 									<p>남음</p>
 	        			</c:when>
 	        			<c:when test="${ep.type==2 && ep.rt>4320}">
-	        				<p>대여기간만료</p>
+	        				<br><p>대여기간만료</p><br>
 	        			</c:when>
 	        		</c:choose>
 	        	</c:if>

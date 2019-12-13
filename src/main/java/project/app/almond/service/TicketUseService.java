@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.app.almond.dao.MylistDao;
 import project.app.almond.dao.ReadingDao;
@@ -27,6 +28,7 @@ public class TicketUseService {
 	public List<HashMap<String, Object>> history(int usernum){
 		return tudao.history(usernum);
 	}
+	@Transactional
 	public int insert(int usernum, int contnum, int epinum, int type, Date sysdate){
 		MylistVo mvo=new MylistVo(0, contnum, usernum, 1, sysdate);
 		tudao.insert(new TicketUseVo(0, usernum, epinum, sysdate, type));

@@ -33,4 +33,7 @@ public class EpisodeDao {
 	public int addHit(int epinum){
 		return sqlSessionTemplate.update(NAMESPACE+".addHit",epinum);
 	}
+	public EpisodeVo getLastRead(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",map);
+	}
 }

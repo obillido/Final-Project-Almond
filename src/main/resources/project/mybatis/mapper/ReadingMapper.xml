@@ -9,6 +9,10 @@
 	<update id="update" parameterType="project.app.almond.vo.ReadingVo">
 		update reading set type=#{type},readingdate=#{readingdate} where usernum=#{usernum} and epinum=#{epinum}
 	</update>
+	<select id="getLastRead" parameterType="hashmap" resultType="project.app.almond.vo.EpisodeVo">
+		select ep.* from reading 
+		where readingdate=(select max(readingdate) from reading r, episode ep where r.epinum=ep.epinum and r.usernum=#{usernum} and ep.contnum=#{contnum});
+	</select>
 </mapper>
 
 

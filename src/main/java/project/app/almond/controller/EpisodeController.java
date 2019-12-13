@@ -63,6 +63,7 @@ public class EpisodeController {
 			else if(own==0 && rental==0) model.addAttribute("showTicketType",4);
 			else if(own==0)		model.addAttribute("showTicketType",2);
 			else if(rental==0)	model.addAttribute("showTicketType",1);
+			model.addAttribute("ep",es.getLastRead(usernum,contnum));
 		}else{
 			model.addAttribute("epiList",es.getList(map));
 		}
