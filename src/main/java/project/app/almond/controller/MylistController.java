@@ -41,6 +41,8 @@ public class MylistController {
 			map.put("title", wvo.getTitle());
 			map.put("cultype", wvo.getCultype());
 			map.put("img", wvo.getImg());
+			map.put("completiontype", wvo.getCompletiontype());
+			map.put("alaram", vo.getAlaram());
 			array.add(map);
 		}
         model.addAttribute("list", array);	
