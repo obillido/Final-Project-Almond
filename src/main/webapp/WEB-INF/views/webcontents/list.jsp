@@ -44,6 +44,8 @@
 			   }
 		   });
 	   });
+	   
+	   
 	   $("#div2").click(function(){
 		   $("#listbyday").empty();
 		   $("#original").empty();
