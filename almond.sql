@@ -338,6 +338,9 @@ CREATE TABLE gift
 	-- 소장권/대여권 : 1 : 소장권
 	-- 2 : 대여권
 	type number NOT NULL,
+	startdate date NOT NULL,
+	enddate date NOT NULL,
+	regdate date NOT NULL,
 	PRIMARY KEY (giftnum)
 );
 

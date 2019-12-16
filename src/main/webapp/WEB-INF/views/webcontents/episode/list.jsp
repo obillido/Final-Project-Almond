@@ -177,9 +177,19 @@
       <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
       <c:if test="${wvo.waiting>0}">
 	      <li class="list-group-item">
-	      	<div class="pro-progress">${wvo.waiting}시간마다 무료</div>
+	      	<div class="pro-progress">
+	      	<c:choose>
+	      		<c:when test="${wvo.waiting/24>=1}">
+	      			<fmt:formatNumber var="waitingDay" value="${wvo.waiting/24}" pattern="0"/>
+	      			${waitingDay}일마다 무료
+	      		</c:when>
+	      		<c:otherwise>${wvo.waiting}시간마다 무료</c:otherwise>
+	      	</c:choose>
+	      	</div>
 	      	<div class="w3-grey progress">
-					  <div class="w3-container w3-red w3-padding" style="width:70%; text-align:center;">70%</div>
+					  <div class="w3-container w3-red w3-padding" style="width:70%; text-align:center;">
+					 	 70%
+					  </div>
 					</div>
 	      </li>
       </c:if>
