@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-  
+   
 .wrap { 
     width:100%; 
     height:100%;
@@ -9,22 +9,32 @@
     /*opacity: 0.5;*/
     background-color: rgba( 192, 192, 192, 0.2 );
 }
-.d2{
+.d1{
     width: 50%;
-    height: 1000px;
+    height: 1100px;
     background: white;
     margin: auto;
     text-align: center;
     padding-top: 50px;
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
-     
+      
+}
+.d2{
+    width: 50%;
+    height: 1200px;
+    background: white;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+    font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
+      
 }
 .align_center {     /* 결제구매창 */
     width:100%; 
     height:50%; 
     position:relative;
     text-align:center; 
-     
+      
 }
 .title{
     width: 90%;
@@ -32,10 +42,10 @@
     margin-top: 30px;
     text-align: left;
     margin-left: 5%;
-    font-family: "궁서", gulim;
+    font-family: "고딕", gulim;
     font-weight: bold;
     font-size: 1.0rem;
-     
+      
 }
 .mycash{
     width: 100%;
@@ -47,7 +57,7 @@
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
     font-weight: normal;
     background-color: rgba( 192, 192, 192, 0.2 );
-     
+      
 }
 .rental{
     width: 100%;
@@ -57,7 +67,7 @@
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
     font-weight: normal;
     background-color: rgba( 192, 192, 192, 0.2 );
-     
+      
 }
 .rental_cnt1{
     text-align: center;
@@ -75,14 +85,23 @@
     text-align: center;
     padding-top: 35px;
 }
+.rental_cnt3{
+    text-align: center;
+    margin: auto;
+    width: 45%;
+    height: 100%;
+    text-align: center;
+    padding-top: 35px;  
+}
 .tab_container{
     width: 100%;
     margin: auto;
 }
 ul.tabs{
     margin: 0px;
-    padding: 0px;
+    padding: 15px;
     list-style: none;
+    height: 80px;
 }
 ul.tabs li{
     background: none;
@@ -94,7 +113,7 @@ ul.tabs li{
 ul.tabs li.current{
     background: #ededed;
     color: #222;
-    background-color: rgba( 192, 192, 192, 0.2 );
+    background-color: rgba( 255, 255, 255, 0.2 );
 }
 .tab-content{
     display: none;
@@ -105,11 +124,23 @@ ul.tabs li.current{
 .tab-content.current{
     display: inherit;
     height: 300px;
-    margin-top: -10px;
+    /*margin-top: -10px;*/
 }
 li.tab-link.current{
     border-bottom: solid;
-    border-bottom-color: darkgray;
+    border-bottom-color: darkslategray;
+}
+#tab_1{
+    float: left; 
+    width: 50%;
+}
+#tab_2{
+    float: right; 
+    width: 50%;
+}
+#tab_3{
+    margin: auto; 
+    width: 100%;
 }
 .form1{
     height: 50px;
@@ -132,7 +163,7 @@ li.tab-link.current{
     background-color: rgba( 192, 192, 192, 0.2 );
     margin-top: 5px;
 }
- 
+  
 /* form 안 가격표 */
 .tickt_cash1{
     float: right;
@@ -176,9 +207,9 @@ li.tab-link.current{
     font-weight: 700;
     color: white;
 }
- 
- 
- 
+  
+  
+  
 /* 경고문  */
 .caution{
     text-align: left;
@@ -189,14 +220,38 @@ li.tab-link.current{
 }
 .foot_caution{
     text-align: left;
-    padding-top: 40px;
+    padding-top: 10%;
     font-size: 12px;
     font-family: 돋움체;
     color: rgba( 0, 0, 0, 0.6 );
     margin-top: -80px;
     padding-left: 10px;
 }
- 
+.foot_caution1{
+    text-align: left;
+    padding-top: 110px;
+    font-size: 12px;
+    font-family: 돋움체;
+    color: rgba( 0, 0, 0, 0.6 );
+    margin-top: -80px;
+    padding-left: 10px;
+}
+.foot_caution2{
+    text-align: left;
+    font-size: 12px;
+    font-family: 돋움체;
+    color: rgba( 0, 0, 0, 0.6 );
+    margin-top: -80px;
+    padding-left: 10px;
+}
+.foot_caution3{
+    text-align: left;
+    font-size: 12px;
+    font-family: 돋움체;
+    color: rgba( 0, 0, 0, 0.6 );
+    margin-top: -150px;
+    padding-left: 10px;
+}
 #payment.btn.btn-info.btn-lg{
     margin-top: 30px;
     background-color: darkorange !important;
@@ -205,7 +260,7 @@ li.tab-link.current{
     margin-top: 30px;
     background-color: darkorange !important;
 }
- 
+  
 /* 결제버튼 시 css 영역 */
 .btn_tickybuy{
     font-family:"바탕" ,Dotun,Beakmuk Dotum,Apple Gothic,Latin font,Sans-serif;
@@ -221,5 +276,5 @@ li.tab-link.current{
     color: rgba( 0, 0, 0, 0.6 );
     background-color: rgba( 192, 192, 192, 0.2 );
 }
-
+ 
 /* 모달창 가운데 정렬 */

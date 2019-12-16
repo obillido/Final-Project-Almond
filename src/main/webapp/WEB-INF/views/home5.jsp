@@ -5,7 +5,7 @@
 <h1>윤혁</h1>
 <ul>	
 	<li><a href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${webc.contnum}'>웹툰/만화 (이용권충전페이지)</a></li>		
-	<li><a href='${pageContext.request.contextPath}/ticket/novel'>웹소설/장르 (이용권충전페이지)</a></li>	
-	<li><a href='${pageContext.request.contextPath}/ticket/drama'>예능/드라마 (이용권충전페이지)</a></li>	
-	<li><a href='${pageContext.request.contextPath}/ticket/movie'>영화 (이용권충전페이지)</a></li>	
+	<li><a href='${pageContext.request.contextPath}/ticket/novel?contnum=${webc.contnum}'>웹소설/장르 (이용권충전페이지)</a></li>	
+	<li><a href='${pageContext.request.contextPath}/ticket/drama?contnum=${webc.contnum}'>예능/드라마 (이용권충전페이지)</a></li>	
+	<li><a href='${pageContext.request.contextPath}/ticket/movie?contnum=${webc.contnum}'>영화 (이용권충전페이지)</a></li>	
 </ul>
