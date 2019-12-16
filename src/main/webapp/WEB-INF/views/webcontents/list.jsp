@@ -102,7 +102,7 @@
 					   });
 				   }
 			   });
-		   }else if(searchCategory=='좋아요순'){
+		   }else if(searchCategory=='댓글좋아요순'){
 			   $.ajax({
 				   url:"${path}/webcontents/byLikes?cultype=${cultype}",
 				   dataType:"xml",
@@ -119,7 +119,30 @@
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
 					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
-					              "<p class='card-text'>좋아요수 : " + cnt + " 개</p>" +
+					              "<p class='card-text'>댓글 좋아요수 : " + cnt + " 개</p>" +
+					              "</div></div></a></div>";
+						   $("#bySearch").append(rs);
+					   });
+				   }
+			   });
+		   }else if(searchCategory=='별점순'){
+			   $.ajax({
+				   url:"${path}/webcontents/byScore?cultype=${cultype}",
+				   dataType:"xml",
+				   success:function(data){
+					   $(data).find("result").each(function(){
+						   var cultype=$(this).find("cultype").text();
+						   var contnum=$(this).find("contnum").text();
+						   var title=$(this).find("title").text();
+						   var img=$(this).find("img").text();
+						   var score=$(this).find("score").text();
+						 
+						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
+					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
+					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
+					              "<div class='card-body'>" +
+					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<p class='card-text'>별점 : " + score + "</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
 					   });
@@ -159,11 +182,12 @@
 	
     <div id="wrap" class="row" style="padding-left:15px;">
 
-    <div id="div2" style="width:110px;">
+    <div id="div2" style="width:150px;">
     <select name="searchCategory" class="form-control" id="sc">
          <option value="조회순">조회순</option>
          <option value="구독자순">구독자순</option>
-         <option value="좋아요순">좋아요순</option>
+         <option value="댓글좋아요순">댓글좋아요순</option>
+         <option value="별점순">별점순</option>
     </select>    
     </div>
     

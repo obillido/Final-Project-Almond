@@ -55,26 +55,6 @@
 	<br><br>
 	
 	
-	<button type="button" class="btn btn-warning btn-lg">
-	  인기 에피소드 <span class="badge badge-light">Top 4</span>
-	</button>
-	<br><br>
-	<div class="row">
-	<c:forEach var="info" items="${list}">
-	  <div class="card" style="width: 16rem; margin:0px 10px;"
-	  		onclick="location.href='${path}/webcontents/episode/content?contnum=${info.CONTNUM}&epinum=${info.EPINUM}'">
-			<img src="${path}/resources/webcontents/1/${info.IMG}" class="card-img" style="width:100%; height:150px;">
-			<div class="card-img-overlay">
-			  <!-- <h5 class="card-title">Card title</h5>-->
-			  
-			</div>
-			<p class="card-text"><strong>${info.SUBTITLE }</strong></p>
-			  
-	  </div>  
-	</c:forEach>
-	</div>
-	<br>
-	
 	<hr style="border:0.6px solid lightgray;">
 	
 	

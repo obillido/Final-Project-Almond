@@ -82,7 +82,7 @@
 	<select id="byHit" resultType="hashmap" parameterType="int">
 	   select w.*,sq.tot
        from webcontents w,(select contnum,sum(e.hit) as tot from episode e group by contnum) sq
-       where sq.contnum=w.contnum
+       where sq.contnum=w.contnum and w.cultype=#{cultype}
 	</select>
 	<select id="byLikes" resultType="hashmap" parameterType="int">
 	   select sq4.contnum,count(dd) cnt
@@ -90,13 +90,21 @@
             select w.*,sq1.cc dd
             from (select e.*,sq2.bb cc
                   from (select c.*,sq3.aa bb
-                        from (select l.*,l.type as aa from commlikes l where l.type=-1) sq3,comments c
+                        from (select l.*,l.type as aa from commlikes l where l.type=1) sq3,comments c
                         where sq3.commnum=c.commnum) sq2,episode e
                  where sq2.epinum=e.epinum) sq1,webcontents w
             where sq1.contnum=w.contnum and w.cultype=#{cultype}
        ) sq4
        group by sq4.contnum
        order by cnt desc
+	</select>
+	<select id="byScore" resultType="hashmap" parameterType="int">
+	   select w.*,(sq1.ss/sq1.nn) ts
+       from (select e.*,s.score ss,s.scorenum nn
+             from score s,episode e
+             where s.epinum=e.epinum) sq1,webcontents w
+       where sq1.contnum=w.contnum and w.cultype=1
+       order by ts
 	</select>
 </mapper>
 

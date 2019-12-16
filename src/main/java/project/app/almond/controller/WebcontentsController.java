@@ -219,4 +219,21 @@ public class WebcontentsController {
 		sb.append("</result>");
 		return sb.toString();
 	}
+	@RequestMapping(value="/webcontents/byScore",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String byScore(int cultype){
+		List<HashMap<String, Object>> list=ws.byScore(cultype);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		for(HashMap<String, Object> map:list){
+			sb.append("<contnum>" +  map.get("CONTNUM") + "</contnum>");
+			sb.append("<title>" +  map.get("TITLE") + "</title>");
+			sb.append("<img>" +  map.get("IMG") + "</img>");
+			sb.append("<cultype>" +  map.get("CULTYPE") + "</cultype>");
+			sb.append("<score>" + map.get("SS") + "</score>");
+		}
+		sb.append("</result>");
+		return sb.toString();
+	}
 }

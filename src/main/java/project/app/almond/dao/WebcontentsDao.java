@@ -64,4 +64,7 @@ public class WebcontentsDao {
 	public List<HashMap<String, Object>> byLikes(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".byLikes",cultype);
 	}
+	public List<HashMap<String, Object>> byScore(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".byScore",cultype);
+	}
 }

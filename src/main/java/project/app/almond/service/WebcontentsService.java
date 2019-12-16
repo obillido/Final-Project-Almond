@@ -71,4 +71,7 @@ public class WebcontentsService {
 	public List<HashMap<String, Object>> byLikes(int cultype){
 		return wdao.byLikes(cultype);
 	}
+	public List<HashMap<String, Object>> byScore(int cultype){
+		return wdao.byScore(cultype);
+	}
 }
