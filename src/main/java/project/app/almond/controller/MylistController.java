@@ -50,7 +50,8 @@ public class MylistController {
 	}
 	@RequestMapping(value="/mylist/delete",method=RequestMethod.GET)
 	public String delete(int mylistnum){
+		System.out.println(mylistnum);
 		ms.delFromList(mylistnum);
-		return "redirect:/mylist/list";
+		return "redirect:/mylist/list";	
 	}
 }

@@ -31,4 +31,7 @@ public class MylistDao {
 	public int delFromList(int mylistnum){
 		return sqlSessionTemplate.delete(NAMESPACE + ".delFromList",mylistnum);
 	}
+	public int reduceReadernum(int mylistnum){
+		return sqlSessionTemplate.update(NAMESPACE + ".reduceReadernum",mylistnum);
+	}
 }

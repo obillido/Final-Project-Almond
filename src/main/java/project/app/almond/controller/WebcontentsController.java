@@ -124,6 +124,7 @@ public class WebcontentsController {
 		
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
 		for(WebcontentsBookVo vo:daylist){
 			sb.append("<result>");
 			sb.append("<cultype>" + 1 +"</cultype>");
@@ -135,7 +136,7 @@ public class WebcontentsController {
 			sb.append("<img>"+vo.getImg()+"</img>");
 			sb.append("</result>");
 		}
-		
+		sb.append("</wrap>");
 		return sb.toString();
 	}
 	@RequestMapping(value="/webcontents/jakpum",produces="application/xml;charset=utf-8")
@@ -165,6 +166,7 @@ public class WebcontentsController {
 		List<WebcontentsVo> list=ws.byReadernum(cultype);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
 		for(WebcontentsVo vo:list){
 			sb.append("<result>");
 			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
@@ -175,7 +177,9 @@ public class WebcontentsController {
 			sb.append("<img>"+vo.getImg()+"</img>");
 			sb.append("<readernum>"+vo.getReadernum()+"</readernum>");
 			sb.append("</result>");
+			
 		}
+		sb.append("</wrap>");
 		return sb.toString();
 	}
 	@RequestMapping(value="/webcontents/byHit",produces="application/xml;charset=utf-8")
@@ -184,8 +188,9 @@ public class WebcontentsController {
 		List<HashMap<String, Object>> list=ws.byHit(cultype);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		sb.append("<result>");
+		sb.append("<wrap>");
 		for(HashMap<String, Object> map:list){
+			sb.append("<result>");
 			sb.append("<contnum>"+ map.get("CONTNUM") +"</contnum>");
 			sb.append("<cultype>"+ map.get("CULTYPE") +"</cultype>");
 			sb.append("<title>"+ map.get("TITLE") +"</title>");
@@ -194,8 +199,9 @@ public class WebcontentsController {
 			sb.append("<img>"+ map.get("IMG") +"</img>");
 			sb.append("<readernum>"+ map.get("READERNUM") +"</readernum>");
 			sb.append("<tot>"+ map.get("TOT") +"</tot>");
+			sb.append("</result>");
 		}
-		sb.append("</result>");
+		sb.append("</wrap>");
 		return sb.toString();
 	}
 	@RequestMapping(value="/webcontents/byLikes",produces="application/xml;charset=utf-8")
@@ -204,8 +210,9 @@ public class WebcontentsController {
 		List<HashMap<String, Object>> list=ws.byLikes(cultype);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		sb.append("<result>");
+		sb.append("<wrap>");
 		for(HashMap<String, Object> map:list){
+			sb.append("<result>");
 			sb.append("<cnt>" +  map.get("CNT") + "</cnt>");
 			sb.append("<contnum>" +  map.get("CONTNUM") + "</contnum>");
 			
@@ -215,8 +222,9 @@ public class WebcontentsController {
 			sb.append("<title>" +  wvo.getTitle() + "</title>");
 			sb.append("<img>" +  wvo.getImg() + "</img>");
 			sb.append("<cultype>" +  wvo.getCultype() + "</cultype>");
+			sb.append("</result>");
 		}
-		sb.append("</result>");
+		sb.append("</wrap>");
 		return sb.toString();
 	}
 	@RequestMapping(value="/webcontents/byScore",produces="application/xml;charset=utf-8")
@@ -225,15 +233,17 @@ public class WebcontentsController {
 		List<HashMap<String, Object>> list=ws.byScore(cultype);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		sb.append("<result>");
+		sb.append("<wrap>");
 		for(HashMap<String, Object> map:list){
+			sb.append("<result>");
 			sb.append("<contnum>" +  map.get("CONTNUM") + "</contnum>");
 			sb.append("<title>" +  map.get("TITLE") + "</title>");
 			sb.append("<img>" +  map.get("IMG") + "</img>");
 			sb.append("<cultype>" +  map.get("CULTYPE") + "</cultype>");
 			sb.append("<score>" + map.get("SS") + "</score>");
+			sb.append("</result>");
 		}
-		sb.append("</result>");
+		sb.append("</wrap>");
 		return sb.toString();
 	}
 }

@@ -60,10 +60,8 @@
 					   $(data).find("result").each(function(){
 						   var cultype=$(this).find("cultype").text();
 						   var contnum=$(this).find("contnum").text();
-						   var title=$(this).find("title").text();
-						   var outline=$(this).find("outline").text();
+						   var title=$(this).find("title").text(); 
 						   var img=$(this).find("img").text();
-						   var genre=$(this).find("genre").text();
 						   var readernum=$(this).find("readernum").text();
 					  
 						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +

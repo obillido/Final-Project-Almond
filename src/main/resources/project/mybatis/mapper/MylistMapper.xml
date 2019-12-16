@@ -24,6 +24,9 @@
   <delete id="delFromList" parameterType="int">
      delete from mylist where mylistnum=#{mylistnum}
   </delete>
+  <update id="reduceReadernum" parameterType="int">
+	   update webcontents set readernum=readernum-1 where contnum=(select contnum from mylist where mylistnum=#{mylistnum})
+  </update>
 </mapper>
 
 

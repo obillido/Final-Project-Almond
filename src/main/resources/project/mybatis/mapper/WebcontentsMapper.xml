@@ -42,7 +42,7 @@
 	</select>
 	
 	<update id="addReadernum" parameterType="int">
-		update webcotents set readernum=readernum+1 where contnum=#{contnum}
+		update webcontents set readernum=readernum+1 where contnum=#{contnum}
 	</update>
 	
 	
