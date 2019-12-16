@@ -65,7 +65,10 @@ public class WebcontentsService {
 	public List<WebcontentsVo> byReadernum(int cultype){
 		return wdao.byReadernum(cultype);
 	}
-	public List<WebcontentsVo> byHit(int cultype){
+	public List<HashMap<String, Object>> byHit(int cultype){
 		return wdao.byHit(cultype);
+	}
+	public List<HashMap<String, Object>> byLikes(int cultype){
+		return wdao.byLikes(cultype);
 	}
 }

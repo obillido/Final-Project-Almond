@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-	   $("#div").click(function(){
+	   $("#dw").click(function(){
 		   $("#listbyday").empty();
 		   $("#original").empty();
 		   $("#bySearch").empty();
@@ -44,9 +44,10 @@
 			   }
 		   });
 	   });
-	   
-	   
-	   $("#div2").click(function(){
+	      
+	  
+	 
+	   $("#sc").click(function(){
 		   $("#listbyday").empty();
 		   $("#original").empty();
 		   $("#bySearch").empty();
@@ -63,24 +64,24 @@
 						   var outline=$(this).find("outline").text();
 						   var img=$(this).find("img").text();
 						   var genre=$(this).find("genre").text();
+						   var readernum=$(this).find("readernum").text();
 					  
 						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
 					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
-					              "<p class='card-text'>" + outline + "</p>" +
+					              "<p class='card-text'>구독자수 : " + readernum + " 명</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
 					   });
 				   }
 			   });
-		   }else if(searchCategory=='인기순'){
+		   }else if(searchCategory=='조회순'){
 			   $.ajax({
 				   url:"${path}/webcontents/byHit?cultype=${cultype}",
 				   dataType:"xml",
 				   success:function(data){
-					   console.log(data);
 					   $(data).find("result").each(function(){
 						   var cultype=$(this).find("cultype").text();
 						   var contnum=$(this).find("contnum").text();
@@ -88,13 +89,37 @@
 						   var outline=$(this).find("outline").text();
 						   var img=$(this).find("img").text();
 						   var genre=$(this).find("genre").text();
+						   var tot=$(this).find("tot").text();
 					  
 						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
 					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
-					              "<p class='card-text'>" + outline + "</p>" +
+					              "<p class='card-text'>조회수 : " + tot + " hits</p>" +
+					              "</div></div></a></div>";
+						   $("#bySearch").append(rs);
+					   });
+				   }
+			   });
+		   }else if(searchCategory=='좋아요순'){
+			   $.ajax({
+				   url:"${path}/webcontents/byLikes?cultype=${cultype}",
+				   dataType:"xml",
+				   success:function(data){
+					   $(data).find("result").each(function(){
+						   var cultype=$(this).find("cultype").text();
+						   var contnum=$(this).find("contnum").text();
+						   var title=$(this).find("title").text();
+						   var img=$(this).find("img").text();
+						   var cnt=$(this).find("cnt").text();
+						 
+						   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
+					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
+					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
+					              "<div class='card-body'>" +
+					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<p class='card-text'>좋아요수 : " + cnt + " 개</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
 					   });
@@ -135,8 +160,8 @@
     <div id="wrap" class="row" style="padding-left:15px;">
 
     <div id="div2" style="width:110px;">
-    <select name="searchCategory" class="form-control">
-         <option value="인기순">인기순</option>
+    <select name="searchCategory" class="form-control" id="sc">
+         <option value="조회순">조회순</option>
          <option value="구독자순">구독자순</option>
          <option value="좋아요순">좋아요순</option>
     </select>    
@@ -145,7 +170,7 @@
         <div id="div" style="width:70px;">
     <c:if test="${cultype==1}">
 
-    <select name="dayofweek" class="form-control">
+    <select name="dayofweek" class="form-control" id="dw">
          <option value="월요일"
          <c:if test="${dayofweek=='월요일'}">selected</c:if>>월</option>
          <option value="화요일"

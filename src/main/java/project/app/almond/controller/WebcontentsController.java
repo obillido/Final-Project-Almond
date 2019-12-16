@@ -3,6 +3,8 @@ package project.app.almond.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -179,22 +181,42 @@ public class WebcontentsController {
 	@RequestMapping(value="/webcontents/byHit",produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String byHit(int cultype){
-		List<WebcontentsVo> list=ws.byHit(cultype);
+		List<HashMap<String, Object>> list=ws.byHit(cultype);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		for(WebcontentsVo vo:list){
-			sb.append("<result>");
-			sb.append("<contnum>"+vo.getContnum()+"</contnum>");
-			sb.append("<cultype>"+vo.getCultype()+"</cultype>");
-			sb.append("<title>"+vo.getTitle()+"</title>");
-			sb.append("<genre>"+vo.getGenre()+"</genre>");
-			sb.append("<outline>"+vo.getOutline()+"</outline>");
-			sb.append("<img>"+vo.getImg()+"</img>");
-			sb.append("<readernum>"+vo.getReadernum()+"</readernum>");
-			sb.append("</result>");
-			System.out.println("뭐라고 나오지?" + vo.getTitle());
+		sb.append("<result>");
+		for(HashMap<String, Object> map:list){
+			sb.append("<contnum>"+ map.get("CONTNUM") +"</contnum>");
+			sb.append("<cultype>"+ map.get("CULTYPE") +"</cultype>");
+			sb.append("<title>"+ map.get("TITLE") +"</title>");
+			sb.append("<genre>"+ map.get("GENRE") +"</genre>");
+			sb.append("<outline>"+ map.get("OUTLINE") +"</outline>");
+			sb.append("<img>"+ map.get("IMG") +"</img>");
+			sb.append("<readernum>"+ map.get("READERNUM") +"</readernum>");
+			sb.append("<tot>"+ map.get("TOT") +"</tot>");
 		}
-		
+		sb.append("</result>");
+		return sb.toString();
+	}
+	@RequestMapping(value="/webcontents/byLikes",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String byLikes(int cultype){
+		List<HashMap<String, Object>> list=ws.byLikes(cultype);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		for(HashMap<String, Object> map:list){
+			sb.append("<cnt>" +  map.get("CNT") + "</cnt>");
+			sb.append("<contnum>" +  map.get("CONTNUM") + "</contnum>");
+			
+			int contnum=((BigDecimal)map.get("CONTNUM")).intValue();
+			WebcontentsVo wvo=ws.getInfo(contnum);
+			
+			sb.append("<title>" +  wvo.getTitle() + "</title>");
+			sb.append("<img>" +  wvo.getImg() + "</img>");
+			sb.append("<cultype>" +  wvo.getCultype() + "</cultype>");
+		}
+		sb.append("</result>");
 		return sb.toString();
 	}
 }

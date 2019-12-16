@@ -58,7 +58,10 @@ public class WebcontentsDao {
 	public List<WebcontentsVo> byReadernum(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".byReadernum",cultype);
 	}
-	public List<WebcontentsVo> byHit(int cultype){
+	public List<HashMap<String, Object>> byHit(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".byHit",cultype);
+	}
+	public List<HashMap<String, Object>> byLikes(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".byLikes",cultype);
 	}
 }
