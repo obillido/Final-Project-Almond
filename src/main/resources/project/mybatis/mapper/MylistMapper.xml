@@ -19,7 +19,7 @@
 		select * from mylist where contnum=#{contnum} and usernum=#{usernum}
 	</select>
   <select id="list" resultType="project.app.almond.vo.MylistVo" parameterType="int">
-     select mylistnum,contnum,usernum,alaram,readingdate from mylist where usernum=#{usernum}
+     select mylistnum,contnum,usernum,alaram,readingdate from mylist where usernum=#{usernum} order by readingdate desc
   </select>
   <delete id="delFromList" parameterType="int">
      delete from mylist where mylistnum=#{mylistnum}
