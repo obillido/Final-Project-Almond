@@ -38,4 +38,7 @@ public class EpisodeService {
 		map.put("contnum", contnum);
 		return edao.getLastRead(map);
 	}
+	public EpisodeVo getFirstEpi(int contnum){
+		return edao.getFirstEpi(contnum);
+	}
 }

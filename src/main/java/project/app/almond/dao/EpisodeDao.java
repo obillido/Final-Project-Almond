@@ -36,4 +36,7 @@ public class EpisodeDao {
 	public EpisodeVo getLastRead(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",map);
 	}
+	public EpisodeVo getFirstEpi(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",contnum);
+	}
 }

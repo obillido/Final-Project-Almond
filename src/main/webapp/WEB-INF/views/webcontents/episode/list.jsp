@@ -48,8 +48,11 @@
 		if(${msg!=null}){
 			alert(${msg});
 		}
+		
 	}
+
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
+	
 		if(epnum<=freenum || ${wvo.waiting==0}){
 			post_to_url(["epinum","type"],[epinum,5]);
 		}else if(status==1){ //티켓 사용해서 보기
@@ -87,6 +90,9 @@
 		}
 		document.body.appendChild(form);
 		form.submit();
+	}
+	function aaa(epinum){
+		$("#episode"+epinum).trigger('click');
 	}
 </script>
 
@@ -138,9 +144,28 @@
   </div>
 	<br><br>
 
+
+
 	<!-- 충전 -->
 	<div>
 		<a href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}'>충전</a>
+	</div>
+
+
+
+	<!-- 이어보기 -->
+	<div style="width:100%; text-align:center;" id="aaa" onclick="javascript:aaa(${epiLastRead.epinum})">
+		<a href="javascript:openEpisode(${epiLastRead.epinum},${epiLastRead.epnum},${wvo.freenum});" class="btn btn-primary">
+			<c:choose>
+				<c:when test="${not empty usernum && not empty epiLastRead}"><span>이어보기</span></c:when>
+				<c:otherwise><span>첫편보기</span></c:otherwise>
+			</c:choose>
+			<br>
+			<c:choose>
+				<c:when test="${empty epiLastRead.subtitle}"><span>${wvo.title} ${epiLastRead.epnum}화</span></c:when>
+				<c:otherwise><span>${epiLastRead.epnum}화 ${epiLastRead.subtitle}</span></c:otherwise>
+			</c:choose>
+		</a>
 	</div>
 
 
@@ -157,6 +182,7 @@
   <!-- 회차 목록 -->
   <c:forEach var="ep" items="${epiList}">
  		<div onclick="openEpisode(${ep.epinum},${ep.epnum},${wvo.freenum},${ep.rt},${ep.type});" 
+ 				id="episode${ep.epinum}"
  				<c:if test="${not empty ep.readingdate}">style="background-color:#F2F2F2;"</c:if>	class="episode">
 	    <div class="card-body">
 	      <div class="row">
