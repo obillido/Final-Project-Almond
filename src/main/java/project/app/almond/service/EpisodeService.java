@@ -41,4 +41,10 @@ public class EpisodeService {
 	public EpisodeVo getFirstEpi(int contnum){
 		return edao.getFirstEpi(contnum);
 	}
+	public int getTotalEpisodeCnt(int contnum){
+		return edao.getTotalEpisodeCnt(contnum);
+	}
+	public int userReadCnt(HashMap<String, Object> map){
+		return edao.userReadCnt(map);
+	}
 }

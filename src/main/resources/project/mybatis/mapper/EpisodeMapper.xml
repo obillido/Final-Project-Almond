@@ -34,6 +34,15 @@
 	<select id="getFirstEpi" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
 		select * from episode ep where ep.epnum=(select min(epnum) from episode ep where ep.contnum=#{contnum}) and ep.contnum=#{contnum}
 	</select>
+	<select id="getTotalEpisodeCnt" parameterType="int" resultType="int">
+		select nvl(count(*),0) cnt from episode ep where ep.contnum=#{contnum}
+	</select>
+	<select id="userReadCnt" parameterType="hashmap" resultType="int">
+		select nvl(count(*),0) cnt from
+			(select ep.epinum cnt from reading r, episode ep, users u
+			where ep.epinum=r.epinum and ep.contnum=#{contnum} and u.usernum=#{usernum}
+			group by ep.epinum)
+	</select>
 </mapper>
 
 

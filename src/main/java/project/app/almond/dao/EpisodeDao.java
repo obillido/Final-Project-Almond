@@ -39,4 +39,10 @@ public class EpisodeDao {
 	public EpisodeVo getFirstEpi(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",contnum);
 	}
+	public int getTotalEpisodeCnt(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalEpisodeCnt",contnum);
+	}
+	public int userReadCnt(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".userReadCnt",map);
+	}
 }

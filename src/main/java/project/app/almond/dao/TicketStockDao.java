@@ -1,5 +1,7 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +23,8 @@ public class TicketStockDao {
 	}
 	public TicketStockVo getInfo(TicketStockVo vo){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo", vo);
+	}
+	public int getTicketCnt(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getTicketCnt",map);
 	}
 }

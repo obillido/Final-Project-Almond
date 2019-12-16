@@ -41,6 +41,8 @@ public class EpisodeController {
 	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
+		HashMap<String, Object> mapCnt=new HashMap<String, Object>();
+		mapCnt.put("contnum", contnum);
 		int cultype=ws.getInfo(contnum).getCultype();
 		if(cultype==1 || cultype==2) model.addAttribute("wvo",ws.getInfoBook(contnum));
 		else 						 model.addAttribute("wvo",ws.getInfoVideo(contnum));
@@ -50,6 +52,7 @@ public class EpisodeController {
 		Object uu=session.getAttribute("usernum");
 		if(uu!=null){
 			int usernum=(Integer)uu;
+			mapCnt.put("usernum", usernum);
 			map.put("usernum",usernum);
 			model.addAttribute("epiList",es.getListforUser(map));
 			TicketStockVo tsvo1=tss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0));
@@ -69,6 +72,9 @@ public class EpisodeController {
 		}else{
 			model.addAttribute("epList",es.getList(map));
 		}
+		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
+		model.addAttribute("userEpiCnt",es.userReadCnt(mapCnt));
+		model.addAttribute("ticketCnt",tss.getTicketCnt(mapCnt));
 		return ".webcontents.episode.list";
 	}
 	

@@ -15,6 +15,9 @@
 	<select id="getInfo" parameterType="project.app.almond.vo.TicketStockVo" resultType="project.app.almond.vo.TicketStockVo">
 		select * from ticketstock where usernum=#{usernum} and contnum=#{contnum} and type=#{type}
 	</select>
+	<select id="getTicketCnt" parameterType="hashmap" resultType="int">
+		select nvl(sum(cnt),0) totCnt from ticketstock	where usernum=#{contnum} and contnum=#{contnum} 
+	</select>
 </mapper>
 
 

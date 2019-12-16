@@ -5,6 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <style>
 	.freemark{
 		background-color:red;
@@ -38,6 +41,40 @@
 		display:inline-block;
 		text-align:center;
 	}
+	
+	.lastread{
+		padding-top:13px;
+		margin-bottom:20px;
+		width:100%; height:90px;
+		border:1px solid orange;
+		background-color:orange;
+		color:black;
+		font-size:1.3em;
+	}
+	
+	.charge{
+		width:100%; height:100px;
+		border:1px solid black;
+		text-align:center;
+		margin-bottom:20px;
+		padding-top:15px;
+	}
+	.charge-text{
+		display:inline-block;
+		width:32%; height:100%;
+	}
+	.charge-text strong{font-size:1.5em;}
+	.charge-text span{font-soze:1.2em; color:grey;}
+	
+	.info-ul li{height:60px; padding-top:15px;}
+	.pro-progress{display:inline-block;}
+	.progress{
+		padding:0px !important; margin:0px !important;
+		display:inline-block;
+		width:30%; height:100%;
+		text-align:right;
+		float:right;
+	}
 </style>
 
 
@@ -48,11 +85,9 @@
 		if(${msg!=null}){
 			alert(${msg});
 		}
-		
 	}
 
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
-	
 		if(epnum<=freenum || ${wvo.waiting==0}){
 			post_to_url(["epinum","type"],[epinum,5]);
 		}else if(status==1){ //티켓 사용해서 보기
@@ -91,7 +126,7 @@
 		document.body.appendChild(form);
 		form.submit();
 	}
-	function aaa(epinum){
+	function lastread(epinum){
 		$("#episode"+epinum).trigger('click');
 	}
 </script>
@@ -132,34 +167,61 @@
 
 	<br><br>
   <div class="card h-100">
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush info-ul">
       <li class="list-group-item">
-      	<span style="color:blue !important">${wvo.readernum}</span>명이 보는 중 
+     	 <fmt:formatNumber var="readernum" value="${wvo.readernum}" pattern="0"/>
+      	<span style="color:blue !important">${readernum}</span>명이 보는 중 
       	 전체댓글
       </li>
       <li class="list-group-item">공지사항</li>
       <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
-      <c:if test="${wvo.waiting>0}"><li class="list-group-item">${wvo.waiting}시간마다 무료</li></c:if>
+      <c:if test="${wvo.waiting>0}">
+	      <li class="list-group-item">
+	      	<div class="pro-progress">${wvo.waiting}시간마다 무료</div>
+	      	<div class="w3-grey progress">
+					  <div class="w3-container w3-red w3-padding" style="width:70%; text-align:center;">70%</div>
+					</div>
+	      </li>
+      </c:if>
     </ul>
   </div>
-	<br><br>
+	<br>
 
 
 
 	<!-- 충전 -->
-	<div>
-		<a href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}'>충전</a>
+	<div class="charge">
+		<div class="charge-text">
+			<strong>${totalEpiCnt}</strong>
+			<br>
+			<span>전체</span>
+		</div>
+		<div class="charge-text">
+			<strong>${userEpiCnt}</strong>
+			<br>
+			<span>내 열람</span>
+		</div>
+		<div class="charge-text" onclick="location.href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}'">
+			<strong>${ticketCnt}</strong>
+			<span style="color:black;">충전</span>
+			<br>
+			<span>보유 이용권</span>
+		</div>
 	</div>
 
 
 
 	<!-- 이어보기 -->
-	<div style="width:100%; text-align:center;" id="aaa" onclick="javascript:aaa(${epiLastRead.epinum})">
-		<a href="javascript:openEpisode(${epiLastRead.epinum},${epiLastRead.epnum},${wvo.freenum});" class="btn btn-primary">
+	<div style="width:100%; text-align:center;" 
+			id="lastread" onclick="javascript:lastread(${epiLastRead.epinum})">
+		<a href="javascript:openEpisode(${epiLastRead.epinum},${epiLastRead.epnum},${wvo.freenum});" 
+				class="btn btn-primary lastread">
+			<strong>
 			<c:choose>
 				<c:when test="${not empty usernum && not empty epiLastRead}"><span>이어보기</span></c:when>
 				<c:otherwise><span>첫편보기</span></c:otherwise>
 			</c:choose>
+			</strong>
 			<br>
 			<c:choose>
 				<c:when test="${empty epiLastRead.subtitle}"><span>${wvo.title} ${epiLastRead.epnum}화</span></c:when>
