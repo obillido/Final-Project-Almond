@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatis.mapper.WinnerMapper">
+	<!-- 당첨자 인서트 -->
+	<insert id="winner" parameterType="project.app.almond.vo.WinnerVo">
+		insert into winner values(seq_winner_winnum.nextval,#{eventnum}, #{usernum})
+	</insert>
+	
+	<select id="check" parameterType="int" resultType="int">
+		select nvl(count(*),0) from winner where eventnum=#{eventnum}
+	</select>
+	
+	<select id="winnerselect" resultType="project.app.almond.vo.UsersVo" parameterType="int">
+		select w.usernum,u.nickname 
+		from winner w,users u
+		where w.usernum=u.usernum 
+		and eventnum=#{eventnum}
+	</select>
+</mapper>
+
+
+
+
+

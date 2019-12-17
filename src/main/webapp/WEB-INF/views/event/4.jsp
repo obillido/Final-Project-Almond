@@ -11,6 +11,13 @@
 		margin-bottom: 20px; }
 	#hint{text-align: center; padding-top: 30px;}
 </style>
+<script type="text/javascript">
+	window.onload=function(){
+		if(${msg!=null}){
+			alert("${msg}");
+		}
+	}
+</script>
 <div class="container">
 <div id="wrap">
 	<h1>QUIZ</h1>
@@ -34,9 +41,10 @@
 		<div id="hint">
 			<p>(힌트 : 견과류의 일종으로 no.1 미디어 플랫폼 이름과 같다!)<br>
 				(정답 글자수 : 3자)</p>
-			<form action="${pageContext.request.contextPath}/answer" method="post">
+			<form action="${pageContext.request.contextPath}/event4" method="post">
 				<input type="text" name="answer" style="padding: 20px; width: 60%;"
 					placeholder="ooo?"><br>
+				<input type="hidden" value="${eventnum}" name="eventnum">
 				<button style="width: 100%; margin-top:80px; padding: 20px;
 					color: white; background-color: #E56E29; font-size: 30px;">정답 제출하기</button>
 			</form>

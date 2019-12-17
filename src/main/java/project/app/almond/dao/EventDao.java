@@ -10,6 +10,7 @@ import project.app.almond.vo.CommentsEpisodeVo;
 import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
+import project.app.almond.vo.WinnerVo;
 
 @Repository
 public class EventDao {
@@ -19,8 +20,8 @@ public class EventDao {
 	public int updateCash(UsersVo vo){
 		return session.update(NAMESPACE+".updateCash",vo);
 	}
-	public List<Event2Vo> event2(){		
-		return session.selectList(NAMESPACE+".event2");
+	public List<Event2Vo> event2(int eventnum){		
+		return session.selectList(NAMESPACE+".event2",eventnum);
 	}
 	public List<CommentsEpisodeVo> event3(){
 		return session.selectList(NAMESPACE+".event3");
@@ -31,7 +32,6 @@ public class EventDao {
 	public int rullCash(UsersVo vo){
 		return session.update(NAMESPACE+".rullcash",vo);
 	}
-	
 	
 	
 }

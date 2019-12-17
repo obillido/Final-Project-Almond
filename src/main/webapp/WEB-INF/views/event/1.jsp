@@ -21,6 +21,7 @@
       <div class="col-md-8">
         <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/이벤트표지.jpg" alt="">
       </div>
+  
       <div class="col-md-4">     
         <h3 class="my-3">이벤트 상세내용</h3>
         <br>
@@ -35,10 +36,10 @@
      		 <br>
           <li>하루 50편만 봐도,<br>
           	모두에게 최대 5000캐시 뽑기권 선물!<br></li>
-       		 <br>
-         
-        </ul>
+       		 <br>      
+        </ul>      
       </div>
+
     </div>
     <!-- /.row -->
     <h3 class="my-4">경품</h3>
