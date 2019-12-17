@@ -8,4 +8,5 @@
 	<li><a href='${pageContext.request.contextPath}/ticket/novel?contnum=${webc.contnum}'>웹소설/장르 (이용권충전페이지)</a></li>	
 	<li><a href='${pageContext.request.contextPath}/ticket/drama?contnum=${webc.contnum}'>예능/드라마 (이용권충전페이지)</a></li>	
 	<li><a href='${pageContext.request.contextPath}/ticket/movie?contnum=${webc.contnum}'>영화 (이용권충전페이지)</a></li>	
+	<li><a href='${pageContext.request.contextPath}/gift/gift'>관리자 선물등록</a></li>
 </ul>

@@ -75,7 +75,7 @@
 					
 					<div class="caution">
 						- <span style="color:black">부가가치세(VAT) 5%가 포함되어 있는 가격입니다.</span><br>
-						- 대여 가능 기간 : 이용권 사용 후 3일<br>
+						- 대여 가능 기간 : 이용권 사용 후 무제한<br>
 						- 이용권 충전시간이 아닌 <span style="color:black">사용시점부터 기간 제한없이</span> 볼 수 있습니다.<br>
 						- 패키지 상품은 보너스 지급분을 제외한 유로 이용권만 취소가능합니다.<br>
 					</div>
