@@ -407,6 +407,7 @@ CREATE TABLE notice
 (
 	-- 공지사항번호
 	noticenum number NOT NULL,
+	contnum number,
 	-- 제목
 	title varchar2(100),
 	-- 내용
@@ -793,6 +794,10 @@ ALTER TABLE winner
 ;
 
 
+ALTER TABLE notice
+	ADD FOREIGN KEY (contnum)
+	REFERENCES webcontents (contnum)
+;
 
 
 

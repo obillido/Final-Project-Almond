@@ -4,12 +4,14 @@ import java.sql.Date;
 
 public class NoticeVo {
 	private int noticenum;
+	private int contnum;
 	private String title;
 	private String content;
 	private Date regdate;
 	public NoticeVo(){}
-	public NoticeVo(int noticenum, String title, String content, Date regdate) {
+	public NoticeVo(int noticenum, int contnum,String title, String content, Date regdate) {
 		this.noticenum = noticenum;
+		this.contnum = contnum;
 		this.title = title;
 		this.content = content;
 		this.regdate = regdate;
@@ -19,6 +21,12 @@ public class NoticeVo {
 	}
 	public void setNoticenum(int noticenum) {
 		this.noticenum = noticenum;
+	}
+	public int getContnum() {
+		return contnum;
+	}
+	public void setContnum(int contnum) {
+		this.contnum = contnum;
 	}
 	public String getTitle() {
 		return title;
