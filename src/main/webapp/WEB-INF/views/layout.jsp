@@ -9,6 +9,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+
+<style style="text/css">
+    body {margin:0;}
+   
+    .wrapper {
+     min-height: calc(100vh - 20px);
+    }
+
+    footer{height: 20px;}
+</style>
+
 <title>layout.jsp</title>
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,17 +36,17 @@
 
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" class="wrapper">
    <div id="header" style="margin-bottom:45px;">
       <tiles:insertAttribute name="header"/>
    </div>
    <div id="content" style="margin-top:45px;">
       <tiles:insertAttribute name="content"/>
    </div>
-   <div id="footer">
-      <tiles:insertAttribute name="footer"/>
-   </div>
 </div>
+<footer class="footer">
+   <tiles:insertAttribute name="footer"/>
+</footer>
 
 </body>
 </html>
