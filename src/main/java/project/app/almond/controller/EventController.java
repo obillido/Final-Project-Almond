@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.app.almond.service.EventService;
 import project.app.almond.vo.CommentsEpisodeVo;
+import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 
@@ -61,7 +62,7 @@ public class EventController {
 	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
 	@RequestMapping(value="/event2list")
 	public String event2select(Model model){
-		List<ReadingEpisodeVo> list=service.event2();
+		List<Event2Vo> list=service.event2();
 		model.addAttribute("list",list);
 		return ".event.event2list";
 	}

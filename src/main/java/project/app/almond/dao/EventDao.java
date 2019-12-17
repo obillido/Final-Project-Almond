@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.app.almond.vo.CommentsEpisodeVo;
+import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 
@@ -18,7 +19,7 @@ public class EventDao {
 	public int updateCash(UsersVo vo){
 		return session.update(NAMESPACE+".updateCash",vo);
 	}
-	public List<ReadingEpisodeVo> event2(){		
+	public List<Event2Vo> event2(){		
 		return session.selectList(NAMESPACE+".event2");
 	}
 	public List<CommentsEpisodeVo> event3(){

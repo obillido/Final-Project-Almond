@@ -4,7 +4,8 @@
 <h1>event2list</h1>
 <c:forEach var="vo" items="${list }">
 <p>
-	당첨유저:${vo.usernum }
+	당첨유저 : ${vo.usernum }(닉네임:${vo.nickname})
+	
 </p>
 </c:forEach>
 <br>

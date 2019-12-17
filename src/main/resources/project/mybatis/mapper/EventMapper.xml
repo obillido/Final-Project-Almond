@@ -3,28 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.EventMapper">
-	<!-- 이벤트등록 -->
-	
-	<select id="event2" resultType="project.app.almond.vo.ReadingEpisodeVo"><!-- 5명추첨 -->
-	select * from
-	<![CDATA[
+	<!-- 이벤트등록 -->	
+	<select id="event2" resultType="project.app.almond.vo.Event2Vo"><!-- 3명추첨 -->
+	select u.usernum,u.nickname,aa.eventnum from
+	<![CDATA[	
 	(
-		select aa.usernum from
-		(     
-		select r.usernum,e.contnum,r.readingdate
-		from reading r
-		join episode e
-		on r.epinum=e.epnum
-		where r.readingdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
-			and to_date('20191208 00:00:00','YYYYMMDD HH24:MI:SS')
-	   	order by dbms_random.value
-	   	)aa 
-		where aa.contnum=14 
-	)	
-	where rownum<=5
+		select r.usernum,ep.contnum,r.readingdate,ep.epnum, e.eventnum
+		from episode ep,reading r,event e
+		where ep.epinum=r.epinum
+		    and ep.contnum=e.contnum and e.name=2
+		    and r.readingdate 
+		    between to_date('20191201 00:00:00', 'yyyymmdd hh24:mi:ss') 
+		    and to_date('20191208 00:00:00','yyyymmdd hh24:mi:ss') 	     
+	)aa, users u
+	where u.usernum=aa.usernum and rownum<=3
+	group by u.usernum,u.nickname,aa.eventnum
+	order by dbms_random.value 
 	]]>
 	</select>
-	
+
+
+
+
+
+
 	<select id="event3" resultType="project.app.almond.vo.CommentsEpisodeVo"><!-- 이벤트3의 1번이벤트 -->
 		select * from
 		(
@@ -67,8 +69,15 @@
 		update users set cash=cash+1000 where usernum=1
 	</update>
 	
-	<insert id="event5insert">
-		
+
+	
+	<!-- 당첨자 인서트 -->
+	<insert id="winner" parameterType="project.app.almond.vo.WinnerVo">
+		insert into winner values(seq_winner_winnum.nextval,#{eventnum}, #{usernum})
+	</insert>
+	<!-- 당첨자중 룰렛 돌린애들 인서트 -->
+	<insert id="eventhistory" parameterType="project.app.almond.vo.EventHistoryVo">
+		insert into eventhistory values(seq_eventhistory_eventhnum.nextval,#{eventnum}, #{usernum}, #{regdate},#{price})
 	</insert>
 </mapper>
 

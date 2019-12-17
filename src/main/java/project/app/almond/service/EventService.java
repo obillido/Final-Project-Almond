@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.app.almond.dao.EventDao;
 import project.app.almond.vo.CommentsEpisodeVo;
+import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 
@@ -18,7 +19,7 @@ public class EventService {
 		edao.updateCash(vo);
 		return 1;
 	}
-	public List<ReadingEpisodeVo> event2(){
+	public List<Event2Vo> event2(){
 		return edao.event2();
 	}
 	public List<CommentsEpisodeVo> event3(){
