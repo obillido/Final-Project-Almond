@@ -108,11 +108,16 @@
        group by w.contnum
        order by ts desc
 	</select>
-	<select id="today" resultType="hashmap">
-        select w.*,sq1.uploaddate
-        from webcontents w,
-             (select contnum,max(uploaddate) uploaddate from episode where to_char(uploaddate,'YY/mm/DD')=to_char(sysdate,'YY/mm/DD') group by contnum) sq1
-        where w.contnum=sq1.contnum
+	<select id="today" resultType="hashmap">  
+        select * from
+	   (
+           select aa.*,rownum rnum from
+           (   select w.*,sq1.uploaddate
+               from webcontents w,
+                    (select contnum,max(uploaddate) uploaddate from episode where to_char(uploaddate,'YY/mm/DD')=to_char(sysdate,'YY/mm/DD') group by contnum) sq1
+               where w.contnum=sq1.contnum
+           )aa
+       )<![CDATA[ where rnum>=1 and rnum<=4 ]]>
 	</select>
 </mapper>
 

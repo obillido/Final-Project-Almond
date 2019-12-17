@@ -37,7 +37,6 @@
 				              "<img class='card-img-top' src='${path}/resources/webcontents/1/" + img + "' height='300px'>" +
 				              "<div class='card-body'>" +
 				              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
-				              "<p class='card-text'>" + outline + "</p>" +
 				              "</div></div></a></div>";
 					   $("#listbyday").append(rs);
 				   });
@@ -230,7 +229,6 @@
             <h4 class="card-title">
               <strong><mark>${info.title }</mark></strong>
             </h4>
-            <p class="card-text">${info.outline }</p>
           </div>
         </div>
       </div>

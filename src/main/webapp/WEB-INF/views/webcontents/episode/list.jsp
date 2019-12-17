@@ -88,6 +88,7 @@
 		width:100%; height:100%;
 		margin-top:2px;
 	}
+	
 </style>
 
 
@@ -159,23 +160,33 @@
       <img class="img-fluid rounded mb-4" src="${path}/resources/webcontents/${wvo.cultype}/${wvo.img}" style="width:550px; height:600px;">
     </div>
     <div class="col-lg-6">
-      <h2>${wvo.title}</h2>
+      <h2>${wvo.title}
+      <small>
+      <c:choose><c:when test="${wvo.completiontype==0}">
+      <span class="badge badge-pill badge-warning" style="font-size:0.7em">연재중</span></c:when>
+      <c:otherwise><span class="badge badge-pill badge-warning" style="font-size:0.7em">완결</span></c:otherwise>
+      </c:choose>
+      </small>
+      </h2>
       <br><br>
 			<c:choose>
 				<c:when test="${wvo.cultype==1||wvo.cultype==2}">
-					<p>${wvo.writer}</p>
-					<p>${wvo.illustrator}</p>
-					<p>${wvo.publisher}</p>
+					<p><strong>글</strong> &nbsp  ${wvo.writer}</p>
+					<c:if test="${wvo.cultype==1 }"><p><strong>그림</strong>  &nbsp ${wvo.illustrator}</p></c:if>
+					<p><strong>발행자</strong> &nbsp  ${wvo.publisher}</p>
+					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
 				</c:when>
 				<c:otherwise>
-					<p>${wvo.director}</p>
-					<p>${wvo.actor}</p>
-					<p>${wvo.runtime}분</p>
-					<p>개봉일 : ${wvo.proddate}</p>
+					<p><strong>감독</strong> &nbsp  ${wvo.director}</p>
+					<p><strong>출연</strong> &nbsp  ${wvo.actor}</p>
+					<p><strong>시간</strong> &nbsp  ${wvo.runtime}분</p>
+					<p><strong>개봉일</strong> &nbsp  ${wvo.proddate}</p>
+					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
 				</c:otherwise>
 			</c:choose>
-			<p><c:choose><c:when test="${wvo.completiontype==0}">연재중</c:when><c:otherwise>완결</c:otherwise></c:choose></p>
-			<a href="${path}/webcontents/episode/insert?contnum=${wvo.contnum}" class="btn btn-primary">회차 등록</a>
+		
+			<a href="${path}/webcontents/episode/insert?contnum=${wvo.contnum}" class="btn btn-outline-dark">회차 등록</a>
+		
     </div>
   </div>
   <!-- /.row -->
