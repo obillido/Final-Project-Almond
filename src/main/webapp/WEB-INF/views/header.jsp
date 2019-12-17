@@ -8,7 +8,7 @@
 <style>
 	.logo{width:20%; text-align:right; }
 	.category{text-align:center !important; width:30%; padding:0px 20px; }
-	.search{width:250px; min-width:220px; width:20%; text-align:center; }
+	#search{width:250px; min-width:220px; width:20%; text-align:center; }
 </style>
 
 
@@ -17,7 +17,7 @@
   
 	<div class="logo">
   	<a class="navbar-brand" href="${path}/"><img src="${path}/resources/suhyeonimages/logo.png" width="200px"></a>
-  </div>
+    </div>
   
   
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,15 +59,11 @@
     </ul>
   </div>      
  
- 
- 
-	<div class="input-group search">
-		<input type="text" class="form-control" placeholder="아직 검색 안됨" style="width:150px;">
-		<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" style="border:1px solid darkorange; background-color:darkorange; margin-left:5px;">검색</button>
-		</span>
-	</div>
-     
+
+<form id="search" class="form-inline" method="post" action="${path }/search"> 
+   <input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" style="width:200px;">
+   <button class="btn btn-secondary" type="submit" style="border:1px solid darkorange;background-color:darkorange; margin-left:5px;">검색</button>
+</form> 
  
 </nav>
 

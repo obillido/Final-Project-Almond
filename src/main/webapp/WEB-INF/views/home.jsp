@@ -65,8 +65,10 @@
 	   <div class="card" style="width:16rem;"> 
 	      <img src="${path}/resources/webcontents/${info.CULTYPE }/${info.IMG }" class="card-img-top"> 
 	      <div class="card-body">
-		     <h4 class="card-title"><strong><mark>${info.TITLE}</mark></strong></h4>
-			 <a href="${path}/webcontents/episode/list?contnum=${info.CONTNUM}&cultype=${info.CULTYPE }" class="btn btn-outline-warning">보러가기</a> 
+		     <h4 class="card-title" style="text-align:left;"><strong>${info.TITLE}</strong></h4>
+		     
+			 <a href="${path}/webcontents/episode/list?contnum=${info.CONTNUM}&cultype=${info.CULTYPE }" class="btn btn-outline-warning">보러가기</a>
+			 
 		  </div>
 	   </div>
 	</c:forEach>

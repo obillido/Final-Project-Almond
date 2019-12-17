@@ -161,7 +161,7 @@
     </div>
     <div class="col-lg-6">
       <h2>${wvo.title}
-      <small>
+      <small class="text-muted">
       <c:choose><c:when test="${wvo.completiontype==0}">
       <span class="badge badge-pill badge-warning" style="font-size:0.7em">연재중</span></c:when>
       <c:otherwise><span class="badge badge-pill badge-warning" style="font-size:0.7em">완결</span></c:otherwise>
@@ -175,6 +175,11 @@
 					<c:if test="${wvo.cultype==1 }"><p><strong>그림</strong>  &nbsp ${wvo.illustrator}</p></c:if>
 					<p><strong>발행자</strong> &nbsp  ${wvo.publisher}</p>
 					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
+					<c:choose>
+					<c:when test="${wvo.agegrade==0 }">
+					<p><strong>연령정보</strong> &nbsp  전체이용가</p></c:when>
+					<c:otherwise><p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p></c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<p><strong>감독</strong> &nbsp  ${wvo.director}</p>
@@ -182,6 +187,7 @@
 					<p><strong>시간</strong> &nbsp  ${wvo.runtime}분</p>
 					<p><strong>개봉일</strong> &nbsp  ${wvo.proddate}</p>
 					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
+					<p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p>
 				</c:otherwise>
 			</c:choose>
 		

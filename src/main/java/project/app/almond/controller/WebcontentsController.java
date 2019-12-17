@@ -252,4 +252,12 @@ public class WebcontentsController {
 		return sb.toString();
 	}
 
+    //검색 기능
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public String search(String keyword,Model model){
+		List<WebcontentsVo> list=ws.search(keyword);
+		model.addAttribute("list", list);
+		model.addAttribute("keyword",keyword);
+		return ".searchResult";
+	}
 }

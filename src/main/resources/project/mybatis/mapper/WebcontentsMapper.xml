@@ -119,6 +119,17 @@
            )aa
        )<![CDATA[ where rnum>=1 and rnum<=4 ]]>
 	</select>
+	
+	
+	
+	<!-- /////////////// 검색 기능 /////////////// -->
+	<select id="search" resultType="project.app.almond.vo.WebcontentsVo" parameterType="String">
+	   select distinct w.* from webcontents w, book b, video v 
+	   where (w.contnum=b.contnum or w.contnum=v.contnum)
+	   and (title like '%'||#{keyword}||'%' or genre like '%'||#{keyword}||'%'
+	       or writer like '%'||#{keyword}||'%' or director like '%'||#{keyword}||'%'
+	       or actor like '%'||#{keyword}||'%')
+	</select>
 </mapper>
 
 

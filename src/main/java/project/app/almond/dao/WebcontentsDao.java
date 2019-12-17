@@ -70,4 +70,7 @@ public class WebcontentsDao {
 	public List<HashMap<String, Object>> today(){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".today");
 	}
+	public List<WebcontentsVo> search(String keyword){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".search",keyword);
+	}
 }

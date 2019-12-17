@@ -77,4 +77,7 @@ public class WebcontentsService {
 	public List<HashMap<String, Object>> today(){
 		return wdao.today();
 	}
+	public List<WebcontentsVo> search(String keyword){
+		return wdao.search(keyword);
+	}
 }
