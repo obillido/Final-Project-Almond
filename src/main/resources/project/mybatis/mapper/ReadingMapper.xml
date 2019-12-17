@@ -9,7 +9,14 @@
 	<update id="update" parameterType="project.app.almond.vo.ReadingVo">
 		update reading set type=#{type},readingdate=#{readingdate} where usernum=#{usernum} and epinum=#{epinum}
 	</update>
-	
+	<select id="getRemainingWaitingTime" parameterType="hashmap" resultType="Integer">
+		select nvl((w.waiting)*60-rd.rd,0) rw from webcontents w, 
+	    (select ep.contnum, (sysdate-max(readingdate))*24*60 rd
+	    from reading r,episode ep,users u
+	    where ep.contnum=#{contnum} and u.usernum=#{usernum} and r.epinum=ep.epinum and type=6
+	    group by ep.contnum) rd
+		where w.contnum=rd.contnum
+	</select>
 </mapper>
 
 

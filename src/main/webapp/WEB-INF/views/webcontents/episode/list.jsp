@@ -34,10 +34,10 @@
 		overflow:hidden;
 	}
 	.episode .text{
-		width:35%; margin-left:10px;
+		width:32%; margin-left:10px;
 	}
 	.episode .type{
-		width:12%; height:100%;
+		width:16%; height:100%;
 		display:inline-block;
 		text-align:center;
 	}
@@ -68,12 +68,25 @@
 	
 	.info-ul li{height:60px; padding-top:15px;}
 	.pro-progress{display:inline-block;}
-	.progress{
+	.progress-box{
 		padding:0px !important; margin:0px !important;
 		display:inline-block;
-		width:30%; height:100%;
+		width:200px; height:30px;
 		text-align:right;
 		float:right;
+	}
+	.progress{
+		position:absolute; 
+		background-color:red;
+		height:30px; 		max-width:200px !important;
+		width:${remainingWaitingTime/(wvo.waiting*60)}%;
+	}
+	.progress-text{
+		position:relative;
+		color:white;
+		text-align:center;
+		width:100%; height:100%;
+		margin-top:2px;
 	}
 </style>
 
@@ -88,7 +101,11 @@
 	}
 
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
-		if(epnum<=freenum || ${wvo.waiting==0}){
+		if(${remainingWaitingTime<=0}){
+			post_to_url(["epinum","type"],[epinum,6]);
+		}else if(type==6){
+			post_to_url(["epinum","type"],[epinum,8]);
+		}else if(epnum<=freenum){
 			post_to_url(["epinum","type"],[epinum,5]);
 		}else if(status==1){ //티켓 사용해서 보기
 			$("#ticketModal"+epinum).modal("hide");
@@ -101,7 +118,7 @@
 				setTimeout('$("#ownTicketUseModal").modal("hide");',900);
 			}
 			setTimeout('post_to_url(["epinum","type"],['+epinum+','+type+'])',1000);
-		}else if(type==1 || (type==2 && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
+		}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
 			if(${usernum==null}){
@@ -167,12 +184,12 @@
 
 	<br><br>
   <div class="card h-100">
-    <ul class="list-group list-group-flush info-ul">
-      <li class="list-group-item">
-     	 <fmt:formatNumber var="readernum" value="${wvo.readernum}" pattern="0"/>
+		<ul class="list-group list-group-flush info-ul">
+			<li class="list-group-item">
+				<fmt:formatNumber var="readernum" value="${wvo.readernum}" pattern="0"/>
       	<span style="color:blue !important">${readernum}</span>명이 보는 중 
       	 전체댓글
-      </li>
+     	</li>
       <li class="list-group-item">공지사항</li>
       <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
       <c:if test="${wvo.waiting>0}">
@@ -186,10 +203,19 @@
 	      		<c:otherwise>${wvo.waiting}시간마다 무료</c:otherwise>
 	      	</c:choose>
 	      	</div>
-	      	<div class="w3-grey progress">
-					  <div class="w3-container w3-red w3-padding" style="width:70%; text-align:center;">
-					 	 70%
-					  </div>
+	      	<div class="w3-grey progress-box">
+					  <div class="progress" <c:if test="${remainingWaitingTime<=0}">style="width:100%;"</c:if>></div>
+					  <div class="progress-text">
+							<fmt:formatNumber var="rest" value="${remainingWaitingTime}" pattern="0"/>
+							<fmt:formatNumber var="day" value="${rest/60/24-(rest/60/24)%1}" pattern="0"/>
+							<fmt:formatNumber var="hour" value="${rest/60-(rest/60)%1-day*24}" pattern="0"/>
+							<c:if test="${day>=1}">${day}일</c:if>
+							<c:if test="${hour>=1}">${hour}시간</c:if>
+							<c:choose>
+								<c:when test="${remainingWaitingTime>=1}">${rest-(rest)%1-hour*60-day*60*24}분 남음</c:when>
+								<c:when test="${remainingWaitingTime<=0}">무료 열람 가능</c:when>
+								<c:otherwise>1분 미만 남음</c:otherwise>
+							</c:choose>
 					</div>
 	      </li>
       </c:if>
@@ -281,7 +307,7 @@
 	        			<c:when test="${ep.type==1}">
 	        			<br><p>소장</p><br>
 	        			</c:when>
-	        			<c:when test="${ep.type==2 && ep.rt<=4320}"> <!-- 대여는 3일동안만 볼 수 있음 -->
+	        			<c:when test="${(ep.type==2||ep.type==6) && ep.rt<=4320}"> <!-- 대여는 3일동안만 볼 수 있음 -->
 	        				<p>대여</p>
 	        				<p>
 				        		<fmt:formatNumber var="rest" value="${4320-ep.rt}" pattern="0"/>

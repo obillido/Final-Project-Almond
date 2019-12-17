@@ -1,6 +1,7 @@
 package project.app.almond.service;
 
 import java.sql.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,8 @@ public class ReadingService {
 			wdao.addReadernum(mvo.getContnum());
 		}
 		return 1;
+	}
+	public Integer getRemainingWaitingTime(HashMap<String, Object> map){
+		return rdao.getRemainingWaitingTime(map);
 	}
 }

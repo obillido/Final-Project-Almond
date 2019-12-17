@@ -1,5 +1,7 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,8 @@ public class ReadingDao {
 	}
 	public int update(ReadingVo vo){
 		return sqlSessionTemplate.update(NAMESPACE+".update",vo);
+	}
+	public Integer getRemainingWaitingTime(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getRemainingWaitingTime",map);
 	}
 }

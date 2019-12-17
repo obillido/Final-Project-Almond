@@ -26,4 +26,7 @@ public class CommentsDao {
 	public List<CommentsInfoVo> getList(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getList",map);
 	}
+	public int getTotalCommCnt(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalCommCnt",contnum);
+	}
 }

@@ -25,4 +25,7 @@ public class CommentsService {
 	public List<CommentsInfoVo> getList(HashMap<String, Object> map){
 		return cdao.getList(map);
 	}
+	public int getTotalCommCnt(int contnum){
+		return cdao.getTotalCommCnt(contnum);
+	}
 }

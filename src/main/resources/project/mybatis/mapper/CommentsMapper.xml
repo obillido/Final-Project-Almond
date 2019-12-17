@@ -21,6 +21,10 @@
 		where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+) and c.commnum=cl.commnum(+) and c.commnum=ch.commnum(+)
 		order by c.ref desc, c.step asc
 	</select>
+	<select id="getTotalCommCnt" parameterType="int" resultType="int">
+		select nvl(count(ep.epinum),0) from comments c, episode ep 
+		where c.epinum=ep.epinum and ep.contnum=#{contnum} group by ep.contnum
+	</select>
 </mapper>
 
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import project.app.almond.service.CommentsService;
 import project.app.almond.service.EpisodeService;
 import project.app.almond.service.ReadingService;
 import project.app.almond.service.TicketStockService;
@@ -38,11 +39,12 @@ public class EpisodeController {
 	@Autowired private ReadingService rs;
 	@Autowired private TicketStockService tss;
 	@Autowired private TicketUseService tus;
+	@Autowired private CommentsService cs;
 	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
-		HashMap<String, Object> mapCnt=new HashMap<String, Object>();
-		mapCnt.put("contnum", contnum);
+		HashMap<String, Object> map2=new HashMap<String, Object>();
+		map2.put("contnum", contnum);
 		int cultype=ws.getInfo(contnum).getCultype();
 		if(cultype==1 || cultype==2) model.addAttribute("wvo",ws.getInfoBook(contnum));
 		else 						 model.addAttribute("wvo",ws.getInfoVideo(contnum));
@@ -52,7 +54,7 @@ public class EpisodeController {
 		Object uu=session.getAttribute("usernum");
 		if(uu!=null){
 			int usernum=(Integer)uu;
-			mapCnt.put("usernum", usernum);
+			map2.put("usernum", usernum);
 			map.put("usernum",usernum);
 			model.addAttribute("epiList",es.getListforUser(map));
 			TicketStockVo tsvo1=tss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0));
@@ -69,12 +71,18 @@ public class EpisodeController {
 			EpisodeVo evor=es.getLastRead(usernum,contnum);
 			if(evor==null) evor=es.getFirstEpi(contnum);
 			model.addAttribute("epiLastRead",evor);
+			if(rs.getRemainingWaitingTime(map2)!=null){
+				model.addAttribute("remainingWaitingTime",rs.getRemainingWaitingTime(map2));
+			}else{
+				model.addAttribute("remainingWaitingTime",0);
+			}
 		}else{
 			model.addAttribute("epList",es.getList(map));
 		}
 		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
-		model.addAttribute("userEpiCnt",es.userReadCnt(mapCnt));
-		model.addAttribute("ticketCnt",tss.getTicketCnt(mapCnt));
+		model.addAttribute("userEpiCnt",es.userReadCnt(map2));
+		model.addAttribute("ticketCnt",tss.getTicketCnt(map2));
+		model.addAttribute("totalCommCnt",cs.getTotalCommCnt(contnum));
 		return ".webcontents.episode.list";
 	}
 	
