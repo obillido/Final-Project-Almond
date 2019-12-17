@@ -1,5 +1,6 @@
 
 /* Drop Tables */
+DROP TABLE alarm CASCADE CONSTRAINTS;
 
 DROP TABLE commLikes CASCADE CONSTRAINTS;
 DROP TABLE comments CASCADE CONSTRAINTS;
@@ -82,6 +83,34 @@ CREATE SEQUENCE SEQ_winner_winnum INCREMENT BY 1 START WITH 1;
 
 
 /* Create Tables */
+
+
+-- 알람
+CREATE TABLE alarm
+(
+	-- 알람번호
+	alarmnum number NOT NULL,
+	-- 회원번호
+	usernum number NOT NULL,
+	-- 제목
+	title varchar2(100),
+	-- 내용
+	content varchar2(500),
+	-- 등록일
+	regdate date NOT NULL,
+	-- 타입 : 1 : 이벤트
+	-- 2 : 기다리면 무료
+	-- 3 : 작품 업로드 알림
+	-- 4 : ...
+	-- 
+	status number NOT NULL,
+	-- 번호 : 이벤트참조면 이벤트번호
+	-- 기다리면 무료면 작품번호
+	-- 작품 업로드면 작품번호
+	-- 
+	num number,
+	PRIMARY KEY (alarmnum)
+);
 
 
 
@@ -799,6 +828,11 @@ ALTER TABLE notice
 	REFERENCES webcontents (contnum)
 ;
 
+
+ALTER TABLE alarm
+	ADD FOREIGN KEY (usernum)
+	REFERENCES users (usernum)
+;
 
 
 

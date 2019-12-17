@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import project.app.almond.scheduler.AlarmScheduler;
 import project.app.almond.service.CommentsService;
 import project.app.almond.service.EpisodeService;
 import project.app.almond.service.ReadingService;
@@ -26,10 +27,7 @@ import project.app.almond.service.TicketStockService;
 import project.app.almond.service.TicketUseService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.EpisodeVo;
-import project.app.almond.vo.MylistVo;
-import project.app.almond.vo.ReadingVo;
 import project.app.almond.vo.TicketStockVo;
-import project.app.almond.vo.TicketUseVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Controller
@@ -40,9 +38,11 @@ public class EpisodeController {
 	@Autowired private TicketStockService tss;
 	@Autowired private TicketUseService tus;
 	@Autowired private CommentsService cs;
+	@Autowired AlarmScheduler scheduler;
 	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
+		scheduler.startScheduler();
 		HashMap<String, Object> map2=new HashMap<String, Object>();
 		map2.put("contnum", contnum);
 		int cultype=ws.getInfo(contnum).getCultype();
