@@ -1,5 +1,7 @@
 package project.app.almond.controller;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.app.almond.service.WebcontentsService;
+import project.app.almond.vo.WebcontentsVo;
 
 @Controller
 public class HomeController {
@@ -19,8 +22,22 @@ public class HomeController {
 	@RequestMapping(value = "/")
 	public String home(HttpSession session,Model model) {
 		session.setAttribute("usernum", 1);
-		int cultype=1;
-		List<HashMap<String, Object>> list=ws.top4(cultype);
+		
+		HashMap<String, Object> aa=new HashMap<String, Object>();
+		
+		List<HashMap<String, Object>> list=ws.today();
+		for(HashMap<String, Object> map:list){
+			aa.put("uploaddate", map.get("UPLOADDATE"));
+			
+			int contnum=((BigDecimal)map.get("CONTNUM")).intValue();
+			WebcontentsVo wvo=ws.getInfo(contnum);	
+						
+			aa.put("contnum", wvo.getContnum());
+			aa.put("cultype", wvo.getCultype());
+			aa.put("title", wvo.getTitle());
+			aa.put("img", wvo.getImg());
+		}
+	
 		model.addAttribute("list", list);
 		return ".layout";
 	}

@@ -83,6 +83,7 @@
 	   select w.*,sq.tot
        from webcontents w,(select contnum,sum(e.hit) as tot from episode e group by contnum) sq
        where sq.contnum=w.contnum and w.cultype=#{cultype}
+       order by tot desc
 	</select>
 	<select id="byLikes" resultType="hashmap" parameterType="int">
 	   select sq4.contnum,count(dd) cnt
@@ -99,12 +100,19 @@
        order by cnt desc
 	</select>
 	<select id="byScore" resultType="hashmap" parameterType="int">
-	   select w.*,(sq1.ss/sq1.nn) ts
-       from (select e.*,s.score ss,s.scorenum nn
+	   select w.contnum,sum(sq1.ss)/count(sq1.ns) ts
+       from (select e.*,s.score ss,s.scorenum ns
              from score s,episode e
              where s.epinum=e.epinum) sq1,webcontents w
-       where sq1.contnum=w.contnum and w.cultype=1
-       order by ts
+       where sq1.contnum=w.contnum and w.cultype=#{cultype}
+       group by w.contnum
+       order by ts desc
+	</select>
+	<select id="today" resultType="hashmap">
+        select w.*,sq1.uploaddate
+        from webcontents w,
+             (select contnum,max(uploaddate) uploaddate from episode where to_char(uploaddate,'YY/mm/DD')=to_char(sysdate,'YY/mm/DD') group by contnum) sq1
+        where w.contnum=sq1.contnum
 	</select>
 </mapper>
 

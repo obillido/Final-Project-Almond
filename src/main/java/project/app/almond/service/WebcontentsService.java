@@ -74,4 +74,7 @@ public class WebcontentsService {
 	public List<HashMap<String, Object>> byScore(int cultype){
 		return wdao.byScore(cultype);
 	}
+	public List<HashMap<String, Object>> today(){
+		return wdao.today();
+	}
 }

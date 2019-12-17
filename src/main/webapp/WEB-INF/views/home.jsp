@@ -54,9 +54,26 @@
 	</div>
 	<br><br>
 	
+	<button type="button" class="btn btn-warning btn-lg">
+	 	오늘의 업데이트 <span class="badge badge-light">Up</span>
+	</button>
 	
+	<br><br>
+	
+	<div class="row" id="upList">
+	<c:forEach var="info" items="${list }">
+	   <div class="card" style="width:16rem;"> 
+	      <img src="${path}/resources/webcontents/${info.CULTYPE }/${info.IMG }" class="card-img-top"> 
+	      <div class="card-body">
+		     <h4 class="card-title"><strong><mark>${info.TITLE}</mark></strong></h4>
+			 <a href="${path}/webcontents/episode/list?contnum=${info.CONTNUM}&cultype=${info.CULTYPE }" class="btn btn-outline-warning">보러가기</a> 
+		  </div>
+	   </div>
+	</c:forEach>
+	</div>
+	
+	<br><br>
 	<hr style="border:0.6px solid lightgray;">
-	
 	
 	<br>
 	<button type="button" class="btn btn-warning btn-lg">
@@ -84,6 +101,8 @@
 <style>
    #jakpumList img{width:250px;height:200px;}
    #jakpumList div{margin-left:20px;}
+   #upList img{width:250px;height:200px;}
+   #upList div{margin-left:20px;}
 </style>
 
 <script type="text/javascript">
@@ -99,9 +118,7 @@
 					   var jp="<div class='card' style='width:16rem;'>" + 
 					          "<img src='${path}/resources/webcontents/" + $(this).find("cultype").text() + "/" + $(this).find("img").text() + "' class='card-img-top'>" + 
 						      "<div class='card-body'>" + 
-						      "<h6 class='card-title'>작품명 : <strong>" + $(this).find("title").text() + "</strong></h6>" + 
-						      "<p class='card-text'>구독자수 : " + $(this).find("readernum").text() + "</p>" + 
-					          "<p class='card-text'>장르 : " + $(this).find("genre").text() + "</p>" + 
+						      "<h4 class='card-title'><strong><mark>" + $(this).find("title").text() + "</mark></strong></h4>" + 
 					          "<a href='${path}/webcontents/episode/list?contnum=" + $(this).find("contnum").text() + "&cultype=" + $(this).find("cultype").text() + "' class='btn btn-outline-warning'>보러가기</a>" + 
 					          "</div></div>";
 					   console.log(jp);

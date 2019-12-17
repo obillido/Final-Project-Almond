@@ -67,4 +67,7 @@ public class WebcontentsDao {
 	public List<HashMap<String, Object>> byScore(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".byScore",cultype);
 	}
+	public List<HashMap<String, Object>> today(){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".today");
+	}
 }

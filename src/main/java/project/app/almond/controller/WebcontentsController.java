@@ -236,14 +236,20 @@ public class WebcontentsController {
 		sb.append("<wrap>");
 		for(HashMap<String, Object> map:list){
 			sb.append("<result>");
+			sb.append("<score>" + map.get("TS") + "</score>");
 			sb.append("<contnum>" +  map.get("CONTNUM") + "</contnum>");
-			sb.append("<title>" +  map.get("TITLE") + "</title>");
-			sb.append("<img>" +  map.get("IMG") + "</img>");
-			sb.append("<cultype>" +  map.get("CULTYPE") + "</cultype>");
-			sb.append("<score>" + map.get("SS") + "</score>");
+			
+			int contnum=((BigDecimal)map.get("CONTNUM")).intValue();
+			WebcontentsVo wvo=ws.getInfo(contnum);
+			
+			sb.append("<title>" +  wvo.getTitle() + "</title>");
+			sb.append("<img>" +  wvo.getImg() + "</img>");
+			sb.append("<cultype>" +  wvo.getCultype() + "</cultype>");
+			
 			sb.append("</result>");
 		}
 		sb.append("</wrap>");
 		return sb.toString();
 	}
+
 }
