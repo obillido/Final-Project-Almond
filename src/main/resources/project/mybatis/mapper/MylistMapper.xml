@@ -27,6 +27,13 @@
   <update id="reduceReadernum" parameterType="int">
 	   update webcontents set readernum=readernum-1 where contnum=(select contnum from mylist where mylistnum=#{mylistnum})
   </update>
+  <select id="array1" parameterType="hashmap" resultType="project.app.almond.vo.WebcontentsVo">
+     select w.*
+     from mylist m,webcontents w
+     where m.contnum=w.contnum
+           and m.usernum=#{usernum}
+           and cultype=#{cultype};
+  </select>
 </mapper>
 
 

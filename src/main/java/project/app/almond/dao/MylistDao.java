@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.app.almond.vo.MylistVo;
+import project.app.almond.vo.WebcontentsVo;
 
 @Repository
 public class MylistDao {
@@ -33,5 +34,8 @@ public class MylistDao {
 	}
 	public int reduceReadernum(int mylistnum){
 		return sqlSessionTemplate.update(NAMESPACE + ".reduceReadernum",mylistnum);
+	}
+	public List<WebcontentsVo> array1(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".array1",map);
 	}
 }

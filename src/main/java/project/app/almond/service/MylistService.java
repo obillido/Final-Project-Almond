@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import project.app.almond.dao.MylistDao;
 import project.app.almond.vo.MylistVo;
+import project.app.almond.vo.WebcontentsVo;
 
 @Service
 public class MylistService {
@@ -33,5 +34,8 @@ public class MylistService {
 	}
 	public int update(MylistVo vo){
 		return mdao.update(vo);
+	}
+	public List<WebcontentsVo> array1(HashMap<String, Object> map){
+		return mdao.array1(map);
 	}
 }

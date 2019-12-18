@@ -1,5 +1,6 @@
 package project.app.almond.controller;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.app.almond.service.MylistService;
 import project.app.almond.service.WebcontentsService;
@@ -53,5 +55,28 @@ public class MylistController {
 		System.out.println(mylistnum);
 		ms.delFromList(mylistnum);
 		return "redirect:/mylist/list";	
+	}
+	@RequestMapping(value="/mylist/array1",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String array1(HttpSession session,int cultype){
+		int usernum=(Integer)session.getAttribute("usernum");
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("usernum", usernum);
+		map.put("cultype", cultype);
+		List<WebcontentsVo> list=ms.array1(map);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
+		for(WebcontentsVo vo:list){
+			sb.append("<result>");
+			sb.append("<contnum>" +  vo.getContnum() + "</contnum>");
+			sb.append("<title>" + vo.getTitle() + "</title>");
+			sb.append("<img>" + vo.getImg() + "</img>");
+			sb.append("<cultype>" + vo.getCultype() + "</cultype>");
+			sb.append("<completiontype>" + vo.getCompletiontype() + "</completiontype>");
+			sb.append("</result>");
+		}
+		sb.append("</wrap>");
+		return sb.toString();
 	}
 }
