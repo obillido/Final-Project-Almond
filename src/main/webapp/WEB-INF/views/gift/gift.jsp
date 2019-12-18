@@ -4,6 +4,14 @@
 
 <link href="${pageContext.request.contextPath}/resources/gift/gift.css" rel="stylesheet">
 
+<script type="text/javascript">
+	window.onload=function(){
+		if(${code!=null}){
+			alert("${code}");
+		}
+	}
+</script>
+
 <div class="wrap">
 	<div class="d1">
 

@@ -41,8 +41,8 @@
 						<span style="color: rgba(0, 0, 0, 0.6);">
 						<fmt:formatDate value="${list.USEDATE}" pattern="yyyy-MM-dd hh:mm:ss"/><br></span>
 						<br> <span style="color: rgba(0, 0, 0, 0.6);">${list.TITLE} 
-						<c:if test="${list.COMPLETIONTYPE==0}">[완결]</c:if>
-						<c:if test="${list.COMPLETIONTYPE==1}">[연재중]</c:if><br>
+						<c:if test="${list.COMPLETIONTYPE==0}">[연재중]</c:if>
+						<c:if test="${list.COMPLETIONTYPE==1}">[완결]</c:if><br>
 						</span> <br>
 						<span style="font-weight: 600">${list.SUBTITLE} ${list.EPNUM}화</span>
 					</div>

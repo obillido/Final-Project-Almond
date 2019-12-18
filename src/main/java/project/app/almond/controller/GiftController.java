@@ -1,6 +1,9 @@
 package project.app.almond.controller;
 
+
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,18 +11,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import project.app.almond.service.GiftService;
 import project.app.almond.service.TicketService;
+import project.app.almond.service.WebcontentsService;
+import project.app.almond.vo.GiftVo;
+import project.app.almond.vo.WebcontentsVo;
 
 @Controller
 public class GiftController {
 	@Autowired private TicketService ts;
+	@Autowired private GiftService gs;
+	@Autowired private WebcontentsService ws;
 	
-	@RequestMapping("/gift/gift")
-	public String giftinsert(){
+	@RequestMapping(value="/gift/gift")
+	public String giftlist(){
 		return ".gift.gift";
 	}
+	
 	@RequestMapping(value="/gift/giftList",method=RequestMethod.GET)
-	public String giftlist(int cultype,Model model){
+	public String regiForm(int cultype,Model model, WebcontentsVo vo){
+		List<WebcontentsVo> gvo=gs.list(cultype);
+		model.addAttribute("gvo", gvo);
 		model.addAttribute("cultype",cultype);
 		ArrayList<String> genreList=new ArrayList<String>();
 		if(cultype==1){
@@ -47,8 +59,16 @@ public class GiftController {
 		}
 		model.addAttribute("genreList",genreList);
 		model.addAttribute("ticketList",ts.getInfoList(cultype));
-		return ".gift.giftlist";
+		return ".gift.giftlist1";
 	}
 	
-	
+	@RequestMapping(value="/gift/regi",method=RequestMethod.POST)
+	public String regi(GiftVo vo, Model model){
+		int n=gs.giftinsert(vo);
+		if(n>0){
+			return "redirect:/gift/gift";
+		}else{
+			return "redirect:/gift/gift";
+		}
+	}
 }
