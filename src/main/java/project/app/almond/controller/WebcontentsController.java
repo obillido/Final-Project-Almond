@@ -121,7 +121,6 @@ public class WebcontentsController {
 	@ResponseBody
 	public String listonday(String dayofweek){
 		List<WebcontentsBookVo> daylist=ws.listonday(dayofweek);
-		
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<wrap>");

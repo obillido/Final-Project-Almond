@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-	   $("#dw").click(function(){
+	   $("#dw").change(function(){
 		   $("#listbyday").empty();
 		   $("#original").empty();
 		   $("#bySearch").empty();
@@ -25,19 +25,20 @@
 			   url:"${path}/webcontents/listonday?dayofweek=" + dayofweek,
 			   dataType:"xml",
 			   success:function(data){
+				
 				   $(data).find("result").each(function(){
 					   var contnum=$(this).find("contnum").text();
 					   var title=$(this).find("title").text();
 					   var outline=$(this).find("outline").text();
 					   var img=$(this).find("img").text();
 					   var genre=$(this).find("genre").text();
-				  
 					   var rs="<div class='col-lg-4 col-sm-6 portfolio-item'>" +
 				              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 				              "<img class='card-img-top' src='${path}/resources/webcontents/1/" + img + "' height='300px'>" +
 				              "<div class='card-body'>" +
 				              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 				              "</div></div></a></div>";
+				      
 					   $("#listbyday").append(rs);
 				   });
 			   }
@@ -191,6 +192,7 @@
         <div id="div" style="width:70px;">
     <c:if test="${cultype==1}">
 
+ 
     <select name="dayofweek" class="form-control" id="dw">
          <option value="월요일"
          <c:if test="${dayofweek=='월요일'}">selected</c:if>>월</option>
@@ -207,6 +209,7 @@
          <option value="일요일"
          <c:if test="${dayofweek=='일요일'}">selected</c:if>>일</option>
     </select>
+
     </c:if>
     </div>
     
