@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.AlarmMapper">
-	<insert id="insert" parameterType="project.app.almond.AlarmVo">
+	<insert id="insert" parameterType="project.app.almond.vo.AlarmVo">
 		insert into alarm values(seq_alarm_alarmnum.nextval,#{title},#{content},sysdate,#{status},#{num})
 	</insert>
 </mapper>

@@ -60,8 +60,8 @@
   </div>      
  
 
-<form id="search" class="form-inline" method="post" action="${path }/search"> 
-   <input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" style="width:200px;">
+<form id="search" class="form-inline" method="post" action="${path }/search" style="min-width:265px;"> 
+   <input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" style="min-width:200px;">
    <button class="btn btn-secondary" type="submit" style="border:1px solid darkorange;background-color:darkorange; margin-left:5px;">검색</button>
 </form> 
  
