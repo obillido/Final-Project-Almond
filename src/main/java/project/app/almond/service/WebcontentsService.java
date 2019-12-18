@@ -11,6 +11,7 @@ import project.app.almond.dao.BookDao;
 import project.app.almond.dao.VideoDao;
 import project.app.almond.dao.WebcontentsDao;
 import project.app.almond.vo.BookVo;
+import project.app.almond.vo.ScoreVo;
 import project.app.almond.vo.VideoVo;
 import project.app.almond.vo.WebcontentsBookVo;
 import project.app.almond.vo.WebcontentsVideoVo;
@@ -79,5 +80,9 @@ public class WebcontentsService {
 	}
 	public List<WebcontentsVo> search(String keyword){
 		return wdao.search(keyword);
+	}
+	
+	public int score(ScoreVo vo){
+		return wdao.score(vo);
 	}
 }

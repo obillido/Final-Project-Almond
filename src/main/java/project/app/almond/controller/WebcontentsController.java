@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import project.app.almond.service.TicketService;
 import project.app.almond.service.WebcontentsService;
 import project.app.almond.vo.BookVo;
+import project.app.almond.vo.ScoreVo;
 import project.app.almond.vo.VideoVo;
 import project.app.almond.vo.WebcontentsBookVo;
 import project.app.almond.vo.WebcontentsVo;
@@ -258,5 +259,24 @@ public class WebcontentsController {
 		model.addAttribute("list", list);
 		model.addAttribute("keyword",keyword);
 		return ".searchResult";
+	}
+	
+	//별점 기능
+	@RequestMapping(value="/webcontents/score",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String byScore(int stars,HttpSession session,int epinum){
+		int usernum=(Integer)session.getAttribute("usernum");
+		ScoreVo vo=new ScoreVo(0, epinum, usernum, stars);
+		int n=ws.score(vo);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
+		if(n>0){
+			sb.append("<code>성공</code>");
+		}else{
+			sb.append("<code>실패</code>");
+		}
+		sb.append("</wrap>");
+		return sb.toString();
 	}
 }

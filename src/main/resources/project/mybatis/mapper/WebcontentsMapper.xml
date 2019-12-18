@@ -100,7 +100,7 @@
        order by cnt desc
 	</select>
 	<select id="byScore" resultType="hashmap" parameterType="int">
-	   select w.contnum,sum(sq1.ss)/count(sq1.ns) ts
+	   select w.contnum,trunc(sum(sq1.ss)/count(sq1.ns),1) ts
        from (select e.*,s.score ss,s.scorenum ns
              from score s,episode e
              where s.epinum=e.epinum) sq1,webcontents w
@@ -130,6 +130,11 @@
 	       or writer like '%'||#{keyword}||'%' or director like '%'||#{keyword}||'%'
 	       or actor like '%'||#{keyword}||'%')
 	</select>
+	
+	<!-- /////////////// 별점 기능 /////////////// -->
+	<insert id="score" parameterType="project.app.almond.vo.ScoreVo">
+	   insert into score values(seq_score_scorenum.nextval,#{epinum},#{usernum},#{score})
+	</insert>
 </mapper>
 
 

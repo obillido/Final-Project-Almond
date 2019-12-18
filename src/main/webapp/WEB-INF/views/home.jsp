@@ -22,7 +22,7 @@
 	  </ol>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active">
-	      <a href="${path}/webcontents/episode/list?contnum=81">
+	      <a href="${path}/webcontents/episode/list?contnum=98">
 	      <img src="${path}/resources/suhyeonimages/111.jpg" class="d-block w-100">
 	      </a>
 	      <div class="carousel-caption d-none d-md-block">

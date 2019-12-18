@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import project.app.almond.vo.ScoreVo;
 import project.app.almond.vo.WebcontentsBookVo;
 import project.app.almond.vo.WebcontentsVideoVo;
 import project.app.almond.vo.WebcontentsVo;
@@ -72,5 +73,9 @@ public class WebcontentsDao {
 	}
 	public List<WebcontentsVo> search(String keyword){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".search",keyword);
+	}
+	
+	public int score(ScoreVo vo){
+		return sqlSessionTemplate.insert(NAMESPACE + ".score",vo);
 	}
 }

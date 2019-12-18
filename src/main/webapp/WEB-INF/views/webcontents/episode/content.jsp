@@ -9,11 +9,45 @@
 	.hates-click{width:80px; display:inline-block; padding:2px; background-color:white; border:2px solid red; color:red;}
 	.likesImg{width:18px; }
 	.likesCnt{display:inline-block; width:45px; margin:0px 2px; text-align:center;}
+    #star_grade a{
+        text-decoration: none;
+        color: gray;
+    }
+    #star_grade a.on{
+        color: red;
+    }
 </style>
 	
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		/////////별점
+		$("#star_grade a").removeAttr("href");
+		$("#star_grade a").click(function(){
+            $(this).parent().children("a").removeClass("on"); 
+            $(this).addClass("on").prevAll("a").addClass("on"); 
+		});
+		var stars=$("#star_grade a").attr("value");
+        $("#score").click(function(){
+			$.ajax({
+				url:"${path}/webcontents/score?stars=" + stars + "&epinum=${evo.epinum}",
+				dataType:"xml",
+				success:function(data){
+					if($(data).find("code").text()=='성공'){
+						alert("별점이 반영되었습니다.");
+					}else{
+						alert("요청작업에 실패했습니다.");
+					}
+					
+				}
+			});
+		});
+		
+		
+		
+		
+		
+	
 		list();			
 		$("#commInsert").click(function(){
 			var comment=$("#comment").val();
@@ -119,7 +153,7 @@
 	
 	
 	// 댓글 스크립트
-	
+
 </script>
 	
 
@@ -140,9 +174,17 @@
 
 	<hr>
 
-	<!-- 별점 -->
+<!-- ////////// 별점 ////////// -->
 
-	
+이번 화는 5점 만점에 몇 점~~~?&nbsp;&nbsp;
+<p id="star_grade" style="display:inline-block;font-size: 1.5em;">
+  <a href="#" value="1">★</a>
+  <a href="#" value="2">★</a>
+  <a href="#" value="3">★</a>
+  <a href="#" value="4">★</a>
+  <a href="#" value="5">★</a>
+</p>&nbsp;&nbsp;
+<button id="score" class="btn btn-outline-secondary" style="display:inline-block">별점 주기</button>	
 
 
 

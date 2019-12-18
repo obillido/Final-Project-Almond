@@ -36,16 +36,17 @@
 
 
 
-<div id="container" class="card">
-
+<div id="container" class="card" style="border:0.5px solid black;">
+<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현재 보유 캐시&nbsp;&nbsp <strong>${totCash }원</strong></h5>
+<br><br>
 <div id="inner">
- 
+
 <form method="post" action="${path}/cash/charge" onsubmit="return chk()">
    <input type="hidden" name="usernum" value="${usernum }"><br>
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p><strong><mark>충전단위</mark></strong></p>
+					<h5><strong><mark>충전단위</mark></strong></h5>
 					<div class="custom-control custom-radio">
 						<input type="radio" name="cashamount" id="cashamount1" class="custom-control-input" value="1000" checked="checked">
 						<label class="custom-control-label" for="cashamount1">1,000캐시</label>
@@ -67,7 +68,7 @@
 						<label class="custom-control-label" for="cashamount5">100,000캐시</label>
 					</div>
 					<br><br>
-					<p><strong><mark>결제방법</mark></strong></p>
+					<h5><strong><mark>결제방법</mark></strong></h5>
 					<div class="custom-control custom-radio">
 						<input type="radio" name="paymethod" id="paymethod1" class="custom-control-input" value="신용카드" checked="checked">
 						<label class="custom-control-label" for="paymethod1">신용카드</label>
