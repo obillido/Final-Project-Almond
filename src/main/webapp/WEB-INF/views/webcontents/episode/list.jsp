@@ -102,12 +102,10 @@
 	}
 
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
-		if(${remainingWaitingTime<=0}){
-			post_to_url(["epinum","type"],[epinum,6]);
-		}else if(type==6){
-			post_to_url(["epinum","type"],[epinum,8]);
-		}else if(epnum<=freenum){
+		if(epnum<=freenum){
 			post_to_url(["epinum","type"],[epinum,5]);
+		}else if(${remainingWaitingTime<=0}){
+			post_to_url(["epinum","type"],[epinum,6]);
 		}else if(status==1){ //티켓 사용해서 보기
 			$("#ticketModal"+epinum).modal("hide");
 			if(type==2){
