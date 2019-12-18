@@ -22,21 +22,27 @@
 	  </ol>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active">
+	      <a href="${path}/webcontents/episode/list?contnum=81">
 	      <img src="${path}/resources/suhyeonimages/111.jpg" class="d-block w-100">
+	      </a>
 	      <div class="carousel-caption d-none d-md-block">
-	        <h5>이어질 듯 말 듯, 아찔한 로맨스</h5>
-	        <p>연하의 곰신</p>
+	        <h5>상큼달콤한 힐링 동거 로맨스</h5>
+	        <p>우리집 우렁이는</p>
 	      </div>
 	    </div>
 	    <div class="carousel-item">
+	      <a href="${path}/webcontents/episode/list?contnum=82">
 	      <img src="${path}/resources/suhyeonimages/이벤트2.png" class="d-block w-100">
+	      </a>
 	      <div class="carousel-caption d-none d-md-block">
 	        <h5>딸바보가 된 희대의 폭군</h5>
 	        <p>황제의 외동딸</p>
 	      </div>
 	    </div>
 	    <div class="carousel-item">
+	      <a href="${path}/webcontents/episode/list?contnum=83">
 	      <img src="${path}/resources/suhyeonimages/제3.png" class="d-block w-100">
+	      </a>
 	      <div class="carousel-caption d-none d-md-block">
 	        <h5>곧 죽을 건데 뭐 어때</h5>
 	        <p>시녀의 유혹</p>

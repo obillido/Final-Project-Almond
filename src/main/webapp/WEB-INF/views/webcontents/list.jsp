@@ -36,7 +36,7 @@
 				              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 				              "<img class='card-img-top' src='${path}/resources/webcontents/1/" + img + "' height='300px'>" +
 				              "<div class='card-body'>" +
-				              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+				              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 				              "</div></div></a></div>";
 					   $("#listbyday").append(rs);
 				   });
@@ -67,7 +67,7 @@
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
-					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 					              "<p class='card-text'>구독자수 : " + readernum + " 명</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
@@ -92,7 +92,7 @@
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
-					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 					              "<p class='card-text'>조회수 : " + tot + " hits</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
@@ -115,7 +115,7 @@
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
-					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 					              "<p class='card-text'>댓글 좋아요수 : " + cnt + " 개</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
@@ -138,7 +138,7 @@
 					              "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'><div class='card h-100'>" +
 					              "<img class='card-img-top' src='${path}/resources/webcontents/" + cultype + "/"  + img + "' height='300px'>" +
 					              "<div class='card-body'>" +
-					              "<h4 class='card-title'><strong><mark>" + title + "</mark></strong></h4>" + 
+					              "<h5 class='card-title'><strong><mark>" + title + "</mark></strong></h5>" + 
 					              "<p class='card-text'>별점 : " + score + "</p>" +
 					              "</div></div></a></div>";
 						   $("#bySearch").append(rs);
@@ -226,9 +226,9 @@
         <div class="card h-100" onclick="location.href='${path}/webcontents/episode/list?contnum=${info.contnum}'">
           <img class="card-img-top" src="${path}/resources/webcontents/${cultype}/${info.img}" height="300px">
           <div class="card-body">
-            <h4 class="card-title">
+            <h5 class="card-title">
               <strong><mark>${info.title }</mark></strong>
-            </h4>
+            </h5>
           </div>
         </div>
       </div>
