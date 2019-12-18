@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +44,10 @@ public class EventController {
 	@RequestMapping(value="/event2", method=RequestMethod.POST)
 	public String event2select(int eventnum,Model model){
 		int n=0;
-		if(ws.check(eventnum)==0){
+		if(ws.check(eventnum)==0){//당첨버튼 누르기 전이면 실행
 			n=service.event2(eventnum);	
 			if(n<1) model.addAttribute("msg","실패");
-		}else{
+		}else{//당첨버튼 눌러서 당첨자 나오면 당첨자 리스트에 담기
 			List<UsersVo> list=ws.select(eventnum);
 			model.addAttribute("list",list);
 			model.addAttribute("msg","이미 실행된 이벤트입니다.");
@@ -55,51 +56,75 @@ public class EventController {
 		
 		return ".event.2";
 	}
+	//home2에서 이벤트4를 눌렀을때
+	@RequestMapping(value="/event4", method=RequestMethod.GET)
+	public String event4(int eventnum,Model model){		
+		model.addAttribute("eventnum",eventnum);
+		List<UsersVo> list=ws.select(eventnum);
+		if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
+		return ".event.4";
+	}
+	//아몬드 입력하고 확인버튼 눌렀을때
+	@RequestMapping(value="/event4",method=RequestMethod.POST)
+	public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo){						
+			if(ws.check(eventnum)==0){//이벤트참여한적 없으면
+				if(answer.equals("아몬드")){
+					int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
+					if(a>0){
+						model.addAttribute("msg","성공");
+					}else{ 
+						model.addAttribute("msg","실패");		
+					}
+				}else{
+					model.addAttribute("msg","정답이아닙니다.");
+				}
+			}else{
+				List<UsersVo> list=ws.select(eventnum);//참여한 사람들 리스트에 담기
+				model.addAttribute("list",list);
+				model.addAttribute("msg","이미 실행된 이벤트입니다.");
+			}
+			model.addAttribute("eventnum",eventnum);
+			return ".event.4";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/event3")
 	public String event3(){
 		return ".event.3";
 	}
-	@RequestMapping(value="/event4",method=RequestMethod.GET)
-	public String event4(int eventnum,Model model){
-		model.addAttribute("eventnum",eventnum);
-		List<UsersVo> list=ws.select(eventnum);
-		if(list!=null) model.addAttribute("list",list);
-		return ".event.4";
-	}
-	@RequestMapping(value="/event4", method=RequestMethod.POST)
-	public String answer(Model model,UsersVo vo,WinnerVo vo1,String answer,int eventnum,int usernum){	
-		try{	
-			int n=0;
-			if(ws.check(eventnum)==0){
-				n=service.updateCash(vo,eventnum,usernum);	
-				n=ws.insert(vo1);
-				if(n<1) model.addAttribute("msg","실패");
-			}else{
-				List<UsersVo> list=ws.select(eventnum);
-				model.addAttribute("list",list);
-				model.addAttribute("msg","이미 참여하셨습니다.");
-			}
-		}catch(Exception e){		
-			e.printStackTrace();
-		}
-			model.addAttribute("eventnum",eventnum);
-			
-			return ".event.4";	
 	
-	}
 	@RequestMapping("/event5")
 	public String event5(){
 		return ".event.5";
 	}
-	
-	
-	
-	
-	
-	
-
-	
-	
 	//event3 추첨사람 뽑아오기(댓글)
 	@RequestMapping(value="/event3list")
 	public String event3select(Model model){
@@ -123,7 +148,7 @@ public class EventController {
 			sb.append("<?xml version='1.0' encoding='utf-8'?>");
 			sb.append("<result>");
 			if(cash>0){
-				service.updateCash(vo);
+				//service.updateCash(vo);
 				sb.append("<code>success</code>");
 			}else{
 				sb.append("<code>fail</code>");

@@ -46,7 +46,7 @@
 					placeholder="ooo?"><br>
 				<input type="hidden" value="${eventnum}" name="eventnum">
 				<button style="width: 100%; margin-top:80px; padding: 20px;
-					color: white; background-color: #E56E29; font-size: 30px;">정답 제출하기</button>
+					color: white; background-color: #E56E29; font-size: 30px;" type="submit">정답 제출하기</button>
 			</form>
 		</div>
 	</div>

@@ -25,15 +25,31 @@ public class EventService {
 	public void setEventDao(EventDao eventDao){
 		this.edao=eventDao;
 	}
+	
+	
+	
+	
+	
 	@Transactional
-	public int updateCash(UsersVo vo,int eventnum,HttpSession session){//scope로 유저번호 넘기기..?
-		int usernum=req
-		int n=edao.updateCash(vo);	
-		if(n>0){
-			wdao.winner(new WinnerVo(0,eventnum,usernum));
-		}
-		return 1;
+	public int event4(UsersVo vo,int eventnum,HttpSession session){//scope로 유저번호 넘기기..?
+		int usernum;
+		Object un=session.getAttribute("usernum");
+		if(un!=null){
+			usernum=(Integer)un;
+			wdao.winner(new WinnerVo(0, eventnum, usernum));
+			edao.event4cash(usernum);
+		}			 
+		return 1;	
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	@Transactional
 	public int event2(int eventnum){
 		List<Event2Vo> list=edao.event2(eventnum);

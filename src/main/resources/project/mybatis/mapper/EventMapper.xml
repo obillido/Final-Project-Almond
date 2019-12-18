@@ -23,10 +23,11 @@
 	]]>
 	</select>
 
-	<update id="updateCash" parameterType="project.app.almond.vo.UsersVo">
-		update users set cash=cash+1000 where usernum=1
+	<update id="event4cash" parameterType="int">
+		update users set cash=cash+1000 where usernum=#{usernum}
 	</update>
 	
+
 
 	<select id="event3" resultType="project.app.almond.vo.CommentsEpisodeVo"><!-- 이벤트3의 1번이벤트 -->
 		select * from

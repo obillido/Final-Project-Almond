@@ -7,11 +7,11 @@
 	<insert id="winner" parameterType="project.app.almond.vo.WinnerVo">
 		insert into winner values(seq_winner_winnum.nextval,#{eventnum}, #{usernum})
 	</insert>
-	
+	<!-- 해당이벤트 당첨자 몇명인지 -->
 	<select id="check" parameterType="int" resultType="int">
 		select nvl(count(*),0) from winner where eventnum=#{eventnum}
 	</select>
-	
+	<!-- 해당이벤트 당첨자 리스트 -->
 	<select id="winnerselect" resultType="project.app.almond.vo.UsersVo" parameterType="int">
 		select w.usernum,u.nickname 
 		from winner w,users u

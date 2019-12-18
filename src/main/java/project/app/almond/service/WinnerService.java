@@ -12,6 +12,7 @@ import project.app.almond.vo.WinnerVo;
 @Service
 public class WinnerService {
 	@Autowired private WinnerDao wdao;
+	
 	public int check(int eventnum){//몇명이 존재하는지확인
 		return wdao.check(eventnum);
 	}
