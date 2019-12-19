@@ -18,11 +18,11 @@ public class GiftDao {
 	public int giftinsert(GiftVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".giftinsert", vo);
 	}
-	public List<WebcontentsVo> list(int cultype){
-		return sqlSessionTemplate.selectList(NAMESPACE + ".list", cultype);
-	}
 	public int insertbox(GiftHistoryVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".insertbox", vo);
 	}
-	
+
+	public List<HashMap<String, Object>> getList(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".getList", usernum);
+	}
 }

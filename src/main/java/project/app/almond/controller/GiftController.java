@@ -3,6 +3,7 @@ package project.app.almond.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,7 +33,7 @@ public class GiftController {
 	
 	@RequestMapping(value="/gift/giftList",method=RequestMethod.GET)
 	public String regiForm(int cultype,Model model, WebcontentsVo vo){
-		List<WebcontentsVo> gvo=gs.list(cultype);
+		List<WebcontentsVo> gvo=ws.getList(cultype);
 		model.addAttribute("gvo", gvo);
 		model.addAttribute("cultype",cultype);
 		ArrayList<String> genreList=new ArrayList<String>();
@@ -71,10 +72,9 @@ public class GiftController {
 	}
 	
 	@RequestMapping(value="/gift/giftbox")
-	public String giftbox(HttpSession session, Model model, int contnum){
+	public String giftbox(HttpSession session, Model model){
 		int usernum=(Integer)session.getAttribute("usernum");
-		WebcontentsVo wv=ws.getInfo(contnum);
-		model.addAttribute("wv",wv);
+		model.addAttribute("wv",gs.getList(usernum));
 		return "gift/giftbox";
 	}
 	

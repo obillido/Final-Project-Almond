@@ -18,8 +18,8 @@ public class GiftService {
 	public int giftinsert(GiftVo vo){
 		return giftDao.giftinsert(vo);
 	}
-	public List<WebcontentsVo> list(int cultype){
-		return giftDao.list(cultype);
+	public List<HashMap<String, Object>> getList(int usernum){
+		return giftDao.getList(usernum);
 	}
 
 	

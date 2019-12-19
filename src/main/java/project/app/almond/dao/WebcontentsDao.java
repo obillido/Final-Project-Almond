@@ -78,4 +78,8 @@ public class WebcontentsDao {
 	public int score(ScoreVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".score",vo);
 	}
+	
+	public List<WebcontentsVo> getList(int cultype){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getList",cultype);
+	}
 }

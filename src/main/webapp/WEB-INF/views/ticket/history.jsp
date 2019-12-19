@@ -3,15 +3,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<link href="${pageContext.request.contextPath}/resources/ticket/history.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/ticket/history1.css" rel="stylesheet">
 
 <div class="body">
 	<div class="container">
 	
 	<div class="head">
 		<ul class="tabs">
-			<li class="tab-link current" data-tab="tab-1" id="tab1"><span id="btn_ticket1" style="font-weight: 600; text-decoration: underline; font-family: 고딕;">이용권 충전 내역</span></li>
-			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; opacity: 0.5; text-decoration: underline; font-family: 고딕;">이용권 사용 내역</span></li>
+			<li class="tab-link current" data-tab="tab-1" id="tab1"><span id="btn_ticket1" style="font-weight: 600; font-family: 고딕; ">이용권 충전 내역</span></li>
+			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; opacity: 0.5; font-family: 고딕;">이용권 사용 내역</span></li>
 		</ul>
 	</div>	
 	
@@ -63,16 +63,16 @@
 
 $(document).ready(function(){
 	$("#tab2").click(function(){
-		$("#btn_ticket1").css("opacity","0.5");
+		$("#tab1").css("opacity","0.5");
 	});
 	$("#tab1").click(function(){
-		$("#btn_ticket1").css("opacity","1");
+		$("#tab1").css("opacity","1");
 	});
 	$("#tab1").click(function(){
-		$("#btn_ticket2").css("opacity","0.5");
+		$("#tab2").css("opacity","0.5");
 	});
 	$("#tab2").click(function(){
-		$("#btn_ticket2").css("opacity","1");
+		$("#tab2").css("opacity","1");
 	});
 	
 	$('ul.tabs li').click(function(){

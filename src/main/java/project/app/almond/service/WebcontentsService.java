@@ -85,4 +85,8 @@ public class WebcontentsService {
 	public int score(ScoreVo vo){
 		return wdao.score(vo);
 	}
+	
+	public List<WebcontentsVo> getList(int cultype){
+		return wdao.getList(cultype);
+	}
 }
