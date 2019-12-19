@@ -6,9 +6,16 @@
 	<insert id="giftinsert" parameterType="project.app.almond.vo.GiftVo" >
 		insert into gift values(SEQ_GIFT_GIFTNUM.nextval,#{contnum},#{cnt},#{type},#{startdate},#{enddate},sysdate)
 	</insert>
+	
 	<select id="list" parameterType="int" resultType="project.app.almond.vo.WebcontentsVo">
 		select * from webcontents where cultype=#{cultype}
 	</select>
+	
+	<insert id="insertbox" parameterType="project.app.almond.vo.GiftHistoryVo" >
+		insert into gifthistory values(SEQ_GIFTHISTORY_GIFTHNUM.nextval,#{gifthnum},#{giftnum},#{usernum},sysdate)
+	</insert>
+	
+
 </mapper>
 
 

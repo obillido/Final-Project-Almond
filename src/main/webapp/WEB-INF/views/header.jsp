@@ -52,6 +52,7 @@
           <a class="dropdown-item" href="${path}/mylist/list">보관함</a>
           <a class="dropdown-item" id="ticket_history" href="javascript:popupOpen();">이용권 내역</a>
           <a class="dropdown-item" href="#">이벤트/쿠폰</a>
+          <a class="dropdown-item" id="giftbox" href="javascript:giftOpen();">선물함</a>
           <a class="dropdown-item" href="${path}/inquiry/inquirypage">1:1문의</a>
           <a class="dropdown-item" href="#">로그아웃</a>
         </div>
@@ -70,6 +71,7 @@
 <script type="text/javascript" src="resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 var wnd;
+var wnd1;
 function popupOpen(form){
 	var popupX = (window.screen.width / 2) - (580 / 2);
 	var popupY= (window.screen.height /2) - (730 / 2);
@@ -79,6 +81,16 @@ function popupOpen(form){
 		wnd.close();
 	}
 	wnd = window.open(popUrl, '', 'status=no, height=710, width=510, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+}
+function giftOpen(form){
+	var popupX = (window.screen.width / 2) - (580 / 2);
+	var popupY= (window.screen.height /2) - (730 / 2);
+	var popUrl = "${pageContext.request.contextPath}/gift/giftbox";
+	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";
+	if(wnd1){
+		wnd1.close();
+	}
+	wnd1 = window.open(popUrl, '', 'status=no, height=710, width=510, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 }
 	
 </script>

@@ -1,11 +1,13 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import project.app.almond.vo.GiftHistoryVo;
 import project.app.almond.vo.GiftVo;
 import project.app.almond.vo.WebcontentsVo;
 
@@ -19,4 +21,8 @@ public class GiftDao {
 	public List<WebcontentsVo> list(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".list", cultype);
 	}
+	public int insertbox(GiftHistoryVo vo){
+		return sqlSessionTemplate.insert(NAMESPACE + ".insertbox", vo);
+	}
+	
 }

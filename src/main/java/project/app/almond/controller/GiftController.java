@@ -5,6 +5,8 @@ package project.app.almond.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,10 +67,15 @@ public class GiftController {
 	@RequestMapping(value="/gift/regi",method=RequestMethod.POST)
 	public String regi(GiftVo vo, Model model){
 		int n=gs.giftinsert(vo);
-		if(n>0){
 			return "redirect:/gift/gift";
-		}else{
-			return "redirect:/gift/gift";
-		}
 	}
+	
+	@RequestMapping(value="/gift/giftbox")
+	public String giftbox(HttpSession session, Model model, int contnum){
+		int usernum=(Integer)session.getAttribute("usernum");
+		WebcontentsVo wv=ws.getInfo(contnum);
+		model.addAttribute("wv",wv);
+		return "gift/giftbox";
+	}
+	
 }
