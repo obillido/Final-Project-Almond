@@ -82,4 +82,10 @@ public class WebcontentsDao {
 	public List<WebcontentsVo> getList(int cultype){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getList",cultype);
 	}
+	public ScoreVo existInScore(HashMap<String, Object> map){
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".existInScore",map);
+	}
+	public int thisEpiScore(int epinum){
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".thisEpiScore",epinum);
+	}
 }

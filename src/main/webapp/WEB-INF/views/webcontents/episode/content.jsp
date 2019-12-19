@@ -21,13 +21,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		/////////별점
+		/////////별점/////////
+		var stars;
 		$("#star_grade a").removeAttr("href");
 		$("#star_grade a").click(function(){
             $(this).parent().children("a").removeClass("on"); 
-            $(this).addClass("on").prevAll("a").addClass("on"); 
+            $(this).addClass("on").prevAll("a").addClass("on");
+            stars=$(this).attr("value");
+            
 		});
-		var stars=$("#star_grade a").attr("value");
         $("#score").click(function(){
 			$.ajax({
 				url:"${path}/webcontents/score?stars=" + stars + "&epinum=${evo.epinum}",
@@ -35,8 +37,10 @@
 				success:function(data){
 					if($(data).find("code").text()=='성공'){
 						alert("별점이 반영되었습니다.");
-					}else{
+					}else if($(data).find("code").text()=='실패'){
 						alert("요청작업에 실패했습니다.");
+					}else{
+						alert("이미 별점을 주셨었습니다.");
 					}
 					
 				}
@@ -175,7 +179,10 @@
 	<hr>
 
 <!-- ////////// 별점 ////////// -->
-
+<br>
+이번 화의 평균 별점은 <strong>${episcore }</strong>입니다.
+<br>
+고객님께서도 소중한 별점을 주세요 :)
 이번 화는 5점 만점에 몇 점~~~?&nbsp;&nbsp;
 <p id="star_grade" style="display:inline-block;font-size: 1.5em;">
   <a href="#" value="1">★</a>

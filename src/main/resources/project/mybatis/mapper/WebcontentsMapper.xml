@@ -135,7 +135,12 @@
 	<insert id="score" parameterType="project.app.almond.vo.ScoreVo">
 	   insert into score values(seq_score_scorenum.nextval,#{epinum},#{usernum},#{score})
 	</insert>
-	
+	<select id="existInScore" parameterType="hashmap" resultType="project.app.almond.vo.ScoreVo">
+	   select * from score where usernum=#{usernum} and epinum=#{epinum}
+	</select>
+	<select id="thisEpiScore" parameterType="int" resultType="int">
+	   select round(sum(score)/count(scorenum),0) as episcore from score where epinum=#{epinum}
+	</select>
 	
 	
 	

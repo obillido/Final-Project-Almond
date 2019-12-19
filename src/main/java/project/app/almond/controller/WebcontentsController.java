@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -266,17 +265,33 @@ public class WebcontentsController {
 	@ResponseBody
 	public String byScore(int stars,HttpSession session,int epinum){
 		int usernum=(Integer)session.getAttribute("usernum");
-		ScoreVo vo=new ScoreVo(0, epinum, usernum, stars);
-		int n=ws.score(vo);
+		
 		StringBuffer sb=new StringBuffer();
-		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		sb.append("<wrap>");
-		if(n>0){
-			sb.append("<code>성공</code>");
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("usernum", usernum);
+		map.put("epinum", epinum);
+		ScoreVo evo=ws.existInScore(map);
+		if(evo==null){
+			ScoreVo vo=new ScoreVo(0, epinum, usernum, stars);
+			int n=ws.score(vo);
+			
+			sb.append("<?xml version='1.0' encoding='utf-8'?>");
+			sb.append("<wrap>");
+			if(n>0){
+				sb.append("<code>성공</code>");
+			}else{
+				sb.append("<code>실패</code>");
+			}
+			sb.append("</wrap>");
 		}else{
-			sb.append("<code>실패</code>");
+			sb.append("<?xml version='1.0' encoding='utf-8'?>");
+			sb.append("<wrap>");
+			sb.append("<code>존재</code>");
+			sb.append("</wrap>");
 		}
-		sb.append("</wrap>");
+		
+		
 		return sb.toString();
 	}
 }

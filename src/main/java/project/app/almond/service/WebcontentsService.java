@@ -85,6 +85,12 @@ public class WebcontentsService {
 	public int score(ScoreVo vo){
 		return wdao.score(vo);
 	}
+	public ScoreVo existInScore(HashMap<String, Object> map){
+		return wdao.existInScore(map);
+	}
+	public int thisEpiScore(int epinum){
+		return wdao.thisEpiScore(epinum);
+	}
 	
 	public List<WebcontentsVo> getList(int cultype){
 		return wdao.getList(cultype);

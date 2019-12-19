@@ -148,9 +148,13 @@ public class EpisodeController {
 				model.addAttribute("msg","열람실패");
 				return "redirect:/webcontents/episode/list";
 			}
+			
 		}
+	
+		
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
+		
 		return ".webcontents.episode.content";
 	}
 }
