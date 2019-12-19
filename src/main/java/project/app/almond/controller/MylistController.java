@@ -63,17 +63,20 @@ public class MylistController {
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("usernum", usernum);
 		map.put("cultype", cultype);
-		List<WebcontentsVo> list=ms.array1(map);
+		List<HashMap<String, Object>> list=ms.array1(map);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<wrap>");
-		for(WebcontentsVo vo:list){
+		for(HashMap<String, Object> mymap:list){
 			sb.append("<result>");
-			sb.append("<contnum>" +  vo.getContnum() + "</contnum>");
-			sb.append("<title>" + vo.getTitle() + "</title>");
-			sb.append("<img>" + vo.getImg() + "</img>");
-			sb.append("<cultype>" + vo.getCultype() + "</cultype>");
-			sb.append("<completiontype>" + vo.getCompletiontype() + "</completiontype>");
+			sb.append("<contnum>" +  mymap.get("CONTNUM") + "</contnum>");
+			sb.append("<title>" + mymap.get("TITLE") + "</title>");
+			sb.append("<img>" + mymap.get("IMG") + "</img>");
+			sb.append("<cultype>" + mymap.get("CULTYPE") + "</cultype>");
+			sb.append("<completiontype>" + mymap.get("COMPLETIONTYPE") + "</completiontype>");
+			sb.append("<mylistnum>" + mymap.get("MYLISTNUM") + "</mylistnum>");
+			sb.append("<alaram>" + mymap.get("ALARAM") + "</alaram>");
+			sb.append("<readingdate>" + mymap.get("READINGDATE") + "</readingdate>");
 			sb.append("</result>");
 		}
 		sb.append("</wrap>");

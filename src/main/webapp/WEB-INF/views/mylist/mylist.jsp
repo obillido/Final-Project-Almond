@@ -20,6 +20,52 @@
  
 </style>
 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#array1").change(function(){
+		$("#wrap1").empty();
+		var cultype=document.getElementsByName("cultype")[0].value;
+		$.ajax({
+			url:"${path}/mylist/array1?cultype=" + cultype,
+			dataType:"xml",
+			success:function(data){
+				console.log(data);
+				$(data).find("result").each(function(){
+					var cultype=$(this).find("cultype").text();
+					var contnum=$(this).find("contnum").text();
+					var img=$(this).find("img").text();
+					var title=$(this).find("title").text();
+					var completiontype=$(this).find("completiontype").text();
+					var alaram=$(this).find("alaram").text();
+					var readingdate=$(this).find("readingdate").text();
+					var mylistnum=$(this).find("mylistnum").text();
+				
+					var rs="<div class='row no-gutters'>" +
+					       "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>"
+				           "<div class='col-md-4'>" + 
+				           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'>" +
+				           "</div><div class='col-md-8'><div class='card-body'><h3 class='card-title'>" +
+				           "<strong>" + title + "</strong><small>" +
+				           "<c:if test='" + completion + "==0'><span class='badge badge-pill badge-secondary'>완결</span></c:if>" +
+				           "<c:if test='" + completion + "==1'><span class='badge badge-pill badge-secondary'>연재중</span></c:if>" +
+				           "</small></h3><br>" +
+				           "<c:if test='" + alaram + "==1'>" +
+				           "<a href='#'><img src='${path }/resources/suhyeonimages/유알람.png' width='30'></a></c:if>" +
+				           "<c:if test='" + alaram + "==2'>" +
+				           "<a href='#'><img src='${path }/resources/suhyeonimages/무알람.png' width='30'></a></c:if>" +
+				           "<br><br>" +
+				           "<a href='${path }/mylist/delete?mylistnum=" + mylistnum + "' class='btn btn-outline-secondary'>보관함에서 삭제</a>" +
+				           "</div></div></div>";
+				    $("#wrap1").append(rs);
+				});
+			}
+		});
+	});
+});
+</script>
+
+
 <div id="container">
 <br>
 <input type="button" id="title" class="btn-3d green" value="My List" disabled="disabled">
@@ -38,7 +84,7 @@
 </div>
 <br>
 <c:forEach var="info" items="${list }">
-<div class="card mb-3" style="width:700px" id="wrap">
+<div class="card mb-3" style="width:700px" id="wrap1">
   <div class="row no-gutters">
     <div class="col-md-4" onclick="location.href='${path}/webcontents/episode/list?contnum=${info.contnum}'">
       <img src="${path}/resources/webcontents/${info.cultype}/${info.img}" class="card-img" height="300" id="img">
@@ -67,46 +113,4 @@
 </c:forEach>
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#array1").click(function(){
-		$("#wrap").empty();
-		var cultype=document.getElementsByName("cultype")[0].value;
-		$.ajax({
-			url:"${path}/mylist/array1?cultype=" + cultype,
-			dataType:"xml",
-			success:function(data){
-				$(data).find("result").each(function(){
-					var cultype=$(this).find("cultype").text();
-					var contnum=$(this).find("contnum").text();
-					var img=$(this).find("img").text();
-					var title=$(this).find("title").text();
-					var completiontype=$(this).find("completiontype").text();
-				
-					var rs="<div class='row no-gutters'>" +
-					       "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>"
-				           "<div class='col-md-4'>" + 
-				           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'>" +
-				           "</div><div class='col-md-8'><div class='card-body'><h3 class='card-title'>" +
-				           "<strong>" + title + "</strong><small>" +
-				           "<c:if test='" + completion + "==0'><span class='badge badge-pill badge-secondary'>완결</span></c:if>" +
-				           "<c:if test='" + completion + "==1'><span class='badge badge-pill badge-secondary'>연재중</span></c:if>" +
-				           "</small></h3><br>" +
-				           "<c:if test='" +  + "==1'>
-				        <a href="#"><img src="${path }/resources/suhyeonimages/유알람.png" width="30"></a>
-				        </c:if>
-				        <c:if test="${info.alaram==2 }">
-				        <a href="#"><img src="${path }/resources/suhyeonimages/무알람.png" width="30"></a>
-				        </c:if>
-				        <br><br>
-				        <a href="${path }/mylist/delete?mylistnum=${info.mylistnum}" class="btn btn-outline-secondary">보관함에서 삭제</a>
-				      </div>
-				    </div>
-				  </div>";
-					$("#wrap").append(rs);
-				});
-			}
-		}
-	});
-});
-</script>
+

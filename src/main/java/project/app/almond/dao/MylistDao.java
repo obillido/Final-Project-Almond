@@ -35,7 +35,7 @@ public class MylistDao {
 	public int reduceReadernum(int mylistnum){
 		return sqlSessionTemplate.update(NAMESPACE + ".reduceReadernum",mylistnum);
 	}
-	public List<WebcontentsVo> array1(HashMap<String, Object> map){
+	public List<HashMap<String, Object>> array1(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".array1",map);
 	}
 }
