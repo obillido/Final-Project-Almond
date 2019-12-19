@@ -21,7 +21,6 @@ public class GiftService {
 	public List<WebcontentsVo> list(int cultype){
 		return giftDao.list(cultype);
 	}
-	@Transactional
 
 	
 }
