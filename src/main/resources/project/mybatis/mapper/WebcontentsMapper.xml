@@ -139,7 +139,7 @@
 	   select * from score where usernum=#{usernum} and epinum=#{epinum}
 	</select>
 	<select id="thisEpiScore" parameterType="int" resultType="int">
-	   select round(sum(score)/count(scorenum),0) as episcore from score where epinum=#{epinum}
+	   select round(sum(score)/count(scorenum),0) from score where epinum=#{epinum}
 	</select>
 	
 	

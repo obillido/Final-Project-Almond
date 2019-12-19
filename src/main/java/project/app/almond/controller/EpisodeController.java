@@ -155,6 +155,10 @@ public class EpisodeController {
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
 		
+		
+		int episcore=ws.thisEpiScore(epinum);
+		model.addAttribute("episcore", episcore);
+		
 		return ".webcontents.episode.content";
 	}
 }
