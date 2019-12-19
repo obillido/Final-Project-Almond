@@ -180,9 +180,17 @@
 
 <!-- ////////// 별점 ////////// -->
 <br>
-이번 화의 평균 별점은 <strong>${episcore.episcore }</strong>입니다.
-<br>
-고객님께서도 소중한 별점을 주세요 :)
+
+<c:choose>
+<c:when test="${episcore eq 0 }">
+<p>아직 아무도 별점을 주지 않았습니다.</p>
+</c:when>
+<c:otherwise>
+<p>이번 화의 평균 별점은 <strong>${episcore }</strong>점입니다.</p>
+</c:otherwise>
+</c:choose>
+
+고객님의 소중한 별점을 주세요 :)
 이번 화는 5점 만점에 몇 점~~~?&nbsp;&nbsp;
 <p id="star_grade" style="display:inline-block;font-size: 1.5em;">
   <a href="#" value="1">★</a>

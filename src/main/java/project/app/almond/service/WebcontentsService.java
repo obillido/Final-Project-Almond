@@ -88,7 +88,7 @@ public class WebcontentsService {
 	public ScoreVo existInScore(HashMap<String, Object> map){
 		return wdao.existInScore(map);
 	}
-	public int thisEpiScore(int epinum){
+	public double thisEpiScore(int epinum){
 		return wdao.thisEpiScore(epinum);
 	}
 	

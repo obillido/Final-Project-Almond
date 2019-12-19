@@ -85,7 +85,7 @@ public class WebcontentsDao {
 	public ScoreVo existInScore(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectOne(NAMESPACE + ".existInScore",map);
 	}
-	public int thisEpiScore(int epinum){
+	public double thisEpiScore(int epinum){
 		return sqlSessionTemplate.selectOne(NAMESPACE + ".thisEpiScore",epinum);
 	}
 }

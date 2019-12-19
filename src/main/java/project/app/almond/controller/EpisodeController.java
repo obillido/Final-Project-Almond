@@ -132,9 +132,24 @@ public class EpisodeController {
 		EpisodeVo evo=es.getInfo(epinum);
 		int contnum=evo.getContnum();
 		WebcontentsVo wvo=ws.getInfo(contnum);
+		
+		
+		
+		
+		
 		Object uu=session.getAttribute("usernum");
 		Date sysdate=new Date(new java.util.Date().getTime());
 		if(uu!=null){
+			
+			//별점 관련
+			double episcore=ws.thisEpiScore(epinum);
+			System.out.println("출력결과:" + episcore);
+			if(episcore==0){
+				model.addAttribute("episcore", 0);
+			}else{
+				model.addAttribute("episcore", episcore);
+			}
+			
 			int usernum=(Integer)uu, n=0;
 			if(type==1 || type==2) n=tus.insert(usernum, contnum, epinum, type, sysdate);
 			else{
@@ -154,10 +169,6 @@ public class EpisodeController {
 		
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
-		
-		
-		int episcore=ws.thisEpiScore(epinum);
-		model.addAttribute("episcore", episcore);
 		
 		return ".webcontents.episode.content";
 	}
