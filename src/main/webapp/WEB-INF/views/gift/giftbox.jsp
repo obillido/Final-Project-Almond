@@ -41,7 +41,7 @@
 						</div>
 					</div>
 					<div class="tab1_3">
-						<button type="submit" class="contents1">
+						<button type="submit" class="contents1" id="btn1_gift">
 							<span style="font-weight: 600; font-family: 고딕;"> 
 								<c:choose>
 									<c:when test="${empty wv.GIFTHNUM}">선물받기</c:when>
@@ -60,5 +60,8 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-
+	$(function(){
+	//var btn = document.getElementById('btn1_gift');
+	//		btn.disabled = 'disabled';
+	});
 </script>

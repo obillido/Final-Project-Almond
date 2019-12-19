@@ -11,7 +11,7 @@
 	<div class="head">
 		<ul class="tabs">
 			<li class="tab-link current" data-tab="tab-1" id="tab1"><span id="btn_ticket1" style="font-weight: 600; font-family: 고딕; ">이용권 충전 내역</span></li>
-			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; opacity: 0.5; font-family: 고딕;">이용권 사용 내역</span></li>
+			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; font-family: 고딕;">이용권 사용 내역</span></li>
 		</ul>
 	</div>	
 	
