@@ -34,6 +34,21 @@
            and m.usernum=#{usernum}
            and w.cultype=#{cultype}
   </select>
+  <select id="array2" resultType="hashmap" parameterType="int">
+     select m.*,sq1.ud
+     from mylist m,
+          (select contnum, max(uploaddate) ud from episode group by contnum) sq1
+     where m.contnum=sq1.contnum
+           and m.usernum=#{usernum}
+     order by sq1.ud desc
+  </select>
+  <select id="array3" resultType="hashmap" parameterType="int">
+     select m.*,w.*
+     from mylist m,webcontents w
+     where m.contnum=w.contnum
+           and usernum=#{usernum}
+     order by w.title
+  </select>
 </mapper>
 
 

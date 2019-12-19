@@ -24,13 +24,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#array1").change(function(){
-		$("#wrap1").empty();
 		var cultype=document.getElementsByName("cultype")[0].value;
+
 		$.ajax({
 			url:"${path}/mylist/array1?cultype=" + cultype,
 			dataType:"xml",
 			success:function(data){
-				console.log(data);
+				$("#wrap1").empty();
+				//console.log(data);
 				$(data).find("result").each(function(){
 					var cultype=$(this).find("cultype").text();
 					var contnum=$(this).find("contnum").text();
@@ -40,25 +41,117 @@ $(document).ready(function(){
 					var alaram=$(this).find("alaram").text();
 					var readingdate=$(this).find("readingdate").text();
 					var mylistnum=$(this).find("mylistnum").text();
-				
-					var rs="<div class='row no-gutters'>" +
-					       "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>"
+				    
+					
+					var rs="<div class='card mb-3' style='width:700px'><div class='row no-gutters'>" +
 				           "<div class='col-md-4'>" + 
-				           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'>" +
+				           "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>" +
+				           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'></a>" +
 				           "</div><div class='col-md-8'><div class='card-body'><h3 class='card-title'>" +
-				           "<strong>" + title + "</strong><small>" +
-				           "<c:if test='" + completion + "==0'><span class='badge badge-pill badge-secondary'>완결</span></c:if>" +
-				           "<c:if test='" + completion + "==1'><span class='badge badge-pill badge-secondary'>연재중</span></c:if>" +
-				           "</small></h3><br>" +
-				           "<c:if test='" + alaram + "==1'>" +
-				           "<a href='#'><img src='${path }/resources/suhyeonimages/유알람.png' width='30'></a></c:if>" +
-				           "<c:if test='" + alaram + "==2'>" +
-				           "<a href='#'><img src='${path }/resources/suhyeonimages/무알람.png' width='30'></a></c:if>" +
-				           "<br><br>" +
-				           "<a href='${path }/mylist/delete?mylistnum=" + mylistnum + "' class='btn btn-outline-secondary'>보관함에서 삭제</a>" +
-				           "</div></div></div>";
+				           "<strong>" + title + "</strong><small>";
+				       		if(completiontype==1){
+				    	  		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>완결</span>";
+				       		}else{
+				    	   		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>연재중</span>";
+				            }
+				            rs += "</small></h3><br>";
+		
+				            if(alaram==1){
+				            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/유알람.png' width='30'></a>";
+				            }else{
+				            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/무알람.png' width='30'></a>";
+				            }
+				            rs += "<br><br><a href='${path }/mylist/delete?mylistnum=" + mylistnum + "' class='btn btn-outline-secondary'>보관함에서 삭제</a></div></div></div></div>";
+				        
 				    $("#wrap1").append(rs);
 				});
+			}
+		});
+	});
+	
+	$("#array2").click(function(){
+		$.ajax({
+			url:"${path}/mylist/array2",
+			dataType:"xml",
+			success:function(data){
+				$("#wrap1").empty();
+				$(data).find("result").each(function(){
+					var cultype=$(this).find("cultype").text();
+					var contnum=$(this).find("contnum").text();
+					var img=$(this).find("img").text();
+					var title=$(this).find("title").text();
+					var completiontype=$(this).find("completiontype").text();
+					var alaram=$(this).find("alaram").text();
+					var readingdate=$(this).find("readingdate").text();
+					var mylistnum=$(this).find("mylistnum").text();
+					var ud=$(this).find("ud").text();
+					
+					var rs="<div class='card mb-3' style='width:700px'><div class='row no-gutters'>" +
+			           "<div class='col-md-4'>" + 
+			           "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>" +
+			           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'></a>" +
+			           "</div><div class='col-md-8'><div class='card-body'><h3 class='card-title'>" +
+			           "<strong>" + title + "</strong><small>";
+			       		if(completiontype==1){
+			    	  		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>완결</span>";
+			       		}else{
+			    	   		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>연재중</span>";
+			            }
+			            rs += "</small></h3><br>";
+			            
+			            if(alaram==1){
+			            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/유알람.png' width='30'></a>";
+			            }else{
+			            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/무알람.png' width='30'></a>";
+			            }
+			            rs += "<br><br><a href='${path }/mylist/delete?mylistnum=" + mylistnum + "' class='btn btn-outline-secondary'>보관함에서 삭제</a><br>" 
+			            rs += "<br><strong>업데이트 날짜</strong>&nbsp;&nbsp;" + ud + "</div></div></div></div>";
+					
+					$("#wrap1").append(rs);
+			    });
+			}
+		});
+	});
+	
+	$("#array3").click(function(){
+		$.ajax({
+			url:"${path}/mylist/array3",
+			dataType:"xml",
+			success:function(data){
+				$("#wrap1").empty();
+				$(data).find("result").each(function(){
+					var cultype=$(this).find("cultype").text();
+					var contnum=$(this).find("contnum").text();
+					var img=$(this).find("img").text();
+					var title=$(this).find("title").text();
+					var completiontype=$(this).find("completiontype").text();
+					var alaram=$(this).find("alaram").text();
+					var readingdate=$(this).find("readingdate").text();
+					var mylistnum=$(this).find("mylistnum").text();
+					
+					var rs="<div class='card mb-3' style='width:700px'><div class='row no-gutters'>" +
+			           "<div class='col-md-4'>" + 
+			           "<a href='${path}/webcontents/episode/list?contnum=" + contnum + "'>" +
+			           "<img src='${path}/resources/webcontents/" + cultype + "/" + img + "' class='card-img' height='300' id='img'></a>" +
+			           "</div><div class='col-md-8'><div class='card-body'><h3 class='card-title'>" +
+			           "<strong>" + title + "</strong><small>";
+			       		if(completiontype==1){
+			    	  		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>완결</span>";
+			       		}else{
+			    	   		rs += "&nbsp;<span class='badge badge-pill badge-secondary'>연재중</span>";
+			            }
+			            rs += "</small></h3><br>";
+	
+			            if(alaram==1){
+			            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/유알람.png' width='30'></a>";
+			            }else{
+			            	rs += "<a href='#'><img src='${path }/resources/suhyeonimages/무알람.png' width='30'></a>";
+			            }
+			            rs += "<br><br><a href='${path }/mylist/delete?mylistnum=" + mylistnum + "' class='btn btn-outline-secondary'>보관함에서 삭제</a></div></div></div></div>";
+			        
+			         $("#wrap1").append(rs);
+					
+			    });
 			}
 		});
 	});
@@ -83,8 +176,9 @@ $(document).ready(function(){
 <button type="button" class="btn btn-link" id="array3">제목순</button>
 </div>
 <br>
+<div id="wrap1">
 <c:forEach var="info" items="${list }">
-<div class="card mb-3" style="width:700px" id="wrap1">
+<div class="card mb-3" style="width:700px">
   <div class="row no-gutters">
     <div class="col-md-4" onclick="location.href='${path}/webcontents/episode/list?contnum=${info.contnum}'">
       <img src="${path}/resources/webcontents/${info.cultype}/${info.img}" class="card-img" height="300" id="img">
@@ -93,8 +187,8 @@ $(document).ready(function(){
       <div class="card-body">
         <h3 class="card-title"><strong>${info.title }</strong>
         <small>
-        <c:if test="${info.completiontype==0 }"><span class="badge badge-pill badge-secondary">완결</span></c:if>
-        <c:if test="${info.completiontype==1 }"><span class="badge badge-pill badge-secondary">연재중</span></c:if>
+        <c:if test="${info.completiontype==1 }"><span class="badge badge-pill badge-secondary">완결</span></c:if>
+        <c:if test="${info.completiontype==0 }"><span class="badge badge-pill badge-secondary">연재중</span></c:if>
         </small>
         </h3>
         <br>
@@ -106,11 +200,14 @@ $(document).ready(function(){
         </c:if>
         <br><br>
         <a href="${path }/mylist/delete?mylistnum=${info.mylistnum}" class="btn btn-outline-secondary">보관함에서 삭제</a>
+        <br><br>
+        <strong>마지막으로 구독한 날짜</strong>&nbsp;&nbsp; ${info.readingdate }
       </div>
     </div>
   </div>
 </div>
 </c:forEach>
+</div>
 </div>
 
 

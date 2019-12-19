@@ -82,4 +82,59 @@ public class MylistController {
 		sb.append("</wrap>");
 		return sb.toString();
 	}
+	
+	@RequestMapping(value="/mylist/array2",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String array2(HttpSession session){
+		int usernum=(Integer)session.getAttribute("usernum");
+		List<HashMap<String, Object>> list=ms.array2(usernum);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
+		for(HashMap<String, Object> mymap:list){
+			sb.append("<result>");
+			sb.append("<contnum>" +  mymap.get("CONTNUM") + "</contnum>");
+
+			int contnum=((BigDecimal)mymap.get("CONTNUM")).intValue();
+			WebcontentsVo wvo=ws.getInfo(contnum);
+			sb.append("<title>" +  wvo.getTitle() + "</title>");
+			sb.append("<img>" +  wvo.getImg() + "</img>");
+			sb.append("<cultype>" +  wvo.getCultype() + "</cultype>");
+			sb.append("<completiontype>" +  wvo.getCompletiontype()+ "</completiontype>");
+			
+			sb.append("<mylistnum>" + mymap.get("MYLISTNUM") + "</mylistnum>");
+			sb.append("<alaram>" + mymap.get("ALARAM") + "</alaram>");
+			
+			SimpleDateFormat format=new SimpleDateFormat("MM¿ù ddÀÏ HH:mm");
+						
+			sb.append("<readingdate>" + mymap.get("READINGDATE") + "</readingdate>");
+			sb.append("<ud>" + format.format(mymap.get("UD")) + "</ud>");
+			sb.append("</result>");
+		}
+		sb.append("</wrap>");
+		return sb.toString();
+	}
+	@RequestMapping(value="/mylist/array3",produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String array3(HttpSession session){
+		int usernum=(Integer)session.getAttribute("usernum");
+		List<HashMap<String, Object>> list=ms.array3(usernum);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<wrap>");
+		for(HashMap<String, Object> mymap:list){
+			sb.append("<result>");
+			sb.append("<contnum>" +  mymap.get("CONTNUM") + "</contnum>");
+			sb.append("<title>" + mymap.get("TITLE") + "</title>");
+			sb.append("<img>" + mymap.get("IMG") + "</img>");
+			sb.append("<cultype>" + mymap.get("CULTYPE") + "</cultype>");
+			sb.append("<completiontype>" + mymap.get("COMPLETIONTYPE") + "</completiontype>");
+			sb.append("<mylistnum>" + mymap.get("MYLISTNUM") + "</mylistnum>");
+			sb.append("<alaram>" + mymap.get("ALARAM") + "</alaram>");
+			sb.append("<readingdate>" + mymap.get("READINGDATE") + "</readingdate>");
+			sb.append("</result>");
+		}
+		sb.append("</wrap>");
+		return sb.toString();
+	}
 }

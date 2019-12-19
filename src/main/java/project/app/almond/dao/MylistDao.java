@@ -38,4 +38,10 @@ public class MylistDao {
 	public List<HashMap<String, Object>> array1(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".array1",map);
 	}
+	public List<HashMap<String, Object>> array2(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".array2",usernum);
+	}
+	public List<HashMap<String, Object>> array3(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".array3",usernum);
+	}
 }
