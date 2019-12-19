@@ -10,7 +10,7 @@
 	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
-				url : "",
+				url : "${pageContext.request.contextPath}/users/searchpwd",
 				type : "POST",
 				data : {
 					email : $("#email").val()
