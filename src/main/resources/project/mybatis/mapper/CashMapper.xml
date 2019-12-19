@@ -7,7 +7,7 @@
 		insert into cash values(seq_cash_cashnum.nextval,#{usernum},#{price},sysdate,#{method})
 	</insert>
 	<select id="totCharge" parameterType="int" resultType="int">
-	    select sum(price) from cash where usernum=#{usernum}
+	    select nvl(sum(price),0) from cash where usernum=#{usernum}
 	</select>
 	<select id="list" parameterType="int" resultType="project.app.almond.vo.CashVo">
 	    select * from cash where usernum=#{usernum} order by regdate desc
@@ -22,7 +22,7 @@
 	    select * from ticketbuy where usernum=#{usernum} order by regdate desc
 	</select>
 	<select id="totUse" parameterType="int" resultType="int">
-	    select sum(price) from ticketbuy where usernum=#{usernum}
+	    select nvl(sum(price),0) from ticketbuy where usernum=#{usernum}
 	</select>
 </mapper>
 

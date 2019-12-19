@@ -19,6 +19,9 @@ public class InquiryService {
 	public List<InquiryVo> list(HashMap<String, Object> map){
 		return dao.list(map);
 	}
+	public List<HashMap<String, Object>> listadmin(HashMap<String, Object> map){
+		return dao.listadmin(map);
+	}
 	public InquiryVo detail(int inqnum){
 		return dao.detail(inqnum);
 	}
@@ -37,7 +40,7 @@ public class InquiryService {
 	public int chgStatus(HashMap<String, Object> map){
 		return dao.chgStatus(map);
 	}
-	public InquiryVo getReply(HashMap<String, Object> map){
-		return dao.getReply(map);
+	public InquiryVo getReply(int ref){
+		return dao.getReply(ref);
 	}
 }

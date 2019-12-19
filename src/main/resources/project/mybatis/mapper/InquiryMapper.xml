@@ -17,7 +17,21 @@
            )aa
       )
       <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>
+    </select>
+    <select id="listadmin" parameterType="hashmap" resultType="hashmap">
+      select * from
+      (
+           select aa.*,rownum rnum from
+           (
+                  select i.*,u.email from inquiry i,users u
+                  where i.lev!=1
+                        and i.usernum=u.usernum
+                  order by i.inqnum desc
+           )aa
+      )
+      <![CDATA[where rnum>=#{startRow} and rnum<=#{endRow}]]>    
     </select>	
+    
 	<select id="detail" resultType="project.app.almond.vo.InquiryVo" parameterType="int">
 	    select * from inquiry where inqnum=#{inqnum}
 	</select>
@@ -47,7 +61,7 @@
     <update id="chgStatus" parameterType="hashmap">
        update inquiry set status=1 where ref=#{ref} and usernum=#{usernum}
     </update>
-    <select id="getReply" parameterType="hashmap" resultType="project.app.almond.vo.InquiryVo">
-       select * from inquiry where ref=#{ref} and usernum!=#{usernum}
+    <select id="getReply" parameterType="int" resultType="project.app.almond.vo.InquiryVo">
+       select * from inquiry where ref=#{ref} and usernum=1
     </select>
 </mapper>

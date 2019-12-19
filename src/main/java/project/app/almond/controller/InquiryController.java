@@ -31,14 +31,23 @@ public class InquiryController {
 		PageUtil pu=new PageUtil(pageNum,totalRowCount,5,5);
         int startRow=pu.getStartRow();
         int endRow=pu.getEndRow();
-		HashMap<String, Object> map=new HashMap<String, Object>();
-        map.put("startRow",startRow);
-        map.put("endRow",endRow);
-        map.put("usernum",usernum);
-		List<InquiryVo> list=service.list(map);
-		ModelAndView mv=new ModelAndView(".inquiry.inquirypage");
-        mv.addObject("list",list);
-        mv.addObject("pu",pu);
+        ModelAndView mv=new ModelAndView(".inquiry.inquirypage");
+        if(usernum==1){
+			HashMap<String, Object> amap=new HashMap<String, Object>();
+			amap.put("startRow",startRow);
+	        amap.put("endRow",endRow);
+			List<HashMap<String, Object>> alist=service.listadmin(amap);
+			mv.addObject("alist",alist);
+	        mv.addObject("pu",pu);
+		}else{
+			HashMap<String, Object> map=new HashMap<String, Object>();
+	        map.put("startRow",startRow);
+	        map.put("endRow",endRow);
+	        map.put("usernum",usernum);
+			List<InquiryVo> list=service.list(map);
+			mv.addObject("list",list);
+	        mv.addObject("pu",pu);
+		}
 		return mv;
 	}
 	
@@ -68,11 +77,7 @@ public class InquiryController {
 		int usernum=(Integer)session.getAttribute("usernum");
 		InquiryVo vo=service.detail(inqnum);
 		model.addAttribute("vo",vo);
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("ref", ref);
-		map.put("usernum", usernum);
-		InquiryVo vo2=service.getReply(map);
-		System.out.println("vo2:" + vo2.getContent());
+		InquiryVo vo2=service.getReply(ref);
 		model.addAttribute("vo2",vo2);
 		return ".inquiry.getInfo";
 	}

@@ -20,6 +20,9 @@ public class InquiryDao {
 	public List<InquiryVo> list(HashMap<String,Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".list",map);
 	}
+	public List<HashMap<String, Object>> listadmin(HashMap<String,Object> map){
+		return sqlSessionTemplate.selectList(NAMESPACE + ".listadmin",map);
+	}
 	public InquiryVo detail(int inqnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE + ".detail",inqnum);
 	}
@@ -38,7 +41,7 @@ public class InquiryDao {
     public int chgStatus(HashMap<String, Object> map){
     	return sqlSessionTemplate.update(NAMESPACE + ".chgStatus",map);
     }
-    public InquiryVo getReply(HashMap<String, Object> map){
-    	return sqlSessionTemplate.selectOne(NAMESPACE + ".getReply",map);
+    public InquiryVo getReply(int ref){
+    	return sqlSessionTemplate.selectOne(NAMESPACE + ".getReply",ref);
     }
 }

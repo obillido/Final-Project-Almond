@@ -21,32 +21,36 @@
    <input type="text" value="${vo.title }" class="form-control" readonly="readonly"><br>
    <span class="badge badge-light" style="font-size:1.2em"><strong>내용</strong></span><br>
    <input type="text" value="${vo.content }" class="form-control" readonly="readonly">
-<br>
-<input type="button" class="btn btn-md btn-default" id="write" value="답변 달기">
-<br>
-<div id="writeForm" style="display:none">
-  
-   <input type="text" id="replyTitle" class="form-control" value="안녕하십니까, 아몬드페이지입니다."><br>
-   
-   <textarea rows="10" cols="100" id="replyContent" class="form-control"></textarea><br>
-   <input type="submit" value="답변 등록" class="btn btn-md btn-default" id="submitReply" style="font-weight:600;">
-</div>
-
-<hr class="my-4">
-<br>
-<div class="pos-f-t">
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-light p-4">
-      <h5 class="text-black h5" id="no1">${vo2.title }</h5>
-      <span class="text-muted" id="no2">${vo2.content }</span>
-    </div>
-  </div>
-  <nav class="navbar navbar-dark bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" style="background-color:black;"></span>   <h8 style="color:black;">답변 보기</h8> 
-    </button>
-  </nav>
-</div>
+	<br>
+	<c:if test="${usernum eq 1}">
+	<input type="button" class="btn btn-md btn-default" id="write" value="답변 달기">
+	<br>
+	<div id="writeForm" style="display:none">
+	  
+	   <input type="text" id="replyTitle" class="form-control" value="안녕하십니까, 아몬드페이지입니다."><br>
+	   
+	   <textarea rows="10" cols="100" id="replyContent" class="form-control"></textarea><br>
+	   <input type="submit" value="답변 등록" class="btn btn-md btn-default" id="submitReply" style="font-weight:600;">
+	</div>
+	</c:if>
+	
+	<c:if test="${not empty vo2}">
+		<hr class="my-4">
+		<br>
+		<div class="pos-f-t">
+		  <div class="collapse" id="navbarToggleExternalContent">
+		    <div class="bg-light p-4">
+		      <h5 class="text-black h5" id="no1">${vo2.title }</h5>
+		      <span class="text-muted" id="no2">${vo2.content }</span>
+		    </div>
+		  </div>
+		  <nav class="navbar navbar-dark bg-light">
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon" style="background-color:black;"></span>   <h8 style="color:black;">답변 보기</h8> 
+		    </button>
+		  </nav>
+		</div>
+	</c:if>
 </div>
 
 

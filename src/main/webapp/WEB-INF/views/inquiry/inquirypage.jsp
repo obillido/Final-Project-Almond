@@ -30,13 +30,48 @@
      <a href="${path }/inquiry/insert" class="btn btn-default">글쓰기</a>
    </div>
 <br>
+<c:choose>
+<c:when test="${usernum eq 1 }">
+	<table class="table table-striped table-bordered table-hover">
+	   <thead>
+	   <tr>
+	      <th>회원 이메일</th>
+	      <th>제목</th>
+	      <th>내용</th>
+	      <th>답변 여부</th>
+	   </tr>
+	   </thead>
+  
+	   <c:forEach var="ainfo" items="${alist}">
+	   <c:if test="${ainfo.lev ne 1 }">
+	      <tbody>
+	      <tr class="ainfo">
+	         <td>${ainfo.EMAIL}</td>
+	         <td><a href="${path }/inquiry/detail?inqnum=${ainfo.INQNUM}&ref=${ainfo.REF}&usernum=${ainfo.USERNUM}" id="b">${ainfo.TITLE}</a></td>
+	         <td>${ainfo.content}</td>
+	         <td>
+	         <c:if test="${ainfo.STATUS=='0' }">
+	         <span style="color:red">X</span>
+	         </c:if>
+	         <c:if test="${ainfo.STATUS=='1' }">
+	         <span style="color:blue">O</span>
+	         </c:if>
+	         </td>
+	      </tr>
+	      </tbody>
+	   </c:if>
+	   </c:forEach>	
+	</table>
+</c:when>
+
+<c:otherwise>
 	<table class="table table-striped table-bordered table-hover">
 	   <thead>
 	   <tr>
 	      <th>글번호</th>
 	      <th>제목</th>
 	      <th>내용</th>
-	      <th>답변여부</th>
+	      <th>답변 여부</th>
 	   </tr>
 	   </thead>
   
@@ -58,10 +93,10 @@
 	      </tr>
 	      </tbody>
 	   </c:if>
-	   </c:forEach>
-	
+	   </c:forEach>	
 	</table>
-
+</c:otherwise>
+</c:choose>
 	
 <!-- 페이징 처리 -->
 <div id="paging">

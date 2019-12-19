@@ -24,7 +24,6 @@ public class CashController {
 	public String chargeForm(HttpSession session,Model model){
 		int usernum=(Integer)session.getAttribute("usernum");
 		int totCash=service.totCash(usernum);
-		model.addAttribute("usernum",usernum);
 		model.addAttribute("totCash", totCash);
 		return ".cash.charge";
 	}
