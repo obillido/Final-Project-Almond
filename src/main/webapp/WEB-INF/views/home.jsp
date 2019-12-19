@@ -9,7 +9,6 @@
 	<ul>
 		<li><a href='${pageContext.request.contextPath}/2'>2.소희</a></li>
 		<li><a href='${pageContext.request.contextPath}/3'>3.윤하</a></li>
-		<li><a href='${pageContext.request.contextPath}/4'>4.병윤</a></li>
 		<li><a href='${pageContext.request.contextPath}/5'>5.윤혁</a></li>
 	</ul>
 	

@@ -90,7 +90,7 @@ public class CommentsController {
 			vo.setType(Math.abs(type));
 			sb.append("<cnt>"+cls.getCnt(vo)+"</cnt>");
 		}
-		else	sb.append("<code>fail</code>");
+		else sb.append("<code>fail</code>");
 		sb.append("</result>");
 		return sb.toString();
 	}

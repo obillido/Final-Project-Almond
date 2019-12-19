@@ -1,5 +1,7 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +23,8 @@ public class CommLikesDao {
 	}
 	public int getCnt(CommLikesVo vo){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",vo);
+	}
+	public HashMap<String, Object> getInfo(int commnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",commnum);
 	}
 }

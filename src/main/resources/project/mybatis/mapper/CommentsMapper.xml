@@ -25,6 +25,9 @@
 		select nvl(count(ep.epinum),0) from comments c, episode ep 
 		where c.epinum=ep.epinum and ep.contnum=#{contnum} group by ep.contnum
 	</select>
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.CommentsVo">
+		select * from comments where commnum=#{commnum}
+	</select>
 </mapper>
 
 

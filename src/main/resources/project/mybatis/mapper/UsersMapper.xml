@@ -10,7 +10,7 @@
 		insert into users values(seq_users_usernum.nextval,
 			#{email},#{pwd},#{phone},#{nickname},null,0,1)
 	</insert>
-	<select id="login" parameterType="hashmap" resultType="hashmap">
+	<select id="login" parameterType="project.app.almond.vo.UsersVo" resultType="project.app.almond.vo.UsersVo">
 			select * from users where email=#{email} and pwd=#{pwd}
 	</select>
 	<select id="emailcheck" parameterType="String" resultType="project.app.almond.vo.UsersVo">
@@ -19,5 +19,7 @@
 	<update id="updatepwd" parameterType="project.app.almond.vo.UsersVo">
 		update users set pwd=#{pwd} where email = #{email}
 	</update>
-	
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.UsersVo">
+		select * from users where usernum=#{usernum}
+	</select>
 </mapper>

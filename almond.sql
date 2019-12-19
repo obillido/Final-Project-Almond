@@ -103,12 +103,14 @@ CREATE TABLE alarm
 	-- 3 : 작품 업로드 알림
 	-- 4 : ...
 	-- 
-	status number NOT NULL,
+	type number NOT NULL,
 	-- 번호 : 이벤트참조면 이벤트번호
 	-- 기다리면 무료면 작품번호
 	-- 작품 업로드면 작품번호
 	-- 
 	num number,
+	-- 상태,  0:안읽음, 1:읽음
+	status number NOT NULL,
 	PRIMARY KEY (alarmnum)
 );
 

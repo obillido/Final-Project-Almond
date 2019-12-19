@@ -20,8 +20,8 @@ public class UsersService {
 	public UsersService(UsersDao dao) {
 		this.udao = dao;
 	}
-	public HashMap<String,Object> login(HashMap<String,Object> map){
-		return udao.login(map);
+	public UsersVo login(UsersVo vo){
+		return udao.login(vo);
 	}
 	public UsersVo emailcheck(String email) {
 		return udao.emailcheck(email);

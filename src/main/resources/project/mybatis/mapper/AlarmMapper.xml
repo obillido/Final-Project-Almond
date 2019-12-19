@@ -4,8 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.AlarmMapper">
 	<insert id="insert" parameterType="project.app.almond.vo.AlarmVo">
-		insert into alarm values(seq_alarm_alarmnum.nextval,#{title},#{content},sysdate,#{status},#{num})
+		insert into alarm values(seq_alarm_alarmnum.nextval,#{usernum},#{title},#{content},sysdate,#{type},#{num},0)
 	</insert>
+	<select id="getList" parameterType="int" resultType="project.app.almond.vo.AlarmVo">
+		select * from alarm where usernum=#{usernum} order by regdate desc, alarmnum desc
+	</select>
+	
+	<select id="getCnt" parameterType="int" resultType="int">
+		select nvl(count(*),0) from alarm where usernum=#{usernum} and status=0
+	</select>
 </mapper>
 
 

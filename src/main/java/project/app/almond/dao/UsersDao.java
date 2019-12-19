@@ -21,8 +21,8 @@ public class UsersDao {
 	public int insert(UsersVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
-	public HashMap<String,Object> login(HashMap<String, Object> map) {
-		return sqlSessionTemplate.selectOne("project.mybatis.mapper.UsersMapper.login",map);
+	public UsersVo login(UsersVo vo) {
+		return sqlSessionTemplate.selectOne("project.mybatis.mapper.UsersMapper.login",vo);
 	}
 	public UsersVo emailcheck(String email) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+".emailcheck",email);

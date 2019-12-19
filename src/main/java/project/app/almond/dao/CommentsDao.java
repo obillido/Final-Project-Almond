@@ -14,6 +14,7 @@ import project.app.almond.vo.CommentsVo;
 public class CommentsDao {
 	@Autowired private SqlSessionTemplate sqlSessionTemplate;
 	private final String NAMESPACE="project.mybatis.mapper.CommentsMapper";
+	
 	public int insert(CommentsVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}

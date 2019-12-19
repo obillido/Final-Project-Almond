@@ -37,49 +37,46 @@
 		    	// !,@,#,$,%중 하나 이상이 입력되었을때 spe가 true로 바뀜
 		    }
 		}
-		 	if(eng==false || num==false || spe==false){
-		 	//eng가 입력이 안되었을때 또는 num이 입력이 안되었을때 또는 spe가 입력이 안되었을때
-		 		alert("비밀번호는 영문,숫자,특수문자 혼합으로 사용해주세요.");
-		 		return false;
-		 		//문구 출력
-		 	}
-		 	if(eng==true && num==true && spe==true){
-		 		alert("회원가입을 환영합니다.");
-		 		return true;
-		 		//모두가 입력되었을때 문구 출력
+	 	if(eng==false || num==false || spe==false){
+	 	//eng가 입력이 안되었을때 또는 num이 입력이 안되었을때 또는 spe가 입력이 안되었을때
+	 		alert("비밀번호는 영문,숫자,특수문자 혼합으로 사용해주세요.");
+	 		return false;
+	 		//문구 출력
+	 	}
+	 	if(eng==true && num==true && spe==true){
+	 		alert("회원가입을 환영합니다.");
+	 		return true;
+	 		//모두가 입력되었을때 문구 출력
 		}
 	}
 	$(document).ready(function(){
 		$('#emailcheck').click(function() {
-		// id가 emailcheck인 버튼을 클릭시 function 발동
+			// id가 emailcheck인 버튼을 클릭시 function 발동
 			var email=$("#email").val(); // email안에 값을 받아오기 위한 변수선언
-	      	 $.ajax({
-	            type :'POST',
-	            url :'${pageContext.request.contextPath}/emailcheck',
-	            // 경로를 설정해주고 이름을 지정해준다.
-	            data : {email : email},
-	            datatype : 'xml',
-	            success :function(result){
-	                if($(result).find("check").text()=='yes'){
-	                // check를 찾아서 null이면 사용가능한 이메일	
-	                	alert("사용 가능한 이메일입니다.");
-	                }else {
-	                // check를 찾아서 null이 아니면 사용중인 이메일
-	                    alert("사용중인 이메일입니다. 다른 이메일을 입력해 주세요");
-	                }
-	            }
-	        });
-	    });
+				$.ajax({
+					type :'POST',
+					url :'${pageContext.request.contextPath}/emailcheck',
+					// 경로를 설정해주고 이름을 지정해준다.
+					data : {email : email},
+					datatype : 'xml',
+					success :function(result){
+						if($(result).find("check").text()=='yes'){
+							// check를 찾아서 null이면 사용가능한 이메일	
+							alert("사용 가능한 이메일입니다.");
+						}else {
+							// check를 찾아서 null이 아니면 사용중인 이메일
+						alert("사용중인 이메일입니다. 다른 이메일을 입력해 주세요");
+					}
+				}
+			});
+		});
 	});
 </script>
-<div class="container">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href='${pageContext.request.contextPath}/'>Home</a>
-    </li>
-    <li class="breadcrumb-item active">Join</li>
-  </ol>
-  
+
+
+
+
+<div class="container" style="margin-top:100px;">
   <div class="row">
     <div class="col-lg-8 mb-4">
       <h3>회원가입</h3><br>
@@ -87,34 +84,34 @@
         <div class="control-group form-group">
           <div class="controls">
           	<p>
-					<label>이메일</label>
-					<input class="w3-input" type="text" id="email" name="email" required>
+							<label>이메일</label>
+							<input class="w3-input" type="text" id="email" name="email" required  autocomplete=off>
             </p>
             <input type="button" value="중복체크" class="btn btn-primary" id="emailcheck">
             <div class="check_font" id="email_check">
-	</div>
-	</div>
-          </div>
-        <div class="control-group form-group">
-          <div class="controls">
-					<label>비밀번호</label>
-					<input class="w3-input" type="password" id="pwd" name="pwd" required>
-		</div>
+						</div>
+					</div>
         </div>
         <div class="control-group form-group">
           <div class="controls">
-					<label>닉네임</label>
-					<input class="w3-input" type="text" id="nickname" name="nickname" required>
-		</div>
+						<label>비밀번호</label>
+						<input class="w3-input" type="password" id="pwd" name="pwd" required >
+					</div>	
         </div>
         <div class="control-group form-group">
           <div class="controls">
-					<label>전화번호</label>
-					<input class="w3-input" type="text" id="phone" name="phone" required>
+						<label>닉네임</label>
+						<input class="w3-input" type="text" id="nickname" name="nickname" required  autocomplete=off>
+					</div>
+        </div>
+        <div class="control-group form-group">
+          <div class="controls">
+						<label>전화번호</label>
+						<input class="w3-input" type="text" id="phone" name="phone" required  autocomplete=off>
           </div>
         </div>
         <div id="success"></div>
-        <button type="submit" class="btn btn-primary" id="sendMessageButton">회원가입 완료</button>
+					<button type="submit" class="btn btn-primary" id="sendMessageButton">회원가입</button>
       </form>
     </div>
   </div>
