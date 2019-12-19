@@ -37,7 +37,7 @@ public class UsersController {
 	public String join(UsersVo vo) {
 		int n=us.insert(vo);
 		if(n>0) {
-			return "redirect:/";
+			return ".users.login";
 		}else {
 			return ".users.fail";
 		}

@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
+	var duplcheck=false;
 	function pwdCheck(){
 		var pwd=document.check1.pwd;
 		var email=document.check1.email;
@@ -43,6 +44,10 @@
 	 		return false;
 	 		//문구 출력
 	 	}
+	 	if(duplcheck==false){
+	 		alert("이메일 중복체크를 해주세요.");
+	 		return false;
+	 	}
 	 	if(eng==true && num==true && spe==true){
 	 		alert("회원가입을 환영합니다.");
 	 		return true;
@@ -55,7 +60,7 @@
 			var email=$("#email").val(); // email안에 값을 받아오기 위한 변수선언
 				$.ajax({
 					type :'POST',
-					url :'${pageContext.request.contextPath}/emailcheck',
+					url :'${pageContext.request.contextPath}/users/emailcheck',
 					// 경로를 설정해주고 이름을 지정해준다.
 					data : {email : email},
 					datatype : 'xml',
@@ -63,12 +68,14 @@
 						if($(result).find("check").text()=='yes'){
 							// check를 찾아서 null이면 사용가능한 이메일	
 							alert("사용 가능한 이메일입니다.");
+							duplcheck=true;
 						}else {
 							// check를 찾아서 null이 아니면 사용중인 이메일
-						alert("사용중인 이메일입니다. 다른 이메일을 입력해 주세요");
+							alert("사용중인 이메일입니다. 다른 이메일을 입력해 주세요");
+							duplcheck=false;
+						}
 					}
-				}
-			});
+				});
 		});
 	});
 </script>
@@ -80,7 +87,7 @@
   <div class="row">
     <div class="col-lg-8 mb-4">
       <h3>회원가입</h3><br>
-      <form method="post" action="${pageContext.request.contextPath}/join" onsubmit="return pwdCheck();" name="check1" id="frm">
+      <form method="post" action="${pageContext.request.contextPath}/users/join" onsubmit="return pwdCheck();" name="check1" id="frm">
         <div class="control-group form-group">
           <div class="controls">
           	<p>
