@@ -112,7 +112,9 @@
 			      '</div> <hr> ';
 					$("#commList").append(comm);
 				});
-				alert($(data).find("comment").text());
+				if($(data).find("comment").length==0){
+					$("#commList").append("<div><p>첫번째 댓글을 남겨주세요.</p></div>");
+				}
 			}
 		});
 	}
@@ -151,7 +153,7 @@
 			url:"${path}/webcontents/comments/changeLikesCnt",
 			dataType:"xml",
 			type:"post",
-			data:{"usernum":${usernum},"commnum":commnum,"type":type},
+			data:{"commnum":commnum,"type":type},
 			success:function(data){
 				if($(data).find("code").text()=='success'){
 					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
