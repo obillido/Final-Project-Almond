@@ -33,4 +33,7 @@ public class CommentsDao {
 	public Integer getTotalCommCnt(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalCommCnt",contnum);
 	}
+	public CommentsVo getInfo(int commnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",commnum);
+	}
 }

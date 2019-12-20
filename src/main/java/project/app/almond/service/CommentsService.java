@@ -31,4 +31,7 @@ public class CommentsService {
 	public Integer getTotalCommCnt(int contnum){
 		return cdao.getTotalCommCnt(contnum);
 	}
+	public CommentsVo getInfo(int commnum){
+		return cdao.getInfo(commnum);
+	}
 }

@@ -20,21 +20,48 @@
 		background-color:red;
 		color:white;
 		display:inline-block;
-		padding:2px;
+		padding-bottom:2px; margin-left:10px;
 		width:50px;
 		text-align:center;
 		border-radius:5px;
 	}
+	
+	
+	#commList{width:100%;}
+	
+	.tablink{
+		width:50%;
+	  background-color: white;
+	  color: black;
+	  float: left;
+	  border: none;
+	  outline: none;
+	  cursor: pointer;
+	  padding: 14px 16px;
+	  font-size: 1.2em;
+	}
+	.tablink:hover{
+		background-color:lightgrey;
+	}
+	.tabcontent{
+	  color: black;
+	  display: none;
+	  padding: 50px;
+	}
+	
 </style>
 	
 
 <script type="text/javascript">
 	$(document).ready(function(){
 
+		document.getElementById("defaultOpen").click();
+		
 		
 		$("#comment").click(function(){
 			if(${empty usernum}){
 				alert("로그인 후 이용가능한 서비스입니다.");
+				$(this).blur();
 			}
 		});
 		
@@ -78,7 +105,6 @@
 				type:"post",
 				data:{"epinum":${evo.epinum},"comment":comment,"ref":ref},
 				success:function(data){
-					console.log($(data).find("code").text());
 					if($(data).find("code").text()=='success'){
 						$("#comment").val("");
 						list();
@@ -91,28 +117,34 @@
 		});
 	});
 	function list(){
-		$("#commList div").remove();
+		$("#bestCommList div").remove();
+		$("#bestCommList hr").remove();
+		$("#allCommList div").remove();
+		$("#allCommList hr").remove();
 		$.ajax({
 			url:"${path}/webcontents/comments/list?epinum=${evo.epinum}",
 			dataType:"xml",
 			success:function(data){
+				
 				$(data).find("bestComment").each(function(){
-					comm(this,1);
+					$("#bestCommList").append(comm(this,1));
 				});
 				$(data).find("comment").each(function(){
-					comm(this,0);
+					$("#allCommList").append(comm(this,0));
 				});
+				if($(data).find("bestComment").length==0){
+					$("#bestCommList").append("<div><p>첫번째 Best댓글의 주인공이 되보세요.</p></div>");
+				}
 				if($(data).find("comment").length==0){
-					$("#commList").append("<div><p>첫번째 댓글을 남겨주세요.</p></div>");
+					$("#allCommList").append("<div><p>첫번째 댓글을 남겨주세요.</p></div>");
 				}
 			}
 		});
 	}
 	function comm(me,type){
-		console.log(type);
 		var mt=$(me).find("mytype").text();
 		var comm=
-			'<div class="media mb-4"> '+
+			'<hr><div class="media mb-4"> '+
         '<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50"> '+
         '<div class="media-body"> '+
           '<h5 class="mt-0">'+$(me).find("nickname").text();
@@ -133,8 +165,8 @@
 						'<div class="likesCnt">'+fmt($(me).find("cnthate").text())+'</div> '+
 					'</button> '+
 				'</div> '+
-      '</div> <hr> ';
-		$("#commList").append(comm);
+      '</div>';
+      return comm;
 	}
 	
 	function fmt(x){
@@ -144,11 +176,9 @@
 		if(${not empty usernum}){
 			if($(me).parent().children().last().attr('class')=='likes'){
 				if($(me).attr('class')=='likes'){
-					changeLikesCnt($(me).val(),1,me)
-					$(me).attr('class','likes-click');
+					if(changeLikesCnt($(me).val(),1,me)) $(me).attr('class','likes-click');
 				}else{
-					changeLikesCnt($(me).val(),-1,me);
-					$(me).attr('class','likes');
+					if(changeLikesCnt($(me).val(),-1,me))	$(me).attr('class','likes');
 				}
 			}else{
 				 alert("이미 '싫어요'를 누르셨습니다.");
@@ -161,11 +191,9 @@
 		if(${not empty usernum}){
 			if($($(me).parent().children()[2]).attr('class')=='likes'){
 				if($(me).attr('class')=='likes'){
-					changeLikesCnt($(me).val(),2,me);
-					$(me).attr('class','hates-click');
+					if(changeLikesCnt($(me).val(),2,me)) $(me).attr('class','hates-click');
 				}else{
-					changeLikesCnt($(me).val(),-2,me);
-					$(me).attr('class','likes');
+					if(changeLikesCnt($(me).val(),-2,me)) $(me).attr('class','likes');
 				}
 			}else{
 				alert("이미 '좋아요'를 누르셨습니다.");
@@ -182,18 +210,37 @@
 			type:"post",
 			data:{"commnum":commnum,"type":type},
 			success:function(data){
-				if($(data).find("code").text()=='success'){
-					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
+				if($(data).find("owner").text()=='mine'){
+					alert("본인의 댓글입니다.");
 				}else{
-					alert("오류발생!");
+					if($(data).find("code").text()=='success'){
+						$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
+						return true;
+					}else{
+						alert("오류발생!");
+					}
 				}
+				return false;
 			}			
 		});
 	}
 	
 	
 	
-	// 댓글 스크립트
+	function openComm(commName,elmnt){
+		var i, tabcontent, tablinks;
+		tabcontents=$(".tabcontent");
+		for(i=0; i<tabcontents.length; i++){
+			tabcontents[i].style.display="none";
+		}
+		tablinks=$(".tablink");
+		for(i=0; i<tablinks.length; i++){
+			tablinks[i].style.backgroundColor="";
+		}
+		$("#"+commName).css("display","block");
+		elmnt.style.backgroundColor="lightgrey";
+	}
+	
 
 </script>
 	
@@ -241,29 +288,25 @@
 	
 	
 	
-	<div class="row">
-    <div class="col-lg-8">
-      <!-- Comments Form -->
+	<div class="row" style="width:100%;">
       
-      <div class="card my-4">
-        <h5 class="card-header">독자님! 한마디 남겨주세요.</h5>
-        <div class="card-body">
-          <div class="form-group">
-            <textarea class="form-control" rows="3" id="comment"></textarea>
-          </div>
-          <button id="commInsert" class="btn btn-primary">등록</button>
+    <div class="card my-4" style="width:100%;">
+      <h5 class="card-header">독자님! 한마디 남겨주세요.</h5>
+      <div class="card-body">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" id="comment"></textarea>
         </div>
+        <button id="commInsert" class="btn btn-primary">등록</button>
       </div>
+    </div>
 
-
-
-			<div id="commList">
-	
-      </div>
-	  </div>
+		<div id="commList">
+			<button class="tablink" onclick="openComm('bestCommList',this)" id="defaultOpen">Best 댓글</button>
+			<button class="tablink" onclick="openComm('allCommList',this)">전체댓글</button>
+			
+			<div id="bestCommList" class="tabcontent"></div>
+			<div id="allCommList" class="tabcontent"></div>
+     </div>
 	</div>
-	
-	
-
 
 </div>

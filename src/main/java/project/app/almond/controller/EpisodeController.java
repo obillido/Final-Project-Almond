@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import project.app.almond.service.AlarmService;
 import project.app.almond.service.CommentsService;
 import project.app.almond.service.EpisodeService;
 import project.app.almond.service.ReadingService;
@@ -37,6 +38,7 @@ public class EpisodeController {
 	@Autowired private TicketStockService tss;
 	@Autowired private TicketUseService tus;
 	@Autowired private CommentsService cs;
+	@Autowired private AlarmService as;
 	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
@@ -136,17 +138,12 @@ public class EpisodeController {
 		int contnum=evo.getContnum();
 		WebcontentsVo wvo=ws.getInfo(contnum);
 		
-		
-		
-		
-		
 		Object uu=session.getAttribute("usernum");
 		Date sysdate=new Date(new java.util.Date().getTime());
 		if(uu!=null){
 			
 			//별점 관련
 			double episcore=ws.thisEpiScore(epinum);
-			System.out.println("출력결과:" + episcore);
 			if(episcore==0){
 				model.addAttribute("episcore", 0);
 			}else{
@@ -154,11 +151,16 @@ public class EpisodeController {
 			}
 			
 			int usernum=(Integer)uu, n=0;
-			if(type==1 || type==2) n=tus.insert(usernum, contnum, epinum, type, sysdate);
-			else{
+			if(type==1 || type==2){
+				n=tus.insert(usernum, contnum, epinum, type, sysdate);
+			}else{
 				n=rs.insert(usernum, contnum, epinum, type, sysdate);
 			}
 			if(n>0){
+				if(type==6){
+					System.out.println("스케쥴러 실행전 : "+new java.util.Date());
+					
+				}
 				model.addAttribute("wvo",wvo);
 				model.addAttribute("evo",evo);
 				return ".webcontents.episode.content";
@@ -166,13 +168,13 @@ public class EpisodeController {
 				model.addAttribute("msg","열람실패");
 				return "redirect:/webcontents/episode/list";
 			}
-			
 		}
-	
-		
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
-		
 		return ".webcontents.episode.content";
 	}
+	
+
+
+
 }

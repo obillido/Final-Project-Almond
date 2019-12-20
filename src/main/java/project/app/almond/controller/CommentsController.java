@@ -99,26 +99,31 @@ public class CommentsController {
 		if(uu!=null) usernum=(Integer)uu;
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
-		CommLikesVo vo=new CommLikesVo(0,usernum,commnum,type);
-		CommLikesVo vo2=cls.isExist(vo);
-		int n=0;
-		if(vo2==null){
-			n=cls.insert(vo);
+		
+		if(cs.getInfo(commnum).getUsernum()==usernum){
+			sb.append("<owner>mine</owner>");
 		}else{
-			if(Math.abs(vo2.getType()-type)==1){
-				sb.append("<selected>already</selected>");
-				return sb.toString();
+			CommLikesVo vo=new CommLikesVo(0,usernum,commnum,type);
+			CommLikesVo vo2=cls.isExist(vo);
+			int n=0;
+			if(vo2==null){
+				n=cls.insert(vo);
+			}else{
+				if(Math.abs(vo2.getType()-type)==1){
+					sb.append("<selected>already</selected>");
+					return sb.toString();
+				}
+				n=cls.update(vo);
 			}
-			n=cls.update(vo);
+			sb.append("<result>");
+			if(n>0){
+				sb.append("<code>success</code>");
+				vo.setType(Math.abs(type));
+				sb.append("<cnt>"+cls.getCnt(vo)+"</cnt>");
+			}
+			else sb.append("<code>fail</code>");
+			sb.append("</result>");
 		}
-		sb.append("<result>");
-		if(n>0){
-			sb.append("<code>success</code>");
-			vo.setType(Math.abs(type));
-			sb.append("<cnt>"+cls.getCnt(vo)+"</cnt>");
-		}
-		else sb.append("<code>fail</code>");
-		sb.append("</result>");
 		return sb.toString();
 	}
 }

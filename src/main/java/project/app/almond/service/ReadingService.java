@@ -32,4 +32,7 @@ public class ReadingService {
 	public Integer getRemainingWaitingTime(HashMap<String, Object> map){
 		return rdao.getRemainingWaitingTime(map);
 	}
+	
+	
+	
 }
