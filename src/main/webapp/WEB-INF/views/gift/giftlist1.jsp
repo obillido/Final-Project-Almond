@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
- <link href="${pageContext.request.contextPath}/resources/gift/giftlist.css" rel="stylesheet">
+ <link href="${pageContext.request.contextPath}/resources/gift/giftlist1.css" rel="stylesheet">
  
     
 

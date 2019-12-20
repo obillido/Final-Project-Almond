@@ -44,7 +44,7 @@
 						<c:if test="${list.COMPLETIONTYPE==0}">[연재중]</c:if>
 						<c:if test="${list.COMPLETIONTYPE==1}">[완결]</c:if><br>
 						</span> <br>
-						<span style="font-weight: 600">${list.SUBTITLE} ${list.EPNUM}화</span>
+						<span style="font-weight: 600; font-family: 고딕;">${list.SUBTITLE} ${list.EPNUM}화</span>
 					</div>
 					<div class="tab1_3"><br>
 						<c:if test="${list.TYPE==1}"><span style="font-weight: 800; color: 04B404; text-align: right; ">소장 이용권 사용</span></c:if>
