@@ -61,12 +61,12 @@ ul.tabs li{
     height: 140px;
 }
 .tab1_2{
-    width: 50%;
+    width: 70%;
     float: left;
     height: 100%;
 }
 .tab1_3{
-    width: 50%;
+    width: 30%;
     float: right;
     text-align: right;
     padding-top: 60px;
@@ -77,11 +77,13 @@ ul.tabs li{
 .contents1{
 	width: 80px;
     float: right;
-    background-color: burlywood;
+    border: 1px solid orange;
+    background-color: orange;
     height: 31px;
     text-align: center;
     padding-top: 15px;
     border-radius:10px;
     padding: 1px;
     margin-right: 10px;
+    cursor: pointer;
 }
