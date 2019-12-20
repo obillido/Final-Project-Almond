@@ -34,7 +34,7 @@ public class EpisodeDao {
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",map);
 	}
 	public EpisodeVo getFirstEpi(int contnum){
-		return sqlSessionTemplate.selectOne(NAMESPACE+".getLastRead",contnum);
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getFirstEpi",contnum);
 	}
 	public int getTotalEpisodeCnt(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalEpisodeCnt",contnum);

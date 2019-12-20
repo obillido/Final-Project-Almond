@@ -21,6 +21,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+
+		
+		$("#comment").click(function(){
+			if(${empty usernum}){
+				alert("로그인 후 이용가능한 서비스입니다.");
+			}
+		});
+		
+		
 		/////////별점/////////
 		var stars;
 		$("#star_grade a").removeAttr("href");
@@ -30,7 +39,7 @@
             stars=$(this).attr("value");
             
 		});
-        $("#score").click(function(){
+    $("#score").click(function(){
 			$.ajax({
 				url:"${path}/webcontents/score?stars=" + stars + "&epinum=${evo.epinum}",
 				dataType:"xml",
@@ -49,8 +58,6 @@
 		
 		
 		
-		
-		
 	
 		list();			
 		$("#commInsert").click(function(){
@@ -60,7 +67,7 @@
 				url:"${path}/webcontents/comments/insert",
 				dataType:"xml",
 				type:"post",
-				data:{"epinum":${evo.epinum},"usernum":${usernum},"comment":comment,"ref":ref},
+				data:{"epinum":${evo.epinum},"comment":comment,"ref":ref},
 				success:function(data){
 					console.log($(data).find("code").text());
 					if($(data).find("code").text()=='success'){
@@ -77,7 +84,7 @@
 	function list(){
 		$("#commList div").remove();
 		$.ajax({
-			url:"${path}/webcontents/comments/list?epinum=${evo.epinum}&usernum=${usernum}",
+			url:"${path}/webcontents/comments/list?epinum=${evo.epinum}",
 			dataType:"xml",
 			success:function(data){
 				$(data).find("comment").each(function(){
@@ -105,6 +112,7 @@
 			      '</div> <hr> ';
 					$("#commList").append(comm);
 				});
+				alert($(data).find("comment").text());
 			}
 		});
 	}
@@ -165,45 +173,44 @@
 
 
 <!-- Page Content -->
- <div class="container">
+<div class="container">
 
-<br>
-
-
+	<br>
 	<div style="text-align:center">
 		<img src="${path}/resources/webcontents/${wvo.cultype}/${evo.img}">
   </div>
+	
+	<hr>
+	
+	<!-- ////////// 별점 ////////// -->
+	<br>
+	
+	<c:choose>
+		<c:when test="${empty episcore}">
+			<p>아직 아무도 별점을 주지 않았습니다.</p>
+		</c:when>
+		<c:otherwise>
+			<p>이번 화의 평균 별점은 <strong>${episcore}</strong>점입니다.</p>
+		</c:otherwise>
+	</c:choose>
+	
+	고객님의 소중한 별점을 주세요 :)
+	이번 화는 5점 만점에 몇 점~~~?&nbsp;&nbsp;
+	
+	<p id="star_grade" style="display:inline-block;font-size: 1.5em;">
+	  <a href="#" value="1">★</a>
+	  <a href="#" value="2">★</a>
+	  <a href="#" value="3">★</a>
+	  <a href="#" value="4">★</a>
+	  <a href="#" value="5">★</a>
+	</p>&nbsp;&nbsp;
+	<button id="score" class="btn btn-outline-secondary" style="display:inline-block">별점 주기</button>	
 
 
 
 	<hr>
-
-<!-- ////////// 별점 ////////// -->
-<br>
-
-<c:choose>
-<c:when test="${episcore eq 0 }">
-<p>아직 아무도 별점을 주지 않았습니다.</p>
-</c:when>
-<c:otherwise>
-<p>이번 화의 평균 별점은 <strong>${episcore }</strong>점입니다.</p>
-</c:otherwise>
-</c:choose>
-
-고객님의 소중한 별점을 주세요 :)
-이번 화는 5점 만점에 몇 점~~~?&nbsp;&nbsp;
-<p id="star_grade" style="display:inline-block;font-size: 1.5em;">
-  <a href="#" value="1">★</a>
-  <a href="#" value="2">★</a>
-  <a href="#" value="3">★</a>
-  <a href="#" value="4">★</a>
-  <a href="#" value="5">★</a>
-</p>&nbsp;&nbsp;
-<button id="score" class="btn btn-outline-secondary" style="display:inline-block">별점 주기</button>	
-
-
-
-	<hr>
+	
+	
 	
 	<div class="row">
     <div class="col-lg-8">
@@ -223,25 +230,6 @@
 
 			<div id="commList">
 	
-	      <!-- Comment with nested comments -->
-	      <div class="media mb-4">
-	        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-	        <div class="media-body">
-	        
-	          <h5 class="mt-0">Commenter Name</h5>
-						댓글내용
-	
-	          <div class="media mt-4">
-	            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-	            <div class="media-body">
-	              <h5 class="mt-0">Commenter Name</h5>
-								댓글내용
-	            </div>
-	          </div>
-
-					</div>
-        </div>
-        
       </div>
 	  </div>
 	</div>

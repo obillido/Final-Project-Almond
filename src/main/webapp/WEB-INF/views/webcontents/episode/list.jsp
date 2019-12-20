@@ -273,14 +273,15 @@
 	<!-- 이어보기 -->
 	<div style="width:100%; text-align:center;" 
 			id="lastread" onclick="javascript:lastread(${epiLastRead.epinum})">
-		<a href="javascript:openEpisode(${epiLastRead.epinum},${epiLastRead.epnum},${wvo.freenum});" 
-				class="btn btn-primary lastread">
-			<strong>
+		<a href="javascript:openEpisode(${epiLastRead.epinum},${epiLastRead.epnum},${wvo.freenum});" class="btn btn-primary lastread">
 			<c:choose>
-				<c:when test="${not empty usernum && not empty epiLastRead}"><span>이어보기</span></c:when>
-				<c:otherwise><span>첫편보기</span></c:otherwise>
+				<c:when test="${not empty usernum && not empty epiLastRead}">
+					<strong>이어보기</strong>
+				</c:when>
+				<c:otherwise>
+					<strong>첫편보기</strong>
+				</c:otherwise>
 			</c:choose>
-			</strong>
 			<br>
 			<c:choose>
 				<c:when test="${empty epiLastRead.subtitle}"><span>${wvo.title} ${epiLastRead.epnum}화</span></c:when>

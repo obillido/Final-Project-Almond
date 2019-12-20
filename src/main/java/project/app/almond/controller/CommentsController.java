@@ -3,8 +3,11 @@ package project.app.almond.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +23,7 @@ public class CommentsController {
 	@Autowired private CommLikesService cls;
 	@RequestMapping(value="/webcontents/comments/insert",produces="application/xml;chatset=utf-8")
 	@ResponseBody
-	public String insert(int epinum,int usernum,String comment,int ref){
+	public String insert(int epinum,String comment,int ref, HttpSession session){
 		int lev=1,step=1;
 		if(ref==0) ref=cs.getRef(epinum)+1;
 		else{
@@ -30,7 +33,7 @@ public class CommentsController {
 			map.put("ref",ref);
 			step=cs.getStep(map);
 		}
-		int n=cs.insert(new CommentsVo(0, epinum, usernum, comment, ref, lev, step, null));
+		int n=cs.insert(new CommentsVo(0, epinum, (Integer)session.getAttribute("usernum"), comment, ref, lev, step, null));
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		if(n>0) sb.append("<code>success</code>");
@@ -39,7 +42,10 @@ public class CommentsController {
 	}
 	@RequestMapping(value="/webcontents/comments/list",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String commentsList(int epinum,int usernum){
+	public String commentsList(int epinum,HttpSession session){
+		int usernum=-1;
+		Object uu=session.getAttribute("usernum");
+		if(uu!=null) usernum=(Integer)uu;
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("epinum",epinum);
 		map.put("usernum",usernum);
@@ -69,7 +75,10 @@ public class CommentsController {
 	}
 	@RequestMapping(value="/webcontents/comments/changeLikesCnt",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String changeLikesCnt(int usernum,int commnum,int type){
+	public String changeLikesCnt(int commnum,int type,HttpSession session){
+		int usernum=-1;
+		Object uu=session.getAttribute("usernum");
+		if(uu!=null) usernum=(Integer)uu;
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		CommLikesVo vo=new CommLikesVo(0,usernum,commnum,type);

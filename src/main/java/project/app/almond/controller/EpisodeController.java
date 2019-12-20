@@ -75,6 +75,7 @@ public class EpisodeController {
 		}else{
 			model.addAttribute("userEpiCnt",0);
 			model.addAttribute("ticketCnt",0);
+			model.addAttribute("epiLastRead",es.getFirstEpi(contnum));
 		}
 		map.put("contnum", contnum);
 		map.put("align", align);
