@@ -16,6 +16,10 @@
 		where w.contnum=g.contnum and sysdate between startdate and enddate and g.giftnum=gh.giftnum(+)
 		order by gifthnum desc, g.startdate desc
 	</select>
+	
+	<insert id="inserthistory" parameterType="project.app.almond.vo.GiftHistoryVo">
+		insert into gifthistory values(SEQ_GIFTHISTORY_GIFTHNUM.nextval, #{giftnum},#{usernum},sysdate)
+	</insert>
 
 </mapper>
 

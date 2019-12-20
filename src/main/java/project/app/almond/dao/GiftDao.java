@@ -25,4 +25,7 @@ public class GiftDao {
 	public List<HashMap<String, Object>> getList(int usernum){
 		return sqlSessionTemplate.selectList(NAMESPACE + ".getList", usernum);
 	}
+	public int inserthistory(GiftHistoryVo vo){
+		return sqlSessionTemplate.insert(NAMESPACE + ".inserthistory", vo);
+	}
 }

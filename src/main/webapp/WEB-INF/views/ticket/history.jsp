@@ -3,12 +3,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<link href="${pageContext.request.contextPath}/resources/ticket/history1.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/ticket/history.css" rel="stylesheet">
 
 <div class="body">
 	<div class="container">
 	
-	<div class="head">
+	<div class="head" style="padding-bottom: 30px; border-bottom: inset; border-bottom-color: burlywood;">
 		<ul class="tabs">
 			<li class="tab-link current" data-tab="tab-1" id="tab1"><span id="btn_ticket1" style="font-weight: 600; font-family: 고딕; ">이용권 충전 내역</span></li>
 			<li class="tab-link" data-tab="tab-2" id="tab2"><span id="btn_ticket2" style="font-weight: 600; font-family: 고딕;">이용권 사용 내역</span></li>
@@ -22,8 +22,8 @@
 					<div class="tab1_2">
 						<span style="color: rgba( 0, 0, 0, 0.6 );">
 						<fmt:formatDate value="${list.REGDATE}" pattern="yyyy-MM-dd hh:mm:ss" /><br></span> <br> <span style="color: rgba( 0, 0, 0, 0.6 );">${list.TITLE}<br> </span> <br>
-						<c:if test="${list.TYPE==1}"><span style="font-weight: 600">소장권: ${list.CNT}개</span></c:if>
-						<c:if test="${list.TYPE==2}"><span style="font-weight: 600">대여권: ${list.CNT}개 </span></c:if>
+						<c:if test="${list.TYPE==1}"><span style="font-weight: 600; font-family: 고딕;">소장권: ${list.CNT}개</span></c:if>
+						<c:if test="${list.TYPE==2}"><span style="font-weight: 600; font-family: 고딕;">대여권: ${list.CNT}개 </span></c:if>
 					</div>
 					<div class="tab1_3">
 						<br><span style="font-weight: 800; color:04B404; text-align: right;">${list.PRICE }캐시</span><br>

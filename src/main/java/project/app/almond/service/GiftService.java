@@ -21,6 +21,8 @@ public class GiftService {
 	public List<HashMap<String, Object>> getList(int usernum){
 		return giftDao.getList(usernum);
 	}
-
+	public int inserthistory(GiftHistoryVo vo){
+		return giftDao.inserthistory(vo);
+	}
 	
 }

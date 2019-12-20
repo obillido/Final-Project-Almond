@@ -45,14 +45,16 @@
 						</div>
 					</div>
 					<div class="tab1_3">
-						<button type="submit" class="contents1" onclick="gift(this);">
-							<span style="font-weight: 600; font-family: 고딕;"> 
-								<c:choose>
-									<c:when test="${empty wv.GIFTHNUM}">선물받기</c:when>
-									<c:otherwise>받기완료</c:otherwise>
-								</c:choose>
-							</span>
-						</button>
+						<form method="post" action="${pageContext.request.contextPath}/gift/gifthistory">
+							<input type="hidden" name="giftnum" value="${wv.GIFTNUM }">
+							<button type="submit" class="contents1" <c:if test="${not empty wv.GIFTHNUM}">disabled</c:if>>
+								<span style="font-weight: 600; font-family: 고딕;"> <c:choose>
+										<c:when test="${empty wv.GIFTHNUM}">선물받기</c:when>
+										<c:otherwise>받기완료</c:otherwise>
+									</c:choose>
+								</span>
+							</button>
+						</form>
 					</div>
 				</div>
 				<hr>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import project.app.almond.service.GiftService;
 import project.app.almond.service.TicketService;
 import project.app.almond.service.WebcontentsService;
+import project.app.almond.vo.GiftHistoryVo;
 import project.app.almond.vo.GiftVo;
 import project.app.almond.vo.WebcontentsVo;
 
@@ -74,8 +75,15 @@ public class GiftController {
 	@RequestMapping(value="/gift/giftbox")
 	public String giftbox(HttpSession session, Model model){
 		int usernum=(Integer)session.getAttribute("usernum");
-		model.addAttribute("wv",gs.getList(usernum));
+		model.addAttribute("wv",gs.getList(usernum));	
 		return "gift/giftbox";
 	}
 	
+	@RequestMapping(value="/gift/gifthistory")
+	public String gifthistory(int giftnum, Model model,HttpSession session){
+		int usernum=(Integer)session.getAttribute("usernum");
+		int n=gs.inserthistory(new GiftHistoryVo(0, giftnum, usernum, null));
+		System.out.println(n);
+		return "redirect:/gift/giftbox";
+	}
 }
