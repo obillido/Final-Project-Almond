@@ -29,6 +29,7 @@
 		select ep.* from reading r, episode ep
 		where r.epinum=ep.epinum
 			and readingdate=(select max(readingdate) from reading r, episode ep where r.epinum=ep.epinum and r.usernum=#{usernum} and ep.contnum=#{contnum})
+			and rownum=1
 	</select>
 	<select id="getFirstEpi" parameterType="int" resultType="project.app.almond.vo.EpisodeVo">
 		select * from episode ep where ep.epnum=(select min(epnum) from episode ep where ep.contnum=#{contnum}) and ep.contnum=#{contnum}

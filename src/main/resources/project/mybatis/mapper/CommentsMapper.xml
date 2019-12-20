@@ -21,6 +21,21 @@
 		where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+) and c.commnum=cl.commnum(+) and c.commnum=ch.commnum(+)
 		order by c.ref desc, c.step asc
 	</select>
+	<select id="getBestList" parameterType="hashmap" resultType="project.app.almond.vo.CommentsInfoVo">
+		select cc.* from
+    (select cc.*,rownum from
+        (select cc.* ,(cntlike-cnthate) totcnt
+        from (select c.*,u.nickname,u.profileimg,nvl(cntlike,0) cntlike,nvl(cnthate,0) cnthate,nvl(type,0) mytype
+            from comments c, users u, 
+            (select count(*) cntlike,commnum from commlikes where type=1 group by commnum) cl,
+            (select count(*) cnthate,commnum from commlikes where type=2 group by commnum) ch,
+            (select type,commnum from commlikes where usernum=#{usernum}) mt
+            where epinum=#{epinum} and c.usernum=u.usernum and c.commnum=mt.commnum(+) and c.commnum=cl.commnum(+) and c.commnum=ch.commnum(+)) cc
+        order by totcnt desc) cc
+   <![CDATA[) cc where rownum<=3 and totcnt>0]]>
+	</select>
+	
+	
 	<select id="getTotalCommCnt" parameterType="Integer" resultType="Integer">
 		select nvl(count(ep.epinum),0) from comments c, episode ep 
 		where c.epinum=ep.epinum and ep.contnum=#{contnum} group by ep.contnum

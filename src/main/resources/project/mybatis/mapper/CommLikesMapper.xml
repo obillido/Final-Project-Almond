@@ -20,6 +20,8 @@
 		from commlikes cl, comments c, episode ep, webcontents w
 		where cl.commnum=#{commnum} and cl.commnum=c.commnum and c.epinum=ep.epinum and ep.contnum=w.contnum
 	</select>
+	
+
 </mapper>
 
 

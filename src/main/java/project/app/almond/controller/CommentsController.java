@@ -50,9 +50,27 @@ public class CommentsController {
 		map.put("epinum",epinum);
 		map.put("usernum",usernum);
 		List<CommentsInfoVo> list=cs.getList(map);
+		List<CommentsInfoVo> bestList=cs.getBestList(map);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<result>");
+		for(CommentsInfoVo vo:bestList){
+			sb.append("<bestComment>");
+			sb.append("<commnum>"+vo.getCommnum()+"</commnum>");
+			sb.append("<epinum>"+vo.getEpinum()+"</epinum>");
+			sb.append("<usernum>"+vo.getUsernum()+"</usernum>");
+			sb.append("<content>"+vo.getContent()+"</content>");
+			sb.append("<ref>"+vo.getRef()+"</ref>");
+			sb.append("<lev>"+vo.getLev()+"</lev>");
+			sb.append("<step>"+vo.getStep()+"</step>");
+			sb.append("<regdate>"+vo.getRegdate()+"</regdate>");
+			sb.append("<nickname>"+vo.getNickname()+"</nickname>");
+			sb.append("<profileimg>"+vo.getProfileimg()+"</profileimg>");
+			sb.append("<cntlike>"+vo.getCntlike()+"</cntlike>");
+			sb.append("<cnthate>"+vo.getCnthate()+"</cnthate>");
+			sb.append("<mytype>"+vo.getMytype()+"</mytype>");
+			sb.append("</bestComment>");
+		}
 		for(CommentsInfoVo vo:list){
 			sb.append("<comment>");
 			sb.append("<commnum>"+vo.getCommnum()+"</commnum>");
