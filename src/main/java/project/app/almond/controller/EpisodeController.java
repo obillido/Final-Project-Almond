@@ -46,14 +46,11 @@ public class EpisodeController {
 		if(cultype==1 || cultype==2) model.addAttribute("wvo",ws.getInfoBook(contnum));
 		else 						 model.addAttribute("wvo",ws.getInfoVideo(contnum));
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("contnum", contnum);
-		map.put("align", align);
 		Object uu=session.getAttribute("usernum");
+		int usernum=-1;
 		if(uu!=null){
-			int usernum=(Integer)uu;
+			usernum=(Integer)uu;
 			map2.put("usernum", usernum);
-			map.put("usernum",usernum);
-			model.addAttribute("epiList",es.getListforUser(map));
 			TicketStockVo tsvo1=tss.getInfo(new TicketStockVo(0, usernum, contnum, 1, 0));
 			TicketStockVo tsvo2=tss.getInfo(new TicketStockVo(0, usernum, contnum, 2, 0));
 			int own=0,rental=0;
@@ -78,8 +75,11 @@ public class EpisodeController {
 		}else{
 			model.addAttribute("userEpiCnt",0);
 			model.addAttribute("ticketCnt",0);
-			model.addAttribute("epList",es.getList(map));
 		}
+		map.put("contnum", contnum);
+		map.put("align", align);
+		map.put("usernum",usernum);
+		model.addAttribute("epiList",es.getList(map));
 		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
 		if(cs.getTotalCommCnt(contnum)!=null) model.addAttribute("totalCommCnt",cs.getTotalCommCnt(contnum));
 		else model.addAttribute("totalCommCnt",0);

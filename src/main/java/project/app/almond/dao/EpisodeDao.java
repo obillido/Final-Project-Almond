@@ -21,11 +21,8 @@ public class EpisodeDao {
 	public int getEpnum(int contnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getEpnum",contnum);
 	}
-	public List<EpisodeVo> getList(HashMap<String, Object> map){
+	public List<EpisodeReadingVo> getList(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getList",map);
-	}
-	public List<EpisodeReadingVo> getListforUser(HashMap<String, Object> map){
-		return sqlSessionTemplate.selectList(NAMESPACE+".getListforUser",map);
 	}
 	public EpisodeVo getInfo(int epinum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",epinum);

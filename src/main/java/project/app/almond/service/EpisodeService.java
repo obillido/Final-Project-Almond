@@ -21,11 +21,8 @@ public class EpisodeService {
 	public int getEpnum(int contnum){
 		return edao.getEpnum(contnum);
 	}
-	public List<EpisodeVo> getList(HashMap<String, Object> map){
+	public List<EpisodeReadingVo> getList(HashMap<String, Object> map){
 		return edao.getList(map);
-	}
-	public List<EpisodeReadingVo> getListforUser(HashMap<String, Object> map){
-		return edao.getListforUser(map);
 	}
 	@Transactional
 	public EpisodeVo getInfo(int epinum){
