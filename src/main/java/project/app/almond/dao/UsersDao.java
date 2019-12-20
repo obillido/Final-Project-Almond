@@ -27,4 +27,7 @@ public class UsersDao {
 	public UsersVo emailcheck(String email) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+".emailcheck",email);
 	}
+	public int chgProfile(UsersVo vo){
+		return sqlSessionTemplate.update(NAMESPACE + ".chgProfile",vo);
+	}
 }

@@ -26,4 +26,7 @@ public class UsersService {
 	public UsersVo emailcheck(String email) {
 		return udao.emailcheck(email);
 	}
+	public int chgProfile(UsersVo vo){
+		return udao.chgProfile(vo);
+	}
 }

@@ -22,4 +22,7 @@
 	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.UsersVo">
 		select * from users where usernum=#{usernum}
 	</select>
+	<update id="chgProfile" parameterType="project.app.almond.vo.UsersVo">
+	    update users set nickname=#{nickname},profileimg=#{profileimg} where usernum=#{usernum}
+	</update>
 </mapper>
