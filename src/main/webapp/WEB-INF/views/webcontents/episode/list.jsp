@@ -212,7 +212,8 @@
       	<span style="color:blue !important">${readernum}</span>명이 보는 중 
       	 전체댓글
      	</li>
-      <li class="list-group-item">공지사항</li>
+      <a href="${path }/notice/list?contnum=${wvo.contnum}"><li class="list-group-item">공지사항</li></a>
+   
       <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
       <c:if test="${wvo.waiting>0}">
 	      <li class="list-group-item">
