@@ -99,6 +99,13 @@
 		if(${msg!=null}){
 			alert(${msg});
 		}
+		$("#charge").on('click',function(){
+			if(${empty usernum}){
+				alert("로그인 후 이용 가능한 서비스입니다.");
+			}else{
+				location.href="${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}";
+			}
+		});
 	}
 
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
@@ -227,6 +234,7 @@
 							<c:if test="${day>=1}">${day}일</c:if>
 							<c:if test="${hour>=1}">${hour}시간</c:if>
 							<c:choose>
+								<c:when test="${empty usernum}">로그인 후 이용 가능</c:when>
 								<c:when test="${remainingWaitingTime>=1}">${rest-(rest)%1-hour*60-day*60*24}분 남음</c:when>
 								<c:when test="${remainingWaitingTime<=0}">무료 열람 가능</c:when>
 								<c:otherwise>1분 미만 남음</c:otherwise>
@@ -252,7 +260,7 @@
 			<br>
 			<span>내 열람</span>
 		</div>
-		<div class="charge-text" onclick="location.href='${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}'">
+		<div class="charge-text" id="charge">
 			<strong>${ticketCnt}</strong>
 			<span style="color:black;">충전</span>
 			<br>

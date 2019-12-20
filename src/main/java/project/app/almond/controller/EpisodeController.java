@@ -73,12 +73,14 @@ public class EpisodeController {
 			}else{
 				model.addAttribute("remainingWaitingTime",0);
 			}
+			model.addAttribute("userEpiCnt",es.userReadCnt(map2));
+			model.addAttribute("ticketCnt",tss.getTicketCnt(map2));
 		}else{
+			model.addAttribute("userEpiCnt",0);
+			model.addAttribute("ticketCnt",0);
 			model.addAttribute("epList",es.getList(map));
 		}
 		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
-		model.addAttribute("userEpiCnt",es.userReadCnt(map2));
-		model.addAttribute("ticketCnt",tss.getTicketCnt(map2));
 		if(cs.getTotalCommCnt(contnum)!=null) model.addAttribute("totalCommCnt",cs.getTotalCommCnt(contnum));
 		else model.addAttribute("totalCommCnt",0);
 		return ".webcontents.episode.list";
