@@ -41,6 +41,8 @@
 	}
 
 	#login-box{width:260px; text-align:right;}
+	
+	
 </style>
 
 
@@ -175,7 +177,7 @@
 						$("#alarm").addClass("badge-notification");
 						$("#alarm").attr("data-badge",cnt);
 					}
-					if(vc) $("#alarmList").append("<div><p>알람 내역이 업습니다.</p></div>");
+					if(vc) $("#alarmList").append("<div><p>알람 내역이 없습니다.</p></div>");
 				}
 			});
 		}

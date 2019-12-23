@@ -6,12 +6,15 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -109,5 +112,27 @@ public class UsersController {
 			 ie.printStackTrace();
 			 return ".mypage.fail";
 		}
+	}
+	//비밀번호 찾기 기능
+	@RequestMapping(value="/users/findPwd",method=RequestMethod.GET)
+	public void findPwd(HttpServletResponse resp,String email)throws Exception{
+		us.findPwd(email, resp);
+	}
+	//회원가입시 이메일 인증
+	@RequestMapping(value="/users/verify",method=RequestMethod.GET)
+	public void verify(HttpServletResponse resp,String email,HttpSession session)throws Exception{
+		us.verify(email, resp,session);		
+
+	}
+	@RequestMapping(value="/users/chkcode",method=RequestMethod.GET)
+	@ResponseBody
+	public String chkcode(HttpSession session)throws Exception{	
+
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		sb.append("<code>" + (String)session.getAttribute("code") + "</code>");
+		sb.append("</result>");
+		return sb.toString();
 	}
 }

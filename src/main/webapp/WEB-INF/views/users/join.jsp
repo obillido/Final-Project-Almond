@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <script type="text/javascript">
 	var duplcheck=false;
 	function pwdCheck(){
@@ -77,10 +79,43 @@
 					}
 				});
 		});
+		$("#verify").click(function(){
+			var email=$("#email").val();
+			$.ajax({
+				url : "${path}/users/verify?email=" + email,
+				success : function(data) {
+					alert(data);
+				    
+				}
+			});
+		});
+		$("#chkcode").click(function(){
+			var code=$("#code").val();
+			$.ajax({
+				url : "${path}/users/chkcode",
+				success : function(data) {
+					var code2=$(data).find("code").text();
+				    if(code==code2){
+				    	alert("인증번호가 확인되셨습니다.");
+				    }else{
+				    	alert("잘못된 인증번호를 입력하셨습니다.");
+				    	return false;
+				    }
+				}
+			});
+		});
 	});
 </script>
 
 
+<style type="text/css">
+    .container {
+      margin: 0 auto;  
+      padding-top:100px;   
+      padding-bottom:100px;
+      width:40%;
+    }
+</style>
 
 
 <div class="container" style="margin-top:100px;">
@@ -95,10 +130,19 @@
 							<input class="w3-input" type="text" id="email" name="email" required  autocomplete=off>
             </p>
             <input type="button" value="중복체크" class="btn btn-primary" id="emailcheck">
+            <input type="button" value="이메일 인증" class="btn btn-primary" id="verify">
             <div class="check_font" id="email_check">
 						</div>
 					</div>
         </div>
+        <div class="control-group form-group">
+          <div class="controls">
+						<label>인증번호</label>
+						<input class="w3-input" type="text" id="code" required  autocomplete=off>
+          </div>
+        </div>
+        <input type="button" value="인증번호 확인" class="btn btn-primary" id="chkcode">
+        <br><br>
         <div class="control-group form-group">
           <div class="controls">
 						<label>비밀번호</label>
@@ -117,6 +161,7 @@
 						<input class="w3-input" type="text" id="phone" name="phone" required  autocomplete=off>
           </div>
         </div>
+        
         <div id="success"></div>
 					<button type="submit" class="btn btn-primary" id="sendMessageButton">회원가입</button>
       </form>

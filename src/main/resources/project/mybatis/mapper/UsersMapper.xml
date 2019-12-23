@@ -25,4 +25,10 @@
 	<update id="chgProfile" parameterType="project.app.almond.vo.UsersVo">
 	    update users set nickname=#{nickname},profileimg=#{profileimg} where usernum=#{usernum}
 	</update>
+	<update id="updatePwd" parameterType="project.app.almond.vo.UsersVo">
+	    update users set pwd=#{pwd} where email=#{email}
+	</update>
+	<select id="existingEmail" resultType="project.app.almond.vo.UsersVo" parameterType="String">
+	    select * from users where email=#{email}
+	</select>
 </mapper>
