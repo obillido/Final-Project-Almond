@@ -22,6 +22,9 @@ public class AlarmDao {
 	public List<AlarmVo> getCommList(int usernum){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getCommList",usernum);
 	}
+	public List<AlarmVo> getEventList(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getEventList",usernum);
+	}
 	public int getCnt(int usernum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",usernum);
 	}

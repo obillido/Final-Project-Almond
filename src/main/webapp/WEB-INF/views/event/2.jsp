@@ -4,12 +4,29 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		if(${msg!=null}){
-			alert("${msg}");
-		}
+		event2(0);
 	}
 		
-
+	function event2(status){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/event2/list",
+			dataType:"xml",
+			type:"post",
+			data:{"eventnum":${eventnum},"status":status},
+			success:function(data){
+				if($(data).find("code").text()!='fail'){
+					$("#winnerList p").remove();
+					if($(data).find("msg").text().length>0)	alert($(data).find("msg").text());
+					$(data).find("user").each(function(){
+						var comm="<p>당첨유저 : "+$(this).find("usernum").text()+"(닉네임 : "+$(this).find("nickname").text()+")</p>";
+						$("#winnerList").append(comm);
+					});
+				}else{
+					alert("실패");
+				}
+			}
+		});
+	}
 	
 </script>
 
@@ -34,26 +51,17 @@
      <div class="col-md-5">
        <h3 class="my-3">이벤트 내용</h3>
         <p>이벤트 기간 : 12월 1일(일)~12월8일(월)<br>
-			참여방법 : 이벤트 기간 동안,<br>
-			 작품을 감상해 주시는 분들 중 추첨<br>
-			당첨자 발표 : 12월 9(화), 알람 개별고지<br></p>
+						참여방법 : 이벤트 기간 동안,<br>
+						 작품을 감상해 주시는 분들 중 추첨<br>
+						당첨자 발표 : 12월 9(화), 알람 개별고지<br></p>
         <br>
         <h3 class="my-3">경품</h3>   
          <br>        
          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg" alt="">  
       	 <c:if test="${userStatus.equals('admin')}">
-      	 	<form action="${pageContext.request.contextPath}/event2" method="post">
-      	 		<input type="hidden" value="${eventnum}" name="eventnum">
-      	 		<button type="submit" style="width: 100px;height: 60px;">당첨</button>
-      	 	</form>
-      	 </c:if>     	
-      	 <c:if test="${not empty list}">
-      	 <c:forEach var="vo" items="${list }">
-			<p>
-				당첨유저 : ${vo.usernum }(닉네임:${vo.nickname})
-			</p>
-		</c:forEach>
-		</c:if>
+      	 		<button type="button" style="width: 100px;height: 60px;" onclick="javascript:event2(1)">당첨</button>
+      	 </c:if>
+      	 <div id="winnerList"></div>
       </div>
      
     </div>

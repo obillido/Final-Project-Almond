@@ -12,6 +12,9 @@
 	<select id="getCommList" parameterType="int" resultType="project.app.almond.vo.AlarmVo">
 		select * from alarm where usernum=#{usernum} and type between -2 and 3 order by regdate desc, alarmnum desc
 	</select>
+	<select id="getEventList" parameterType="int" resultType="project.app.almond.vo.AlarmVo">
+		select * from alarm where usernum=#{usernum} and type in(21,22) order by regdate desc, alarmnum desc
+	</select>
 	<select id="getCnt" parameterType="int" resultType="int">
 		select nvl(count(*),0) from alarm where usernum=#{usernum} and status=0 and sysdate>=showdate
 	</select>

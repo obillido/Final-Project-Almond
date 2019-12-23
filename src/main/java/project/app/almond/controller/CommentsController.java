@@ -23,7 +23,7 @@ import project.app.util.PageUtil;
 public class CommentsController {
 	@Autowired private CommentsService cs;
 	@Autowired private CommLikesService cls;
-	@RequestMapping(value="/webcontents/comments/insert",produces="application/xml;chatset=utf-8")
+	@RequestMapping(value="/webcontents/comments/insert",produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String insert(int epinum,String comment,int ref, HttpSession session){
 		int lev=1,step=1;

@@ -41,6 +41,16 @@ public class AlarmController {
 			sb.append("<status>"+vo.getStatus()+"</status>");
 			sb.append("</commAlarmList>");
 		}
+		for(AlarmVo vo:as.getEventList(usernum)){
+			sb.append("<eventAlarmList>");
+			sb.append("<alarmnum>"+vo.getAlarmnum()+"</alarmnum>");
+			sb.append("<title>"+vo.getTitle()+"</title>");
+			sb.append("<content>"+vo.getContent()+"</content>");
+			sb.append("<regdate>"+vo.getRegdate()+"</regdate>");
+			sb.append("<num>"+vo.getNum()+"</num>");
+			sb.append("<status>"+vo.getStatus()+"</status>");
+			sb.append("</eventAlarmList>");
+		}
 		sb.append("<cnt>"+as.getCnt(usernum)+"</cnt>");
 		sb.append("</result>");
 		return sb.toString();

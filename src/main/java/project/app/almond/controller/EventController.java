@@ -1,28 +1,20 @@
 package project.app.almond.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import project.app.almond.service.EventHistoryService;
 import project.app.almond.service.EventService;
 import project.app.almond.service.WinnerService;
-import project.app.almond.vo.CommentsEpisodeVo;
-import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.EventHistoryVo;
-import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 import project.app.almond.vo.WinnerVo;
 
@@ -44,21 +36,29 @@ public class EventController {
 		return ".event.2";
 	}
 	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
-	@RequestMapping(value="/event2", method=RequestMethod.POST)
-	public String event2select(int eventnum,Model model){
-		//int n=0;
-		//int usernum=(Integer)session.getAttribute("usernum");
-		if(ws.count(eventnum)==0){//당첨버튼 누르기 전이면 실행
-			int n=service.event2(eventnum);	
-			if(n<1) model.addAttribute("msg","실패");
-		}else{//당첨버튼 눌러서 당첨자 나오면 당첨자 리스트에 담기
-			List<UsersVo> list=ws.select(eventnum);
-			model.addAttribute("list",list);
-			model.addAttribute("msg","이미 실행된 이벤트입니다.");
+	@RequestMapping(value="/event2/list", produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String event2select(int eventnum,int status){
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		if(status==1){
+			if(ws.count(eventnum)==0){//당첨버튼 누르기 전이면 실행
+				int n=service.event2(eventnum);	
+				if(n<1) sb.append("<code>fail</code>");
+			}else{//당첨버튼 눌러서 당첨자 나오면 당첨자 리스트에 담기
+				sb.append("<msg>이미 실행된 이벤트입니다.</msg>");
+			}
 		}
-		model.addAttribute("eventnum",eventnum);
-		
-		return ".event.2";
+		for(UsersVo vo:ws.select(eventnum)){
+			System.out.println(vo.getUsernum()+" , "+vo.getNickname());
+			sb.append("<user>");
+			sb.append("<usernum>"+vo.getUsernum()+"</usernum>");
+			sb.append("<nickname>"+vo.getNickname()+"</nickname>");
+			sb.append("</user>");
+		}
+		sb.append("</result>");
+		return sb.toString();
 	}
 	
 	//home2에서 이벤트페이지3눌렀을때

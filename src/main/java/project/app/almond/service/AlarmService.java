@@ -21,6 +21,9 @@ public class AlarmService {
 	public List<AlarmVo> getCommList(int usernum){
 		return adao.getCommList(usernum);
 	}
+	public List<AlarmVo> getEventList(int usernum){
+		return adao.getEventList(usernum);
+	}
 	public int getCnt(int usernum){
 		return adao.getCnt(usernum);
 	}
