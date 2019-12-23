@@ -28,8 +28,11 @@ public class CommentsService {
 	public List<CommentsInfoVo> getBestList(HashMap<String, Object> map){
 		return cdao.getBestList(map);
 	}
-	public Integer getTotalCommCnt(int contnum){
-		return cdao.getTotalCommCnt(contnum);
+	public Integer getCnt(int epinum){
+		return cdao.getCnt(epinum);
+	}
+	public Integer getTotalCnt(int contnum){
+		return cdao.getTotalCnt(contnum);
 	}
 	public CommentsVo getInfo(int commnum){
 		return cdao.getInfo(commnum);

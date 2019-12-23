@@ -30,8 +30,11 @@ public class CommentsDao {
 	public List<CommentsInfoVo> getBestList(HashMap<String, Object> map){
 		return sqlSessionTemplate.selectList(NAMESPACE+".getBestList",map);
 	}
-	public Integer getTotalCommCnt(int contnum){
-		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalCommCnt",contnum);
+	public Integer getCnt(int epinum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",epinum);
+	}
+	public Integer getTotalCnt(int contnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getTotalCnt",contnum);
 	}
 	public CommentsVo getInfo(int commnum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",commnum);

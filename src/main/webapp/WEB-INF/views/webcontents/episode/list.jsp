@@ -210,7 +210,6 @@
 			<li class="list-group-item">
 				<fmt:formatNumber var="readernum" value="${wvo.readernum}" pattern="0"/>
       	<span style="color:blue !important">${readernum}</span>명이 보는 중 
-      	 전체댓글
      	</li>
       <a href="${path }/notice/list?contnum=${wvo.contnum}"><li class="list-group-item">공지사항</li></a>
    

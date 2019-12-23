@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import project.app.almond.service.CommLikesService;
@@ -16,6 +17,7 @@ import project.app.almond.service.CommentsService;
 import project.app.almond.vo.CommLikesVo;
 import project.app.almond.vo.CommentsInfoVo;
 import project.app.almond.vo.CommentsVo;
+import project.app.util.PageUtil;
 
 @Controller
 public class CommentsController {
@@ -42,15 +44,19 @@ public class CommentsController {
 	}
 	@RequestMapping(value="/webcontents/comments/list",produces="application/xml;charset=utf-8")
 	@ResponseBody
-	public String commentsList(int epinum,HttpSession session){
+	public String commentsList(int epinum,@RequestParam(value="pageNum",defaultValue="1")int pageNum, HttpSession session){
+		int totalRowCount=cs.getCnt(epinum);
+		PageUtil pu=new PageUtil(pageNum, totalRowCount, 5, 5);
 		int usernum=-1;
 		Object uu=session.getAttribute("usernum");
 		if(uu!=null) usernum=(Integer)uu;
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("epinum",epinum);
 		map.put("usernum",usernum);
-		List<CommentsInfoVo> list=cs.getList(map);
 		List<CommentsInfoVo> bestList=cs.getBestList(map);
+		map.put("startRow", pu.getStartRow());
+		map.put("endRow",pu.getEndRow());
+		List<CommentsInfoVo> list=cs.getList(map);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<result>");
@@ -88,6 +94,10 @@ public class CommentsController {
 			sb.append("<mytype>"+vo.getMytype()+"</mytype>");
 			sb.append("</comment>");
 		}
+		sb.append("<pageNum>"+pu.getPageNum()+"</pageNum>");
+		sb.append("<startPageNum>"+pu.getStartPageNum()+"</startPageNum>");
+		sb.append("<endPageNum>"+pu.getEndPageNum()+"</endPageNum>");
+		sb.append("<totalPageCount>"+pu.getTotalPageCount()+"</totalPageCount>");
 		sb.append("</result>");
 		return sb.toString();
 	}

@@ -28,6 +28,7 @@
 	
 	
 	#commList{width:100%;}
+	.comm-regdate{float:right;}
 	
 	.tablink{
 		width:50%;
@@ -48,6 +49,7 @@
 	  display: none;
 	  padding: 50px;
 	}
+	.page-curr{background-color:lightgrey;}
 	
 </style>
 	
@@ -95,7 +97,7 @@
 		
 		
 	
-		list();			
+		list(1);			
 		$("#commInsert").click(function(){
 			var comment=$("#comment").val();
 			var ref=0;
@@ -107,7 +109,7 @@
 				success:function(data){
 					if($(data).find("code").text()=='success'){
 						$("#comment").val("");
-						list();
+						list(1);
 						alert("댓글작성 완료");
 					}else{
 						alert("댓글작성 실패");
@@ -116,16 +118,17 @@
 			});
 		});
 	});
-	function list(){
+	function list(pageNum){
 		$("#bestCommList div").remove();
 		$("#bestCommList hr").remove();
 		$("#allCommList div").remove();
 		$("#allCommList hr").remove();
 		$.ajax({
-			url:"${path}/webcontents/comments/list?epinum=${evo.epinum}",
+			url:"${path}/webcontents/comments/list",
 			dataType:"xml",
+			type:"post",
+			data:{"epinum":${evo.epinum},"pageNum":pageNum},
 			success:function(data){
-				
 				$(data).find("bestComment").each(function(){
 					$("#bestCommList").append(comm(this,1));
 				});
@@ -138,6 +141,11 @@
 				if($(data).find("comment").length==0){
 					$("#allCommList").append("<div><p>첫번째 댓글을 남겨주세요.</p></div>");
 				}
+				var pageNum=parseInt($(data).find("pageNum").text());
+				var startPageNum=parseInt($(data).find("startPageNum").text());
+				var endPageNum=parseInt($(data).find("endPageNum").text());
+				var totalPageCount=parseInt($(data).find("totalPageCount").text());
+				$("#allCommList").append(pagination(pageNum,startPageNum,endPageNum,totalPageCount));
 			}
 		});
 	}
@@ -164,10 +172,37 @@
 		comm+=	'<img src="${path}/resources/comments/hate.png" class="likesImg"> '+
 						'<div class="likesCnt">'+fmt($(me).find("cnthate").text())+'</div> '+
 					'</button> '+
+					'<span class="comm-regdate">'+$(me).find("regdate").text()+'</span>'+
 				'</div> '+
       '</div>';
       return comm;
 	}
+	function pagination(pageNum,startPageNum,endPageNum,totalPageCount){
+		var paging='<div class="paging">'+
+								'<ul class="pagination justify-content-center">';
+		if(startPageNum!=1)
+			paging+=		'<li class="page-item">'+
+										'<a class="page-link" href="javascript:list('+(startPageNum-1)+')" aria-label="Previous">'+
+											'<span aria-hidden="true">&laquo;</span>'+
+											'<span class="sr-only">Previous</span>'+
+										'</a>'+
+									'</li>';
+		for(var i=startPageNum; i<=endPageNum; i++){
+			if(i!=pageNum) paging+='<li class="page-item"><a class="page-link" href="javascript:list('+i+')">'+i+'</a></li>';
+			else paging+='<li class="page-item"><a class="page-link page-curr" href="javascript:list('+i+')">'+i+'</a></li>';
+		}
+		if(endPageNum!=totalPageCount)
+			paging+=		'<li class="page-item">'+
+										'<a class="page-link" href="javascript:list('+(endPageNum+1)+')" aria-label="Next">'+
+											'<span aria-hidden="true">&raquo;</span>'+
+											'<span class="sr-only">Next</span>'+
+										'</a>'+
+									'</li>';
+		paging+='</ul></div>';
+							
+		return paging;
+	}
+	
 	
 	function fmt(x){
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -300,13 +335,15 @@
       </div>
     </div>
 
+
+
 		<div id="commList">
 			<button class="tablink" onclick="openComm('bestCommList',this)" id="defaultOpen">Best 댓글</button>
 			<button class="tablink" onclick="openComm('allCommList',this)">전체댓글</button>
 			
 			<div id="bestCommList" class="tabcontent"></div>
 			<div id="allCommList" class="tabcontent"></div>
-     </div>
+		</div>
 	</div>
 
 </div>

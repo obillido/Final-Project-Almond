@@ -40,7 +40,7 @@
 	<select id="userReadCnt" parameterType="hashmap" resultType="int">
 		select nvl(count(*),0) cnt from
 			(select ep.epinum cnt from reading r, episode ep, users u
-			where ep.epinum=r.epinum and ep.contnum=#{contnum} and u.usernum=#{usernum}
+			where ep.epinum=r.epinum and ep.contnum=#{contnum} and r.usernum=#{usernum}
 			group by ep.epinum)
 	</select>
 </mapper>

@@ -84,7 +84,7 @@ public class EpisodeController {
 		map.put("usernum",usernum);
 		model.addAttribute("epiList",es.getList(map));
 		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
-		if(cs.getTotalCommCnt(contnum)!=null) model.addAttribute("totalCommCnt",cs.getTotalCommCnt(contnum));
+		if(cs.getTotalCnt(contnum)!=null) model.addAttribute("totalCommCnt",cs.getTotalCnt(contnum));
 		else model.addAttribute("totalCommCnt",0);
 		return ".webcontents.episode.list";
 	}
