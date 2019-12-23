@@ -210,7 +210,7 @@
 	}
 	function clickLike(me,usernum){
 		if('${not empty usernum}'){
-				if(${usernum}==usernum){
+			if(${usernum}!=usernum){
 				if($($(me).parent().children()[3]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
 						if(changeLikesCnt($(me).val(),1,me)) $(me).attr('class','likes-click');
@@ -229,7 +229,7 @@
 	}
 	function clickHate(me,usernum){
 		if('${not empty usernum}'){
-			if(${usernum}==usernum){
+			if(${usernum}!=usernum){
 				if($($(me).parent().children()[2]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
 						if(changeLikesCnt($(me).val(),2,me)) $(me).attr('class','hates-click');
@@ -255,17 +255,12 @@
 			type:"post",
 			data:{"commnum":commnum,"type":type},
 			success:function(data){
-				console.log("들어오나?")
-				if($(data).find("owner").text()=='mine'){
-					alert("본인의 댓글입니다.");
+				if($(data).find("code").text()=='success'){
+					console.log($(data).find("cnt").text());
+					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
+					check= true;
 				}else{
-					if($(data).find("code").text()=='success'){
-						console.log($(data).find("cnt").text());
-						$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
-						check= true;
-					}else{
-						alert("오류발생!");
-					}
+					alert("오류발생!");
 				}
 			}			
 		});
