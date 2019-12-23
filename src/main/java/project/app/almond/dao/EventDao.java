@@ -23,15 +23,17 @@ public class EventDao {
 	public List<Event2Vo> event2(int eventnum){//이벤트2 당첨자 뽑기
 		return session.selectList(NAMESPACE+".event2",eventnum);
 	}
-	public List<CommentsEpisodeVo> event3(){//이벤트3 댓글 당첨자 리스트
-		return session.selectList(NAMESPACE+".event3");
+	public List<WinnerVo> event3comments(int eventnum){//이벤트3 댓글 당첨자 리스트
+		return session.selectList(NAMESPACE+".event3comments");
 	}
-	public List<ReadingEpisodeVo> event3reading(){//이벤트 3열람 당첨자 리스트 
+	public int event3cash(WinnerVo vo){//이벤트3 당첨자한테 캐시 만원주기
+		return session.update(NAMESPACE+".event3cash",vo);
+	}
+	public List<WinnerVo> event3reading(int eventnum2){//이벤트 3열람 당첨자 리스트 
 		return session.selectList(NAMESPACE+".event3reading");
 	}
-	public int rullCash(UsersVo vo){//룰렛 돌린 당첨자...
-		return session.update(NAMESPACE+".rullcash",vo);
+	public int event5cash(UsersVo vo){//룰렛돌린애들 금액 업데이트
+		return session.update(NAMESPACE+".event5cash",vo);
 	}
-	
 	
 }

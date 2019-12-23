@@ -45,7 +45,7 @@
     <h3 class="my-4">경품</h3>
     <div class="row">
       <div class="col-md-3 col-sm-6 mb-4">          
-          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/4.jpg" alt="">
+          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg" alt="">
       </div>
       <div class="col-md-3 col-sm-6 mb-4">  
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/3.jpg" alt="">

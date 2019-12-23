@@ -3,75 +3,75 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.mybatis.mapper.EventMapper">
-	<!-- 이벤트등록 -->	
+	<!-- 이벤트등록 -->
+	<!-- 이벤트2 -->	
 	<select id="event2" parameterType="int" resultType="project.app.almond.vo.Event2Vo"><!-- 3명추첨 -->
-	select usernum,eventnum from
-	<![CDATA[			
+	select usernum,eventnum from			
 	(
+	<![CDATA[				
 	select r.usernum,ep.contnum,r.readingdate,e.eventnum
 	from episode ep,reading r,event e
 	where ep.epinum=r.epinum
 	    and ep.contnum=e.contnum and e.name=2
 	    and r.readingdate 
-	    between to_date('20191201 00:00:00', 'yyyymmdd hh24:mi:ss') 
-	    and to_date('20191208 00:00:00','yyyymmdd hh24:mi:ss')
-	    order by dbms_random.value 
-	     
-	 )
+	    between e.startdate and e.enddate
+	    order by dbms_random.value 	     
+    )
 	where rownum<=3
-	order by dbms_random.value 
+	order by dbms_random.value ;
 	]]>
 	</select>
 
+	<!-- 이벤트3 댓글 -->
+	<select id="event3comments" resultType="project.app.almond.vo.WinnerVo" parameterType="int"><!-- 이벤트3의 1번이벤트 -->
+		select aa.usernum, aa.eventnum from
+		(
+		<![CDATA[
+	    select c.usernum, c.regdate, e.eventnum
+	    from comments c,episode ep,event e,reading r
+	    where c.epinum=ep.epinum and e.contnum=ep.contnum and r.epinum=ep.epinum
+	    and e.eventnum=6 and r.readingdate between  e.startdate and e.enddate
+	    and c.content like '%리뷰이벤트%'
+	    order by dbms_random.value
+		)aa
+		where rownum<=3
+		]]>
+	</select>
+	
+	<update id="event3cash" parameterType="project.app.almond.vo.WinnerVo">
+		update users set cash=cash+10000 where usernum=#{usernum}
+	</update>	
+	
+	
+	<!-- 이벤트3 열람 -->
+	<select id="event3reading" resultType="project.app.almond.vo.WinnerVo" parameterType="int"><!-- 이벤트3의 2번이벤트 -->
+	select aa.usernum,aa.eventnum from
+	(
+	<![CDATA[
+		select r.usernum,count(r.usernum) cnt, e.eventnum
+		from reading r, episode ep, event e
+		where r.epinum=ep.epinum and e.contnum=ep.contnum 
+        and e.eventnum=7 
+        and r.readingdate between e.startdate and e.enddate  
+        group by r.usernum,cnt,e.eventnum
+        order by dbms_random.value
+	)aa, users u
+	where u.usernum=aa.usernum
+	and aa.cnt>=5 and rownum<=3
+	]]>
+	</select>
+	
+	<!-- 이벤트4 -->
 	<update id="event4cash" parameterType="int">
 		update users set cash=cash+1000 where usernum=#{usernum}
 	</update>
 	
-
-
-	<select id="event3" resultType="project.app.almond.vo.CommentsEpisodeVo"><!-- 이벤트3의 1번이벤트 -->
-		select * from
-		(
-		<![CDATA[
-			select aa.usernum from
-		    (
-				select c.usernum, e.contnum, c.regdate
-				from comments c
-				join episode e
-				on c.epinum=e.epnum 
-				where c.content like '%리뷰이벤트%' and e.contnum=1
-				order by dbms_random.value
-		   	)aa
-			where aa.regdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
-			and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
-		)
-		where rownum<=10
-		]]>
-	</select>
 	
-	<select id="event3reading" resultType="project.app.almond.vo.ReadingEpisodeVo"><!-- 이벤트3의 2번이벤트 -->
-	select * from
-	<![CDATA[
-	(
-		select r.usernum, r.readingdate
-		from reading r
-		join episode e
-		on r.epinum=e.epnum
-		where e.contnum=41 and r.readingdate between to_date('20191201 00:00:00','YYYYMMDD HH24:MI:SS') 
-		and to_date('20191231 00:00:00','YYYYMMDD HH24:MI:SS')
-		group by r.usernum, r.readingdate
-		having count(*)>=5
-		order by dbms_random.value
-	)aa
-	where rownum<=3
-	]]>
-	</select>
+	<!-- 룰렛돌린애들 뽑은 금액 업데이트 -->
+	<update id="event5cash" parameterType="project.app.almond.vo.UsersVo">
+		update users set cash=cash+#{cash} where usersnum=#{usernum}
+	</update>
 	
-
-
-	<!-- 당첨자중 룰렛 돌린애들 인서트 -->
-	<insert id="eventhistory" parameterType="project.app.almond.vo.EventHistoryVo">
-		insert into eventhistory values(seq_eventhistory_eventhnum.nextval,#{eventnum}, #{usernum}, #{regdate},#{price})
-	</insert>
+	
 </mapper>
 

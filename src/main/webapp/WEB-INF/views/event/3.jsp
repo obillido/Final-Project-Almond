@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <script type="text/javascript">
+	window.onload=function(){
+		if(${msg!=null}){
+			alert("${msg}");
+		}
+	}
+</script>
  <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
@@ -37,7 +44,7 @@
 	        	</a>
       		</div>
       		
-      		<div class="col-md-8 col-sm-4 mb-4">     
+      		<div class="col-md-3 col-sm-6 mb-4">     
 		        <div id="content">
 		        	<ul>
 		          		<li style="list-style:none;">
@@ -51,7 +58,38 @@
 		        	</ul>
 		        </div>
       		</div>
+      		<div class="col-md-6 col-sm-6 mb-4">     
+		        <div id="content">
+		        	<form action="${pageContext.request.contextPath}/event3" method="post">
+		        		<input type="hidden" value="${eventnum}" name="eventnum">
+		        		<input type="hidden" value="${eventnum2}" name="eventnum2">		        		      		
+		        		<c:if test="${userStatus.equals('admin')}">        		
+		        			<input type="submit" value="당첨자뽑기">
+		        		</c:if> 
+		        		<div id="list">
+		        			<h3>댓글당첨</h3>
+			        		<c:if test="${not empty list}">
+						      	 <c:forEach var="vo" items="${list }">
+									<p>
+										당첨유저 : ${vo.usernum }(닉네임:${vo.nickname})
+									</p>
+								</c:forEach>
+							</c:if>
+		        		</div>	
+		        		<div id="list2">
+		        			<h3>열람당첨</h3>
+			        		<c:if test="${not empty list2}">
+						      	<c:forEach var="vo1" items="${list2 }">
+									<p>
+										당첨유저 : ${vo1.usernum }(닉네임:${vo1.nickname})
+									</p>
+								</c:forEach>
+							</c:if>
+		        		</div> 	        		
+		        	</form>
+		        </div>
+      		</div>  	
 		</div>
   </div>
-  <!-- /.container -->
+
 

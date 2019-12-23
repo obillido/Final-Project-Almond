@@ -54,7 +54,16 @@
 <script>
 /* serpiko.tistory.com */
 window.onload = function(){
-     
+		
+	function check(){
+		if(${empty usernum}){
+			alert("로그인 후 이용할 수 있는 서비스입니다.");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
     var cash = ["100","1000","200","500","100","200"];
     $('#start_btn').click(function(){
     	
@@ -74,9 +83,7 @@ window.onload = function(){
        });
     } 
     function endAnimate($n){
-        var n = $n;
-        
-		
+        var n = $n;	
         $('#result_id').html("<p>움직인각도:" + n + "</p>");
         var real_angle = n%360 +30;//각도조절
         var part = Math.floor(real_angle/60);//360나누기 6칸 
@@ -88,8 +95,8 @@ window.onload = function(){
             return;
         }
  
-        if(part >= 6){
-            $('#cash1').html("<p>내당첨금:" + cash[pArr.length-1] + "캐시</p>");
+        if(part > 5){
+            $('#cash1').html("<p>내당첨금:" + cash[0] + "캐시</p>");
             return;
         }
  
@@ -98,38 +105,27 @@ window.onload = function(){
         $("#niddle").hide();
         $("#start_btn").hide();
 
-		console.log();
+
 		
-		$.ajax({
-			url:"${pageContext.request.contextPath }/rullCash",
-			dataType:"xml",
-			type:"post",//post방식으로 요청하기
-			data:{"cash":cash[part]},
-			success:function(data){
-				var code=$(data).find("code").text();
-				if(code=='success'){
-					alert("금액전송성공!");
-				}else{
-					alert("금액전송실패!");
+		$("#send").click(function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath }/event5",
+				type:"post",//post방식으로 요청하기
+				data:{"price":cash[part],eventnum:"${eventnum}",eventnum2:"${eventnum2}"},
+				success:function(datca){
+					//var msg=$(data).find("msg").text();
+					if(${msg!=null}){
+						alert("${msg}");
+					}
 				}
-			}
+			});
 		});
     }
+		
  
     function randomize($min, $max){
         return Math.floor(Math.random() * ($max - $min + 1)) + $min;
     }
-    
-    
-    //ajax수정중.
-    $("#send").click(function(){
-		var cash1=$("#cash1").val();
-		console.log(cash1);
-		
-	});
-    
-    
-    
 };
 </script>
 
@@ -161,7 +157,7 @@ window.onload = function(){
 			</div>
 	</div>
 		<div id="button">
-			<input type="submit" value="확인" id="send">	
+			<input type="submit" value="확인" id="send" onsubmit="return check();">	
 		</div>	
 		<div class="bottom">
 			<p>당첨된 캐시는 더보기 메뉴 캐시내역에서 확인 하실 수 있습니다.<br>

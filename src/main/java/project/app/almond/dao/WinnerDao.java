@@ -17,11 +17,16 @@ public class WinnerDao {
 	public int winner(WinnerVo vo){//위너테이블에 삽입
 		return session.insert(NAMESPACE+".winner",vo);
 	}
-	public int check(int eventnum){//해당이벤트 당첨자 몇명인지 확인
-		return session.selectOne(NAMESPACE+".check",eventnum);
+	public int count(int eventnum){//해당이벤트 당첨자 몇명인지 확인
+		return session.selectOne(NAMESPACE+".count",eventnum);
+	}
+	public int check(WinnerVo vo){//해당이벤트 참여했는지
+		return session.selectOne(NAMESPACE+".check",vo);
 	}
 	public List<UsersVo> winnerselect(int eventnum){//해당 당첨자 뽑기
 		return session.selectList(NAMESPACE+".winnerselect",eventnum);
 	}
-	
+	public List<WinnerVo> whoList(int usernum){//룰렛돌릴수있는사람
+		return session.selectList(NAMESPACE+".whoList",usernum);
+	}
 }

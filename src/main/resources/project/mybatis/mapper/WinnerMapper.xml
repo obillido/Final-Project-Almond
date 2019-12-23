@@ -8,15 +8,26 @@
 		insert into winner values(seq_winner_winnum.nextval,#{eventnum}, #{usernum})
 	</insert>
 	<!-- 해당이벤트 당첨자 몇명인지 -->
-	<select id="check" parameterType="int" resultType="int">
+	<select id="count" parameterType="int" resultType="int">
 		select nvl(count(*),0) from winner where eventnum=#{eventnum}
 	</select>
+	<!-- 해당이벤트 참여했는지 아닌지 -->
+	<select id="check" parameterType="project.app.almond.vo.WinnerVo" resultType="int">
+		select nvl(count(*),0) from winner where eventnum=#{eventnum} and usernum=#{usernum}
+	</select>	
 	<!-- 해당이벤트 당첨자 리스트 -->
 	<select id="winnerselect" resultType="project.app.almond.vo.UsersVo" parameterType="int">
-		select w.usernum,u.nickname 
+		select w.usernum,u.nickname
 		from winner w,users u
 		where w.usernum=u.usernum 
 		and eventnum=#{eventnum}
+	</select>
+	
+	<!-- 룰렛돌릴수 있는 사람 뽑아내기 -->
+	<select id="whoList" resultType="project.app.almond.vo.WinnerVo" parameterType="int">
+		select usernum,eventnum
+		from winner
+		where eventnum=any(7,5);
 	</select>
 </mapper>
 

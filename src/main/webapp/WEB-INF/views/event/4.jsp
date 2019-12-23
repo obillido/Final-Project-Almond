@@ -17,6 +17,15 @@
 			alert("${msg}");
 		}
 	}
+	
+	function check(){
+		if(${empty usernum}){
+			alert("로그인 후 이용할 수 있는 서비스입니다.");
+			return false;
+		}else{
+			return true;
+		}
+	}
 </script>
 <div class="container">
 <div id="wrap">
@@ -46,7 +55,7 @@
 					placeholder="ooo?"><br>
 				<input type="hidden" value="${eventnum}" name="eventnum">
 				<button style="width: 100%; margin-top:80px; padding: 20px;
-					color: white; background-color: #E56E29; font-size: 30px;" type="submit">정답 제출하기</button>
+					color: white; background-color: #E56E29; font-size: 30px;" type="submit" onsubmit="return check();">정답 제출하기</button>
 			</form>
 		</div>
 	</div>

@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.app.almond.service.EventHistoryService;
 import project.app.almond.service.EventService;
 import project.app.almond.service.WinnerService;
 import project.app.almond.vo.CommentsEpisodeVo;
 import project.app.almond.vo.Event2Vo;
+import project.app.almond.vo.EventHistoryVo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 import project.app.almond.vo.WinnerVo;
@@ -28,6 +30,7 @@ import project.app.almond.vo.WinnerVo;
 public class EventController {
 	@Autowired private EventService service;
 	@Autowired private WinnerService ws;
+	@Autowired private EventHistoryService hs;
 	
 	@RequestMapping("/event1")
 	public String event1(){
@@ -43,9 +46,10 @@ public class EventController {
 	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
 	@RequestMapping(value="/event2", method=RequestMethod.POST)
 	public String event2select(int eventnum,Model model){
-		int n=0;
-		if(ws.check(eventnum)==0){//당첨버튼 누르기 전이면 실행
-			n=service.event2(eventnum);	
+		//int n=0;
+		//int usernum=(Integer)session.getAttribute("usernum");
+		if(ws.count(eventnum)==0){//당첨버튼 누르기 전이면 실행
+			int n=service.event2(eventnum);	
 			if(n<1) model.addAttribute("msg","실패");
 		}else{//당첨버튼 눌러서 당첨자 나오면 당첨자 리스트에 담기
 			List<UsersVo> list=ws.select(eventnum);
@@ -56,18 +60,61 @@ public class EventController {
 		
 		return ".event.2";
 	}
-	//home2에서 이벤트4를 눌렀을때
-	@RequestMapping(value="/event4", method=RequestMethod.GET)
-	public String event4(int eventnum,Model model){		
+	
+	//home2에서 이벤트페이지3눌렀을때
+	@RequestMapping(value="/event3",method=RequestMethod.GET)
+	public String event3get(int eventnum,int eventnum2, Model model){
 		model.addAttribute("eventnum",eventnum);
-		List<UsersVo> list=ws.select(eventnum);
-		if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
-		return ".event.4";
+		model.addAttribute("eventnum2",eventnum2);
+		List<UsersVo> list=ws.select(eventnum);//usersVo로 받는거 또 만들어서 바꿔야함 지금 이벤트3 캐시업데이트때문에 섞임,
+		List<UsersVo> list2=ws.select(eventnum2);
+		if(list!=null||list2!=null) {
+			model.addAttribute("list",list);
+			model.addAttribute("list2",list2);
+		}
+		return ".event.3";
 	}
-	//아몬드 입력하고 확인버튼 눌렀을때
-	@RequestMapping(value="/event4",method=RequestMethod.POST)
-	public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo){						
-			if(ws.check(eventnum)==0){//이벤트참여한적 없으면
+	//event3 추첨사람 뽑아오기(댓글)
+	@RequestMapping(value="/event3",method=RequestMethod.POST)
+	public String event3comments(int eventnum,int eventnum2,Model model,HttpSession session,WinnerVo vo){	
+		int a=0;
+		int b=0;
+		int c=0;
+		if(ws.count(eventnum)==0 ||ws.count(eventnum2)==0){
+			a=service.event3comments(eventnum);
+			b=service.event3reading(eventnum2);
+			if(a<1||b<1) model.addAttribute("msg","실패");
+		}else{
+			List<UsersVo> list=ws.select(eventnum);
+			List<UsersVo> list2=ws.select(eventnum2);
+			c=service.event3cash(vo, eventnum);
+			model.addAttribute("list2",list2);
+			model.addAttribute("list",list);			
+			model.addAttribute("msg","이미 실행된 이벤트입니다.");
+		}
+		model.addAttribute("eventnum2", eventnum2);
+		model.addAttribute("eventnum", eventnum);
+		return ".event.3";
+	}
+	//home2에서 이벤트4를 눌렀을때
+		@RequestMapping(value="/event4", method=RequestMethod.GET)
+		public String event4(int eventnum,Model model,HttpSession session){		
+			int usernum;
+			Object un=session.getAttribute("usernum");
+			if(un!=null){
+				usernum=(Integer)un;
+				model.addAttribute("usernum",usernum);
+			}			 
+			model.addAttribute("eventnum",eventnum);
+			List<UsersVo> list=ws.select(eventnum);
+			if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
+			return ".event.4";
+		}
+		//아몬드 입력하고 확인버튼 눌렀을때
+		@RequestMapping(value="/event4",method=RequestMethod.POST)
+		public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo,WinnerVo wvo){								
+			int usernum=(Integer)session.getAttribute("usernum");
+			if(ws.check(new WinnerVo(0,eventnum,usernum))==0){//이벤트참여한적 없으면
 				if(answer.equals("아몬드")){
 					int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
 					if(a>0){
@@ -85,78 +132,47 @@ public class EventController {
 			}
 			model.addAttribute("eventnum",eventnum);
 			return ".event.4";
-	}
+		}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/event3")
-	public String event3(){
-		return ".event.3";
-	}
-	
-	@RequestMapping("/event5")
-	public String event5(){
+	@RequestMapping(value="/event5",method=RequestMethod.GET)
+	public String event5(int eventnum,int eventnum2,Model model,HttpSession session){
+		int usernum;
+		Object un=session.getAttribute("usernum");
+		if(un!=null){
+			usernum=(Integer)un;
+			model.addAttribute("usernum",usernum);
+			List<EventHistoryVo> list=hs.historyList(usernum);//뽑기했는지 담기
+			if(list!=null) model.addAttribute("list",list);
+		}
+		model.addAttribute("eventnum",eventnum);
+		model.addAttribute("eventnum2",eventnum2);
 		return ".event.5";
 	}
-	//event3 추첨사람 뽑아오기(댓글)
-	@RequestMapping(value="/event3list")
-	public String event3select(Model model){
-		List<CommentsEpisodeVo> list=service.event3();
-		model.addAttribute("list",list);
-		return ".event.event3list";
-	}
-	//event3 추첨사람 뽑아오기(읽은사람)
-	@RequestMapping(value="/event3reading")
-	public String event3reading(Model model){
-		List<ReadingEpisodeVo> list=service.event3reading();
-		model.addAttribute("list",list);
-		return ".event.event3reading";
-	}
+	
 	//event5 룰렛 당첨금액 받아오기....
-	@RequestMapping(value="/rullCash", method=RequestMethod.POST)
+	@RequestMapping(value="/event5", method=RequestMethod.POST)
 	@ResponseBody
-	public String rullcash(UsersVo vo,HttpServletRequest req,int cash){	
-		try{
-			StringBuffer sb=new StringBuffer();
-			sb.append("<?xml version='1.0' encoding='utf-8'?>");
-			sb.append("<result>");
-			if(cash>0){
-				//service.updateCash(vo);
-				sb.append("<code>success</code>");
-			}else{
-				sb.append("<code>fail</code>");
-			}
-			sb.append("</result>");		
-		}catch(Exception e){		
-			e.printStackTrace();
-		}		
+	public String rullcash(HttpSession session,int eventnum,int price,Model model){	
+		int usernum=(Integer)session.getAttribute("usernum");
+		List<WinnerVo> who=ws.whoList(usernum);
+		if(who!=null){//룰렛돌릴수 있는지 확인, 위너테이블에 있어야함
+			if(hs.historyList(usernum)==null){//이벤트히스토리에 없어야함
+				int a=service.event5(session, eventnum, price);			
+					if(a>0){
+						model.addAttribute("msg","성공");
+					}else{
+						model.addAttribute("msg","성공");
+					}
+			}else{//이벤트히스토리에 있음(참여한적있음)
+				List<EventHistoryVo> list=hs.historyList(usernum);//뽑기한사람들 리스트
+				model.addAttribute("list",list);
+				model.addAttribute("msg","이미실행하셨습니다");
+			}	
+		}else{	
+			model.addAttribute("msg","뽑기권이 없습니다.");
+		}
+		model.addAttribute("usernum",usernum);
+		model.addAttribute("eventnum",eventnum);
 		return ".event.5";	
 	}
 	

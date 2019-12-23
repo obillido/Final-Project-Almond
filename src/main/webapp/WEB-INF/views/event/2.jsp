@@ -8,6 +8,9 @@
 			alert("${msg}");
 		}
 	}
+		
+
+	
 </script>
 
  <div class="container">
@@ -38,10 +41,12 @@
         <h3 class="my-3">경품</h3>   
          <br>        
          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg" alt="">  
-      	 <form action="${pageContext.request.contextPath}/event2" method="post">
-      	 	<input type="hidden" value="${eventnum}" name="eventnum">
-      	 	<button type="submit"style="width: 100px;height: 60px;">당첨</button>
-      	 </form>
+      	 <c:if test="${userStatus.equals('admin')}">
+      	 	<form action="${pageContext.request.contextPath}/event2" method="post">
+      	 		<input type="hidden" value="${eventnum}" name="eventnum">
+      	 		<button type="submit" style="width: 100px;height: 60px;">당첨</button>
+      	 	</form>
+      	 </c:if>     	
       	 <c:if test="${not empty list}">
       	 <c:forEach var="vo" items="${list }">
 			<p>
