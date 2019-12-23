@@ -146,41 +146,42 @@
    */
    
    function getCookie(name) { 
-	   var Found = false 
-	   var start, end 
-	   var i = 0 
+	   var Found = false;
+	   var start, end;
+	   var i = 0; 
 
 	   while(i <= document.cookie.length) { 
-	   start = i 
-	   end = start + name.length 
+		   start = i;
+		   end = start + name.length; 
 
-	   if(document.cookie.substring(start, end) == name) { 
-	   Found = true 
-	   break 
-	   } 
-	   i++ 
+		   if(document.cookie.substring(start, end) == name) { 
+			   Found = true; 
+			   break; 
+		   } 
+	       i++ 
 	   } 
 
 	   if(Found == true) { 
-	   start = end + 1 
-	   end = document.cookie.indexOf(";", start) 
-	   if(end < start) 
-	   end = document.cookie.length 
-	   return document.cookie.substring(start, end) 
+		   start = end + 1; 
+		   end = document.cookie.indexOf(";", start); 
+		   if(end < start){
+			   end = document.cookie.length;
+			   return document.cookie.substring(start, end); 
+		   }  
 	   } 
-	   return "" 
-	   } 
-	
-
-	   function openPopup() { 
-		   var noticeCookie=getCookie("CookieName"); // 쿠키네임 지정 
-		   if (noticeCookie != "no"){
-			   var url="${path}/popup";
-			   var name="이벤트";
-			   var option="width=700, height=750,top=200, left=300, location=no, status=no, toolbars=no";
-			   window.open(url,name,option);
-		   } 
-	   openPopup(); //자동으로 팝업 띄우기 
+	   return "";
+   }
+   
+   window.onload=function() { 
+	   var noticeCookie=getCookie("CookieName"); // 쿠키네임 지정 
+	  
+	   if (noticeCookie != "no"){
+		   var url="${path}/popup";
+		   var name="이벤트";
+		   var option="width=700, height=750,top=200, left=300, location=no, status=no, toolbars=no";
+		   window.open(url,name,option);
 	   }
+   }
+  
   
 </script>
