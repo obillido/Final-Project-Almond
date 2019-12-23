@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,7 @@
 
     footer{height: 20px;}
 </style>
+
 
 <title>layout.jsp</title>
 <!-- Bootstrap core CSS -->
@@ -47,6 +50,5 @@
 <footer class="footer">
    <tiles:insertAttribute name="footer"/>
 </footer>
-
 </body>
 </html>

@@ -50,4 +50,8 @@ public class HomeController {
 		model.addAttribute("webc",ws.getInfoBook(1));
 		return ".home5";
 	}
+	@RequestMapping(value = "/popup")
+	public String popup(){
+		return "/popup";
+	}
 }

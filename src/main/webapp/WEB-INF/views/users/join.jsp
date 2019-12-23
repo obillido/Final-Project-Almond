@@ -1,16 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8"); %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+<style type="text/css">
+    #container {
+      margin: 0 auto;  
+      padding-top:100px;   
+      width:40%;
+    }
+</style>
+
+
 <script type="text/javascript">
-	var duplcheck=false;
+	var duplcheck=false, emailcheck=false;
 	function pwdCheck(){
 		var pwd=document.check1.pwd;
 		var email=document.check1.email;
@@ -48,6 +54,10 @@
 	 	}
 	 	if(duplcheck==false){
 	 		alert("이메일 중복체크를 해주세요.");
+	 		return false;
+	 	}
+	 	if(emailcheck==false){
+	 		alert("올바른 인증번호를 입력해 주세요.");
 	 		return false;
 	 	}
 	 	if(eng==true && num==true && spe==true){
@@ -97,9 +107,10 @@
 					var code2=$(data).find("code").text();
 				    if(code==code2){
 				    	alert("인증번호가 확인되셨습니다.");
+				    	emailcheck=true;
 				    }else{
 				    	alert("잘못된 인증번호를 입력하셨습니다.");
-				    	return false;
+				    	emailcheck=false;
 				    }
 				}
 			});
@@ -108,17 +119,7 @@
 </script>
 
 
-<style type="text/css">
-    .container {
-      margin: 0 auto;  
-      padding-top:100px;   
-      padding-bottom:100px;
-      width:40%;
-    }
-</style>
-
-
-<div class="container" style="margin-top:100px;">
+<div class="container" id="container">
   <div class="row">
     <div class="col-lg-8 mb-4">
       <h3>회원가입</h3><br>
@@ -129,8 +130,8 @@
 							<label>이메일</label>
 							<input class="w3-input" type="text" id="email" name="email" required  autocomplete=off>
             </p>
-            <input type="button" value="중복체크" class="btn btn-primary" id="emailcheck">
-            <input type="button" value="이메일 인증" class="btn btn-primary" id="verify">
+            <input type="button" value="중복체크" class="btn btn-warning" id="emailcheck">
+            <input type="button" value="이메일 인증" class="btn btn-warning" id="verify">
             <div class="check_font" id="email_check">
 						</div>
 					</div>
@@ -141,7 +142,7 @@
 						<input class="w3-input" type="text" id="code" required  autocomplete=off>
           </div>
         </div>
-        <input type="button" value="인증번호 확인" class="btn btn-primary" id="chkcode">
+        <input type="button" value="인증번호 확인" class="btn btn-warning" id="chkcode">
         <br><br>
         <div class="control-group form-group">
           <div class="controls">
@@ -163,7 +164,7 @@
         </div>
         
         <div id="success"></div>
-					<button type="submit" class="btn btn-primary" id="sendMessageButton">회원가입</button>
+					<button type="submit" class="btn btn-warning" id="sendMessageButton">회원가입</button>
       </form>
     </div>
   </div>

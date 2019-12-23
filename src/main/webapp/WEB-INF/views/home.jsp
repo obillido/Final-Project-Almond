@@ -135,4 +135,11 @@
 		   });
 	   });
    });
+   
+   window.onload=function(){
+		var url="${path}/popup";
+		var name="이벤트";
+		var option="width=700, height=750,top=200, left=300, location=no, status=no, toolbars=no";
+		window.open(url,name,option);
+	}
 </script>
