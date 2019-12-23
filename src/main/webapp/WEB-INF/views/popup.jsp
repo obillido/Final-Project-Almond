@@ -16,12 +16,14 @@
 <script src="<c:url value="/resources/js/contact_me.js"/>"></script>
 <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 
+
 <style type="text/css">
    #container{margin-left:35px;}
    #div img{margin-left:40px;margin-top:50px;}
    #div2 img{margin-left:45px;margin-top:50px;}
    #div3 img{margin-left:40px;margin-top:50px;}
    html {overflow:hidden;}  
+   #f{text-align: right;}
 </style>
 
 <script type="text/javascript">
@@ -41,6 +43,21 @@
 		opener.parent.location='${path}/event2?eventnum=5'; 
 		window.close(); 
 	}
+	
+	function setCookie( name, value, expiredays ){ 
+		var todayDate = new Date(); 
+		todayDate.setDate( todayDate.getDate() + expiredays ); 
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString 
+		() + ";";
+	} 
+	function closeWin() { 
+		if ( document.cnjform.notice.checked ) // 폼네임 cnjform 은 동일해야 합니다. 
+			setCookie("CookieName", "no" , 1); // 부모창에서 지정한 쿠키네임과 일치 해야 합니다. 
+		} 
+		top.close(); 
+	} 
+
+	
 </script>
 
 </head>
@@ -73,7 +90,13 @@
 	    <h5 class="card-title">EVENT 4</h5>
 	  </div>
 	</div>
-</div>
+    </div>
+   
+    <form name="cnjform" id="f"> 
+       <input type="checkbox" name="notice" onclick="closeWin()">오늘 하루 동알 열지 않기
+    </form>
+
+    
 </div>
 </body>
 </html>
