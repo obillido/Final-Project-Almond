@@ -113,7 +113,10 @@ public class EventController {
 		//아몬드 입력하고 확인버튼 눌렀을때
 		@RequestMapping(value="/event4",method=RequestMethod.POST)
 		public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo,WinnerVo wvo){								
+			System.out.println("???");
 			int usernum=(Integer)session.getAttribute("usernum");
+			System.out.println("뜨냐?"+usernum);
+			
 			if(ws.check(new WinnerVo(0,eventnum,usernum))==0){//이벤트참여한적 없으면
 				if(answer.equals("아몬드")){
 					int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
@@ -150,27 +153,35 @@ public class EventController {
 	}
 	
 	//event5 룰렛 당첨금액 받아오기....
-	@RequestMapping(value="/event5", method=RequestMethod.POST)
+	@RequestMapping(value="/event5", produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String rullcash(HttpSession session,int eventnum,int price,Model model){	
 		int usernum=(Integer)session.getAttribute("usernum");
 		List<WinnerVo> who=ws.whoList(usernum);
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
 		if(who!=null){//룰렛돌릴수 있는지 확인, 위너테이블에 있어야함
 			if(hs.historyList(usernum)==null){//이벤트히스토리에 없어야함
-				int a=service.event5(session, eventnum, price);			
-					if(a>0){
-						model.addAttribute("msg","성공");
-					}else{
-						model.addAttribute("msg","성공");
-					}
+				int a=service.event5(usernum, eventnum, price);			
+				if(a>0){
+					sb.append("<find>true</find>");
+					sb.append("<success>성공</success>");
+				}else{
+					sb.append("<find>false</find>");
+					sb.append("<fail>실패</fail>");
+				}
 			}else{//이벤트히스토리에 있음(참여한적있음)
 				List<EventHistoryVo> list=hs.historyList(usernum);//뽑기한사람들 리스트
 				model.addAttribute("list",list);
-				model.addAttribute("msg","이미실행하셨습니다");
+				sb.append("<find>false</find>");
+				sb.append("<jungbock>이미실행한 이벤트입니다.</jungbock>");
 			}	
 		}else{	
-			model.addAttribute("msg","뽑기권이 없습니다.");
+			sb.append("<find>false</find>");
+			sb.append("<sorry>뽑기권이없습니다.</sorry>");
 		}
+		sb.append("<result>");
 		model.addAttribute("usernum",usernum);
 		model.addAttribute("eventnum",eventnum);
 		return ".event.5";	

@@ -55,19 +55,13 @@
 /* serpiko.tistory.com */
 window.onload = function(){
 		
-	function check(){
-		if(${empty usernum}){
-			alert("로그인 후 이용할 수 있는 서비스입니다.");
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
     var cash = ["100","1000","200","500","100","200"];
     $('#start_btn').click(function(){
-    	
-        rotation();
+    	if(${empty usernum}){
+			alert("로그인 후 이용할 수 있는 서비스입니다.");
+		}else{
+	        rotation();
+		}
     });
     function rotation(){
         $("#pan").rotate({
@@ -107,18 +101,21 @@ window.onload = function(){
 
 
 		
-		$("#send").click(function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath }/event5",
-				type:"post",//post방식으로 요청하기
-				data:{"price":cash[part],eventnum:"${eventnum}",eventnum2:"${eventnum2}"},
-				success:function(datca){
-					//var msg=$(data).find("msg").text();
-					if(${msg!=null}){
-						alert("${msg}");
-					}
+		$.ajax({
+			url:"${pageContext.request.contextPath }/event5,
+			type:"post",//post방식으로 요청하기
+			data:{"price":cash[part],eventnum:"${eventnum}",eventnum2:"${eventnum2}"},
+			dataType:"xml",
+			success:function(data){
+				var find=$(data).find("find").text();
+				if(find=='true'){
+					alert($(data).find("success").text());
+				}else if(find=='false'){
+					alert($(data).find("fail").text());
+					alert($(data).find("jungbock").text());
+					alert($(data).find("sorry").text());
 				}
-			});
+			}
 		});
     }
 		
@@ -144,21 +141,18 @@ window.onload = function(){
     		<h3>꽝없는</h3>
 			<h1>캐시뽑기!</h1>
 		</div>
-	<div id="circle1">		
-		<img src="${pageContext.request.contextPath }/resources/rull/10001.png" id="pan">
-		<img src="${pageContext.request.contextPath }/resources/rull/pan2.png" id="niddle">
-		<button id="start_btn" type="button"><img src="${pageContext.request.contextPath }/resources/rull/아몬드.png" id="amonde"></button>
-			<p style="font-size: 30px;">이미 캐시뽑기를 <br>
-				진행하셨습니다.</p><br>
-			<div id="1">			
-					<div id="result_id"></div>
-					<div id="result_id2"></div>
-					<div id="cash1"></div>				
-			</div>
-	</div>
-		<div id="button">
-			<input type="submit" value="확인" id="send" onsubmit="return check();">	
-		</div>	
+		<div id="circle1">		
+			<img src="${pageContext.request.contextPath }/resources/rull/10001.png" id="pan">
+			<img src="${pageContext.request.contextPath }/resources/rull/pan2.png" id="niddle">
+			<button id="start_btn" type="button"><img src="${pageContext.request.contextPath }/resources/rull/아몬드.png" id="amonde"></button>
+				<p style="font-size: 30px;">이미 캐시뽑기를 <br>
+					진행하셨습니다.</p><br>
+				<div id="1">			
+						<div id="result_id"></div>
+						<div id="result_id2"></div>
+						<div id="cash1"></div>				
+				</div>
+		</div>
 		<div class="bottom">
 			<p>당첨된 캐시는 더보기 메뉴 캐시내역에서 확인 하실 수 있습니다.<br>
 				본 이벤트 캐시는 사용기간 내에 사용하지 않으면 소멸됩니다.</p>
