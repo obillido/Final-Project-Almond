@@ -180,7 +180,7 @@
 			   var option="width=700, height=750,top=200, left=300, location=no, status=no, toolbars=no";
 			   window.open(url,name,option);
 		   } 
-	   openPopup(); // 자동으로 팝업 띄우기 
-
+	   openPopup(); //자동으로 팝업 띄우기 
+	   }
   
 </script>
