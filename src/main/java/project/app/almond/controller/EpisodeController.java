@@ -38,7 +38,6 @@ public class EpisodeController {
 	@Autowired private TicketStockService tss;
 	@Autowired private TicketUseService tus;
 	@Autowired private CommentsService cs;
-	@Autowired private AlarmService as;
 	
 	@RequestMapping("/webcontents/episode/list")
 	public String list(int contnum,@RequestParam(value="align",defaultValue="desc")String align,HttpSession session,Model model){
@@ -105,7 +104,9 @@ public class EpisodeController {
 		int cultype=ws.getInfo(contnum).getCultype();
 		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
 		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;
-		String thumbnail=UUID.randomUUID()+"_"+file1.get(0).getOriginalFilename();
+		String thumbnail=null;
+		if(file1.get(0).getOriginalFilename().length()>0)
+			thumbnail=UUID.randomUUID()+"_"+file1.get(0).getOriginalFilename();
 		String img=UUID.randomUUID()+"_"+file1.get(1).getOriginalFilename();
 		int n=es.insert(new EpisodeVo(0, contnum, null, 0, thumbnail, subtitle, img, content, epnum));
 		if(n>0){
@@ -141,15 +142,6 @@ public class EpisodeController {
 		Object uu=session.getAttribute("usernum");
 		Date sysdate=new Date(new java.util.Date().getTime());
 		if(uu!=null){
-			
-			//별점 관련
-			double episcore=ws.thisEpiScore(epinum);
-			if(episcore==0){
-				model.addAttribute("episcore", 0);
-			}else{
-				model.addAttribute("episcore", episcore);
-			}
-			
 			int usernum=(Integer)uu, n=0;
 			if(type==1 || type==2){
 				n=tus.insert(usernum, contnum, epinum, type, sysdate);
@@ -157,10 +149,6 @@ public class EpisodeController {
 				n=rs.insert(usernum, contnum, epinum, type, sysdate);
 			}
 			if(n>0){
-				if(type==6){
-					System.out.println("스케쥴러 실행전 : "+new java.util.Date());
-					
-				}
 				model.addAttribute("wvo",wvo);
 				model.addAttribute("evo",evo);
 				return ".webcontents.episode.content";
@@ -169,6 +157,15 @@ public class EpisodeController {
 				return "redirect:/webcontents/episode/list";
 			}
 		}
+		
+		//별점 관련
+		double episcore=ws.thisEpiScore(epinum);
+		if(episcore==0){
+			model.addAttribute("episcore", 0);
+		}else{
+			model.addAttribute("episcore", episcore);
+		}
+		
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
 		return ".webcontents.episode.content";

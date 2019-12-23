@@ -78,8 +78,9 @@
 	.progress{
 		position:absolute; 
 		background-color:red;
-		height:30px; 		max-width:200px !important;
-		width:${remainingWaitingTime/(wvo.waiting*60)}%;
+		height:30px;
+		max-width:200px !important;
+		width:${(1-remainingWaitingTime/(wvo.waiting*60))*200}px;
 	}
 	.progress-text{
 		position:relative;
@@ -155,7 +156,6 @@
 </script>
 
 
-
 <!-- Page Content -->
 <div class="container" style="margin-top:100px;">
 
@@ -201,8 +201,6 @@
     </div>
   </div>
   <!-- /.row -->
-
-
 
 	<br><br>
   <div class="card h-100">
@@ -309,7 +307,14 @@
 	    <div class="card-body">
 	      <div class="row">
 	        <div class="col-lg-6" style="max-height:210px; overflow:hidden !important">
-	            <img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	        	<c:choose>
+	        		<c:when test="${empty ep.thumbnail}">
+	        			<img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${wvo.img}">
+	        		</c:when>
+	        		<c:otherwise>
+	           	 <img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	        		</c:otherwise>
+	        	</c:choose>
 	        </div>
 	        <div class="text">
 	        	<p class="card-text">

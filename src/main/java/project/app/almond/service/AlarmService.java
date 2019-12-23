@@ -15,10 +15,16 @@ public class AlarmService {
 	public int insert(AlarmVo vo){
 		return adao.insert(vo);
 	}
-	public List<AlarmVo> getList(int usernum){
-		return adao.getList(usernum);
+	public List<AlarmVo> getWebList(int usernum){
+		return adao.getWebList(usernum);
+	}
+	public List<AlarmVo> getCommList(int usernum){
+		return adao.getCommList(usernum);
 	}
 	public int getCnt(int usernum){
 		return adao.getCnt(usernum);
+	}
+	public int update(int alarmnum){
+		return adao.update(alarmnum);
 	}
 }

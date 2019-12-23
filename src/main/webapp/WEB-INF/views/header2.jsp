@@ -138,7 +138,6 @@
     </c:otherwise>
 	</c:choose>
 	 
-	 
 	<c:if test="${not empty usernum}">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown" data-toggle="dropdown">
@@ -157,6 +156,7 @@
 		</ul>
 	</c:if>
  
+	 
 	</nav>
 
 <script type="text/javascript">
@@ -167,6 +167,7 @@
 		$("#defaultOpen-alarm").click();
 		$("#alarm").click(alarmList());
 	});
+
 
 
 	var wnd;
@@ -192,7 +193,7 @@
 		wnd1 = window.open(popUrl, '', 'status=no, height=710, width=510, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	}
 
-
+	
 	
 	function alarm(){
 		if('${not empty usernum}'){
@@ -257,6 +258,5 @@
 		$("#"+commName).css("display","block");
 		elmnt.style.backgroundColor="#EAEAEA";
 	}
-	
 	
 </script>

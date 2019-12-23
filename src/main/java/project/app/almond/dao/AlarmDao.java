@@ -16,10 +16,16 @@ public class AlarmDao {
 	public int insert(AlarmVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE+".insert",vo);
 	}
-	public List<AlarmVo> getList(int usernum){
-		return sqlSessionTemplate.selectList(NAMESPACE+".getList",usernum);
+	public List<AlarmVo> getWebList(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getWebList",usernum);
+	}
+	public List<AlarmVo> getCommList(int usernum){
+		return sqlSessionTemplate.selectList(NAMESPACE+".getCommList",usernum);
 	}
 	public int getCnt(int usernum){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",usernum);
+	}
+	public int update(int alarmnum){
+		return sqlSessionTemplate.update(NAMESPACE+".update",alarmnum);
 	}
 }
