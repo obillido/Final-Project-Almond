@@ -6,20 +6,17 @@
 	<!-- 이벤트등록 -->
 	<!-- 이벤트2 -->	
 	<select id="event2" parameterType="int" resultType="project.app.almond.vo.Event2Vo"><!-- 3명추첨 -->
-	select usernum,eventnum from			
-	(
-	<![CDATA[				
-	select r.usernum,ep.contnum,r.readingdate,e.eventnum
-	from episode ep,reading r,event e
-	where ep.epinum=r.epinum
-	    and ep.contnum=e.contnum and e.name=2
-	    and r.readingdate 
-	    between e.startdate and e.enddate
-	    order by dbms_random.value 	     
-    )
-	where rownum<=3
-	order by dbms_random.value ;
-	]]>
+		select usernum from			
+			(		
+				select r.usernum,ep.contnum,e.eventnum,e.human
+				from episode ep,reading r,event e
+				where ep.epinum=r.epinum
+		            and ep.contnum=e.contnum and e.eventnum=#{eventnum}
+		            and r.readingdate between e.startdate and e.enddate
+		  	order by dbms_random.value 
+		  )
+		<![CDATA[ where rownum<=human ]]>
+		order by dbms_random.value
 	</select>
 
 	<!-- 이벤트3 댓글 -->

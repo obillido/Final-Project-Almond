@@ -101,8 +101,9 @@ window.onload = function(){
 
 
 		
+
 		$.ajax({
-			url:"${pageContext.request.contextPath }/event5,
+			url:"${pageContext.request.contextPath }/event5/cash",
 			type:"post",//post방식으로 요청하기
 			data:{"price":cash[part],eventnum:"${eventnum}",eventnum2:"${eventnum2}"},
 			dataType:"xml",
@@ -114,6 +115,17 @@ window.onload = function(){
 					alert($(data).find("fail").text());
 					alert($(data).find("jungbock").text());
 					alert($(data).find("sorry").text());
+
+		$("#send").click(function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath }/event5",
+				type:"post",//post방식으로 요청하기
+				data:{"price":cash[part],eventnum:"${eventnum}"},
+				success:function(datca){
+					//var msg=$(data).find("msg").text();
+					if('${msg!=null}'){
+						alert("${msg}");
+					}
 				}
 			}
 		});

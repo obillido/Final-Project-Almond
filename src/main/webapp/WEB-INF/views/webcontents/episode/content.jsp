@@ -151,6 +151,7 @@
 	}
 	function comm(me,type){
 		var mt=$(me).find("mytype").text();
+		var usernum=$(me).find("usernum").text();
 		var comm=
 			'<hr><div class="media mb-4"> '+
         '<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50"> '+
@@ -159,14 +160,14 @@
     if(type==1) comm+='<div class="bestmark">Best</div>';
     comm+='</h5> ';
 		comm+='<p>'+$(me).find("content").text()+'</p> '+
-					'<button onclick="clickLike(this);" value="'+$(me).find("commnum").text()+'"';
+					'<button onclick="clickLike(this,'+usernum+');" value="'+$(me).find("commnum").text()+'"';
 		if(mt=='1') comm+='class="likes-click"> ';
 		else 				comm+='class="likes"> ';
 		comm+=	'<img src="${path}/resources/comments/like.png" class="likesImg"> '+
 						'<div class="likesCnt">'+fmt($(me).find("cntlike").text())+'</div> '+
 					'</button> '+
 					'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '+
-					'<button onclick="clickHate(this)" value="'+$(me).find("commnum").text()+'" ';
+					'<button onclick="clickHate(this,'+usernum+')" value="'+$(me).find("commnum").text()+'" ';
 		if(mt=='2') comm+='class="hates-click"> ';
 		else 				comm+='class="likes"> ';
 		comm+=	'<img src="${path}/resources/comments/hate.png" class="likesImg"> '+
@@ -207,31 +208,39 @@
 	function fmt(x){
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
-	function clickLike(me){
-		if(${not empty usernum}){
-			if($(me).parent().children().last().attr('class')=='likes'){
-				if($(me).attr('class')=='likes'){
-					if(changeLikesCnt($(me).val(),1,me)) $(me).attr('class','likes-click');
+	function clickLike(me,usernum){
+		if('${not empty usernum}'){
+			if(${usernum}!=usernum){
+				if($($(me).parent().children()[3]).attr('class')=='likes'){
+					if($(me).attr('class')=='likes'){
+						if(changeLikesCnt($(me).val(),1,me)) $(me).attr('class','likes-click');
+					}else{
+						if(changeLikesCnt($(me).val(),-1,me))	$(me).attr('class','likes');
+					}
 				}else{
-					if(changeLikesCnt($(me).val(),-1,me))	$(me).attr('class','likes');
+					 alert("이미 '싫어요'를 누르셨습니다.");
 				}
 			}else{
-				 alert("이미 '싫어요'를 누르셨습니다.");
+				alert("본인의 댓글입니다.");
 			}
 		}else{
 			alert("로그인 후 이용가능한 서비스입니다.");
 		}
 	}
-	function clickHate(me){
-		if(${not empty usernum}){
-			if($($(me).parent().children()[2]).attr('class')=='likes'){
-				if($(me).attr('class')=='likes'){
-					if(changeLikesCnt($(me).val(),2,me)) $(me).attr('class','hates-click');
+	function clickHate(me,usernum){
+		if('${not empty usernum}'){
+			if(${usernum}!=usernum){
+				if($($(me).parent().children()[2]).attr('class')=='likes'){
+					if($(me).attr('class')=='likes'){
+						if(changeLikesCnt($(me).val(),2,me)) $(me).attr('class','hates-click');
+					}else{
+						if(changeLikesCnt($(me).val(),-2,me)) $(me).attr('class','likes');
+					}
 				}else{
-					if(changeLikesCnt($(me).val(),-2,me)) $(me).attr('class','likes');
+					alert("이미 '좋아요'를 누르셨습니다.");
 				}
 			}else{
-				alert("이미 '좋아요'를 누르셨습니다.");
+				alert("본인의 댓글입니다.");
 			}
 		}else{
 			alert("로그인 후 이용가능한 서비스입니다.");
@@ -239,25 +248,23 @@
 	}
 	
 	function changeLikesCnt(commnum,type,me){
+		var check=true;
 		$.ajax({
 			url:"${path}/webcontents/comments/changeLikesCnt",
 			dataType:"xml",
 			type:"post",
 			data:{"commnum":commnum,"type":type},
 			success:function(data){
-				if($(data).find("owner").text()=='mine'){
-					alert("본인의 댓글입니다.");
+				if($(data).find("code").text()=='success'){
+					console.log($(data).find("cnt").text());
+					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
+					check= true;
 				}else{
-					if($(data).find("code").text()=='success'){
-						$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
-						return true;
-					}else{
-						alert("오류발생!");
-					}
+					alert("오류발생!");
 				}
-				return false;
 			}			
 		});
+		return ch;
 	}
 	
 	

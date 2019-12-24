@@ -1,6 +1,8 @@
 package project.app.almond.service;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,7 @@ public class CommLikesService {
 		else if(type==-1) content="["+uvo1.getNickname()+"]¥‘¿Ã '¡¡æ∆ø‰'∏¶ √Îº“«œºÃΩ¿¥œ¥Ÿ.";
 		else if(type==-2) content="["+uvo1.getNickname()+"]¥‘¿Ã 'Ω»æÓø‰'∏¶ √Îº“«œºÃΩ¿¥œ¥Ÿ.";
 		else content="["+uvo1.getNickname()+"]¥‘¿Ã ¥Ò±€¿ª ¥ŸºÃΩ¿¥œ¥Ÿ.";
-		adao.insert(new AlarmVo(0, uvo2.getUsernum(), title, content, null, vo.getType(), vo.getCommnum(), 0));
+		String showdate=new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date().getTime());
+		adao.insert(new AlarmVo(0, uvo2.getUsernum(), title, content, null, showdate,vo.getType(), (Integer)map.get("CONTNUM"), 0));
 	}
 }

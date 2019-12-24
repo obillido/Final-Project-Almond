@@ -43,6 +43,26 @@
 	#login-box{width:260px; text-align:right;}
 	
 	
+	.tablink-alarm{
+		width:33.33%;
+	  background-color: white;
+	  color: black;
+	  float: left;
+	  border: none;
+	  outline: none;
+	  cursor: pointer;
+	  padding: 14px 16px;
+	  font-size: 1.2em;
+	}
+	.tablink-alarm:hover{
+		background-color:#EAEAEA;
+	}
+	.tabcontent-alarm{
+	  color: black;
+	  display: none;
+	}
+	.confirm-alarm{background-color:#EAEAEA;}
+	.confirm-alarm:hover{background-color:#EAEAEA;}
 </style>
 
 
@@ -122,19 +142,33 @@
 	<c:if test="${not empty usernum}">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown" data-toggle="dropdown">
-					<div class="d-block btn btn-outline badge-notification" id="alarm">
-						<img src="${path}/resources/alarm/message.PNG" width="30px;">
-					</div>
+				<div class="d-block btn btn-outline badge-notification" id="alarm">
+					<img src="${path}/resources/alarm/message.PNG" width="30px;">
+				</div>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio" id="alarmList">
+					<button class="tablink-alarm" onclick="openAlarm('webAlarmList',this)" id="defaultOpen-alarm">작품</button>
+					<button class="tablink-alarm" onclick="openAlarm('eventAlarmList',this)">이벤트</button>
+					<button class="tablink-alarm" onclick="openAlarm('commAlarmList',this)">댓글</button>
+					<div id="webAlarmList" class="tabcontent-alarm"></div>
+					<div id="eventAlarmList" class="tabcontent-alarm"></div>
+					<div id="commAlarmList" class="tabcontent-alarm"></div>
 				</div>
 			</li>
 		</ul>
 	</c:if>
  
-	 
 	</nav>
 
 <script type="text/javascript">
+
+	$(document).ready(function(){
+		alarm();
+		setInterval(alarm,60000);
+		$("#defaultOpen-alarm").click();
+		$("#alarm").click(alarmList());
+	});
+
+
 	var wnd;
 	var wnd1;
 	function popupOpen(form){
@@ -158,28 +192,74 @@
 		wnd1 = window.open(popUrl, '', 'status=no, height=710, width=510, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 	}
 
-	$(document).ready(function(){
-		if(${not empty usernum}){
+
+	
+	function alarm(){
+		if('${not empty usernum}'){
 			$.ajax({
-				url:"${path}/alarm/list",
+				url:"${path}/alarm/getCnt",
 				dataType:"xml",
 				success:function(data){
-					let vc=true;
-					$("#alarmList div").remove();
-					$(data).find("alarm").each(function(){
-						vc=false;
-						var div="<div class='dropdown-item'><p>"+$(this).find("title").text()+"</p>"+
-										"<p>"+$(this).find("content").text()+"</p></a>";
-						$("#alarmList").append(div);
-					});
 					var cnt=$(data).find("cnt").text();
 					if(cnt>0){
 						$("#alarm").addClass("badge-notification");
 						$("#alarm").attr("data-badge",cnt);
 					}
-					if(vc) $("#alarmList").append("<div><p>알람 내역이 없습니다.</p></div>");
 				}
 			});
 		}
-	});
+	}
+	function alarmList(){
+		if('${not empty usernum}'){
+			$.ajax({
+				url:"${path}/alarm/list",
+				dataType:"xml",
+				success:function(data){
+					appendAlarmList(data,"webAlarmList");
+					appendAlarmList(data,"commAlarmList");
+					appendAlarmList(data,"eventAlarmList");
+				}
+			});
+		}
+	}
+	function appendAlarmList(data,listname){
+		let vc=true;
+		$("#"+listname+" div").remove();
+		$(data).find(listname).each(function(){
+			vc=false;
+			var sc="confirm-alarm";
+			let alarmnum=$(this).find("alarmnum").text();
+			let status=$(this).find("status").text();
+			let num=$(this).find("num").text();
+			let type=$(this).find("type").text();
+			if(status=='0') sc="confirm-alarm-no";
+			var div="<div class='dropdown-item "+sc+"' onclick='javascript:alarmPassage("+alarmnum+","+type+","+num+")'>"+
+							"<p>"+$(this).find("title").text()+"</p>"+
+							"<p>"+$(this).find("content").text()+"</p></div>";
+			$("#"+listname).append(div);
+		});
+		if(vc) $("#"+listname).append("<div class='dropdown-item'><p>알람 내역이 없습니다.</p></div>");
+	}
+	
+	function alarmPassage(alarmnum,type,num){
+		console.log(alarmnum,status,num);
+		location.href="${path}/alarm/passage?alarmnum="+alarmnum+"&type="+type+"&num="+num;
+	}
+	
+	
+	function openAlarm(commName,elmnt){
+		var i, tabcontent, tablinks;
+		tabcontents=$(".tabcontent-alarm");
+		for(i=0; i<tabcontents.length; i++){
+			tabcontents[i].style.display="none";
+		}
+		tablinks=$(".tablink-alarm");
+		for(i=0; i<tablinks.length; i++){
+			tablinks[i].style.backgroundColor="";
+		}
+		$("#"+commName).css("display","block");
+		elmnt.style.backgroundColor="#EAEAEA";
+	}
+	
+	
 </script>

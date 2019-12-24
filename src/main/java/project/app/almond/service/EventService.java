@@ -1,5 +1,6 @@
 package project.app.almond.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
 
+import project.app.almond.dao.AlarmDao;
 import project.app.almond.dao.EventDao;
 import project.app.almond.dao.EventHistoryDao;
 import project.app.almond.dao.WinnerDao;
+import project.app.almond.vo.AlarmVo;
 import project.app.almond.vo.CommentsEpisodeVo;
 import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.EventHistoryVo;
@@ -24,6 +27,7 @@ public class EventService {
 	@Autowired private EventDao edao;
 	@Autowired private WinnerDao wdao;
 	@Autowired private EventHistoryDao ehdao;
+	@Autowired private AlarmDao adao;
 	
 	public void setEventDao(EventDao eventDao){
 		this.edao=eventDao;
@@ -35,7 +39,9 @@ public class EventService {
 	public int event2(int eventnum){
 		List<Event2Vo> list=edao.event2(eventnum);
 		for(int i=0;i<list.size();i++){
-			wdao.winner(new WinnerVo(0, eventnum, list.get(i).getUsernum()));
+			int usernum= list.get(i).getUsernum();
+			wdao.winner(new WinnerVo(0, eventnum, usernum));
+			adao.insert(new AlarmVo(0, usernum, "[·ê·¿ »Ì±â±Ç]", "Áö±Ý ´çÀå »ÌÀ¸·¯ °¡¼¼¿ä~", null, new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date().getTime()), 22, eventnum, 0));
 		}
 		return 1;
 	}

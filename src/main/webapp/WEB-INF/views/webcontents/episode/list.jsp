@@ -78,8 +78,9 @@
 	.progress{
 		position:absolute; 
 		background-color:red;
-		height:30px; 		max-width:200px !important;
-		width:${remainingWaitingTime/(wvo.waiting*60)}%;
+		height:30px;
+		max-width:200px !important;
+		width:${(1-remainingWaitingTime/(wvo.waiting*60))*200}px;
 	}
 	.progress-text{
 		position:relative;
@@ -96,14 +97,20 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		if(${msg!=null}){
+		if('${msg!=null}'){
 			alert(${msg});
 		}
 		$("#charge").on('click',function(){
 			if(${empty usernum}){
 				alert("로그인 후 이용 가능한 서비스입니다.");
 			}else{
-				location.href="${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}";
+				var webtype; 
+				if(${cultype==1}) webtype="webtoon";
+				else if(${cultype==2}) webtype="novel";
+				else if(${cultype==3}) webtype="drama";
+				else if(${cultype==4}) webtype="";
+				else if(${cultype==5}) webtype="movie";
+				location.href="${pageContext.request.contextPath}/ticket/"+webtype+"?contnum=${wvo.contnum}";
 			}
 		});
 	}
@@ -127,7 +134,7 @@
 		}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
-			if(${empty usernum}){
+			if('${empty usernum}'){
 				alert("로그인 후 이용가능한 서비스입니다.");
 			}else{
 				$("#ticketModal"+epinum).modal();
@@ -153,7 +160,6 @@
 		$("#episode"+epinum).trigger('click');
 	}
 </script>
-
 
 
 <!-- Page Content -->
@@ -201,8 +207,6 @@
     </div>
   </div>
   <!-- /.row -->
-
-
 
 	<br><br>
   <div class="card h-100">
@@ -309,7 +313,14 @@
 	    <div class="card-body">
 	      <div class="row">
 	        <div class="col-lg-6" style="max-height:210px; overflow:hidden !important">
-	            <img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	        	<c:choose>
+	        		<c:when test="${empty ep.thumbnail}">
+	        			<img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${wvo.img}">
+	        		</c:when>
+	        		<c:otherwise>
+	           	 <img class="img" src="${path}/resources/webcontents/${wvo.cultype}/${ep.thumbnail}">
+	        		</c:otherwise>
+	        	</c:choose>
 	        </div>
 	        <div class="text">
 	        	<p class="card-text">

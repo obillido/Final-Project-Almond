@@ -11,7 +11,7 @@ DROP TABLE episode CASCADE CONSTRAINTS;
 
 DROP TABLE book CASCADE CONSTRAINTS;
 DROP TABLE cash CASCADE CONSTRAINTS;
-DROP TABLE eventhistory CASCADE CONSTRAINTS;
+DROP TABLE eventhistory CASCAaDE CONSTRAINTS;
 DROP TABLE Event CASCADE CONSTRAINTS;
 DROP TABLE giftHistory CASCADE CONSTRAINTS;
 DROP TABLE gift CASCADE CONSTRAINTS;
@@ -98,11 +98,8 @@ CREATE TABLE alarm
 	content varchar2(500),
 	-- 등록일
 	regdate date NOT NULL,
-	-- 타입 : 1 : 이벤트
-	-- 2 : 기다리면 무료
-	-- 3 : 작품 업로드 알림
-	-- 4 : ...
-	-- 
+	-- 보여줄 날짜
+	showdate date NOT NULL,
 	type number NOT NULL,
 	-- 번호 : 이벤트참조면 이벤트번호
 	-- 기다리면 무료면 작품번호

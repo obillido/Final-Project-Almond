@@ -16,7 +16,7 @@
 		select count(*) cnt from commlikes where commnum=#{commnum} and type=#{type}
 	</select>
 	<select id="getInfo" parameterType="int" resultType="hashmap">
-		select c.commnum, cl.usernum u1, c.usernum u2, cl.type, w.title, ep.epnum
+		select c.commnum, cl.usernum u1, c.usernum u2, cl.type, w.title, ep.epnum, ep.contnum
 		from commlikes cl, comments c, episode ep, webcontents w
 		where cl.commnum=#{commnum} and cl.commnum=c.commnum and c.epinum=ep.epinum and ep.contnum=w.contnum
 	</select>

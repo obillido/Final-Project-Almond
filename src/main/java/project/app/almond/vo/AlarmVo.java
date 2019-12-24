@@ -8,16 +8,18 @@ public class AlarmVo {
 	private String title;
 	private String content;
 	private Date regdate;
+	private String showdate;
 	private int type;
 	private int num;
 	private int status;
 	public AlarmVo(){}
-	public AlarmVo(int alarmnum, int usernum, String title, String content, Date regdate, int type, int num, int status) {
+	public AlarmVo(int alarmnum, int usernum, String title, String content, Date regdate, String showdate, int type, int num, int status) {
 		this.alarmnum = alarmnum;
 		this.usernum = usernum;
 		this.title = title;
 		this.content = content;
 		this.regdate = regdate;
+		this.showdate = showdate;
 		this.type = type;
 		this.num = num;
 		this.status = status;
@@ -51,6 +53,12 @@ public class AlarmVo {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public String getShowdate() {
+		return showdate;
+	}
+	public void setShowdate(String showdate) {
+		this.showdate = showdate;
 	}
 	public int getType() {
 		return type;
