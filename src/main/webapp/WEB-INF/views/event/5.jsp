@@ -5,23 +5,46 @@
     .back {
         background: linear-gradient(to top,#E8905E,#EE681B);
         width: 100%; height:900px; text-align: center; color: white;
-        padding-top: 20px;
+        padding-top: 20px;margin: 0px auto;position: relative;
       }
     .bottom{
-      	background-color: #E56E29; width: 100%; height: 120px;
-      	color: white; text-align: center; padding-top: 20px;
+      	background-color: #E56E29; width: 100%; height: 120px; 
+      	color: white; text-align: center; padding-top: 30px;
+      	margin-top: 222px;
       }
-    #circle1 {
+    .back #circle1 {
 		background-color:#B03C02;
 		z-index:10;
-		width:450px;
-		height:450px;
+		width:350px;
+		height:350px;
 		border-radius:50%;	
+		
 		margin:0 auto;	
-		margin-top: 110px;
-		padding-top: 120px;
+		margin-top: 100px;
+		position: relative; 
 		}
-	#circle1 .1{text-align:center;}
+	 .back #content{text-align: center;z-index:10;position: absolute; 
+	 left: 70px; top: 100px;}
+	
+	.back #circle2 {
+		width: 150%; margin: 0px auto;
+		 z-index:30;
+		 position: relative; 
+	}
+	 #circle2 #pan{
+ 	 z-index:40;
+  	 width: 120%; height: auto;	
+  	 position: absolute; left: -130px; top: -100px;
+	}
+	#niddle{z-index:50; width: 50%; height: auto;
+	text-align: center;
+	position: absolute;left:55px;top:-55px;
+	}
+	#amonde{z-index:50; width: 15%; 
+	text-align: center; position: absolute; left:143px; top:178px;
+	}
+	 
+	
 	#button {margin-top: 100px;}
 	.back .title{margin-top: 50px;}
 	#button1 {
@@ -37,16 +60,7 @@
 		cursor: pointer;
 		width: 40%;
 	}
-	#pan{
- 	 margin:50px 50px;z-index:20;
-  	 width: 700px; height: 700px;
-  	 top:290px;position:absolute;
-  	 left: 560px;
-	}
-	#niddle{position:absolute;z-index:30;top:400px;
-	left: 900px;}
-	#amonde{position:absolute;z-index:30;top:645px;
-	width:90px; left: 910px;}
+	
 	
 </style>
 
@@ -55,19 +69,15 @@
 /* serpiko.tistory.com */
 window.onload = function(){
 		
-	function check(){
-		if(${empty usernum}){
-			alert("로그인 후 이용할 수 있는 서비스입니다.");
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
     var cash = ["100","1000","200","500","100","200"];
     $('#start_btn').click(function(){
-    	
-        rotation();
+    	if(${empty usernum}){
+			alert("로그인 후 이용할 수 있는 서비스입니다.");
+		}else if(${already=="true"}){
+			alert("이미 캐시뽑기를 진행하셨습니다.");
+		}else{
+	        rotation();
+		}
     });
     function rotation(){
         $("#pan").rotate({
@@ -84,11 +94,11 @@ window.onload = function(){
     } 
     function endAnimate($n){
         var n = $n;	
-        $('#result_id').html("<p>움직인각도:" + n + "</p>");
+      //  $('#result_id').html("<p>움직인각도:" + n + "</p>");
         var real_angle = n%360 +30;//각도조절
         var part = Math.floor(real_angle/60);//360나누기 6칸 
      
-        $('#result_id2').html("<p>상품범위:" + part + "</p>");
+      //  $('#result_id2').html("<p>상품범위:" + part + "</p>");
  
         if(part < 1){
             $('#cash1').html("<p>내당첨금:" + cash[0] + "캐시</p>");       
@@ -107,25 +117,32 @@ window.onload = function(){
 
 
 		
-		$("#send").click(function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath }/event5",
-				type:"post",//post방식으로 요청하기
-				data:{"price":cash[part],eventnum:"${eventnum}"},
-				success:function(datca){
-					//var msg=$(data).find("msg").text();
-					if('${msg!=null}'){
-						alert("${msg}");
-					}
-				}
-			});
-		});
+
+		$.ajax({
+			url:"${pageContext.request.contextPath }/event5/cash",
+			type:"post",//post방식으로 요청하기
+			data:{"price":cash[part],"eventnum":'${eventnum}'},
+			dataType:"xml",
+			success:function(data){
+				var find=$(data).find("find").text();
+				if(find=='true'){
+					
+					alert($(data).find("success").text());
+				}else if(find=='fail'){
+					alert($(data).find("fail").text());
+				}else if(find=='jungbock'){
+					alert($(data).find("jungbock").text());
+				}else if(find=='sorry'){
+					alert($(data).find("sorry").text());
+				}	
+			}
+    	});
     }
-		
  
     function randomize($min, $max){
         return Math.floor(Math.random() * ($max - $min + 1)) + $min;
     }
+    
 };
 </script>
 
@@ -144,21 +161,20 @@ window.onload = function(){
     		<h3>꽝없는</h3>
 			<h1>캐시뽑기!</h1>
 		</div>
-	<div id="circle1">		
-		<img src="${pageContext.request.contextPath }/resources/rull/10001.png" id="pan">
-		<img src="${pageContext.request.contextPath }/resources/rull/pan2.png" id="niddle">
-		<button id="start_btn" type="button"><img src="${pageContext.request.contextPath }/resources/rull/아몬드.png" id="amonde"></button>
-			<p style="font-size: 30px;">이미 캐시뽑기를 <br>
-				진행하셨습니다.</p><br>
-			<div id="1">			
-					<div id="result_id"></div>
-					<div id="result_id2"></div>
-					<div id="cash1"></div>				
+		<div id="circle1">
+			<div id="circle2">		
+				<img src="${pageContext.request.contextPath }/resources/rull/10001.png" id="pan">
+				<div id="niddle"><img src="${pageContext.request.contextPath }/resources/rull/pan2.png" ></div>
+				<button id="start_btn" type="button"><img src="${pageContext.request.contextPath }/resources/rull/아몬드.png" id="amonde"></button>
+			</div>			
+			<div id="content">	
+				<p style="font-size: 30px;">이미 캐시뽑기를 <br>
+				진행하셨습니다.</p><br>							
+				<div id="cash1"></div>				
 			</div>
-	</div>
-		<div id="button">
-			<input type="submit" value="확인" id="send" onsubmit="return check();">	
+			
 		</div>	
+		
 		<div class="bottom">
 			<p>당첨된 캐시는 더보기 메뉴 캐시내역에서 확인 하실 수 있습니다.<br>
 				본 이벤트 캐시는 사용기간 내에 사용하지 않으면 소멸됩니다.</p>

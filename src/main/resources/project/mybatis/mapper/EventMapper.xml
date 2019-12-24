@@ -66,7 +66,7 @@
 	
 	<!-- 룰렛돌린애들 뽑은 금액 업데이트 -->
 	<update id="event5cash" parameterType="project.app.almond.vo.UsersVo">
-		update users set cash=cash+#{cash} where usersnum=#{usernum}
+		update users set cash=cash+#{cash} where usernum=#{usernum}
 	</update>
 	
 	

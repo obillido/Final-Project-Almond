@@ -12,6 +12,7 @@ import project.app.almond.dao.TicketStockDao;
 import project.app.almond.dao.UsersDao;
 import project.app.almond.vo.GiftHistoryVo;
 import project.app.almond.vo.GiftVo;
+import project.app.almond.vo.TicketStockVo;
 import project.app.almond.vo.WebcontentsVo;
 
 @Service
@@ -25,8 +26,16 @@ public class GiftService {
 	public List<HashMap<String, Object>> getList(int usernum){
 		return giftDao.getList(usernum);
 	}
+	@Transactional
 	public int inserthistory(GiftHistoryVo vo){
-		return giftDao.inserthistory(vo);
+		giftDao.inserthistory(vo);
+		GiftVo gvo=giftDao.getInfo(vo.getGiftnum());
+		TicketStockVo tksvo=new TicketStockVo(0, vo.getUsernum(), gvo.getContnum(), gvo.getType(), gvo.getCnt());
+		if(tsdao.getInfo(tksvo)==null){
+			tsdao.insert(tksvo);
+		}else{
+			tsdao.updateAdd(tksvo);
+		}
+		return 1;
 	}
-	
 }

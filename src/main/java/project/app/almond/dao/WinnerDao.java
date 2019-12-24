@@ -26,7 +26,7 @@ public class WinnerDao {
 	public List<UsersVo> winnerselect(int eventnum){//ÇØ´ç ´çÃ·ÀÚ »Ì±â
 		return session.selectList(NAMESPACE+".winnerselect",eventnum);
 	}
-	public List<WinnerVo> whoList(int usernum){//·ê·¿µ¹¸±¼öÀÖ´Â»ç¶÷
-		return session.selectList(NAMESPACE+".whoList",usernum);
+	public List<WinnerVo> whoList(int eventnum){//·ê·¿µ¹¸±¼öÀÖ´Â»ç¶÷
+		return session.selectList(NAMESPACE+".whoList",eventnum);
 	}
 }

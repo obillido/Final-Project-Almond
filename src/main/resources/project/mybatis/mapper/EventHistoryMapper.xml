@@ -8,8 +8,8 @@
 		insert into eventhistory values(seq_eventhistory_eventhnum.nextval,#{eventnum}, #{usernum}, sysdate ,#{price})
 	</insert>
 	<!-- 룰렛돌린애들 리스트 -->
-	<select id="roulList" parameterType="int" resultType="project.app.almond.vo.EventHistoryVo">
-		select usernum,eventnum from eventhistory where usernum=#{usernum}
+	<select id="roulList" parameterType="hashmap" resultType="project.app.almond.vo.EventHistoryVo">
+		select * from eventhistory where usernum=#{usernum} and eventnum=#{eventnum}
 	</select>
 </mapper>
 

@@ -27,7 +27,7 @@
 	<select id="whoList" resultType="project.app.almond.vo.WinnerVo" parameterType="int">
 		select usernum,eventnum
 		from winner
-		where eventnum=any(7,5);
+		where eventnum=#{eventnum}
 	</select>
 </mapper>
 

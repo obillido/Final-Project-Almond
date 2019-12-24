@@ -1,5 +1,6 @@
 package project.app.almond.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class EventHistoryService {
 		return ehdao.eventhistory(vo);
 	}
 	//이벤트히스토리에 있는 애들 리스트로 뽑기
-	public List<EventHistoryVo> historyList(int usernum){
-		return ehdao.roulList(usernum);
+	public EventHistoryVo historyList(HashMap<String, Object> map){
+		return ehdao.roulList(map);
 	}
 	
 }

@@ -82,16 +82,9 @@ public class EventService {
 		return 1;	
 	}
 	@Transactional
-	public int event5(HttpSession session,int eventnum,int price){
-		int usernum;
-		int cash=price;
-		Object un=session.getAttribute("usernum");
-		if(un!=null){
-			usernum=(Integer)un;		
-			wdao.whoList(usernum);// 룰렛돌릴사람 가져오기(위너테이블)
-			edao.event5cash(new UsersVo(usernum,null,null,null,null,null,cash,0));//캐시업데이트(돌린사람 업데이트)
-			ehdao.eventhistory(new EventHistoryVo(0,eventnum,usernum,null,price));//이벤트히스토리에 인서트
-		}
+	public int event5(int usernum,int eventnum,int price){
+		edao.event5cash(new UsersVo(usernum,null,null,null,null,null,price,0));//캐시업데이트(돌린사람 업데이트)
+		ehdao.eventhistory(new EventHistoryVo(0,eventnum,usernum,null,price));//이벤트히스토리에 인서트
 		return 1;
 	}
 }
