@@ -35,6 +35,10 @@
 		opener.parent.location='${path}/event4?eventnum=10'; 
 		window.close(); 
 	}
+	function go3(){ 
+		opener.parent.location='${path}/event/list'; 
+		window.close(); 
+	}
 	function go4(){ 
 		opener.parent.location='${path}/event2?eventnum=5'; 
 		window.close(); 
@@ -73,11 +77,14 @@
 	<div class="row">
 	<div class="card bg-dark text-white" onclick="go3()" style="width:330px;height:330px;" id="div2">
 	  <img src="${path }/resources/suhyeonimages/finalevent.jpg" class="card-img">
+	  <div class="card-img-overlay">
+	    <h5 class="card-title">더 많은 이벤트 보러가기</h5>
+	  </div>
 	</div>
 	<div class="card bg-dark text-white" onclick="go4()" style="width:330px;height:330px;" id="div3">
 	  <img src="${path }/resources/suhyeonimages/세종.jpg" class="card-img" style="width:250px;height:250px;">
 	  <div class="card-img-overlay">
-	    <h5 class="card-title">EVENT 4</h5>
+	    <h5 class="card-title">EVENT 3</h5>
 	  </div>
 	</div>
     </div>
