@@ -231,18 +231,21 @@
 			let alarmnum=$(this).find("alarmnum").text();
 			let status=$(this).find("status").text();
 			let num=$(this).find("num").text();
+			let type=$(this).find("type").text();
 			if(status=='0') sc="confirm-alarm-no";
-			var div="<div class='dropdown-item "+sc+"' onclick='javascript:alarmPassage("+alarmnum+","+status+","+num+")'>"+
+			var div="<div class='dropdown-item "+sc+"' onclick='javascript:alarmPassage("+alarmnum+","+type+","+num+")'>"+
 							"<p>"+$(this).find("title").text()+"</p>"+
 							"<p>"+$(this).find("content").text()+"</p></div>";
 			$("#"+listname).append(div);
 		});
 		if(vc) $("#"+listname).append("<div class='dropdown-item'><p>알람 내역이 없습니다.</p></div>");
 	}
-	function alarmPassage(alarmnum,status,num){
+	
+	function alarmPassage(alarmnum,type,num){
 		console.log(alarmnum,status,num);
-		location.href="${path}/alarm/passage?alarmnum="+alarmnum+"&status="+status+"&num="+num;
+		location.href="${path}/alarm/passage?alarmnum="+alarmnum+"&type="+type+"&num="+num;
 	}
+	
 	
 	function openAlarm(commName,elmnt){
 		var i, tabcontent, tablinks;

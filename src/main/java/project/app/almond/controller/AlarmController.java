@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,6 +28,7 @@ public class AlarmController {
 			sb.append("<title>"+vo.getTitle()+"</title>");
 			sb.append("<content>"+vo.getContent()+"</content>");
 			sb.append("<regdate>"+vo.getRegdate()+"</regdate>");
+			sb.append("<type>"+vo.getType()+"</type>");
 			sb.append("<num>"+vo.getNum()+"</num>");
 			sb.append("<status>"+vo.getStatus()+"</status>");
 			sb.append("</webAlarmList>");
@@ -37,6 +39,7 @@ public class AlarmController {
 			sb.append("<title>"+vo.getTitle()+"</title>");
 			sb.append("<content>"+vo.getContent()+"</content>");
 			sb.append("<regdate>"+vo.getRegdate()+"</regdate>");
+			sb.append("<type>"+vo.getType()+"</type>");
 			sb.append("<num>"+vo.getNum()+"</num>");
 			sb.append("<status>"+vo.getStatus()+"</status>");
 			sb.append("</commAlarmList>");
@@ -47,6 +50,7 @@ public class AlarmController {
 			sb.append("<title>"+vo.getTitle()+"</title>");
 			sb.append("<content>"+vo.getContent()+"</content>");
 			sb.append("<regdate>"+vo.getRegdate()+"</regdate>");
+			sb.append("<type>"+vo.getType()+"</type>");
 			sb.append("<num>"+vo.getNum()+"</num>");
 			sb.append("<status>"+vo.getStatus()+"</status>");
 			sb.append("</eventAlarmList>");
@@ -69,11 +73,12 @@ public class AlarmController {
 	
 	
 	@RequestMapping(value="alarm/passage")
-	public String passage(int alarmnum, int status, int num){
+	public String passage(int alarmnum, int type, int num){
 		as.update(alarmnum);
-		if(status<=25){
+		if(type<20){
 			return "redirect:/webcontents/episode/list?contnum="+num;
+		}else{
+			return "redirect:/event5?eventnum="+num;
 		}
-		return "redirect:/";
 	}
 }

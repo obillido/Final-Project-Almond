@@ -97,7 +97,7 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		if(${msg!=null}){
+		if('${msg!=null}'){
 			alert(${msg});
 		}
 		$("#charge").on('click',function(){

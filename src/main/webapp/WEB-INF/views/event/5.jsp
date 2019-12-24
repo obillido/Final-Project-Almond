@@ -114,7 +114,7 @@ window.onload = function(){
 				data:{"price":cash[part],eventnum:"${eventnum}"},
 				success:function(datca){
 					//var msg=$(data).find("msg").text();
-					if(${msg!=null}){
+					if('${msg!=null}'){
 						alert("${msg}");
 					}
 				}
