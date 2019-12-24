@@ -20,7 +20,9 @@
 	<insert id="inserthistory" parameterType="project.app.almond.vo.GiftHistoryVo">
 		insert into gifthistory values(SEQ_GIFTHISTORY_GIFTHNUM.nextval, #{giftnum},#{usernum},sysdate)
 	</insert>
-
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.GiftVo">
+		select * from gift where giftnum=#{giftnum}
+	</select>
 </mapper>
 
 
