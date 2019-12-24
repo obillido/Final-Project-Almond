@@ -98,7 +98,7 @@
 	window.onload=function(){
 		//if('${not empty msg}') alert('${msg}');
 		$("#charge").on('click',function(){
-			if('${empty usernum}'){
+			if(${empty usernum}){
 				alert("로그인 후 이용 가능한 서비스입니다.");
 			}else{
 				var webtype; 
@@ -184,7 +184,7 @@
 					<p><strong>발행자</strong> &nbsp  ${wvo.publisher}</p>
 					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
 					<c:choose>
-					<c:when test="${wvo.agegrade==0 }">
+					<c:when test="${wvo.agegrade==0}">
 					<p><strong>연령정보</strong> &nbsp  전체이용가</p></c:when>
 					<c:otherwise><p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p></c:otherwise>
 					</c:choose>
@@ -195,7 +195,11 @@
 					<p><strong>시간</strong> &nbsp  ${wvo.runtime}분</p>
 					<p><strong>개봉일</strong> &nbsp  ${wvo.proddate}</p>
 					<p><strong>작품설명</strong> &nbsp  ${wvo.outline}</p>
-					<p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p>
+					<c:choose>
+						<c:when test="${wvo.agegrade==0}">
+						<p><strong>연령정보</strong> &nbsp  전체이용가</p></c:when>
+						<c:otherwise><p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p></c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 			<c:if test="${not empty userStatus}">
