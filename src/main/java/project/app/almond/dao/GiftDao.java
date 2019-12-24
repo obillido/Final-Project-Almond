@@ -28,4 +28,7 @@ public class GiftDao {
 	public int inserthistory(GiftHistoryVo vo){
 		return sqlSessionTemplate.insert(NAMESPACE + ".inserthistory", vo);
 	}
+	public GiftVo getInfo(int giftnum){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",giftnum);
+	}
 }
