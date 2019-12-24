@@ -1,6 +1,8 @@
 package project.app.almond.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 import javax.servlet.http.HttpSession;
 
@@ -144,8 +146,13 @@ public class EventController {
 		if(un!=null){
 			usernum=(Integer)un;
 			model.addAttribute("usernum",usernum);
-			List<EventHistoryVo> list=hs.historyList(usernum);//뽑기했는지 담기
-			if(list!=null) model.addAttribute("list",list);
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("usernum", usernum);
+			map.put("eventnum", eventnum);
+			EventHistoryVo ehvo=hs.historyList(map);//뽑기했는지 담기
+			System.out.println("???:"+ehvo);
+			if(ehvo!=null) model.addAttribute("already","true");
+			else model.addAttribute("already","false");
 		}
 		model.addAttribute("eventnum",eventnum);
 		return ".event.5";
@@ -155,35 +162,34 @@ public class EventController {
 	@RequestMapping(value="/event5/cash", produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String rullcash(HttpSession session,int eventnum,int price,Model model){	
-		int usernum=(Integer)session.getAttribute("usernum");
-		List<WinnerVo> who=ws.whoList(usernum);
+		int usernum=(Integer)session.getAttribute("usernum");	
+		List<WinnerVo> who=ws.whoList(eventnum);
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<result>");
 		if(who!=null){//룰렛돌릴수 있는지 확인, 위너테이블에 있어야함
-			if(hs.historyList(usernum)==null){//이벤트히스토리에 없어야함
-				int a=service.event5(usernum, eventnum, price);			
-				if(a>0){
-					sb.append("<find>true</find>");
-					sb.append("<success>성공</success>");
-				}else{
-					sb.append("<find>false</find>");
-					sb.append("<fail>실패</fail>");
-				}
-			}else{//이벤트히스토리에 있음(참여한적있음)
-				List<EventHistoryVo> list=hs.historyList(usernum);//뽑기한사람들 리스트
-				model.addAttribute("list",list);
-				sb.append("<find>false</find>");
-				sb.append("<jungbock>이미 실행한 이벤트입니다.</jungbock>");
-			}	
+			int a=service.event5(usernum, eventnum, price);		
+			System.out.println(a);
+			if(a>0){
+				System.out.println("a1"+a);
+				
+				sb.append("<find>true</find>");
+				sb.append("<success>성공</success>");
+			}else{
+				System.out.println("a2"+a);
+				sb.append("<find>fail</find>");
+				sb.append("<fail>실패</fail>");
+			}
 		}else{	
-			sb.append("<find>false</find>");
+			System.out.println("who2"+who);
+			
+			sb.append("<find>sorry</find>");
 			sb.append("<sorry>뽑기권이없습니다.</sorry>");
 		}
-		sb.append("<result>");
+		sb.append("</result>");
 		model.addAttribute("usernum",usernum);
 		model.addAttribute("eventnum",eventnum);
-		return ".event.5";	
+		return sb.toString();	
 	}
 	
 	

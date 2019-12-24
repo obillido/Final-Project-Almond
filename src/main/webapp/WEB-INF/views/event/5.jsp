@@ -73,6 +73,8 @@ window.onload = function(){
     $('#start_btn').click(function(){
     	if(${empty usernum}){
 			alert("로그인 후 이용할 수 있는 서비스입니다.");
+		}else if(${already=="true"}){
+			alert("이미 캐시뽑기를 진행하셨습니다.");
 		}else{
 	        rotation();
 		}
@@ -119,17 +121,20 @@ window.onload = function(){
 		$.ajax({
 			url:"${pageContext.request.contextPath }/event5/cash",
 			type:"post",//post방식으로 요청하기
-			data:{"price":cash[part],eventnum:"${eventnum}",eventnum2:"${eventnum2}"},
+			data:{"price":cash[part],"eventnum":'${eventnum}'},
 			dataType:"xml",
 			success:function(data){
 				var find=$(data).find("find").text();
 				if(find=='true'){
+					
 					alert($(data).find("success").text());
-				}else if(find=='false'){
+				}else if(find=='fail'){
 					alert($(data).find("fail").text());
+				}else if(find=='jungbock'){
 					alert($(data).find("jungbock").text());
-					alert($(data).find("sorry").text());	
-				}
+				}else if(find=='sorry'){
+					alert($(data).find("sorry").text());
+				}	
 			}
     	});
     }

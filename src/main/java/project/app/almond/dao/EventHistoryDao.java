@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,7 +18,7 @@ public class EventHistoryDao {
 		return session.insert(NAMESPACE+".eventhistory",vo);
 	}
 
-	public List<EventHistoryVo> roulList(int usernum){//·ê·¿µ¹¸° ¸®½ºÆ®
-		return session.selectList(NAMESPACE+".roulList",usernum);
+	public EventHistoryVo roulList(HashMap<String, Object> map){//·ê·¿µ¹¸° ¸®½ºÆ®
+		return session.selectOne(NAMESPACE+".roulList",map);
 	}
 }
