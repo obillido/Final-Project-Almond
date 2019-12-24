@@ -85,6 +85,7 @@ public class EpisodeController {
 		model.addAttribute("totalEpiCnt",es.getTotalEpisodeCnt(contnum));
 		if(cs.getTotalCnt(contnum)!=null) model.addAttribute("totalCommCnt",cs.getTotalCnt(contnum));
 		else model.addAttribute("totalCommCnt",0);
+		model.addAttribute("cultype",cultype);
 		return ".webcontents.episode.list";
 	}
 	

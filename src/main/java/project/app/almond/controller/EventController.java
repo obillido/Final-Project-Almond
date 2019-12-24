@@ -135,7 +135,7 @@ public class EventController {
 		}
 	
 	@RequestMapping(value="/event5",method=RequestMethod.GET)
-	public String event5(int eventnum,int eventnum2,Model model,HttpSession session){
+	public String event5(int eventnum,Model model,HttpSession session){
 		int usernum;
 		Object un=session.getAttribute("usernum");
 		if(un!=null){
@@ -145,7 +145,6 @@ public class EventController {
 			if(list!=null) model.addAttribute("list",list);
 		}
 		model.addAttribute("eventnum",eventnum);
-		model.addAttribute("eventnum2",eventnum2);
 		return ".event.5";
 	}
 	

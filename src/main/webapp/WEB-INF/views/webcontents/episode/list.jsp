@@ -104,7 +104,13 @@
 			if(${empty usernum}){
 				alert("로그인 후 이용 가능한 서비스입니다.");
 			}else{
-				location.href="${pageContext.request.contextPath}/ticket/webtoon?contnum=${wvo.contnum}";
+				var webtype; 
+				if(${cultype==1}) webtype="webtoon";
+				else if(${cultype==2}) webtype="novel";
+				else if(${cultype==3}) webtype="drama";
+				else if(${cultype==4}) webtype="";
+				else if(${cultype==5}) webtype="movie";
+				location.href="${pageContext.request.contextPath}/ticket/"+webtype+"?contnum=${wvo.contnum}";
 			}
 		});
 	}
