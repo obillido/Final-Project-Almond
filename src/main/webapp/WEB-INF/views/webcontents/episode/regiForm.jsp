@@ -21,7 +21,7 @@
         	<div class="control-group form-group">
             <div class="controls">
               <label>소제목 :</label>
-              <input type="text" class="form-control" name="subtitle"autocomplete=off>
+              <input type="text" class="form-control" name="subtitle" autocomplete=off>
               <p class="help-block"></p>
             </div>
           </div>

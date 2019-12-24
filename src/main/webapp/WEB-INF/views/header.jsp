@@ -105,7 +105,7 @@
 
 	<div id="search">
 		<form class="form-inline" method="post" action="${path }/search"> 
-		   <input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" style="min-width:200px;">
+		   <input type="text" class="form-control" name="keyword" placeholder="검색어를 입력하세요" style="min-width:200px;"  autocomplete=off>
 		   <button class="btn btn-secondary searchBtn" type="submit">검색</button>
 		</form> 
 	</div>
@@ -147,7 +147,7 @@
     </c:when>
     <c:otherwise>
     	<div id="login-box">
-    		<a href="${path}/users/login">로그인</a>
+    		<a href="${path}/users/login" class="btn btn-outline-dark">로그인</a>
     	</div>
     </c:otherwise>
 	</c:choose>
