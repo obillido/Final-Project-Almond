@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import project.app.almond.vo.CommentsEpisodeVo;
 import project.app.almond.vo.Event2Vo;
+import project.app.almond.vo.EventVo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 import project.app.almond.vo.WinnerVo;
@@ -36,4 +38,17 @@ public class EventDao {
 		return session.update(NAMESPACE+".event5cash",vo);
 	}
 	
+	public int insertKeyword(EventVo vo){
+		return session.insert(NAMESPACE+".insertKeyword",vo);
+	}
+	public int insertRoulette(EventVo vo){
+		return session.insert(NAMESPACE+".insertRoulette",vo);
+	}
+	public int insertSortition(EventVo vo){
+		return session.insert(NAMESPACE+".insertSortition",vo);
+	}
+	
+	public List<HashMap<String, Object>> getList(){
+		return session.selectList(NAMESPACE+".getList");
+	}
 }

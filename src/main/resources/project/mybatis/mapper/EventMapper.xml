@@ -70,5 +70,27 @@
 	</update>
 	
 	
+	
+	
+	
+		
+	<insert id="insertSortition" parameterType="project.app.almond.vo.EventVo">
+		insert into event(eventnum,regdate,startdate,enddate,img,status,human,cnt)
+		values(seq_event_eventnum.nextval,sysdate,#{startdate},#{enddate},#{img},#{status},#{human},#{cnt})
+	</insert>
+	<insert id="insertRoulette" parameterType="project.app.almond.vo.EventVo">
+		insert into event(eventnum,regdate,startdate,enddate,status)
+		values(seq_event_eventnum.nextval,sysdate,#{startdate},#{enddate},#{status})
+	</insert>
+	<insert id="insertKeyword" parameterType="project.app.almond.vo.EventVo">
+		insert into event(eventnum,title,content,regdate,startdate,enddate,status,keyword,price)
+		values(seq_event_eventnum.nextval,#{title},#{content},sysdate,#{startdate},#{enddate},#{status},#{keyword},#{price})
+	</insert>
+	
+	<select id="getList" resultType="project.app.almond.vo.EventVo">
+		select * from event order by enddate desc,startdate desc
+	</select>
+	
+	
 </mapper>
 

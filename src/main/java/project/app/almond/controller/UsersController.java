@@ -32,7 +32,6 @@ public class UsersController {
 		StringBuffer sb=new StringBuffer();
 		sb.append("<?xml version='1.0' encoding='utf-8'?>");
 		sb.append("<result>");
-		System.out.println(email);
 		UsersVo vo=us.emailcheck(email);
 		if(vo==null) sb.append("<check>yes</check>");
 		else 		 sb.append("<check>no</check>");
@@ -62,7 +61,6 @@ public class UsersController {
 	}
 	@RequestMapping(value="/users/login",method=RequestMethod.POST)
 	public String login(UsersVo vo,HttpSession session) {
-		System.out.println();
 		UsersVo uvo=us.login(vo);
 		if(uvo!=null) {
 			session.setAttribute("usernum", uvo.getUsernum());

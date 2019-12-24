@@ -41,10 +41,6 @@ public class HomeController {
 	public String home2() {
 		return ".home2";
 	}
-	@RequestMapping(value = "/3")
-	public String home3() {
-		return ".home3";
-	}
 	@RequestMapping(value = "/5")
 	public String home5(Model model) {
 		model.addAttribute("webc",ws.getInfoBook(1));

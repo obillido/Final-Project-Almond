@@ -319,7 +319,7 @@ CREATE TABLE event
 	-- 33 : 룰렛 -> 5000
 	-- 
 	-- 40 : 키워드
-	stauts number NOT NULL,
+	status number NOT NULL,
 	-- 키워드
 	keyword varchar2(100),
 	-- 지급액

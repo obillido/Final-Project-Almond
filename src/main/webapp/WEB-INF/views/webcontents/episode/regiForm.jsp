@@ -19,12 +19,12 @@
         	<input type="hidden" name="contnum" value="${contnum}">
         	<input type="hidden" name="epnum" value="${epnum}">
         	<div class="control-group form-group">
-		            <div class="controls">
-		              <label>소제목 :</label>
-		              <input type="text" class="form-control" name="subtitle"autocomplete=off>
-		              <p class="help-block"></p>
-		            </div>
-		          </div>
+            <div class="controls">
+              <label>소제목 :</label>
+              <input type="text" class="form-control" name="subtitle"autocomplete=off>
+              <p class="help-block"></p>
+            </div>
+          </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>내용 :</label>
@@ -32,18 +32,18 @@
             </div>
           </div>
          	<div class="control-group form-group">
-	            <div class="controls">
-	              <label>썸네일 이미지 :</label>
-	              <input type="file" class="form-control" name="file1">
-	              <p class="help-block"></p>
-	            </div>
+            <div class="controls">
+              <label>썸네일 이미지 :</label>
+              <input type="file" class="form-control" name="file1">
+              <p class="help-block"></p>
+            </div>
           </div>
 	        <div class="control-group form-group">
-	            <div class="controls">
-	              <label>이미지 :</label>
-	              <input type="file" class="form-control" name="file1">
-	              <p class="help-block"></p>
-	            </div>
+            <div class="controls">
+              <label>이미지 :</label>
+              <input type="file" class="form-control" name="file1">
+              <p class="help-block"></p>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary">등록</button>
         </form>

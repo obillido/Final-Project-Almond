@@ -1,6 +1,7 @@
 package project.app.almond.service;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import project.app.almond.vo.AlarmVo;
 import project.app.almond.vo.CommentsEpisodeVo;
 import project.app.almond.vo.Event2Vo;
 import project.app.almond.vo.EventHistoryVo;
+import project.app.almond.vo.EventVo;
 import project.app.almond.vo.ReadingEpisodeVo;
 import project.app.almond.vo.UsersVo;
 import project.app.almond.vo.WinnerVo;
@@ -29,12 +31,20 @@ public class EventService {
 	@Autowired private EventHistoryDao ehdao;
 	@Autowired private AlarmDao adao;
 	
-	public void setEventDao(EventDao eventDao){
-		this.edao=eventDao;
+	public int insertKeyword(EventVo vo){
+		return edao.insertKeyword(vo);
+	}
+	public int insertRoulette(EventVo vo){
+		return edao.insertRoulette(vo);
+	}
+	public int insertSortition(EventVo vo){
+		return edao.insertSortition(vo);
 	}
 
-
-
+	public List<HashMap<String, Object>> getList(){
+		return edao.getList();
+	}
+	
 	@Transactional
 	public int event2(int eventnum){
 		List<Event2Vo> list=edao.event2(eventnum);

@@ -101,7 +101,7 @@ public class EpisodeController {
 	}
 	
 	@RequestMapping(value="/webcontents/episode/insert",method=RequestMethod.POST)
-	public String insert(int contnum,String content,String subtitle,int epnum,List<MultipartFile> file1,Model model){
+	public String insert(int contnum,String content,String subtitle,int epnum,List<MultipartFile> file1,Model model,HttpSession session){
 		int cultype=ws.getInfo(contnum).getCultype();
 		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/webcontents/"+cultype;
 		//"C:/web/spring/almond/src/main/webapp/resources/webcontents/"+cultype;

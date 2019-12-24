@@ -8,8 +8,8 @@
 <style>
 	.logo{width:20%; text-align:right; }
 	.category-box{text-align:center !important; min-width:500px;}
-	.category-box .category{color:black !important;font-size: 1.5em; display:inline-block; padding:0px 20px; font-weight:bold;}
-	#search{width:250px; min-width:265px; width:20%; text-align:center; margin-left:50px;}
+	.category-box .category{color:black !important;font-size: 1.5em; display:inline-block; padding:0px 20px; font-weight:bold; text-decoration:none;}
+	#search{min-width:265px; width:20%; text-align:center;}
 	#search .searchBtn{border:1px solid darkorange;background-color:darkorange; margin-left:5px;}
 	
 	.badge-notification {
@@ -95,6 +95,9 @@
 			<li class="nav-item dropdown">
 				<a class="category" href="${path}/webcontents/list?cultype=5">영화</a>
 			</li>
+			<li class="nav-item dropdown">
+				<a class="category" href="${path}/event/list"  style="color:darkorange !important;">이벤트</a>
+			</li>
 		</ul>
 	</div>
  
@@ -117,15 +120,26 @@
 		     		 <span class="badge badge-dark" style="font-size: 1.3em;background-color:darkorange;color:white; padding-bottom:8px;">${nickname}님</span>
 		        </a>
 		        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-		          <a class="dropdown-item" href="${path}/mypage/profile">프로필 설정</a>
-		          <a class="dropdown-item" href="${path}/cash/charge">캐시 충전</a>
-		          <a class="dropdown-item" href="${path}/cash/list">캐시 내역</a>
-		          <a class="dropdown-item" href="${path}/mylist/list">보관함</a>
-		          <a class="dropdown-item" id="ticket_history" href="javascript:popupOpen();">이용권 내역</a>
-		          <a class="dropdown-item" href="#">이벤트/쿠폰</a>
-		          <a class="dropdown-item" id="giftbox" href="javascript:giftOpen();">선물함</a>
-		          <a class="dropdown-item" href="${path}/inquiry/inquirypage">1:1문의</a>
-		          <a class="dropdown-item" href="${path}/users/logout">로그아웃</a>
+		        	<c:choose>
+		        		<c:when test="${empty userStatus}">
+				          <a class="dropdown-item" href="${path}/mypage/profile">프로필 설정</a>
+				          <a class="dropdown-item" href="${path}/cash/charge">캐시 충전</a>
+				          <a class="dropdown-item" href="${path}/cash/list">캐시 내역</a>
+				          <a class="dropdown-item" href="${path}/mylist/list">보관함</a>
+				          <a class="dropdown-item" id="ticket_history" href="javascript:popupOpen();">이용권 내역</a>
+				          <a class="dropdown-item" id="giftbox" href="javascript:giftOpen();">선물함</a>
+				          <a class="dropdown-item" href="${path}/inquiry/inquirypage">1:1문의</a>
+				          <a class="dropdown-item" href="${path}/users/logout">로그아웃</a>
+		        		</c:when>
+		        		<c:otherwise>
+		        			<a class="dropdown-item" href="${path}/mypage/profile">프로필 설정</a>
+				          <a class="dropdown-item" href="${path}//webcontents/choice">작품등록</a>
+				          <a class="dropdown-item" href="${path}/gift/gift">선물등록</a>
+				          <a class="dropdown-item" id="giftbox" href="javascript:giftOpen();">선물함</a>
+				          <a class="dropdown-item" href="${path}/inquiry/inquirypage">1:1문의</a>
+				          <a class="dropdown-item" href="${path}/users/logout">로그아웃</a>
+		        		</c:otherwise>
+		        	</c:choose>
 		        </div>
 		      </li>          
 		    </ul>

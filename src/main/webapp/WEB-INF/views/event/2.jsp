@@ -57,7 +57,7 @@
         <br>
         <h3 class="my-3">경품</h3>   
          <br>        
-         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg" alt="">  
+         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
       	 <c:if test="${userStatus.equals('admin')}">
       	 		<button type="button" style="width: 100px;height: 60px;" onclick="javascript:event2(1)">당첨</button>
       	 </c:if>

@@ -94,22 +94,19 @@
 
 
 
-
 <script type="text/javascript">
 	window.onload=function(){
-		if('${msg!=null}'){
-			alert(${msg});
-		}
+		//if('${not empty msg}') alert('${msg}');
 		$("#charge").on('click',function(){
-			if(${empty usernum}){
+			if('${empty usernum}'){
 				alert("로그인 후 이용 가능한 서비스입니다.");
 			}else{
 				var webtype; 
-				if(${cultype==1}) webtype="webtoon";
-				else if(${cultype==2}) webtype="novel";
-				else if(${cultype==3}) webtype="drama";
-				else if(${cultype==4}) webtype="";
-				else if(${cultype==5}) webtype="movie";
+				if('${cultype==1}') webtype="webtoon";
+				else if('${cultype==2}') webtype="novel";
+				else if('${cultype==3}') webtype="drama";
+				else if('${cultype==4}') webtype="";
+				else if('${cultype==5}') webtype="movie";
 				location.href="${pageContext.request.contextPath}/ticket/"+webtype+"?contnum=${wvo.contnum}";
 			}
 		});
@@ -118,7 +115,7 @@
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
 		if(epnum<=freenum){
 			post_to_url(["epinum","type"],[epinum,5]);
-		}else if(${remainingWaitingTime<=0}){
+		}else if('${remainingWaitingTime<=0}'){
 			post_to_url(["epinum","type"],[epinum,6]);
 		}else if(status==1){ //티켓 사용해서 보기
 			$("#ticketModal"+epinum).modal("hide");
@@ -201,9 +198,9 @@
 					<p><strong>연령정보</strong> &nbsp  ${wvo.agegrade}세 이상 이용가</p>
 				</c:otherwise>
 			</c:choose>
-		
-			<a href="${path}/webcontents/episode/insert?contnum=${wvo.contnum}" class="btn btn-outline-dark">회차 등록</a>
-		
+			<c:if test="${not empty userStatus}">
+				<a href="${path}/webcontents/episode/insert?contnum=${wvo.contnum}" class="btn btn-outline-dark">회차 등록</a>
+			</c:if>
     </div>
   </div>
   <!-- /.row -->
@@ -215,8 +212,9 @@
 				<fmt:formatNumber var="readernum" value="${wvo.readernum}" pattern="0"/>
       	<span style="color:blue !important">${readernum}</span>명이 보는 중 
      	</li>
-      <a href="${path }/notice/list?contnum=${wvo.contnum}"><li class="list-group-item">공지사항</li></a>
-   
+     	<li class="list-group-item">
+    	  <a href="${path }/notice/list?contnum=${wvo.contnum}">공지사항</a>
+   		</li>
       <c:if test="${wvo.freenum>0}"><li class="list-group-item">첫편부터 ${wvo.freenum}편 무료</li></c:if>
       <c:if test="${wvo.waiting>0}">
 	      <li class="list-group-item">

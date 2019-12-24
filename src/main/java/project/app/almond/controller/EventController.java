@@ -1,7 +1,12 @@
 package project.app.almond.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.SynchronousQueue;
 
 import javax.servlet.http.HttpSession;
@@ -9,14 +14,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import project.app.almond.service.EventHistoryService;
 import project.app.almond.service.EventService;
+import project.app.almond.service.WebcontentsService;
 import project.app.almond.service.WinnerService;
 import project.app.almond.vo.EventHistoryVo;
+import project.app.almond.vo.EventVo;
 import project.app.almond.vo.UsersVo;
 import project.app.almond.vo.WinnerVo;
 
@@ -25,6 +34,61 @@ public class EventController {
 	@Autowired private EventService service;
 	@Autowired private WinnerService ws;
 	@Autowired private EventHistoryService hs;
+	@Autowired private WebcontentsService webs;
+	
+	@RequestMapping(value="/event/choice")
+	public String regiFormChoice(Model model){
+		return ".event.choice";
+	}
+	@RequestMapping(value="/event/regiForm",method=RequestMethod.GET)
+	public String regiForm(int status,Model model){
+		model.addAttribute("status",status);
+		model.addAttribute("webCultype1",webs.getList(1));
+		model.addAttribute("webCultype2",webs.getList(2));
+		model.addAttribute("webCultype3",webs.getList(3));
+		model.addAttribute("webCultype4",webs.getList(4));
+		model.addAttribute("webCultype5",webs.getList(5));
+		return ".event.regiForm";
+	}
+
+	@RequestMapping(value="event/insert",method=RequestMethod.POST)
+	public String insertSortition(EventVo evo, MultipartFile file1, Model model){
+		String uploadPath="C:/web/spring/almond/src/main/webapp/resources/event";//"C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/event";
+		//"C:/web/spring/almond/src/main/webapp/resources/event";
+		String img=null;
+		if(file1.getOriginalFilename().length()>0) img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
+		evo.setImg(img);
+		int status=evo.getStatus(), n;
+		if(status<30){
+			n=service.insertSortition(evo);
+		}else if(status<40){
+			n=service.insertRoulette(evo);
+		}else{
+			n=service.insertKeyword(evo);
+		}
+		if(n>0){
+			try{
+				InputStream is=file1.getInputStream();
+				FileOutputStream fos=new FileOutputStream(uploadPath+"\\"+img);
+				FileCopyUtils.copy(is, fos);
+				is.close();
+				fos.close();
+			}catch(IOException ie){
+				ie.printStackTrace();
+			}
+		}
+		return "redirect:/event/list";
+	}
+	
+	
+	@RequestMapping(value="/event/list")
+	public String list(Model model){
+		model.addAttribute("eventList",service.getList());
+		Date sysdate=new Date(new java.util.Date().getTime());
+		model.addAttribute("sysdate",sysdate);
+		return ".event.list";
+	}
+	
 	
 	@RequestMapping("/event1")
 	public String event1(){
@@ -99,45 +163,43 @@ public class EventController {
 		return ".event.3";
 	}
 	//home2에서 이벤트4를 눌렀을때
-		@RequestMapping(value="/event4", method=RequestMethod.GET)
-		public String event4(int eventnum,Model model,HttpSession session){		
-			int usernum;
-			Object un=session.getAttribute("usernum");
-			if(un!=null){
-				usernum=(Integer)un;
-				model.addAttribute("usernum",usernum);
-			}			 
-			model.addAttribute("eventnum",eventnum);
-			List<UsersVo> list=ws.select(eventnum);
-			if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
-			return ".event.4";
-		}
-		//아몬드 입력하고 확인버튼 눌렀을때
-		@RequestMapping(value="/event4",method=RequestMethod.POST)
-		public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo,WinnerVo wvo){								
-			System.out.println("???");
-			int usernum=(Integer)session.getAttribute("usernum");
-			System.out.println("뜨냐?"+usernum);
-			
-			if(ws.check(new WinnerVo(0,eventnum,usernum))==0){//이벤트참여한적 없으면
-				if(answer.equals("아몬드")){
-					int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
-					if(a>0){
-						model.addAttribute("msg","성공");
-					}else{ 
-						model.addAttribute("msg","실패");		
-					}
-				}else{
-					model.addAttribute("msg","정답이아닙니다.");
+	@RequestMapping(value="/event4", method=RequestMethod.GET)
+	public String event4(int eventnum,Model model,HttpSession session){		
+		int usernum;
+		Object un=session.getAttribute("usernum");
+		if(un!=null){
+			usernum=(Integer)un;
+			model.addAttribute("usernum",usernum);
+		}			 
+		model.addAttribute("eventnum",eventnum);
+		List<UsersVo> list=ws.select(eventnum);
+		if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
+		return ".event.4";
+	}
+	//아몬드 입력하고 확인버튼 눌렀을때
+	@RequestMapping(value="/event4",method=RequestMethod.POST)
+	public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo,WinnerVo wvo){								
+		int usernum=(Integer)session.getAttribute("usernum");
+		
+		if(ws.check(new WinnerVo(0,eventnum,usernum))==0){//이벤트참여한적 없으면
+			if(answer.equals("아몬드")){
+				int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
+				if(a>0){
+					model.addAttribute("msg","성공");
+				}else{ 
+					model.addAttribute("msg","실패");		
 				}
 			}else{
-				List<UsersVo> list=ws.select(eventnum);//참여한 사람들 리스트에 담기
-				model.addAttribute("list",list);
-				model.addAttribute("msg","이미 실행된 이벤트입니다.");
+				model.addAttribute("msg","정답이아닙니다.");
 			}
-			model.addAttribute("eventnum",eventnum);
-			return ".event.4";
+		}else{
+			List<UsersVo> list=ws.select(eventnum);//참여한 사람들 리스트에 담기
+			model.addAttribute("list",list);
+			model.addAttribute("msg","이미 실행된 이벤트입니다.");
 		}
+		model.addAttribute("eventnum",eventnum);
+		return ".event.4";
+	}
 	
 	@RequestMapping(value="/event5",method=RequestMethod.GET)
 	public String event5(int eventnum,Model model,HttpSession session){
@@ -169,10 +231,7 @@ public class EventController {
 		sb.append("<result>");
 		if(who!=null){//룰렛돌릴수 있는지 확인, 위너테이블에 있어야함
 			int a=service.event5(usernum, eventnum, price);		
-			System.out.println(a);
 			if(a>0){
-				System.out.println("a1"+a);
-				
 				sb.append("<find>true</find>");
 				sb.append("<success>성공</success>");
 			}else{
@@ -181,8 +240,6 @@ public class EventController {
 				sb.append("<fail>실패</fail>");
 			}
 		}else{	
-			System.out.println("who2"+who);
-			
 			sb.append("<find>sorry</find>");
 			sb.append("<sorry>뽑기권이없습니다.</sorry>");
 		}
