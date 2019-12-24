@@ -23,7 +23,7 @@
    #div2 img{margin-left:45px;margin-top:50px;}
    #div3 img{margin-left:40px;margin-top:50px;}
    html {overflow:hidden;}  
-   #f{text-align: right;}
+   #f{text-align: right;margin-right:20px;}
 </style>
 
 <script type="text/javascript">
@@ -44,20 +44,17 @@
 		window.close(); 
 	}
 	
-	function setCookie( name, value, expiredays ){ 
-		var todayDate = new Date(); 
-		todayDate.setDate( todayDate.getDate() + expiredays ); 
-		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString 
-		() + ";";
+	function setCookie(name, value, expiredays){ 
+		var todayDate=new Date(); 
+		todayDate.setDate(todayDate.getDate() + expiredays); 
+		document.cookie=name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
 	} 
 	function closeWin() { 
-		if ( document.cnjform.notice.checked ) // 폼네임 cnjform 은 동일해야 합니다. 
-			setCookie("CookieName", "no" , 1); // 부모창에서 지정한 쿠키네임과 일치 해야 합니다. 
+		if (document.cnjform.notice.checked){
+			setCookie("CookieName", "no", 1);
 		} 
 		top.close(); 
-	} 
-
-	
+	}
 </script>
 
 </head>
@@ -93,7 +90,9 @@
     </div>
    
     <form name="cnjform" id="f"> 
-       <input type="checkbox" name="notice" onclick="closeWin()">오늘 하루 동알 열지 않기
+       <label class="btn btn-link">
+		  <input type="checkbox" name="notice" onclick="closeWin()">오늘 하루 동알 열지 않기
+	   </label>
     </form>
 
     
