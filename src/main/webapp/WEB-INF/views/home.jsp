@@ -145,40 +145,42 @@
    }
    */
    
-   function getCookie(name) { 
-	   var Found = false;
-	   var start, end;
-	   var i = 0; 
+   function getCookie(name){ 
+	   var Found=false;
+	   var start;
+	   var end;
+	   var i=0; 
 
-	   while(i <= document.cookie.length) { 
+	   while(i<=document.cookie.length){
 		   start = i;
-		   end = start + name.length; 
+		   end=start + name.length; 
 
-		   if(document.cookie.substring(start, end) == name) { 
-			   Found = true; 
+		   if(document.cookie.substring(start, end)==name){ 
+			   Found=true; 
 			   break; 
 		   } 
 	       i++ 
 	   } 
 
-	   if(Found == true) { 
-		   start = end + 1; 
-		   end = document.cookie.indexOf(";", start); 
-		   if(end < start){
-			   end = document.cookie.length;
+	   if(Found==true){ 
+		   start=end + 1; 
+		   end=document.cookie.indexOf(";", start); 
+		   if(end<start){
+			   end=document.cookie.length;
 			   return document.cookie.substring(start, end); 
 		   }  
 	   } 
 	   return "";
    }
    
-   window.onload=function() { 
-	   var noticeCookie=getCookie("CookieName"); // 쿠키네임 지정 
-	  
-	   if (noticeCookie != "no"){
+   window.onload=function(){ 
+	   var noticeCookie=getCookie("CookieName"); 
+	   console.log("yes or no:" + noticeCookie);
+	    
+	   if (noticeCookie!="no"){
 		   var url="${path}/popup";
 		   var name="이벤트";
-		   var option="width=700, height=750,top=200, left=300, location=no, status=no, toolbars=no";
+		   var option="width=700, height=770,top=100, left=300, location=no, status=no, toolbars=no";
 		   window.open(url,name,option);
 	   }
    }
