@@ -177,7 +177,7 @@
 	   var noticeCookie=getCookie("CookieName"); 
 	   console.log("yes or no:" + noticeCookie);
 	    
-	   if (noticeCookie=="no"){
+	   if (noticeCookie!="no"){
 		   var url="${path}/popup";
 		   var name="이벤트";
 		   var option="width=700, height=770,top=100, left=300, location=no, status=no, toolbars=no";
