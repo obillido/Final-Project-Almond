@@ -52,10 +52,25 @@
 						</div>
 						<div class="control-group form-group">
 							<div class="controls">
-								<label>이용권 (종류) :</label> <select class="form-control" name="type">
-									<option value="1">소장권</option>
-									<option value="2">대여권</option>
-								</select>
+								<label>이용권 (종류) :</label> 
+								<c:choose>
+									<c:when test="${cultype==2}">
+										<select class="form-control" name="type">
+											<option value="1">소장권</option>
+										</select>
+									</c:when>
+									<c:when test="${cultype==3 || cultype==4}">
+										<select class="form-control" name="type">
+											<option value="2">대여권</option>
+										</select>
+									</c:when>
+									<c:otherwise>
+										<select class="form-control" name="type">
+											<option value="1">소장권</option>
+											<option value="2">대여권</option>
+										</select>
+									</c:otherwise>
+								</c:choose>
 								<p class="help-block"></p>
 							</div>
 						</div>
