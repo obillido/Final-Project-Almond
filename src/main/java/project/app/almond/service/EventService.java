@@ -81,14 +81,9 @@ public class EventService {
 		return 1;
 	}	
 	@Transactional
-	public int event4(UsersVo vo,int eventnum,HttpSession session){//scope로 유저번호 넘기기..?
-		int usernum;
-		Object un=session.getAttribute("usernum");
-		if(un!=null){
-			usernum=(Integer)un;
-			wdao.winner(new WinnerVo(0, eventnum, usernum));
-			edao.event4cash(usernum);
-		}			 
+	public int event4(int eventnum, int usernum, int price){//scope로 유저번호 넘기기..?
+		wdao.winner(new WinnerVo(0, eventnum, usernum));
+		edao.event4cash(new UsersVo(usernum, null, null, null, null, null, price, 0));
 		return 1;	
 	}
 	@Transactional
@@ -96,5 +91,10 @@ public class EventService {
 		edao.event5cash(new UsersVo(usernum,null,null,null,null,null,price,0));//캐시업데이트(돌린사람 업데이트)
 		ehdao.eventhistory(new EventHistoryVo(0,eventnum,usernum,null,price));//이벤트히스토리에 인서트
 		return 1;
+	}
+	
+	
+	public EventVo getInfo(int eventnum){
+		return edao.getInfo(eventnum);
 	}
 }

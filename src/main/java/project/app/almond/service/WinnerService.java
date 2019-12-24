@@ -26,7 +26,10 @@ public class WinnerService {
 		return wdao.winner(vo);
 	}
 	public List<WinnerVo> whoList(int eventnum){//룰렛돌릴수있는사람 가져오기
-		
 		return wdao.whoList(eventnum);
+	}
+	
+	public WinnerVo isExist(WinnerVo vo){
+		return wdao.isExist(vo);
 	}
 }

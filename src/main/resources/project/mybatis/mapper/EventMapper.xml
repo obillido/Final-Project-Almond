@@ -59,8 +59,8 @@
 	</select>
 	
 	<!-- 이벤트4 -->
-	<update id="event4cash" parameterType="int">
-		update users set cash=cash+1000 where usernum=#{usernum}
+	<update id="event4cash" parameterType="project.app.almond.vo.UsersVo">
+		update users set cash=cash+#{cash} where usernum=#{usernum}
 	</update>
 	
 	
@@ -89,6 +89,10 @@
 	
 	<select id="getList" resultType="project.app.almond.vo.EventVo">
 		select * from event order by enddate desc,startdate desc
+	</select>
+	
+	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.EventVo">
+		select * from event where eventnum=#{eventnum}
 	</select>
 	
 	

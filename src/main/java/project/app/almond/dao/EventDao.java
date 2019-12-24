@@ -19,8 +19,8 @@ public class EventDao {
 	@Autowired private SqlSessionTemplate session;
 	private final String NAMESPACE="project.mybatis.mapper.EventMapper";
 	
-	public int event4cash(int usernum){//해당 유저 캐시업데이트
-		return session.update(NAMESPACE+".event4cash",usernum);
+	public int event4cash(UsersVo vo){//해당 유저 캐시업데이트
+		return session.update(NAMESPACE+".event4cash",vo);
 	}
 	public List<Event2Vo> event2(int eventnum){//이벤트2 당첨자 뽑기
 		return session.selectList(NAMESPACE+".event2",eventnum);
@@ -50,5 +50,9 @@ public class EventDao {
 	
 	public List<HashMap<String, Object>> getList(){
 		return session.selectList(NAMESPACE+".getList");
+	}
+	
+	public EventVo getInfo(int eventnum){
+		return session.selectOne(NAMESPACE+".getInfo",eventnum);
 	}
 }

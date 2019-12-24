@@ -117,7 +117,6 @@ public class EventController {
 			}
 		}
 		for(UsersVo vo:ws.select(eventnum)){
-			System.out.println(vo.getUsernum()+" , "+vo.getNickname());
 			sb.append("<user>");
 			sb.append("<usernum>"+vo.getUsernum()+"</usernum>");
 			sb.append("<nickname>"+vo.getNickname()+"</nickname>");
@@ -165,40 +164,34 @@ public class EventController {
 	//home2에서 이벤트4를 눌렀을때
 	@RequestMapping(value="/event4", method=RequestMethod.GET)
 	public String event4(int eventnum,Model model,HttpSession session){		
-		int usernum;
 		Object un=session.getAttribute("usernum");
-		if(un!=null){
-			usernum=(Integer)un;
-			model.addAttribute("usernum",usernum);
-		}			 
+		WinnerVo wvo=null;
+		if(un!=null) wvo=ws.isExist(new WinnerVo(0, eventnum, (Integer)un));
+		if(wvo==null) model.addAttribute("already","false");
+		else		  model.addAttribute("already","true");
 		model.addAttribute("eventnum",eventnum);
-		List<UsersVo> list=ws.select(eventnum);
-		if(list!=null) model.addAttribute("list",list);//이벤트참여했던 사람들 담기
+		model.addAttribute("evo",service.getInfo(eventnum));
+		model.addAttribute("sysdate",new Date(new java.util.Date().getTime()));
 		return ".event.4";
 	}
 	//아몬드 입력하고 확인버튼 눌렀을때
-	@RequestMapping(value="/event4",method=RequestMethod.POST)
-	public String event4post(int eventnum, Model model, HttpSession session,String answer,UsersVo vo,WinnerVo wvo){								
-		int usernum=(Integer)session.getAttribute("usernum");
-		
-		if(ws.check(new WinnerVo(0,eventnum,usernum))==0){//이벤트참여한적 없으면
-			if(answer.equals("아몬드")){
-				int a=service.event4(vo,eventnum,session); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
-				if(a>0){
-					model.addAttribute("msg","성공");
-				}else{ 
-					model.addAttribute("msg","실패");		
-				}
-			}else{
-				model.addAttribute("msg","정답이아닙니다.");
-			}
+	@RequestMapping(value="/event4/checkAnswer", produces="application/xml;charset=utf-8")
+	@ResponseBody
+	public String event4post(int eventnum, String keyword, Model model, HttpSession session){								
+		StringBuffer sb=new StringBuffer();
+		sb.append("<?xml version='1.0' encoding='utf-8'?>");
+		sb.append("<result>");
+		EventVo evo=service.getInfo(eventnum);
+		if(keyword.equals(evo.getKeyword())){
+			int n=service.event4(eventnum,(Integer)session.getAttribute("usernum"),evo.getPrice()); //아몬드 입력한 사람들 캐시업데이트,위너테이블 인서트
+			if(n>0) sb.append("<code>success</code>");
+			else 	sb.append("<code>fail</code>");		
+			sb.append("<msg>정답입니다!\n"+evo.getPrice()+"캐시 획득!</msg>");
 		}else{
-			List<UsersVo> list=ws.select(eventnum);//참여한 사람들 리스트에 담기
-			model.addAttribute("list",list);
-			model.addAttribute("msg","이미 실행된 이벤트입니다.");
+			sb.append("<msg>정답이 아닙니다.\n다시 도전해 보세요!</msg>");
 		}
-		model.addAttribute("eventnum",eventnum);
-		return ".event.4";
+		sb.append("</result>");
+		return sb.toString();
 	}
 	
 	@RequestMapping(value="/event5",method=RequestMethod.GET)
@@ -212,7 +205,6 @@ public class EventController {
 			map.put("usernum", usernum);
 			map.put("eventnum", eventnum);
 			EventHistoryVo ehvo=hs.historyList(map);//뽑기했는지 담기
-			System.out.println("???:"+ehvo);
 			if(ehvo!=null) model.addAttribute("already","true");
 			else model.addAttribute("already","false");
 		}
@@ -235,7 +227,6 @@ public class EventController {
 				sb.append("<find>true</find>");
 				sb.append("<success>성공</success>");
 			}else{
-				System.out.println("a2"+a);
 				sb.append("<find>fail</find>");
 				sb.append("<fail>실패</fail>");
 			}

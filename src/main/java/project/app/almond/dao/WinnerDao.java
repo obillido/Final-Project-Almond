@@ -1,5 +1,6 @@
 package project.app.almond.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,5 +29,9 @@ public class WinnerDao {
 	}
 	public List<WinnerVo> whoList(int eventnum){//·ê·¿µ¹¸±¼öÀÖ´Â»ç¶÷
 		return session.selectList(NAMESPACE+".whoList",eventnum);
+	}
+	
+	public WinnerVo isExist(WinnerVo vo){
+		return session.selectOne(NAMESPACE+".isExist",vo);
 	}
 }

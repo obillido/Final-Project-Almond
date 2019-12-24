@@ -20,13 +20,13 @@
 <script>
 	function eventMove(eventnum,status){
 		if(status<20){
-			location.href="${path}/event/";
+			location.href="${path}/event2?eventnum="+eventnum;
 		}else if(status<30){
-			
+			location.href="${path}/event3?eventnum="+eventnum;
 		}else if(status<40){
-			
+			location.href="${path}/event5?eventnum="+eventnum;
 		}else{
-			
+			location.href="${path}/event4?eventnum="+eventnum;
 		}
 	}
 </script>
