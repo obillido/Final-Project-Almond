@@ -119,6 +119,16 @@
 						</select>
 					</div></div>
 					<div class="control-group form-group"><div class="controls">
+						<label>문제 :</label> 
+							<input type="text" class="form-control" name="title"  autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>힌트 :</label> 
+							<input type="text" class="form-control" name="content"  autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
 						<label>시작일 :</label> 
 						<input type="date" class="form-control"
 							name="startdate" required

@@ -55,4 +55,9 @@ public class EventDao {
 	public EventVo getInfo(int eventnum){
 		return session.selectOne(NAMESPACE+".getInfo",eventnum);
 	}
+	
+	
+	public List<EventVo> getShowList(){
+		return session.selectList(NAMESPACE+".getShowList");
+	}
 }

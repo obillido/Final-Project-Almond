@@ -97,4 +97,8 @@ public class EventService {
 	public EventVo getInfo(int eventnum){
 		return edao.getInfo(eventnum);
 	}
+	
+	public List<EventVo> getShowList(){
+		return edao.getShowList();
+	}
 }

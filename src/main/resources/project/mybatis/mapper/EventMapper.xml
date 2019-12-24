@@ -75,8 +75,11 @@
 	
 		
 	<insert id="insertSortition" parameterType="project.app.almond.vo.EventVo">
-		insert into event(eventnum,regdate,startdate,enddate,img,status,human,cnt)
-		values(seq_event_eventnum.nextval,sysdate,#{startdate},#{enddate},#{img},#{status},#{human},#{cnt})
+		insert into event(eventnum,contnum,title,content,regdate,startdate,enddate,img,status,human,cnt)
+		values(seq_event_eventnum.nextval,#{contnum},
+		<choose><when test="title==null">null</when><otherwise>#{title}</otherwise></choose>,
+		<choose><when test="content==null">null</when><otherwise>#{content}</otherwise></choose>,
+		sysdate,#{startdate},#{enddate},#{img},#{status},#{human},#{cnt})
 	</insert>
 	<insert id="insertRoulette" parameterType="project.app.almond.vo.EventVo">
 		insert into event(eventnum,regdate,startdate,enddate,status)
@@ -93,6 +96,12 @@
 	
 	<select id="getInfo" parameterType="int" resultType="project.app.almond.vo.EventVo">
 		select * from event where eventnum=#{eventnum}
+	</select>
+	
+	
+	<select id="getShowList" resultType="project.app.almond.vo.EventVo">
+		select * from event where sysdate between startdate and enddate and img is not null and 
+		<![CDATA[status<=30]]>
 	</select>
 	
 	
