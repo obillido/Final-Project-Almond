@@ -20,23 +20,19 @@
 <style type="text/css">
    #container{margin-left:35px;}
    #div img{margin-left:40px;margin-top:50px;}
-   #div2 img{margin-left:45px;margin-top:50px;}
    #div3 img{margin-left:40px;margin-top:50px;}
+   #div4 img{margin-left:40px;margin-top:50px;}
    html {overflow:hidden;}  
    #f{text-align: right;margin-right:20px;}
 </style>
 
 <script type="text/javascript">
 	function go1(){ 
-		opener.parent.location='${path}/event5'; 
+		opener.parent.location='${path}/event3?eventnum=6&eventnum2=7'; 
 		window.close(); 
 	}
 	function go2(){ 
 		opener.parent.location='${path}/event4?eventnum=10'; 
-		window.close(); 
-	}
-	function go3(){ 
-		opener.parent.location='${path}/event1'; 
 		window.close(); 
 	}
 	function go4(){ 
@@ -61,8 +57,8 @@
 <body>
 <div id="container">
 	<div class="row">
-		<div class="card bg-dark text-white" onclick="go1()" style="width:330px;height:330px;">
-		  <img src="${path }/resources/rull/pan1.png" class="card-img" style="width:330px;height:330px;">
+		<div class="card bg-dark text-white" onclick="go1()" style="width:330px;height:330px;" id="div4">
+		  <img src="${path }/resources/suhyeonimages/달빛조각사e.jpg" class="card-img" style="width:250px;height:250px;">
 		  <div class="card-img-overlay">
 		    <h5 class="card-title">EVENT 1</h5>
 		  </div>
@@ -76,10 +72,7 @@
 	</div>
 	<div class="row">
 	<div class="card bg-dark text-white" onclick="go3()" style="width:330px;height:330px;" id="div2">
-	  <img src="${path }/resources/suhyeonimages/이벤트표지.jpg" class="card-img" style="width:250px;height:250px;">
-	  <div class="card-img-overlay">
-	    <h5 class="card-title">EVENT 3</h5>
-	  </div>
+	  <img src="${path }/resources/suhyeonimages/finalevent.jpg" class="card-img">
 	</div>
 	<div class="card bg-dark text-white" onclick="go4()" style="width:330px;height:330px;" id="div3">
 	  <img src="${path }/resources/suhyeonimages/세종.jpg" class="card-img" style="width:250px;height:250px;">

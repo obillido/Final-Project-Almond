@@ -7,9 +7,9 @@
 
 <style>
 	.logo{width:20%; text-align:right; }
-	.category-box{text-align:center !important; min-width:500px;}
+	.category-box{margin-left:200px;text-align:center !important; min-width:500px;}
 	.category-box .category{color:black !important;font-size: 1.5em; display:inline-block; padding:0px 20px; font-weight:bold; text-decoration:none;}
-	#search{min-width:265px; width:20%; text-align:center;}
+	#search{min-width:265px; width:20%; text-align:center;margin-left:50px;}
 	#search .searchBtn{border:1px solid darkorange;background-color:darkorange; margin-left:5px;}
 	
 	.badge-notification {
