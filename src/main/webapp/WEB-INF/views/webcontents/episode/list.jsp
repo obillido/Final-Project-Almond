@@ -134,7 +134,7 @@
 		}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
-			if(${empty usernum}){
+			if('${empty usernum}'){
 				alert("로그인 후 이용가능한 서비스입니다.");
 			}else{
 				$("#ticketModal"+epinum).modal();
