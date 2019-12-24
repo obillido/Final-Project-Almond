@@ -31,15 +31,11 @@
 </script>
 
  <div class="container">
-    <h1 class="mt-4 mb-3">이벤트2
-      <small>열람이벤트</small>
-    </h1>
-
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="${pageContext.request.contextPath }/">Home</a>
       </li>
-      <li class="breadcrumb-item active">Portfolio Item</li>
+      <li class="breadcrumb-item active">열람이벤트</li>
     </ol>
 
     <div class="row">
@@ -48,19 +44,20 @@
         <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/세종의 누이.jpg" alt="">
       </div>
 	
-     <div class="col-md-5">
+     <div class="col-md-5" style="color: #6c757d;">
        <h3 class="my-3">이벤트 내용</h3>
         <p>이벤트 기간 : 12월 1일(일)~12월8일(월)<br>
 						참여방법 : 이벤트 기간 동안,<br>
 						 작품을 감상해 주시는 분들 중 추첨<br>
 						당첨자 발표 : 12월 9(화), 알람 개별고지<br></p>
         <br>
-        <h3 class="my-3">경품</h3>   
-         <br>        
+        <h3 class="my-3">경품</h3>           
          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
+      	 <br>
       	 <c:if test="${userStatus.equals('admin')}">
       	 		<button type="button" style="width: 100px;height: 60px;" onclick="javascript:event2(1)">당첨</button>
       	 </c:if>
+      	 <br>
       	 <div id="winnerList"></div>
       </div>
      

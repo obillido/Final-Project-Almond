@@ -11,26 +11,22 @@
  <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">이벤트3
-      <small>열람이벤트2</small>
-    </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="${pageContext.request.contextPath }/">Home</a>
       </li>
-      <li class="breadcrumb-item active">Portfolio Item</li>
+      <li class="breadcrumb-item active">열람/리뷰이벤트</li>
     </ol>
     <!-- Portfolio Item Row -->
     <div class="row">
       <div class="col-md-7">
         <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/달빛조각사.jpg" alt="">
       </div>
-      <div class="col-md-5">
-        <h3 class="my-3">Project Description</h3>
+      <div class="col-md-5">     
         <p>이벤트기간 : 12월 8일(일)~12월15일(월)<br>
 			당첨자 발표 및 캐시뽑기권 지급 : 12월 16일(화)<br>
 			(개별 안내)<br></p>
-        <h3 class="my-3">Project Details</h3>
+        <h3 class="my-3">경품</h3>
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/6.jpg">
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/5.jpg">
       </div>
@@ -59,14 +55,15 @@
 		        </div>
       		</div>
       		<div class="col-md-6 col-sm-6 mb-4">     
-		        <div id="content">
+		        <div id="content" >
 		        	<form action="${pageContext.request.contextPath}/event3" method="post">
+		        	
 		        		<input type="hidden" value="${eventnum}" name="eventnum">
 		        		<input type="hidden" value="${eventnum2}" name="eventnum2">		        		      		
 		        		<c:if test="${userStatus.equals('admin')}">        		
 		        			<input type="submit" value="당첨자뽑기">
 		        		</c:if> 
-		        		<div id="list">
+		        		<div id="list" style="width:250px;height:200px;float:left; text-align: center;">
 		        			<h3>댓글당첨</h3>
 			        		<c:if test="${not empty list}">
 						      	 <c:forEach var="vo" items="${list }">
@@ -76,7 +73,7 @@
 								</c:forEach>
 							</c:if>
 		        		</div>	
-		        		<div id="list2">
+		        		<div id="list2" style="width:250px;height:200px;float:right;text-align: center;">		        		
 		        			<h3>열람당첨</h3>
 			        		<c:if test="${not empty list2}">
 						      	<c:forEach var="vo1" items="${list2 }">

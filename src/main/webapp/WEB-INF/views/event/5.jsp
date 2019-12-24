@@ -73,7 +73,7 @@ window.onload = function(){
     $('#start_btn').click(function(){
     	if(${empty usernum}){
 			alert("로그인 후 이용할 수 있는 서비스입니다.");
-		}else if(${already=="true"}){
+		}else if(${already=='true'}){
 			alert("이미 캐시뽑기를 진행하셨습니다.");
 		}else{
 	        rotation();
