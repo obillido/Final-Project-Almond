@@ -324,7 +324,7 @@ CREATE TABLE event
 	keyword varchar2(100),
 	-- ม๖ฑÞพื
 	price number,
-	human number NOT NULL,
+	human number,
 	cnt number,
 	PRIMARY KEY (eventnum)
 );
