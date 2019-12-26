@@ -34,6 +34,10 @@
 	  color: #fff;
 	}
 	
+	#alarm-img{
+		transform:rotate(360deg);
+	}
+	
 	#alarmList{
 		overflow-y:scroll;
 		width:350px; max-height:600px;
@@ -157,7 +161,7 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown" data-toggle="dropdown">
 				<div class="d-block btn btn-outline badge-notification" id="alarm">
-					<img src="${path}/resources/alarm/message.PNG" width="30px;">
+					<img src="${path}/resources/alarm/message.PNG" width="30px;" id="alarm-img">
 				</div>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio" id="alarmList">
 					<button class="tablink-alarm" onclick="openAlarm('webAlarmList',this)" id="defaultOpen-alarm">작품</button>
@@ -256,7 +260,6 @@
 	}
 	
 	function alarmPassage(alarmnum,type,num){
-		console.log(alarmnum,status,num);
 		location.href="${path}/alarm/passage?alarmnum="+alarmnum+"&type="+type+"&num="+num;
 	}
 	

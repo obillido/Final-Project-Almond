@@ -18,7 +18,7 @@
 					$("#winnerList p").remove();
 					if($(data).find("msg").text().length>0)	alert($(data).find("msg").text());
 					$(data).find("user").each(function(){
-						var comm="<p>당첨유저 : "+$(this).find("usernum").text()+"(닉네임 : "+$(this).find("nickname").text()+")</p>";
+						var comm="<p>당첨유저 : "+$(this).find("usernum").text()+" (닉네임 : "+$(this).find("nickname").text()+")</p>";
 						$("#winnerList").append(comm);
 					});
 				}else{
@@ -44,15 +44,15 @@
     <div class="row">
 
       <div class="col-md-7">
-        <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/세종의 누이.jpg" alt="">
+        <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
       </div>
 	
      <div class="col-md-5" style="color: #6c757d;font-size: 20px;" id="font">
        <h3 class="my-3">이벤트 내용</h3>
-        <p>이벤트 기간 : 12월 1일(일)~12월8일(월)<br>
+        <p>이벤트 기간 : ${evo.startdate} ~ ${evo.enddate}<br>
 						참여방법 : 이벤트 기간 동안,<br>
 						 작품을 감상해 주시는 분들 중 추첨<br>
-						당첨자 발표 : 12월 9(화), 알람 개별고지<br></p>
+						당첨자 발표 : 종료일 다음날, 알람 개별고지<br></p>
         <br>
         <h3 class="my-3" id="font">경품</h3>                 
          <img class="img-fluid" style="margin-left: -15px;" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
@@ -70,8 +70,8 @@
     <div class="row">
     
       <div class="col-md-3 col-sm-4 mb-4" >
-        <a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=14">
-        <img class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/세종의 누이.jpg" alt="">        
+        <a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=${evo.contnum}">
+        <img class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}">        
         </a>
       </div>
       
@@ -80,11 +80,9 @@
           	<ul>
           		<li style="list-style:none; font-size: 1.3em;">
           		<br>
-          		세종의 누이[독점연재]<br>
+          		${webvo.title}<br>
           		<br>
-          		로맨스소설 <br>
-          		<br>
-          		작가 지미신
+          		${webvo.genre}<br>
           		<br>
           		</li>
           	</ul>

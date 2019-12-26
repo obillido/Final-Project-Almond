@@ -23,11 +23,11 @@
     <!-- Portfolio Item Row -->
     <div class="row">
       <div class="col-md-7">
-        <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/달빛조각사.jpg" alt="">
+        <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
       </div>
       <div class="col-md-5" id="font" style="color: #6c757d;font-size: 20px;">     
-        <p>이벤트기간 : 12월 8일(일)~12월15일(월)<br>
-			당첨자 발표 및 캐시뽑기권 지급 : 12월 16일(화)<br>
+        <p>이벤트기간 : ${evo.startdate} ~ ${evo.enddate}<br>
+			당첨자 발표 및 캐시뽑기권 지급 : 종료일 다음날<br>
 			(개별 안내)<br></p>
         <h3 class="my-3">경품</h3>
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/6.jpg">
@@ -38,8 +38,8 @@
     <h3 class="my-4" id="font">이벤트작품 보러가기</h3>
  		<div class="row">
       		<div class="col-md-3 col-sm-4 mb-4">
-	       		<a href="${pageContext.request.contextPath}/webcontents/episode/list?contnum=2">
-	         		 <img class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/달빛조각사.jpg" alt="">
+	       		<a href="${pageContext.request.contextPath}/webcontents/episode/list?contnum=${evo.contnum}">
+	         		 <img class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
 	        	</a>
       		</div>  		
       		<div class="col-md-3 col-sm-6 mb-4" id="font" >     
@@ -47,11 +47,9 @@
 		        	<ul>
 		          		<li style="list-style:none; font-size: 1.3em;">
 		          		<br>
-		          		달빛조각사[독점연재]<br>
+		          		${webvo.title}<br>
 		          		<br>
-		          		 판타지소설 <br>
-		          		<br>
-		          		작가 남희성
+		          		${webvo.genre } <br>
 		          		</li>
 		        	</ul>
 		        </div>
@@ -59,9 +57,7 @@
       		<div class="col-md-6 col-sm-6 mb-4" id="font" style="font-size: 20px;">     
 		        <div id="content" >
 		        	<form action="${pageContext.request.contextPath}/event3" method="post">
-		        	
 		        		<input type="hidden" value="${eventnum}" name="eventnum">
-		        		<input type="hidden" value="${eventnum2}" name="eventnum2">		        		      		
 		        		<c:if test="${userStatus.equals('admin')}">        		
 		        			<input type="submit" value="당첨자뽑기">
 		        		</c:if> 
@@ -70,21 +66,11 @@
 			        		<c:if test="${not empty list}">
 						      	 <c:forEach var="vo" items="${list }">
 									<p>
-										당첨유저 : ${vo.usernum }(닉네임:${vo.nickname})
+										당첨유저 : ${vo.usernum } (닉네임:${vo.nickname})
 									</p>
 								</c:forEach>
 							</c:if>
-		        		</div>	
-		        		<div id="list2" style="width:250px;height:200px;float:right;text-align: center;color: darkorange;">		        		
-		        			<h3>열람당첨</h3>
-			        		<c:if test="${not empty list2}">
-						      	<c:forEach var="vo1" items="${list2 }">
-									<p>
-										당첨유저 : ${vo1.usernum }(닉네임:${vo1.nickname})
-									</p>
-								</c:forEach>
-							</c:if>
-		        		</div> 	        		
+		        		</div>	        		
 		        	</form>
 		        </div>
       		</div>  	

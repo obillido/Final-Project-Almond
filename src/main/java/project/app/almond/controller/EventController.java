@@ -99,6 +99,10 @@ public class EventController {
 		model.addAttribute("eventnum",eventnum);
 		List<UsersVo> list=ws.select(eventnum);
 		if(list!=null) model.addAttribute("list",list);
+		
+		EventVo evo=service.getInfo(eventnum);
+		model.addAttribute("evo",evo);
+		model.addAttribute("webvo",webs.getInfo(evo.getContnum()));
 		return ".event.2";
 	}
 	//event2 추첨사람 뽑아오기(당첨자확인페이지로 보내던가 알림으로..?여튼 ㅠ)
@@ -128,36 +132,33 @@ public class EventController {
 	
 	//home2에서 이벤트페이지3눌렀을때
 	@RequestMapping(value="/event3",method=RequestMethod.GET)
-	public String event3get(int eventnum,int eventnum2, Model model){
+	public String event3get(int eventnum,Model model){
 		model.addAttribute("eventnum",eventnum);
-		model.addAttribute("eventnum2",eventnum2);
 		List<UsersVo> list=ws.select(eventnum);//usersVo로 받는거 또 만들어서 바꿔야함 지금 이벤트3 캐시업데이트때문에 섞임,
-		List<UsersVo> list2=ws.select(eventnum2);
-		if(list!=null||list2!=null) {
+		if(list!=null) {
 			model.addAttribute("list",list);
-			model.addAttribute("list2",list2);
 		}
+		
+		EventVo evo=service.getInfo(eventnum);
+		model.addAttribute("evo",evo);
+		model.addAttribute("webvo",webs.getInfo(evo.getContnum()));
 		return ".event.3";
 	}
 	//event3 추첨사람 뽑아오기(댓글)
 	@RequestMapping(value="/event3",method=RequestMethod.POST)
-	public String event3comments(int eventnum,int eventnum2,Model model,HttpSession session,WinnerVo vo){	
+	public String event3comments(int eventnum,Model model,HttpSession session,WinnerVo vo){	
 		int a=0;
 		int b=0;
 		int c=0;
-		if(ws.count(eventnum)==0 ||ws.count(eventnum2)==0){
+		if(ws.count(eventnum)==0){
 			a=service.event3comments(eventnum);
-			b=service.event3reading(eventnum2);
 			if(a<1||b<1) model.addAttribute("msg","실패");
 		}else{
 			List<UsersVo> list=ws.select(eventnum);
-			List<UsersVo> list2=ws.select(eventnum2);
 			c=service.event3cash(vo, eventnum);
-			model.addAttribute("list2",list2);
 			model.addAttribute("list",list);			
 			model.addAttribute("msg","이미 실행된 이벤트입니다.");
 		}
-		model.addAttribute("eventnum2", eventnum2);
 		model.addAttribute("eventnum", eventnum);
 		return ".event.3";
 	}
@@ -166,7 +167,7 @@ public class EventController {
 	public String event4(int eventnum,Model model,HttpSession session){		
 		Object un=session.getAttribute("usernum");
 		WinnerVo wvo=null;
-		if(un!=null) wvo=ws.isExist(new WinnerVo(0, eventnum, (Integer)un));
+		if(un!=null)  wvo=ws.isExist(new WinnerVo(0, eventnum, (Integer)un));
 		if(wvo==null) model.addAttribute("already","false");
 		else		  model.addAttribute("already","true");
 		model.addAttribute("eventnum",eventnum);
