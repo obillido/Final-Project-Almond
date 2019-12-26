@@ -91,11 +91,6 @@ public class EventController {
 		return ".event.list";
 	}
 	
-	
-	@RequestMapping("/event1")
-	public String event1(){
-		return ".event.1";
-	}
 	@RequestMapping(value="/event2", method=RequestMethod.GET )
 	public String event2(int eventnum,Model model){
 		model.addAttribute("eventnum",eventnum);
@@ -228,10 +223,10 @@ public class EventController {
 			int a=service.event5(usernum, eventnum, price);		
 			if(a>0){
 				sb.append("<find>true</find>");
-				sb.append("<success>성공</success>");
+				sb.append("<success>성공적으로 뽑기를 진행하였습니다.</success>");
 			}else{
 				sb.append("<find>fail</find>");
-				sb.append("<fail>실패</fail>");
+				sb.append("<fail>뽑기에 실패하였습니다.</fail>");
 			}
 		}else{	
 			sb.append("<find>sorry</find>");

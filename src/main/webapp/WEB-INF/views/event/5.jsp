@@ -127,8 +127,7 @@ window.onload = function(){
 			dataType:"xml",
 			success:function(data){
 				var find=$(data).find("find").text();
-				if(find=='true'){
-					
+				if(find=='true'){					
 					alert($(data).find("success").text());
 				}else if(find=='fail'){
 					alert($(data).find("fail").text());
