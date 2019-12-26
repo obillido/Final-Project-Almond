@@ -31,7 +31,31 @@
 			(개별 안내)<br></p>
         <h3 class="my-3">경품</h3>
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/6.jpg">
+      		<br>
+      		<br>
+           <div id="font" style="font-size: 20px; ">     
+		        <div id="content" >
+		        	<form action="${pageContext.request.contextPath}/event3" method="post">
+		        		<input type="hidden" value="${eventnum}" name="eventnum">
+		        		<c:if test="${userStatus.equals('admin')}">        		
+		        			<input type="submit" value="당첨자뽑기">
+		        		</c:if> 
+		        		<div id="list" style="color: darkorange; font-size: 1.1em;">
+		        			<h3>댓글당첨</h3>
+			        		<c:if test="${not empty list}">
+						      	 <c:forEach var="vo" items="${list }">
+									<p>
+										당첨유저 : ${vo.usernum } (닉네임:${vo.nickname})
+									</p>
+								</c:forEach>
+							</c:if>
+		        		</div>	        		
+		        	</form>
+		        </div>
+      		</div> 
+      
       </div>
+ 
     </div>
     <!-- Related Projects Row -->
     <h3 class="my-4" id="font">이벤트작품 보러가기</h3>
@@ -53,26 +77,7 @@
 		        	</ul>
 		        </div>
       		</div>
-      		<div class="col-md-6 col-sm-6 mb-4" id="font" style="font-size: 20px;">     
-		        <div id="content" >
-		        	<form action="${pageContext.request.contextPath}/event3" method="post">
-		        		<input type="hidden" value="${eventnum}" name="eventnum">
-		        		<c:if test="${userStatus.equals('admin')}">        		
-		        			<input type="submit" value="당첨자뽑기">
-		        		</c:if> 
-		        		<div id="list" style="width:250px;height:200px;float:left; text-align: center;color: darkorange;">
-		        			<h3>댓글당첨</h3>
-			        		<c:if test="${not empty list}">
-						      	 <c:forEach var="vo" items="${list }">
-									<p>
-										당첨유저 : ${vo.usernum } (닉네임:${vo.nickname})
-									</p>
-								</c:forEach>
-							</c:if>
-		        		</div>	        		
-		        	</form>
-		        </div>
-      		</div>  	
+      		 	
 		</div>
   </div>
 
