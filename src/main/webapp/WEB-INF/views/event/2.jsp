@@ -52,7 +52,7 @@
 						당첨자 발표 : 12월 9(화), 알람 개별고지<br></p>
         <br>
         <h3 class="my-3">경품</h3>           
-         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
+         <img class="img-fluid" style="margin-left: -15px;" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
       	 <br>
       	 <c:if test="${userStatus.equals('admin')}">
       	 		<button type="button" style="width: 100px;height: 60px;" onclick="javascript:event2(1)">당첨</button>
@@ -67,7 +67,7 @@
     <div class="row">
     
       <div class="col-md-3 col-sm-4 mb-4">
-        <a href="#">
+        <a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=14">
         <img class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/세종의 누이.jpg" alt="">        
         </a>
       </div>
@@ -75,7 +75,7 @@
         <div class="col-md-8 col-sm-4 mb-4">     
           <div id="content">
           	<ul>
-          		<li style="list-style:none;">
+          		<li style="list-style:none; font-size: 1.3em;">
           		<br>
           		세종의 누이[독점연재]<br>
           		<br>

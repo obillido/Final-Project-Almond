@@ -35,11 +35,10 @@
     <h3 class="my-4">이벤트작품 보러가기</h3>
  		<div class="row">
       		<div class="col-md-3 col-sm-4 mb-4">
-	       		<a href="#">
+	       		<a href="${pageContext.request.contextPath}/webcontents/episode/list?contnum=2">
 	         		 <img class="img-fluid" src="${pageContext.request.contextPath }/resources/BOOK/달빛조각사.jpg" alt="">
 	        	</a>
-      		</div>
-      		
+      		</div>  		
       		<div class="col-md-3 col-sm-6 mb-4">     
 		        <div id="content">
 		        	<ul>
