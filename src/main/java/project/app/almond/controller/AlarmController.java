@@ -15,6 +15,7 @@ import project.app.almond.vo.AlarmVo;
 public class AlarmController {
 	@Autowired private AlarmService as;
 	
+	
 	@RequestMapping(value="/alarm/list",produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String getList(HttpSession session){
