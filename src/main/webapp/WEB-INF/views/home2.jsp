@@ -8,7 +8,7 @@
 <title>이벤트 페이지</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath }/event1">이벤트1</a>
+
 <a href="${pageContext.request.contextPath }/event2?eventnum=5">이벤트2</a>
 <a href="${pageContext.request.contextPath }/event3?eventnum=6&eventnum2=7">이벤트3</a>
 <a href="${pageContext.request.contextPath }/event4?eventnum=10">이벤트4</a>

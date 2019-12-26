@@ -61,7 +61,9 @@
 		width: 40%;
 	}
 	
-	
+	@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|East+Sea+Dokdo&display=swap');
+	#font{font-family:'Do Hyeon', sans-serif;}
+
 </style>
 
 <script src="${pageContext.request.contextPath }/resources/js/jQueryRotate.js"></script>
@@ -148,14 +150,20 @@ window.onload = function(){
 
 
 
-<div class="container">
+<div class="container" id="font">
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">캐시뽑기권</h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">알림페이지</a>
-      </li>
-    </ol>
+    <div>
+	    <ol class="breadcrumb" style="background-color: white; font-size: 30px;">
+	      <li class="breadcrumb-item">
+	        <a href="${pageContext.request.contextPath }/" style="color: darkorange;">메인페이지</a>
+	      </li>
+	      <li class="breadcrumb-item active">룰렛</li>
+	    </ol>
+  	</div>
+    
+    
+    
+    
 	<div class="back">
     	<div id="title">
     		<h3>꽝없는</h3>
@@ -171,8 +179,7 @@ window.onload = function(){
 				<p style="font-size: 30px;">이미 캐시뽑기를 <br>
 				진행하셨습니다.</p><br>							
 				<div id="cash1"></div>				
-			</div>
-			
+			</div>		
 		</div>	
 		
 		<div class="bottom">
