@@ -40,7 +40,10 @@ public class EventService {
 	public int insertSortition(EventVo vo){
 		return edao.insertSortition(vo);
 	}
-
+	public int insertReview(EventVo vo){
+		return edao.insertReview(vo);
+	}
+	
 	public List<HashMap<String, Object>> getList(){
 		return edao.getList();
 	}

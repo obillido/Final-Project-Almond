@@ -18,7 +18,7 @@
       <li class="breadcrumb-item">
         <a href="${pageContext.request.contextPath }/" style="color: darkorange;">메인페이지</a>
       </li>
-      <li class="breadcrumb-item active">열람/리뷰이벤트</li>
+      <li class="breadcrumb-item active">리뷰이벤트</li>
     </ol>
     <!-- Portfolio Item Row -->
     <div class="row">
@@ -31,7 +31,6 @@
 			(개별 안내)<br></p>
         <h3 class="my-3">경품</h3>
           <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/6.jpg">
-          <img class="img-fluid" src="${pageContext.request.contextPath }/resources/eventTK/5.jpg">
       </div>
     </div>
     <!-- Related Projects Row -->

@@ -29,7 +29,8 @@
 	<div class="row">
 		<div class="col-lg-8 mb-4">
 			<h3>등록</h3><br>
-			<button class="btn btn-primary" onclick="location.href='${path}/event/regiForm?status=10'">열람/리뷰 이벤트</button>
+			<button class="btn btn-primary" onclick="location.href='${path}/event/regiForm?status=10'">열람 이벤트</button>
+			<button class="btn btn-primary" onclick="location.href='${path}/event/regiForm?status=20'">리뷰 이벤트</button>
 			<button class="btn btn-primary" onclick="location.href='${path}/event/regiForm?status=30'">룰렛 이벤트</button>
 			<button class="btn btn-primary" onclick="location.href='${path}/event/regiForm?status=40'">키워드 이벤트</button>
 			<br>

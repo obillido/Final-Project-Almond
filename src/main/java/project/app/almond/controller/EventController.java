@@ -53,14 +53,16 @@ public class EventController {
 
 	@RequestMapping(value="event/insert",method=RequestMethod.POST)
 	public String insertSortition(EventVo evo, MultipartFile file1, Model model){
-		String uploadPath="C:/web/spring/almond/src/main/webapp/resources/event";//"C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/event";
+		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/event";
 		//"C:/web/spring/almond/src/main/webapp/resources/event";
 		String img=null;
 		if(file1.getOriginalFilename().length()>0) img=UUID.randomUUID()+"_"+file1.getOriginalFilename();
 		evo.setImg(img);
 		int status=evo.getStatus(), n;
-		if(status<30){
+		if(status<20){
 			n=service.insertSortition(evo);
+		}else if(status<30){
+			n=service.insertReview(evo);
 		}else if(status<40){
 			n=service.insertRoulette(evo);
 		}else{

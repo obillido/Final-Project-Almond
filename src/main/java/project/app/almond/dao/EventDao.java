@@ -47,6 +47,9 @@ public class EventDao {
 	public int insertSortition(EventVo vo){
 		return session.insert(NAMESPACE+".insertSortition",vo);
 	}
+	public int insertReview(EventVo vo){
+		return session.insert(NAMESPACE+".insertReview",vo);
+	}
 	
 	public List<HashMap<String, Object>> getList(){
 		return session.selectList(NAMESPACE+".getList");

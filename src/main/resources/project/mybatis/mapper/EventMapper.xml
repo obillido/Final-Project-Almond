@@ -73,13 +73,20 @@
 	
 	
 	
-		
+	
 	<insert id="insertSortition" parameterType="project.app.almond.vo.EventVo">
 		insert into event(eventnum,contnum,title,content,regdate,startdate,enddate,img,status,human,cnt)
 		values(seq_event_eventnum.nextval,#{contnum},
 		<choose><when test="title==null">null</when><otherwise>#{title}</otherwise></choose>,
 		<choose><when test="content==null">null</when><otherwise>#{content}</otherwise></choose>,
 		sysdate,#{startdate},#{enddate},#{img},#{status},#{human},#{cnt})
+	</insert>
+	<insert id="insertReview" parameterType="project.app.almond.vo.EventVo">
+		insert into event(eventnum,contnum,title,content,regdate,startdate,enddate,img,status,price)
+		values(seq_event_eventnum.nextval,#{contnum},
+		<choose><when test="title==null">null</when><otherwise>#{title}</otherwise></choose>,
+		<choose><when test="content==null">null</when><otherwise>#{content}</otherwise></choose>,
+		sysdate,#{startdate},#{enddate},#{img},#{status},#{price})
 	</insert>
 	<insert id="insertRoulette" parameterType="project.app.almond.vo.EventVo">
 		insert into event(eventnum,regdate,startdate,enddate,status)

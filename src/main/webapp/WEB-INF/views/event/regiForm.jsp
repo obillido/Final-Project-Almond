@@ -87,7 +87,7 @@
 					</div></div>
 					<button type="submit" class="btn btn-primary">등록</button>
 				</c:when>
-			 	<c:otherwise>
+				<c:when test="${status==20}">
 					<div class="control-group form-group"><div class="controls">
 						<label>작품명 :</label> 
 							<select class="form-control" name="contnum">
@@ -117,14 +117,81 @@
 								</c:forEach>
 							</optgroup>
 						</select>
-					</div></div>
-					<div class="control-group form-group"><div class="controls">
-						<label>문제 :</label> 
+						<div class="control-group form-group"><div class="controls">
+						<label>제목 :</label> 
 							<input type="text" class="form-control" name="title"  autocomplete=off>
 						<p class="help-block"></p>
 					</div></div>
 					<div class="control-group form-group"><div class="controls">
-						<label>힌트 :</label> 
+						<label>내용 :</label> 
+							<input type="text" class="form-control" name="content"  autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>시작일 :</label> 
+						<input type="date" class="form-control"
+							name="startdate" required
+							data-validation-required-message="날짜(시작)을 선택하세요."
+							autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>종료일 :</label> 
+						<input type="date" class="form-control"
+							name="enddate" required
+							data-validation-required-message="날짜(시작)을 선택하세요."
+							autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>이미지 (필수아님) :</label>
+						<input type="file" class="form-control" name="file1">
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>지급액 :</label>
+						<input type="number" min="0" class="form-control" name="price" autocomplete=off>
+					</div></div>
+					<button type="submit" class="btn btn-primary">등록</button>
+				</c:when>
+			 	<c:otherwise>
+					<div class="control-group form-group"><div class="controls">
+							<label>작품명 :</label> 
+							<select class="form-control" name="contnum">
+							<optgroup label="만화">
+								<c:forEach var="webvo" items="${webCultype1}">
+									<option value="${webvo.contnum}">${webvo.title}</option>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="소설">
+								<c:forEach var="webvo" items="${webCultype2}">
+									<option value="${webvo.contnum}">${webvo.title}</option>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="예능">
+								<c:forEach var="webvo" items="${webCultype3}">
+									<option value="${webvo.contnum}">${webvo.title}</option>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="드라마">
+								<c:forEach var="webvo" items="${webCultype4}">
+									<option value="${webvo.contnum}">${webvo.title}</option>
+								</c:forEach>
+							</optgroup>
+							<optgroup label="영화">
+								<c:forEach var="webvo" items="${webCultype5}">
+									<option value="${webvo.contnum}">${webvo.title}</option>
+								</c:forEach>
+							</optgroup>
+						</select>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>제목 :</label> 
+							<input type="text" class="form-control" name="title"  autocomplete=off>
+						<p class="help-block"></p>
+					</div></div>
+					<div class="control-group form-group"><div class="controls">
+						<label>내용 :</label> 
 							<input type="text" class="form-control" name="content"  autocomplete=off>
 						<p class="help-block"></p>
 					</div></div>
