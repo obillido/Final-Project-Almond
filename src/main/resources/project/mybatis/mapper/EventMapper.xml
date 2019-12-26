@@ -108,7 +108,7 @@
 	
 	<select id="getShowList" resultType="project.app.almond.vo.EventVo">
 		select * from event where sysdate between startdate and enddate and img is not null and 
-		<![CDATA[status<=30]]>
+		<![CDATA[status<30]]>
 	</select>
 	
 	

@@ -38,10 +38,6 @@ public class HomeController {
 		model.addAttribute("eventList",es.getShowList());
 		return ".layout";
 	}
-	@RequestMapping(value = "/2")
-	public String home2() {
-		return ".home2";
-	}
 	@RequestMapping(value = "/popup")
 	public String popup(){
 		return "/popup";

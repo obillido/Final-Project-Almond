@@ -113,29 +113,33 @@
 	}
 
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
-		if(epnum<=freenum){
-			post_to_url(["epinum","type"],[epinum,5]);
-		}else if(${remainingWaitingTime<=0}){
-			post_to_url(["epinum","type"],[epinum,6]);
-		}else if(status==1){ //티켓 사용해서 보기
-			$("#ticketModal"+epinum).modal("hide");
-			if(type==2){
-				setTimeout('$("#rentalTicketUseModal").modal()',200);
-				setTimeout('$("#rentalTicketUseModal").modal("hide");',900);
-			}
-			else{
-				setTimeout('$("#ownTicketUseModal").modal()',200);
-				setTimeout('$("#ownTicketUseModal").modal("hide");',900);
-			}
-			setTimeout('post_to_url(["epinum","type"],['+epinum+','+type+'])',1000);
-		}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
-			post_to_url(["epinum","type"],[epinum,(type+2)]);
-		}else{
-			if(${empty usernum}){
-				alert("로그인 후 이용가능한 서비스입니다.");
+		if(${empty userStatus}){
+			if(epnum<=freenum){
+				post_to_url(["epinum","type"],[epinum,5]);
+			}else if(${remainingWaitingTime<=0}){
+				post_to_url(["epinum","type"],[epinum,6]);
+			}else if(status==1){ //티켓 사용해서 보기
+				$("#ticketModal"+epinum).modal("hide");
+				if(type==2){
+					setTimeout('$("#rentalTicketUseModal").modal()',200);
+					setTimeout('$("#rentalTicketUseModal").modal("hide");',900);
+				}
+				else{
+					setTimeout('$("#ownTicketUseModal").modal()',200);
+					setTimeout('$("#ownTicketUseModal").modal("hide");',900);
+				}
+				setTimeout('post_to_url(["epinum","type"],['+epinum+','+type+'])',1000);
+			}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
+				post_to_url(["epinum","type"],[epinum,(type+2)]);
 			}else{
-				$("#ticketModal"+epinum).modal();
+				if(${empty usernum}){
+					alert("로그인 후 이용가능한 서비스입니다.");
+				}else{
+					$("#ticketModal"+epinum).modal();
+				}
 			}
+		}else{
+			post_to_url(["epinum","type"],[epinum,1]);
 		}
 	}
 	

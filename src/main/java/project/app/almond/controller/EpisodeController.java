@@ -151,19 +151,21 @@ public class EpisodeController {
 		Object uu=session.getAttribute("usernum");
 		Date sysdate=new Date(new java.util.Date().getTime());
 		if(uu!=null){
-			int usernum=(Integer)uu, n=0;
-			if(type==1 || type==2){
-				n=tus.insert(usernum, contnum, epinum, type, sysdate);
-			}else{
-				n=rs.insert(usernum, contnum, epinum, type, sysdate);
-			}
-			if(n>0){
-				model.addAttribute("wvo",wvo);
-				model.addAttribute("evo",evo);
-				return ".webcontents.episode.content";
-			}else{
-				model.addAttribute("msg","열람실패");
-				return "redirect:/webcontents/episode/list";
+			if((String)session.getAttribute("userStatus")==null){
+				int usernum=(Integer)uu, n=0;
+				if(type==1 || type==2){
+					n=tus.insert(usernum, contnum, epinum, type, sysdate);
+				}else{
+					n=rs.insert(usernum, contnum, epinum, type, sysdate);
+				}
+				if(n>0){
+					model.addAttribute("wvo",wvo);
+					model.addAttribute("evo",evo);
+					return ".webcontents.episode.content";
+				}else{
+					model.addAttribute("msg","열람실패");
+					return "redirect:/webcontents/episode/list";
+				}
 			}
 		}
 		model.addAttribute("wvo",wvo);

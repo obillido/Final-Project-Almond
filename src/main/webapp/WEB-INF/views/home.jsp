@@ -6,11 +6,6 @@
 
 <div class="container">
 
-	<ul>
-		<li><a href='${pageContext.request.contextPath}/2'>2.소희</a></li>
-	</ul>
-	
-	
 	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 	  <ol class="carousel-indicators">
 	    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -18,6 +13,18 @@
 	    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
 	  </ol>
 	  <div class="carousel-inner">
+	  	<div class="carousel-inner">
+	  	<c:forEach var="evo" items="${eventList}" varStatus="index">
+	  		<div class="carousel-item" <c:if test="${!index.first}">class="active"</c:if>
+	  				onclick="javascript:eventMove(${evo.eventnum},${evo.status})">
+					<img src="${path}/resources/event/${evo.img}" class="d-block w-100">
+		      <div class="carousel-caption d-none d-md-block">
+		        <c:if test="${not empty evo.title}"><h5>${evo.title}</h5></c:if>
+		        <c:if test="${not empty evo.content}"><p>${evo.content}</p></c:if>
+		      </div>
+		    </div>
+	  	</c:forEach>
+	  
 	    <div class="carousel-item active">
 	      <a href="${path}/webcontents/episode/list?contnum=98">
 	      <img src="${path}/resources/suhyeonimages/111.jpg" class="d-block w-100">
@@ -183,5 +190,15 @@
 	   }
    }
   
-  
+	function eventMove(eventnum,status){
+		if(status<20){
+			location.href="${path}/event2?eventnum="+eventnum;
+		}else if(status<30){
+			location.href="${path}/event3?eventnum="+eventnum;
+		}else if(status<40){
+			location.href="${path}/event5?eventnum="+eventnum;
+		}else{
+			location.href="${path}/event4?eventnum="+eventnum;
+		}
+	}
 </script>
