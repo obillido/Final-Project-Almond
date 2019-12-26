@@ -301,7 +301,7 @@
 	<br>
 	
 	<c:choose>
-		<c:when test="${empty episcore}">
+		<c:when test="${episcore==0}">
 			<p>아직 아무도 별점을 주지 않았습니다.</p>
 		</c:when>
 		<c:otherwise>

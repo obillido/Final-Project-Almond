@@ -136,8 +136,16 @@ public class EpisodeController {
 	
 	@RequestMapping(value="/webcontents/episode/content",method=RequestMethod.POST)
 	public String epiInfo(int epinum,HttpSession session,int type,Model model){
+		//별점 관련
 		EpisodeVo evo=es.getInfo(epinum);
 		int contnum=evo.getContnum();
+		double episcore=ws.thisEpiScore(epinum);
+		if(episcore==0){
+			model.addAttribute("episcore", 0);
+		}else{
+			model.addAttribute("episcore", episcore);
+		}
+				
 		WebcontentsVo wvo=ws.getInfo(contnum);
 		
 		Object uu=session.getAttribute("usernum");
@@ -158,21 +166,8 @@ public class EpisodeController {
 				return "redirect:/webcontents/episode/list";
 			}
 		}
-		
-		//별점 관련
-		double episcore=ws.thisEpiScore(epinum);
-		if(episcore==0){
-			model.addAttribute("episcore", 0);
-		}else{
-			model.addAttribute("episcore", episcore);
-		}
-		
 		model.addAttribute("wvo",wvo);
 		model.addAttribute("evo",evo);
 		return ".webcontents.episode.content";
 	}
-	
-
-
-
 }
