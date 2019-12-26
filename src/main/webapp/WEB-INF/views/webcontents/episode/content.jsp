@@ -209,7 +209,7 @@
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	function clickLike(me,usernum){
-		if('${not empty usernum}'){
+		if(${not empty usernum}){
 			if(${usernum}!=usernum){
 				if($($(me).parent().children()[3]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
@@ -228,7 +228,7 @@
 		}
 	}
 	function clickHate(me,usernum){
-		if('${not empty usernum}'){
+		if(${not empty usernum}){
 			if(${usernum}!=usernum){
 				if($($(me).parent().children()[2]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
@@ -248,7 +248,6 @@
 	}
 	
 	function changeLikesCnt(commnum,type,me){
-		var check=true;
 		$.ajax({
 			url:"${path}/webcontents/comments/changeLikesCnt",
 			dataType:"xml",
@@ -256,15 +255,13 @@
 			data:{"commnum":commnum,"type":type},
 			success:function(data){
 				if($(data).find("code").text()=='success'){
-					console.log($(data).find("cnt").text());
 					$(me).children().last().html('<div class="likesCnt">'+fmt($(data).find("cnt").text())+'</div> ');
-					check= true;
 				}else{
 					alert("오류발생!");
 				}
 			}			
 		});
-		return ch;
+		return true;
 	}
 	
 	

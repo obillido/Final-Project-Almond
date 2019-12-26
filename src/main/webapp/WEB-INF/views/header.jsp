@@ -209,7 +209,7 @@
 
 	
 	function alarm(){
-		if('${not empty usernum}'){
+		if(${not empty usernum}){
 			$.ajax({
 				url:"${path}/alarm/getCnt",
 				dataType:"xml",
@@ -224,7 +224,7 @@
 		}
 	}
 	function alarmList(){
-		if('${not empty usernum}'){
+		if(${not empty usernum}){
 			$.ajax({
 				url:"${path}/alarm/list",
 				dataType:"xml",

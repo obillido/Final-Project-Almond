@@ -102,11 +102,11 @@
 				alert("로그인 후 이용 가능한 서비스입니다.");
 			}else{
 				var webtype; 
-				if('${cultype==1}') webtype="webtoon";
-				else if('${cultype==2}') webtype="novel";
-				else if('${cultype==3}') webtype="drama";
-				else if('${cultype==4}') webtype="";
-				else if('${cultype==5}') webtype="movie";
+				if(${cultype==1}) webtype="webtoon";
+				else if(${cultype==2}) webtype="novel";
+				else if(${cultype==3}) webtype="drama";
+				else if(${cultype==4}) webtype="";
+				else if(${cultype==5}) webtype="movie";
 				location.href="${pageContext.request.contextPath}/ticket/"+webtype+"?contnum=${wvo.contnum}";
 			}
 		});
@@ -115,7 +115,7 @@
 	function openEpisode(epinum,epnum,freenum,rt,type,status,me){
 		if(epnum<=freenum){
 			post_to_url(["epinum","type"],[epinum,5]);
-		}else if('${remainingWaitingTime<=0}'){
+		}else if(${remainingWaitingTime<=0}){
 			post_to_url(["epinum","type"],[epinum,6]);
 		}else if(status==1){ //티켓 사용해서 보기
 			$("#ticketModal"+epinum).modal("hide");
@@ -131,7 +131,7 @@
 		}else if(type==1 || ((type==2 || type==6) && rt<=4320 && rt>=0)){ //이전에 티켓을 사용한 경우
 			post_to_url(["epinum","type"],[epinum,(type+2)]);
 		}else{
-			if('${empty usernum}'){
+			if(${empty usernum}){
 				alert("로그인 후 이용가능한 서비스입니다.");
 			}else{
 				$("#ticketModal"+epinum).modal();
