@@ -94,9 +94,6 @@
 				<a class="category" href="${path}/webcontents/list?cultype=3">예능</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="category" href="${path}/webcontents/list?cultype=4">드라마</a>
-			</li>
-			<li class="nav-item dropdown">
 				<a class="category" href="${path}/webcontents/list?cultype=5">영화</a>
 			</li>
 			<li class="nav-item dropdown">
