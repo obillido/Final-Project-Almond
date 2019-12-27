@@ -118,6 +118,7 @@
 			});
 		});
 	});
+	
 	function list(pageNum){
 		$("#bestCommList div").remove();
 		$("#bestCommList hr").remove();
