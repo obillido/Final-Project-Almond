@@ -33,11 +33,6 @@
 	  background-color:red;
 	  color: #fff;
 	}
-	
-	#alarm-img:hover{
-		transform:rotate(360deg);
-	}
-	
 	#alarmList{
 		overflow-y:scroll;
 		width:350px; max-height:600px;
@@ -161,9 +156,9 @@
 					<img src="${path}/resources/alarm/message.PNG" width="30px;" id="alarm-img">
 				</div>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio" id="alarmList">
-					<button class="tablink-alarm" onclick="openAlarm('webAlarmList',this)" id="defaultOpen-alarm">작품</button>
-					<button class="tablink-alarm" onclick="openAlarm('eventAlarmList',this)">이벤트</button>
-					<button class="tablink-alarm" onclick="openAlarm('commAlarmList',this)">댓글</button>
+					<button class="tablink-alarm" onclick="openAlarm('webAlarmList',this)" id="tab-webAlarmList">작품</button>
+					<button class="tablink-alarm" onclick="openAlarm('eventAlarmList',this)" id="tab-eventAlarmList">이벤트</button>
+					<button class="tablink-alarm" onclick="openAlarm('commAlarmList',this)" id="tab-commAlarmList">댓글</button>
 					<div id="webAlarmList" class="tabcontent-alarm"></div>
 					<div id="eventAlarmList" class="tabcontent-alarm"></div>
 					<div id="commAlarmList" class="tabcontent-alarm"></div>
@@ -181,8 +176,10 @@
 	$(document).ready(function(){
 		alarm();
 		setInterval(alarm,1000);
-		$("#defaultOpen-alarm").click();
 		$("#alarm").click(alarmList);
+		$("#alarmList").click(function() {
+			$("#alarmList").css("display","block");
+		});
 	});
 
 
@@ -221,7 +218,9 @@
 					if(cnt>0){
 						$("#alarm").addClass("badge-notification");
 						$("#alarm").attr("data-badge",cnt);
-						
+						if(alarm_cnt==0) alarm_cnt=cnt;
+						else if(alarm_cnt!=cnt) $("#alarm-img").css({"transform":"rotate(720deg)","transition":"all 1s"});
+						else $("#alarm-img").css({"transform":"rotate(0deg)","transition":"all 0s"});
 						alarm_cnt=cnt;
 					}
 				}

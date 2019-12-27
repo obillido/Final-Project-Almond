@@ -156,7 +156,6 @@
 	function comm(me,type){
 		var mt=$(me).find("mytype").text();
 		var usernum=$(me).find("usernum").text();
-		console.log($(me).find("profileimg").text());
 		var comm='<hr><div class="media mb-4"> ';
 		var profileimg=$(me).find("profileimg").text();
 		if(profileimg=="null") comm+='<img class="d-flex mr-3 rounded-circle profile-img" src="${path}/resources/rull/아몬드.png" > ';
