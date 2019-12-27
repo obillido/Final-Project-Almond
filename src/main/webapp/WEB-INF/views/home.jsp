@@ -86,7 +86,7 @@
 	     <option value="1">만화</option>
 	     <option value="2">소설</option>
 	     <option value="3">예능</option>
-	     <option value="4">드라마</option>
+	     
 	     <option value="5">영화</option>
 	  </select>
 	</div>
