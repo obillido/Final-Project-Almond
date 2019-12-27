@@ -56,7 +56,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-
 		document.getElementById("defaultOpen").click();
 		
 		
@@ -97,7 +96,7 @@
 		
 		
 	
-		list(1);			
+			
 		$("#commInsert").click(function(){
 			var comment=$("#comment").val();
 			var ref=0;
@@ -119,6 +118,9 @@
 		});
 	});
 	
+	
+
+	list(1);	
 	function list(pageNum){
 		$("#bestCommList div").remove();
 		$("#bestCommList hr").remove();
@@ -211,8 +213,9 @@
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	function clickLike(me,usernum){
+
 		if(${not empty usernum}){
-			if(${usernum}!=usernum){
+			if('${usernum}'!=usernum){
 				if($($(me).parent().children()[3]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
 						if(changeLikesCnt($(me).val(),1,me)) $(me).attr('class','likes-click');
@@ -230,8 +233,9 @@
 		}
 	}
 	function clickHate(me,usernum){
+
 		if(${not empty usernum}){
-			if(${usernum}!=usernum){
+			if('${usernum}'!=usernum){
 				if($($(me).parent().children()[2]).attr('class')=='likes'){
 					if($(me).attr('class')=='likes'){
 						if(changeLikesCnt($(me).val(),2,me)) $(me).attr('class','hates-click');
@@ -340,8 +344,6 @@
         <button id="commInsert" class="btn btn-primary">등록</button>
       </div>
     </div>
-
-
 
 		<div id="commList">
 			<button class="tablink" onclick="openComm('bestCommList',this)" id="defaultOpen">Best 댓글</button>

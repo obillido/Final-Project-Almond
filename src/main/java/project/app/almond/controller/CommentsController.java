@@ -44,6 +44,7 @@ public class CommentsController {
 	@RequestMapping(value="/webcontents/comments/list",produces="application/xml;charset=utf-8")
 	@ResponseBody
 	public String commentsList(int epinum,@RequestParam(value="pageNum",defaultValue="1")int pageNum, HttpSession session){
+		System.out.println("µé¾î¿È");
 		int totalRowCount=cs.getCnt(epinum);
 		PageUtil pu=new PageUtil(pageNum, totalRowCount, 5, 5);
 		int usernum=-1;
