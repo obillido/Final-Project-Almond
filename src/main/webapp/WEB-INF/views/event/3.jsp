@@ -23,7 +23,7 @@
     <!-- Portfolio Item Row -->
     <div class="row">
       <div class="col-md-7">
-        <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
+        <img style="width: 90%;" class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">
       </div>
       <div class="col-md-5" id="font" style="color: #6c757d;font-size: 20px;">     
         <p>이벤트기간 : ${evo.startdate} ~ ${evo.enddate}<br>
@@ -62,7 +62,7 @@
  		<div class="row">
       		<div class="col-md-3 col-sm-4 mb-4">
 	       		<a href="${pageContext.request.contextPath}/webcontents/episode/list?contnum=${evo.contnum}">
-	         		 <img class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
+	         		 <img class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">
 	        	</a>
       		</div>  		
       		<div class="col-md-3 col-sm-6 mb-4" id="font" >     

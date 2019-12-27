@@ -44,7 +44,7 @@
     <div class="row">
 
       <div class="col-md-7">
-        <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}" alt="">
+        <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">
       </div>
 	
      <div class="col-md-5" style="color: #6c757d;font-size: 20px;" id="font">
@@ -71,7 +71,7 @@
     
       <div class="col-md-3 col-sm-4 mb-4" >
         <a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=${evo.contnum}">
-        <img class="img-fluid" src="${pageContext.request.contextPath }/resources/event/${evo.img}">        
+        <img class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">        
         </a>
       </div>
       
