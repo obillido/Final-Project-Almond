@@ -14,17 +14,6 @@
 	  </ol>
 	  <div class="carousel-inner">
 	  	<div class="carousel-inner">
-	  	<c:forEach var="evo" items="${eventList}" varStatus="index">
-	  		<div class="carousel-item" <c:if test="${!index.first}">class="active"</c:if>
-	  				onclick="javascript:eventMove(${evo.eventnum},${evo.status})">
-					<img src="${path}/resources/event/${evo.img}" class="d-block w-100">
-		      <div class="carousel-caption d-none d-md-block">
-		        <c:if test="${not empty evo.title}"><h5>${evo.title}</h5></c:if>
-		        <c:if test="${not empty evo.content}"><p>${evo.content}</p></c:if>
-		      </div>
-		    </div>
-	  	</c:forEach>
-	  
 	    <div class="carousel-item active">
 	      <a href="${path}/webcontents/episode/list?contnum=98">
 	      <img src="${path}/resources/suhyeonimages/111.jpg" class="d-block w-100">
