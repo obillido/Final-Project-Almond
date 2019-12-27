@@ -34,7 +34,7 @@
 	  color: #fff;
 	}
 	
-	#alarm-img{
+	#alarm-img:hover{
 		transform:rotate(360deg);
 	}
 	
@@ -175,12 +175,14 @@
 	</nav>
 
 <script type="text/javascript">
-
+	var alarm_cnt=0;
+	
+	
 	$(document).ready(function(){
 		alarm();
-		setInterval(alarm,60000);
+		setInterval(alarm,1000);
 		$("#defaultOpen-alarm").click();
-		$("#alarm").click(alarmList());
+		$("#alarm").click(alarmList);
 	});
 
 
@@ -219,6 +221,8 @@
 					if(cnt>0){
 						$("#alarm").addClass("badge-notification");
 						$("#alarm").attr("data-badge",cnt);
+						
+						alarm_cnt=cnt;
 					}
 				}
 			});

@@ -4,6 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 	
 <style>
+	.profile-img{width:50px;}
 	.likes{width:80px; display:inline-block; padding:2px; background-color:white; border:1px solid black;}
 	.likes-click{width:80px; display:inline-block; padding:2px; background-color:white; border:2px solid blue; color:blue;}
 	.hates-click{width:80px; display:inline-block; padding:2px; background-color:white; border:2px solid red; color:red;}
@@ -156,10 +157,11 @@
 		var mt=$(me).find("mytype").text();
 		var usernum=$(me).find("usernum").text();
 		console.log($(me).find("profileimg").text());
-		var comm=
-			'<hr><div class="media mb-4"> '+
-        '<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50"> '+
-        '<div class="media-body"> '+
+		var comm='<hr><div class="media mb-4"> ';
+		var profileimg=$(me).find("profileimg").text();
+		if(profileimg=="null") comm+='<img class="d-flex mr-3 rounded-circle profile-img" src="${path}/resources/rull/아몬드.png" > ';
+		else comm+='<img class="d-flex mr-3 rounded-circle profile-img" src="${path}/resources/profileimages/'+profileimg+'"> ';
+		comm+='<div class="media-body"> '+
           '<h5 class="mt-0">'+$(me).find("nickname").text();
     if(type==1) comm+='<div class="bestmark">Best</div>';
     comm+='</h5> ';
