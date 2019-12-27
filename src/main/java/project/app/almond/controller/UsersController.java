@@ -87,7 +87,8 @@ public class UsersController {
 	public String chgProfile(HttpSession session,Model model,MultipartFile file,String nickname){
 		int usernum=(Integer)session.getAttribute("usernum");
 		
-		String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/profileimages";
+		//String uploadPath="C:/Users/JHTA/git/Final-Project-Almond/src/main/webapp/resources/profileimages";
+		String uploadPath=session.getServletContext().getRealPath("/resources/profileimages");
 		String orgfilename=file.getOriginalFilename();
 		String savefilename=UUID.randomUUID() + "_" + orgfilename;
 		
