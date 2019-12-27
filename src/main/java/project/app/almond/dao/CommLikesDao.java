@@ -24,7 +24,7 @@ public class CommLikesDao {
 	public int getCnt(CommLikesVo vo){
 		return sqlSessionTemplate.selectOne(NAMESPACE+".getCnt",vo);
 	}
-	public HashMap<String, Object> getInfo(int commnum){
-		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",commnum);
+	public HashMap<String, Object> getInfo(CommLikesVo vo){
+		return sqlSessionTemplate.selectOne(NAMESPACE+".getInfo",vo);
 	}
 }

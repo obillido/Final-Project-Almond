@@ -41,7 +41,7 @@ public class CommLikesService {
 	}
 	
 	void insertAlarm(CommLikesVo vo){
-		HashMap<String, Object> map=cldao.getInfo(vo.getCommnum());
+		HashMap<String, Object> map=cldao.getInfo(vo);
 		UsersVo uvo1=udao.getInfo(((BigDecimal)map.get("U1")).intValue());
 		UsersVo uvo2=udao.getInfo(((BigDecimal)map.get("U2")).intValue());
 		String title="[´ñ±Û] "+map.get("TITLE")+" "+map.get("EPNUM")+"È­";
