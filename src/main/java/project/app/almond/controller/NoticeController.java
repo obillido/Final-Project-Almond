@@ -30,8 +30,6 @@ public class NoticeController {
 	public String insert(int contnum,String title,String content,Model model){
 		NoticeVo vo=new NoticeVo(0, contnum, title, content, null);
 		int n=ns.insert(vo);
-		System.out.println("vo출력결과:" + vo);
-		System.out.println("n출력결과:" + n);
 		if(n>0){
 			List<NoticeVo> list=ns.list(contnum);
 			model.addAttribute("list", list);
