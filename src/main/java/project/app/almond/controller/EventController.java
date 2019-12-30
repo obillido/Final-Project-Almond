@@ -145,11 +145,10 @@ public class EventController {
 	@RequestMapping(value="/event3",method=RequestMethod.POST)
 	public String event3comments(int eventnum,Model model,HttpSession session,WinnerVo vo){	
 		int a=0;
-		int b=0;
 		int c=0;
 		if(ws.count(eventnum)==0){
 			a=service.event3comments(eventnum);
-			if(a<1||b<1) model.addAttribute("msg","실패");
+			if(a<1) model.addAttribute("msg","실패");
 		}else{
 			List<UsersVo> list=ws.select(eventnum);
 			c=service.event3cash(vo, eventnum);
@@ -157,7 +156,7 @@ public class EventController {
 			model.addAttribute("msg","이미 실행된 이벤트입니다.");
 		}
 		model.addAttribute("eventnum", eventnum);
-		return ".event.3";
+		return "redirect:/event3";
 	}
 	//home2에서 이벤트4를 눌렀을때
 	@RequestMapping(value="/event4", method=RequestMethod.GET)

@@ -36,8 +36,7 @@ public class EventDao {
 	}
 	public int event5cash(UsersVo vo){//룰렛돌린애들 금액 업데이트
 		return session.update(NAMESPACE+".event5cash",vo);
-	}
-	
+	}	
 	public int insertKeyword(EventVo vo){
 		return session.insert(NAMESPACE+".insertKeyword",vo);
 	}
@@ -49,17 +48,13 @@ public class EventDao {
 	}
 	public int insertReview(EventVo vo){
 		return session.insert(NAMESPACE+".insertReview",vo);
-	}
-	
+	}	
 	public List<HashMap<String, Object>> getList(){
 		return session.selectList(NAMESPACE+".getList");
-	}
-	
+	}	
 	public EventVo getInfo(int eventnum){
 		return session.selectOne(NAMESPACE+".getInfo",eventnum);
 	}
-	
-	
 	public List<EventVo> getShowList(){
 		return session.selectList(NAMESPACE+".getShowList");
 	}

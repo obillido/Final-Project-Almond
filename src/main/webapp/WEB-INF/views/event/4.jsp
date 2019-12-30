@@ -10,7 +10,7 @@
 		padding-top: 30px; margin: auto; margin-top:30px;
 		margin-bottom: 20px; }
 	#title{text-align: center; padding-top: 30px;}
-	#hint{text-align: center; padding-top: 30px;}
+	#hint{text-align: center; padding-top: 11px;}
 
 	
 	@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|East+Sea+Dokdo&display=swap');
