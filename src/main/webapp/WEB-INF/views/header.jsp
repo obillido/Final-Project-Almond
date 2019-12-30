@@ -41,6 +41,7 @@
 
 	#login-box{width:260px; text-align:right;}
 	
+
 	
 	.tablink-alarm{
 		width:33.33%;
@@ -174,9 +175,19 @@
 	
 	
 	$(document).ready(function(){
+		document.getElementById("tab-webAlarmList").click();
+		$("#alarmList").css("display","none");
 		alarm();
 		setInterval(alarm,1000);
 		$("#alarm").click(alarmList);
+		$("#alarm").click(function(){
+			if($("#alarmList").css("display")=="block") $("#alarmList").css("display","none");
+			else  $("#alarmList").css("display","block");
+		});
+		$("#alarm body").click(function(){
+			if($("#alarmList").css("display")=="block") $("#alarmList").css("display","none");
+			else  $("#alarmList").css("display","block");
+		});
 	});
 
 
@@ -273,6 +284,7 @@
 		}
 		$("#"+commName).css("display","block");
 		elmnt.style.backgroundColor="#EAEAEA";
+		$("#alarmList").css("display","block");
 	}
 	
 	

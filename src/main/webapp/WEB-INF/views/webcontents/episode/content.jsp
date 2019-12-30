@@ -214,7 +214,6 @@
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 	function clickLike(me,usernum){
-
 		if(${not empty usernum}){
 			if('${usernum}'!=usernum){
 				if($($(me).parent().children()[3]).attr('class')=='likes'){
@@ -233,8 +232,8 @@
 			alert("로그인 후 이용가능한 서비스입니다.");
 		}
 	}
+	
 	function clickHate(me,usernum){
-
 		if(${not empty usernum}){
 			if('${usernum}'!=usernum){
 				if($($(me).parent().children()[2]).attr('class')=='likes'){

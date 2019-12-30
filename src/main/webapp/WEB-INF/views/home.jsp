@@ -108,27 +108,33 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
+	   showPopularList();
 	   $("#div").click(function(){
-		   $("#jakpumList").empty();
-		   var cultype=document.getElementsByName("cultype")[0].value;
-		   $.ajax({
-			   url:"${path}/webcontents/jakpum?cultype=" + cultype,
-			   dataType:"xml",
-			   success:function(data){
-				   $(data).find("jakpum").each(function(){
-					   var jp="<div class='card' style='width:16rem;'>" + 
-					          "<img src='${path}/resources/webcontents/" + $(this).find("cultype").text() + "/" + $(this).find("img").text() + "' class='card-img-top'>" + 
-						      "<div class='card-body'>" + 
-						      "<h4 class='card-title'><strong>" + $(this).find("title").text() + "</strong></h4><br>" + 
-					          "<a href='${path}/webcontents/episode/list?contnum=" + $(this).find("contnum").text() + "&cultype=" + $(this).find("cultype").text() + "' class='btn btn-outline-warning'>보러가기</a>" + 
-					          "</div></div>";
-					   console.log(jp);
-					   $("#jakpumList").append(jp);
-				   });
-			   }
-		   });
+		   showPopularList();
 	   });
    });
+   
+   function showPopularList(){
+	   $("#jakpumList").empty();
+	   var cultype=document.getElementsByName("cultype")[0].value;
+	   $.ajax({
+		   url:"${path}/webcontents/jakpum?cultype=" + cultype,
+		   dataType:"xml",
+		   success:function(data){
+			   $(data).find("jakpum").each(function(){
+				   var jp="<div class='card' style='width:16rem;'>" + 
+				          "<img src='${path}/resources/webcontents/" + $(this).find("cultype").text() + "/" + $(this).find("img").text() + "' class='card-img-top'>" + 
+					      "<div class='card-body'>" + 
+					      "<h4 class='card-title'><strong>" + $(this).find("title").text() + "</strong></h4><br>" + 
+				          "<a href='${path}/webcontents/episode/list?contnum=" + $(this).find("contnum").text() + "&cultype=" + $(this).find("cultype").text() + "' class='btn btn-outline-warning'>보러가기</a>" + 
+				          "</div></div>";
+				   console.log(jp);
+				   $("#jakpumList").append(jp);
+			   });
+		   }
+	   });
+   }
+   
    
    /*
    window.onload=function(){
