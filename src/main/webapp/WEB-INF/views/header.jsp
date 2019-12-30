@@ -177,9 +177,6 @@
 		alarm();
 		setInterval(alarm,1000);
 		$("#alarm").click(alarmList);
-		$("#alarmList").click(function() {
-			$("#alarmList").css("display","block");
-		});
 	});
 
 
