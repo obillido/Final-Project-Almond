@@ -29,6 +29,7 @@
 	    where c.epinum=ep.epinum and e.contnum=ep.contnum and r.epinum=ep.epinum
 	    and e.eventnum=6 and r.readingdate between  e.startdate and e.enddate
 	    and c.content like '%리뷰이벤트%'
+	    group by c.usernum,c.regdate,e.eventnum
 	    order by dbms_random.value
 		)aa
 		where rownum<=3
