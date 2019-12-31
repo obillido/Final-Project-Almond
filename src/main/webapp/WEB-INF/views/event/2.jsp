@@ -5,8 +5,7 @@
 <script type="text/javascript">
 	window.onload=function(){
 		event2(0);
-	}
-		
+	}		
 	function event2(status){
 		$.ajax({
 			url:"${pageContext.request.contextPath}/event2/list",
@@ -26,57 +25,49 @@
 				}
 			}
 		});
-	}
-	
+	}	
 </script>
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|East+Sea+Dokdo&display=swap');
 	#font{font-family:'Do Hyeon', sans-serif;}
 </style>
- <div class="container" >
-    <ol class="breadcrumb" style="background-color: white; font-size: 30px;" id="font">
-      <li class="breadcrumb-item">
-        <a href="${pageContext.request.contextPath }/" style="color: darkorange;">메인페이지</a>
-      </li>
-      <li class="breadcrumb-item active" id="font">열람이벤트</li>
-    </ol>
-
+<div class="container" >
+	<ol class="breadcrumb" style="background-color: white; font-size: 30px;" id="font">
+		<li class="breadcrumb-item">
+			<a href="${pageContext.request.contextPath }/" style="color: darkorange;">메인페이지</a>
+		</li>
+	<li class="breadcrumb-item active" id="font">열람이벤트</li>
+	</ol>
     <div class="row">
-
-      <div class="col-md-7">
-        <img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">
-      </div>
-	
-     <div class="col-md-5" style="color: #6c757d;font-size: 20px;" id="font">
-       <h3 class="my-3">이벤트 내용</h3>
-        <p>이벤트 기간 : ${evo.startdate} ~ ${evo.enddate}<br>
+		<div class="col-md-7">
+        	<img style="width: 90%" class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">
+		</div>	
+		<div class="col-md-5" style="color: #6c757d;font-size: 20px;" id="font">
+			<h3 class="my-3">이벤트 내용</h3>
+        	<p>이벤트 기간 : ${evo.startdate} ~ ${evo.enddate}<br>
 						참여방법 : 이벤트 기간 동안,<br>
 						 작품을 감상해 주시는 분들 중 추첨<br>
 						당첨자 발표 : 종료일 다음날, 알람 개별고지<br></p>
-        <br>
-        <h3 class="my-3" id="font">경품</h3>                 
-         <img class="img-fluid" style="margin-left: -15px;" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
-      	 <br>
-      	 <c:if test="${userStatus.equals('admin')}">
+        	<br>
+        	<h3 class="my-3" id="font">경품</h3>                 
+         	<img class="img-fluid" style="margin-left: -15px;" src="${pageContext.request.contextPath }/resources/eventTK/CASH.jpg">  
+      	 	<br>
+      	 	<c:if test="${userStatus.equals('admin')}">
       	 		<button type="button" style="width: 100px;height: 60px;" onclick="javascript:event2(1)">당첨</button>
-      	 </c:if>
-      	 <br>
+      	 	</c:if>
+      	 	<br>
       	 <div id="winnerList" style="color: darkorange;"></div>
-      </div>
-     
-    </div>
-
+		</div>   
+	</div>
     <h3 class="my-4" id="font">이벤트 작품 보러 가기</h3>
-    <div class="row">
-    
-      <div class="col-md-3 col-sm-4 mb-4" >
-        <a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=${evo.contnum}">
-        <img class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">        
-        </a>
-      </div>
-      
+    <div class="row">   
+		<div class="col-md-3 col-sm-4 mb-4" >
+        	<a href="${pageContext.request.contextPath }/webcontents/episode/list?contnum=${evo.contnum}">
+        	<img class="img-fluid" src="${pageContext.request.contextPath }/resources/webcontents/${webvo.cultype}/${webvo.img}">        
+       	 	</a>
+     	</div>
         <div class="col-md-8 col-sm-4 mb-4" id="font">     
-          <div id="content">
+			<div id="content">
           	<ul>
           		<li style="list-style:none; font-size: 1.3em;">
           		<br>
